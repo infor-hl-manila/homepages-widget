@@ -1,3 +1,3 @@
 
 \.DS_Store
-\Samples\node_modules
+/Samples/node_modules
