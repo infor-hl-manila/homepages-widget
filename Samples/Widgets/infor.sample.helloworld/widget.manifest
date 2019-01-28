@@ -1,0 +1,24 @@
+{
+	"widgetId": "infor.sample.helloworld",
+	"type": "inline",
+	"framework": "jquery",
+	"name": "Hello World",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"settings": [
+		{
+			"name": "Message",
+			"type": "string",
+			"defaultValue": "Hello World",
+			"labelId": "message"
+		}
+	],
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Hello World",
+			"widgetDescription": "Hello World Sample Widget.",
+			"message": "Message"
+		}
+	}
+}

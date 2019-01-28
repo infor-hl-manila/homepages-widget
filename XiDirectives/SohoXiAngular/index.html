@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html ng-app="sohoxitest" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+	<title>SoHo XI Angular Test</title>
+	<link href="scripts/xi/light-theme.css" rel="stylesheet" id="sohoxi-stylesheet" />
+	<script src="scripts/vendor/jquery.min.js"></script>
+	<script src="scripts/vendor/d3.min.js"></script>
+	<script src="scripts/xi/sohoxi.min.js"></script>
+	<script src="scripts/vendor/angular.min.js"></script>
+	<script src="sohoxi-angular.js"></script>
+	<script src="app.js"></script>
+</head>
+<body ng-controller="xiTestDataCtrl as ctrl">
+	<ng-include src="'scripts/xi/svg.html'"></ng-include>
+	<ng-include src="'scripts/xi/svg-extended.html'"></ng-include>
+	<ng-include src="'scripts/lime/svg.html'"></ng-include>
+	<a name="home"></a>
+	<!-- Note Application menu uses xi-control with xi-control-options -->
+	<nav id="application-menu" class="application-menu" xi-control="applicationmenu" xi-control-options="ctrl.applicationMenuOptions">
+		<!-- application menu must be placed directly over .page-container, therefor it cannot be included with ng-include-->
+		<div class="accordion panel inverse">
+			<div class="accordion-header">
+				<svg class="icon" focusable="false" aria-hidden="true" role="presentation">
+					<use xlink:href="#icon-home"></use>
+				</svg>
+				<a href="#home">
+					<span>Top of page</span>
+				</a>
+			</div>
+			<div class="accordion-header">
+				<svg class="icon" focusable="false" aria-hidden="true" role="presentation">
+					<use xlink:href="#icon-settings"></use>
+				</svg>
+				<a href="#">
+					<span>Section</span>
+				</a>
+			</div>
+			<div class="accordion-pane">
+				<div class="accordion-header">
+					<a href="#">
+						<span>No real link</span>
+					</a>
+				</div>
+			</div>
+			<div class="accordion-header">
+				<svg class="icon" focusable="false" aria-hidden="true" role="presentation">
+					<use xlink:href="#icon-document"></use>
+				</svg>
+				<a href="#endofpage">
+					<span>End of this page</span>
+				</a>
+			</div>
+		</div>
+
+		<div class="branding">
+			<svg class="icon" viewBox="0 0 34 34" focusable="false" aria-hidden="true" role="presentation">
+				<use xlink:href="#icon-logo"></use>
+			</svg>
+		</div>
+	</nav>
+	<div class="page-container">
+		<header class="header" role="banner">
+			<div class="row">
+				<div class="full column">
+					<div class="toolbar">
+						<div class="title">
+							<button type="button" id="lm-appmenu-trigger" class="btn-icon application-menu-trigger">
+								<span class="audible">Open Menu</span>
+								<svg class="icon" focusable="false" aria-hidden="true" role="presentation">
+									<use xlink:href="#icon-menu"></use>
+								</svg>
+							</button>
+							<h1>{{xiTestTitle}}</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="container">
+			<!-- About -->
+			<ng-include src="'directive-templates/about.html'"></ng-include>
+			<!-- Autocomplete -->
+			<ng-include src="'directive-templates/autocomplete.html'"></ng-include>
+			<!-- Busy Indicator -->
+			<ng-include src="'directive-templates/busy.html'"></ng-include>
+			<!-- Button -->
+			<ng-include src="'directive-templates/button.html'"></ng-include>
+			<!-- Chart -->
+			<ng-include src="'directive-templates/chart.html'"></ng-include>
+			<!-- Colorpicker -->
+			<ng-include src="'directive-templates/colorpicker.html'"></ng-include>
+			<!-- Data Grid -->
+			<ng-include src="'directive-templates/datagrid.html'"></ng-include>
+			<!-- Date Picker -->
+			<ng-include src="'directive-templates/datepicker.html'"></ng-include>
+			<!-- Dropdown -->
+			<ng-include src="'directive-templates/dropdown.html'"></ng-include>
+			<!-- File upload -->
+			<ng-include src="'directive-templates/fileupload.html'"></ng-include>
+			<!-- Listview -->
+			<ng-include src="'directive-templates/listview.html'"></ng-include>
+			<!-- Lookup -->
+			<ng-include src="'directive-templates/lookup.html'"></ng-include>
+			<!-- Mask -->
+			<ng-include src="'directive-templates/mask.html'"></ng-include>
+			<!-- Multiselect -->
+			<ng-include src="'directive-templates/multiselect.html'"></ng-include>
+			<!-- Popover -->
+			<ng-include src="'directive-templates/popover.html'"></ng-include>
+			<!-- Popup Menu -->
+			<ng-include src="'directive-templates/popupmenu.html'"></ng-include>
+			<!-- Searchfield -->
+			<ng-include src="'directive-templates/searchfield.html'"></ng-include>
+			<!-- Slider -->
+			<ng-include src="'directive-templates/slider.html'"></ng-include>
+			<!-- Spinbox -->
+			<ng-include src="'directive-templates/spinbox.html'"></ng-include>
+			<!-- Textarea -->
+			<ng-include src="'directive-templates/textarea.html'"></ng-include>
+			<!-- Timeline -->
+			<ng-include src="'directive-templates/timeline.html'"></ng-include>
+			<!-- Time Picker -->
+			<ng-include src="'directive-templates/timepicker.html'"></ng-include>
+			<!-- Toolbar -->
+			<ng-include src="'directive-templates/toolbar.html'"></ng-include>
+			<!-- Tooltip -->
+			<ng-include src="'directive-templates/tooltip.html'"></ng-include>
+			<!-- Track Dirty -->
+			<ng-include src="'directive-templates/track-dirty.html'"></ng-include>
+			<!-- Tree -->
+			<ng-include src="'directive-templates/tree.html'"></ng-include>
+			<!-- Validate -->
+			<ng-include src="'directive-templates/validate.html'"></ng-include>
+			<a name="endofpage"></a>
+		</div>
+	</div>
+</body>
+</html>

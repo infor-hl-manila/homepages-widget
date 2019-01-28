@@ -1,0 +1,13 @@
+{
+	"name" : "InforHomepagesSohoXiDirectives",
+	"version" : "0.9.0",
+	"description" : "SoHo Xi Angular Directives Examples",
+	"main" : "",
+	"author" : "Infor",
+	"private" : true,
+	"dependencies" : {
+		"connect" : "~3.3.4",
+		"serve-static" : "~1.8.1"
+	},
+	"devDependencies" : {}
+}

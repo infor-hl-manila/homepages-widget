@@ -1,0 +1,29 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Chart</h1>
+		<span class="label">Directive: xi-chart</span>
+		<span class="label">Directive options: xi.IChartOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="widget">
+			<div class="widget-header"><h2 class="widget-title">{{firstChartTitle ? "Chart #1" : "Chart #2"}} - {{ctrl.chartOptions.type}}</h2></div>
+			<div class="widget-content">
+				<div class="chart-container" xi-chart="ctrl.chartOptions"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label class="label" for="chartType">Type:</label>
+			<select id="chartType" ng-model="ctrl.chartOptions.type" ng-options="type.value as type.name for type in chartTypes" class="dropdown" xi-drop-down="chartTypes"></select>
+		</div>
+		<div class="field">
+			<button class="btn-primary" type="button" ng-click="ctrl.switchChartData()">Switch data</button>
+		</div>
+	</div>
+</div>

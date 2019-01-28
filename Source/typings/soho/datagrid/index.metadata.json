@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./soho-datagrid.component","export":["SohoDataGridComponent","SohoDataGridToggleRowEvent","SohoGridColumnFilterTypes","SohoAngularEditorAdapter"]},{"from":"./soho-datagrid.module","export":["SohoDataGridModule"]},{"from":"./soho-datagrid.service","export":["SohoDataGridService"]}]}]

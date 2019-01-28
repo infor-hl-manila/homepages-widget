@@ -1,0 +1,24 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Color Picker</h1>
+		<span class="label">Directive: xi-colorpicker</span>
+		<span class="label">Directive options: xi.IColorPickerOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="default-color">Default</label>
+			<input class="colorpicker" value="ffa800" id="default-color" type="text" xi-colorpicker/>
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="another-color">With options (colors)</label>
+			<input class="colorpicker" value="ffffff" id="another-color" type="text" xi-colorpicker="ctrl.colorpickerOptions"/>
+			<br/>
+			<button class="btn-primary" type="button" ng-click="ctrl.addToColorPicker()">Add a color option</button>
+		</div>
+	</div>
+</div>

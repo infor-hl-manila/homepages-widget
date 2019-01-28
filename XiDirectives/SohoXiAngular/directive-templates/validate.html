@@ -1,0 +1,46 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Validation</h1>
+		<span class="label">Directive: xi-validate</span>
+		<span class="label">Directive options: xi.IValidateOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<!-- With attributes -->
+	<div class="one-half column">
+		<form name="validateFormA">
+			<div class="field">
+				<label class="required" for="validateRequired">Required (with attributes)</label>
+				<input id="validateRequired" xi-validate aria-required="true" name="validateRequired" ng-model="validateRequired" data-validate="required" />
+			</div>
+			<div class="field">
+				<label for="validateTime">Time 24H (with attributes)</label>
+				<input id="validateTime" xi-validate name="validateTime" placeholder="HH:MM" ng-model="validateTime" data-validate="time" data-time-format="HH" />
+			</div>
+			<div class="field">
+				<label for="validateDate">Date (with attributes)</label>
+				<input id="validateDate" xi-validate name="validateDate" placeholder="MM/DD/YYYY" ng-model="validateDate" data-validate="date" />
+			</div>
+			<button class="btn-primary" ng-disabled="!validateFormA.$valid">Submit</button>
+		</form>
+	</div>
+	<!-- With options object -->
+	<div class="one-half column">
+		<form name="validateFormB">
+			<div class="field">
+				<label class="required" for="validateRequiredB">Required (with options)</label>
+				<input id="validateRequiredB" xi-validate="ctrl.validateRequiredOptions" aria-required="true" name="validateRequiredB" ng-model="validateRequiredB" />
+			</div>
+			<div class="field">
+				<label for="validateTimeB">Time 24H (with options)</label>
+				<input id="validateTimeB" xi-validate="ctrl.validateTimeOptions" name="validateTimeB" placeholder="HH:MM" ng-model="validateTimeB" />
+			</div>
+			<div class="field">
+				<label for="validateDateB">Date (with options, date & required validation)</label>
+				<input id="validateDateB" xi-validate="ctrl.validateDateOptions" name="validateDateB" placeholder="MM/DD/YYYY" ng-model="validateDateB" />
+			</div>
+			<button class="btn-primary" ng-disabled="!validateFormB.$valid">Submit</button>
+		</form>
+	</div>
+</div>

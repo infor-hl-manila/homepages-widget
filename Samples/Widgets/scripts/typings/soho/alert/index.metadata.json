@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./soho-alert.directive","export":["SohoAlertDirective"]},{"from":"./soho-alert.module","export":["SohoAlertModule"]}]}]

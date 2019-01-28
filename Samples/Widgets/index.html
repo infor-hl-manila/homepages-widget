@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+	<title>Homepages</title>
+	<link href="scripts/xi/light-theme.css" rel="stylesheet" id="sohoxi-stylesheet" />
+	<link rel="stylesheet" href="scripts/lime/lime.css" type="text/css" />
+	<script src="scripts/vendor/jquery.min.js"></script>
+	<script src="scripts/vendor/jquery-ui.min.js"></script>
+	<script src="scripts/vendor/jquery.json-2.4.min.js"></script>
+	<script src="scripts/vendor/d3.v4.min.js"></script>
+	<script src="scripts/xi/sohoxi.min.js" data-svg-path="scripts/xi/svg/"></script>
+	<script src="scripts/xi/sohoxi-migrate-4.4.0.js"></script>
+	<script src="scripts/vendor/infor-companyon-client-dev.js"></script>
+	<script src="scripts/lime/resources/en-US.js"></script>
+	<script src="scripts/vendor/shim.min.js"></script>
+	<script src="scripts/vendor/zone.min.js"></script>
+	<script src="scripts/vendor/system.js"></script>
+	<script src="scripts/vendor/tslib.js"></script>
+	<script src="lime-main.js"></script>
+	<script src="lime-common.js"></script>
+	<script src="lime-mobile.js"></script>
+	<script src="lime-config.js"></script>
+</head>
+
+<body class="no-scroll">
+<ng-include src="'scripts/lime/svg-bundle.html'"></ng-include>
+
+<!-- Hello World sample -->
+<lm-page-container devWidget="infor.sample.helloworld"></lm-page-container>
+<!-- -->
+<!-- Hello World sample with development configuration -->
+<!-- <lm-page-container devWidget="infor.sample.helloworld" devSettings="infor.sample.helloworld/settings.json" devConfiguration="configuration.json"></lm-page-container> -->
+<!-- -->
+<!-- Cardlist Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.cardlist"></lm-page-container> -->
+<!-- -->
+<!-- Card Group Action Angular sample - Shows how to implement a fixed toolbar -->
+<!-- <lm-page-container devWidget="infor.sample.angular.cardgroupaction"></lm-page-container> -->
+<!-- -->
+<!-- Hello World Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.helloworld"></lm-page-container> -->
+<!-- -->
+<!-- Dialogs Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.dialogs"></lm-page-container> -->
+<!-- -->
+<!-- Find Widgets Angular sample that lists widgets that are part of the same page - use with multiple widgets -->
+<!-- <lm-page-container devWidget="infor.sample.angular.findwidgets;infor.sample.angular.helloworld;infor.sample.angular.cardlist"></lm-page-container> -->
+<!-- -->
+<!-- Custom Settings Angular sample that uses metadata to be able to control individual settings when publishing the widget (enabled/hidden settings). Use dev-custom="custom.json" to mock a publish configuration -->
+<!-- <lm-page-container devWidget="infor.sample.angular.settings.ui.metadata"></lm-page-container> -->
+<!-- -->
+<!-- Custom Settings sample -->
+<!-- <lm-page-container devWidget="infor.sample.settings.ui"></lm-page-container> -->
+<!-- -->
+<!-- External sample with application dependency - must have configuration for application -->
+<!-- <lm-page-container devWidget="infor.sample.external.app"  devConfiguration="configuration.json"></lm-page-container> -->
+<!-- -->
+<!-- Quicknote Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.quicknote"></lm-page-container> -->
+<!-- -->
+<!-- Widget2Widget Sender & Receiver Angular samples -->
+<!-- <lm-page-container devWidget="infor.sample.w2wsender;infor.sample.w2wreceiver"></lm-page-container> -->
+<!-- -->
+<!-- ION API M3 Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.ionapi.m3" devConfiguration="configuration.json"></lm-page-container> -->
+<!-- -->
+<!-- ION API Social Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.ionapi.social" devConfiguration="configuration.json"></lm-page-container> -->
+<!-- -->
+<!-- Minify Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.minify"></lm-page-container> -->
+<!-- -->
+<!-- Banner widget Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.banner"></lm-page-container> -->
+<!-- -->
+<!-- Context app widget Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.contextviewer"></lm-page-container> -->
+<!-- -->
+<!-- Submenu Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.submenu"></lm-page-container> -->
+<!-- -->
+<!-- Multiple widgets example (separate values for dev-widget, dev-settings and dev-custom with semi colon) -->
+<!-- <lm-page-container devWidget="infor.sample.angular.helloworld;infor.sample.angular.cardlist"></lm-page-container> -->
+<!-- -->
+<!-- Shared module Angular samples, use the same module in multiple widgets to limit script loading and ION API requests -->
+<!-- <lm-page-container devWidget="infor.sample.sharedmodule;infor.sample.sharedmodule2;infor.sample.sharedmodule2"></lm-page-container> -->
+<!-- -->
+<!-- Resolving values from URL parameters retrieved on drillback to Homepages -->
+<!-- <lm-page-container devWidget="infor.sample.angular.contextparameters"></lm-page-container>  -->
+<!-- -->
+<!-- Responsive widget, content is displayed differently if widget has double width or more -->
+<!-- <lm-page-container devWidget="infor.sample.angular.responsive"></lm-page-container>  -->
+<!-- -->
+<!-- Content Translation Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.contenttranslation"></lm-page-container> -->
+<!-- -->
+<!-- Lifecycle Angular sample -->
+<!-- <lm-page-container devWidget="infor.sample.angular.lifecycle"></lm-page-container> -->
+<!-- -->
+<!-- Mobile (Infor GO) sample -->
+<!-- <lm-page-container devWidget="infor.sample.mobile"></lm-page-container> -->
+<!-- -->
+<!-- Tenant widget sample -->
+<!-- <lm-page-container devWidget="tenant.sample.angular.helloworld"></lm-page-container> -->
+
+<script>
+	System.import("main").then(function(main) {
+		main.bootstrap();
+	});
+</script>
+
+</body>
+</html>

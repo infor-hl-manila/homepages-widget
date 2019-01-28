@@ -1,0 +1,24 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Date Picker</h1>
+		<span class="label">Directive: xi-datepicker</span>
+		<span class="label">Directive options: xi.IDatePickerOptions</span>
+		<hr/>
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="date-field" class="label">Date Field (witout options)</label>
+			<input xi-datepicker id="date-field" class="datepicker" placeholder="" name="date-field" type="text">
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="date-field-2" class="label">Date Field (with options)</label>
+			<input xi-datepicker="ctrl.datepickerOptions" id="date-field-2" class="datepicker" placeholder="" name="date-field-2" type="text">
+			<br/>
+			<span class="micro-text">In this example the dateFormat option is overridden since a Locale setting is present.</span>
+		</div>
+	</div>
+</div>

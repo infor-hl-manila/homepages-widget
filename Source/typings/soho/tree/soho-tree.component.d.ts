@@ -1,0 +1,45 @@
+/// <reference path="soho-tree.d.ts" />
+import { AfterViewInit, ElementRef, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { SohoTreeService } from './soho-tree.service';
+export declare type SohoTreeType = 'auto' | 'content-only';
+export declare class SohoTreeComponent implements AfterViewInit, OnInit, OnDestroy {
+    private elementRef;
+    private treeService;
+    static AUTO: SohoTreeType;
+    static CONTENT_ONLY: SohoTreeType;
+    dataset: SohoTreeNode[];
+    sohoTree: SohoTreeType;
+    selectable: SohoTreeSelectable;
+    hideCheckboxes: boolean;
+    source: SohoTreeSourceFunction;
+    expand: EventEmitter<SohoTreeEvent>;
+    collapse: EventEmitter<SohoTreeEvent>;
+    selected: EventEmitter<SohoTreeEvent>;
+    isDisabled: boolean;
+    treeClass: boolean;
+    treeRole: string;
+    private jQueryElement;
+    private tree;
+    private treeType;
+    options: SohoTreeOptions;
+    constructor(elementRef: ElementRef, treeService: SohoTreeService);
+    reset(): void;
+    enable(): void;
+    disable(): void;
+    setFocus(node: SohoTreeNode): void;
+    disableNode(node: SohoTreeNode): void;
+    enableNode(node: SohoTreeNode): void;
+    updateNode(node: SohoTreeNode): void;
+    expandAll(): void;
+    collapseAll(): void;
+    removeNode(node: SohoTreeNode): void;
+    selectNode(id: string, focus?: boolean): void;
+    getSelectedNodes(): SohoTreeNode[];
+    addNode(treeNode: SohoTreeNode, location?: any): void;
+    findById(id: string): SohoTreeNode;
+    toggleNode(node: SohoTreeNode): void;
+    private onDataRequest(event, response);
+    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    ngOnDestroy(): void;
+}

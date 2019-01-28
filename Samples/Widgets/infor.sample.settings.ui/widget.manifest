@@ -1,0 +1,15 @@
+{
+	"widgetId": "infor.sample.settings.ui",
+	"type": "inline",
+	"name": "Custom Settings",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Custom Settings",
+			"widgetDescription": "Custom settings sample widget.",
+			"color": "Color"
+		}
+	}
+}

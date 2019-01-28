@@ -1,0 +1,37 @@
+{
+	"defaultSeverity": "warning",
+	"rulesDirectory": [],
+	"extends": [
+		"tslint:recommended"
+	],
+	"jsRules": {},
+	"rules": {
+		"no-boolean-literal-compare": true,
+		"max-classes-per-file": false,
+		"object-literal-shorthand": false,
+		"object-literal-sort-keys":false,
+		"no-any": {
+			"severity": "warning"
+		},
+		"jsdoc-format": {
+			"severity": "warning"
+		},
+		"indent":false,
+		"comment-format": false,
+		"array-type": false,
+		"object-literal-key-quotes": [true, "as-needed"],
+		"no-return-await": true,
+		"max-line-length": false,
+		"no-reference": true,
+		"arrow-parens": false,
+		"trailing-comma": false,
+		"member-access": {
+			"options": "no-public"
+		},
+		"member-ordering": {
+			"options": {
+				"order": "fields-first"
+			}
+		}
+	}
+}

@@ -1,0 +1,41 @@
+/// <reference path="soho-accordion.d.ts" />
+import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, QueryList } from '@angular/core';
+import { SohoAccordionHeaderComponent } from './soho-accordion-header.component';
+export declare class SohoAccordionComponent implements AfterViewInit, OnDestroy {
+    private element;
+    headers: QueryList<SohoAccordionHeaderComponent>;
+    private options;
+    private jQueryElement;
+    private accordion;
+    beforeexpandEvent: EventEmitter<any>;
+    beforecollapseEvent: EventEmitter<any>;
+    beforeselectEvent: EventEmitter<any>;
+    selectedEvent: EventEmitter<any>;
+    followlinkEvent: EventEmitter<any>;
+    expandEvent: EventEmitter<any>;
+    afterexpandEvent: EventEmitter<any>;
+    collapseEvent: EventEmitter<any>;
+    aftercollapseEvent: EventEmitter<any>;
+    allowOnePane: boolean;
+    displayChevron: boolean;
+    rerouteOnLinkClick: boolean;
+    source: Function;
+    hasPanels: boolean;
+    inverse: boolean;
+    alternate: boolean;
+    hasSubheaderSeparators: boolean;
+    constructor(element: ElementRef);
+    getHeader(index: number): SohoAccordionHeaderComponent;
+    expand(header: SohoAccordionHeaderComponent): void;
+    collapse(header: SohoAccordionHeaderComponent): void;
+    expandAll(): void;
+    collapseAll(): void;
+    disable(): void;
+    enable(): void;
+    isDisabled(header: SohoAccordionHeaderComponent): void;
+    isExpanded(header: SohoAccordionHeaderComponent): void;
+    toggle(header: SohoAccordionHeaderComponent): void;
+    updated(): void;
+    ngAfterViewInit(): void;
+    ngOnDestroy(): void;
+}

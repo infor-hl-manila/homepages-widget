@@ -1,0 +1,2185 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>IWidgetContext2 | framework</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">framework</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_lime_.html">&quot;lime&quot;</a>
+				</li>
+				<li>
+					<a href="_lime_.iwidgetcontext2.html">IWidgetContext2</a>
+				</li>
+			</ul>
+			<h1>Interface IWidgetContext2</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents the context for a widget in runtime.</p>
+					</div>
+					<p>The context is received as a parameter to the widgetFactory function in the widget module.</p>
+					<p>The context provides a widget instance with data, settings, the DOM element etc and
+					functions that can be used to interact with the framework.</p>
+					<dl class="tsd-comment-tags">
+						<dt>since</dt>
+						<dd><p>1.0.17</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IWidgetContext2</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#enabletitleedit" class="tsd-kind-icon">enable<wbr>Title<wbr>Edit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetcontext2.html#executeionapiasync" class="tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#findwidgetsonpage" class="tsd-kind-icon">find<wbr>Widgets<wbr>OnPage</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getapplication" class="tsd-kind-icon">get<wbr>Application</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getapplicationasync" class="tsd-kind-icon">get<wbr>Application<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getapplications" class="tsd-kind-icon">get<wbr>Applications</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getapplicationsasync" class="tsd-kind-icon">get<wbr>Applications<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getbannerbackgroundcolor" class="tsd-kind-icon">get<wbr>Banner<wbr>Background<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getcontainerurl" class="tsd-kind-icon">get<wbr>Container<wbr>Url</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getcontextparameter" class="tsd-kind-icon">get<wbr>Context<wbr>Parameter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getdevice" class="tsd-kind-icon">get<wbr>Device</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getelement" class="tsd-kind-icon">get<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getinforcurrentlanguage" class="tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Language</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getinforcurrentlocale" class="tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Locale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getinforthemename" class="tsd-kind-icon">get<wbr>Infor<wbr>Theme<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getinfortimezone" class="tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getinfortimezoneraw" class="tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone<wbr>Raw</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getionapicontextasync" class="tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getionapicustomercontext" class="tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Customer<wbr>Context</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getlanguage" class="tsd-kind-icon">get<wbr>Language</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getlogicalid" class="tsd-kind-icon">get<wbr>Logical<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getpageid" class="tsd-kind-icon">get<wbr>Page<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getresolvedtitle" class="tsd-kind-icon">get<wbr>Resolved<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetcontext2.html#getservice" class="tsd-kind-icon">get<wbr>Service</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getsettings" class="tsd-kind-icon">get<wbr>Settings</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getstandardtitle" class="tsd-kind-icon">get<wbr>Standard<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getstandardwidgetid" class="tsd-kind-icon">get<wbr>Standard<wbr>Widget<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getstate" class="tsd-kind-icon">get<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#gettenantid" class="tsd-kind-icon">get<wbr>Tenant<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#gettitle" class="tsd-kind-icon">get<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#geturl" class="tsd-kind-icon">get<wbr>Url</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getuserid" class="tsd-kind-icon">get<wbr>User<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getviewurlasync" class="tsd-kind-icon">get<wbr>View<wbr>Url<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#getwidgetinstanceid" class="tsd-kind-icon">get<wbr>Widget<wbr>Instance<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#isactive" class="tsd-kind-icon">is<wbr>Active</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#isbanner" class="tsd-kind-icon">is<wbr>Banner</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#iscloud" class="tsd-kind-icon">is<wbr>Cloud</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#isdev" class="tsd-kind-icon">is<wbr>Dev</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#ispublished" class="tsd-kind-icon">is<wbr>Published</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#issingletenantcloud" class="tsd-kind-icon">is<wbr>Single<wbr>Tenant<wbr>Cloud</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#istitleeditenabled" class="tsd-kind-icon">is<wbr>Title<wbr>Edit<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#istitlelocked" class="tsd-kind-icon">is<wbr>Title<wbr>Locked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#istitleunlockable" class="tsd-kind-icon">is<wbr>Title<wbr>Unlockable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#iswidgetonpage" class="tsd-kind-icon">is<wbr>Widget<wbr>OnPage</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#launch" class="tsd-kind-icon">launch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#removewidgetmessage" class="tsd-kind-icon">remove<wbr>Widget<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#resolve" class="tsd-kind-icon">resolve</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#resolveandreplace" class="tsd-kind-icon">resolve<wbr>And<wbr>Replace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#resolveandreplaceasync" class="tsd-kind-icon">resolve<wbr>And<wbr>Replace<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#save" class="tsd-kind-icon">save</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#setlogicalid" class="tsd-kind-icon">set<wbr>Logical<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#setstandardtitle" class="tsd-kind-icon">set<wbr>Standard<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#setstate" class="tsd-kind-icon">set<wbr>State</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#settitle" class="tsd-kind-icon">set<wbr>Title</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#settitlelocked" class="tsd-kind-icon">set<wbr>Title<wbr>Locked</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#showwidgetmessage" class="tsd-kind-icon">show<wbr>Widget<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext2.html#updateprimaryaction" class="tsd-kind-icon">update<wbr>Primary<wbr>Action</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="enabletitleedit" class="tsd-anchor"></a>
+					<h3>enable<wbr>Title<wbr>Edit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">enable<wbr>Title<wbr>Edit<span class="tsd-signature-symbol">(</span>isEnabled<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2151</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Enables or disables the possibility for the user to edit the widget title.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>isEnabled: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True to enable title editing, False to disable.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+					<a name="executeionapiasync" class="tsd-anchor"></a>
+					<h3>execute<wbr>Ion<wbr>Api<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async&lt;T&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iionapirequestoptions.html" class="tsd-signature-type">IIonApiRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapiresponse.html" class="tsd-signature-type">IIonApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2397</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Executes an ION API HTTP request.</p>
+								</div>
+								<p>This function will automatically get the IonApiContext which contains the OAuth token necessary to complete the request.</p>
+								<p>If the url parameter is relative (which it should be in most cases) the ION API base URL will be prepended to the URL before the request is executed.</p>
+								<p>If the ION API HTTP request returns a 401 response code this function will perform a single retry. The retry attempt
+									will get a fresh OAuth token and repeat the same request. If the second request completes without errors it will be
+								transparent to the caller. If the second request fails the promise will be rejected.</p>
+								<p>If more control is required when making the request the getIonApiContextAsync function can be used to
+								get the OAuth token and ION API base URL. In this case the retry for expired OAuth tokens must be handled manually.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="_lime_.iionapirequestoptions.html" class="tsd-signature-type">IIonApiRequestOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object that describes the request.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapiresponse.html" class="tsd-signature-type">IIonApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An observable that can be subscribed to.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="findwidgetsonpage" class="tsd-anchor"></a>
+					<h3>find<wbr>Widgets<wbr>OnPage</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Widgets<wbr>OnPage<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_lime_.ifindwidgetoptions.html" class="tsd-signature-type">IFindWidgetOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.iwidgetinstanceinfo.html" class="tsd-signature-type">IWidgetInstanceInfo</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2506</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds widgets that are part of the same page as the current widget.</p>
+								</div>
+								<p>If no options are specified the function will find all widgets on the page except for the current widget.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="_lime_.ifindwidgetoptions.html" class="tsd-signature-type">IFindWidgetOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional find options.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.iwidgetinstanceinfo.html" class="tsd-signature-type">IWidgetInstanceInfo</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array of widgets or an empty array if no matching widgets can be found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getapplication" class="tsd-anchor"></a>
+					<h3>get<wbr>Application</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Application<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2256</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the default application instance.</p>
+								</div>
+								<p>If there are more than one instance of the application the one that is considered
+								to be default by the framework will be returned.</p>
+								<p>Note that for this to work when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a></h4>
+							<p>The default application instance or null if the widget does not belong to an application.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getapplicationasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Application<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Application<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2298</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Ming.le application settings for a specified application.</p>
+								</div>
+								<p>If a logical ID is specified it must match exactly with an existing application instance.
+								If a logical ID prefix is specified the default application instance will be returned.</p>
+								<p>Note that for this to work when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logicalId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The logical ID or logical ID prefix for the application to get.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that will be resolved when the application settings are available.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getapplications" class="tsd-anchor"></a>
+					<h3>get<wbr>Applications</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Applications<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2268</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an array with all application instances.</p>
+								</div>
+								<p>If there is only a single appliction instance the result will be an array with one element.</p>
+								<p>Note that for this to work when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array of application instances or an empty array if the widgets does not belong to an application.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getapplicationsasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Applications<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Applications<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2314</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Ming.le application settings for all instances of the specified application.</p>
+								</div>
+								<p>If a logical ID is specified it must match exactly with an existing application instance.
+								If a logical ID prefix is specified the default application instance will be returned.</p>
+								<p>Note that all instances of an application will be returned even if the logical ID for a specific instance is specified.</p>
+								<p>Note that for this to work when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logicalId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The logical ID or logical ID prefix for the application to get.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that will be resolved when the application settings are available.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getbannerbackgroundcolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Banner<wbr>Background<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Banner<wbr>Background<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2578</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the current background color used for the banner widget(s) container.</p>
+								</div>
+								<p>This method is useful for banner widget implementation only, for instance to
+								be able to apply specific styles that are coherent with the current background color</p>
+								<p>Example: #0E5B52</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>Banner background color string or null if the widget does not have a parent context at this time</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getcontainerurl" class="tsd-anchor"></a>
+					<h3>get<wbr>Container<wbr>Url</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Container<wbr>Url<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2466</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the container (top level) url in the form of schema://host, for example <a href="https://mingledev.infor.com">https://mingledev.infor.com</a> if Homepages is running withing Ming.le.
+										This url should be used when implementing X-Frame-Options for widgets that has IFrames. The replacement variable to use in templates is &#39;containerUrl&#39;.
+									If Homepages is running standalone or in dev mode it will return the URL to the Hompages host.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getcontextparameter" class="tsd-anchor"></a>
+					<h3>get<wbr>Context<wbr>Parameter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Context<wbr>Parameter<span class="tsd-signature-symbol">(</span>parameter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2593</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the value of a drillback/bookmark parameter.</p>
+								</div>
+								<p>This method can be used if Homepages is opened via a drillback or bookmark, including one or
+								more parameters, that the widget needs to resolve value(s) for. Only string values can be resolved.</p>
+								<p>Example drillback: ?LogicalId=lid://infor.homepages.1&amp;param1=valuefromparameterone
+								Value for &quot;param1&quot; can be retrieved using this method</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.19</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parameter: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the parameter.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The value of the parameter, or null if no matching parameter is found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getdevice" class="tsd-anchor"></a>
+					<h3>get<wbr>Device</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Device<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.idevice.html" class="tsd-signature-type">IDevice</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2033</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the device, which should primarily be used to access native features of the mobile device that is
+									running the widget.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.idevice.html" class="tsd-signature-type">IDevice</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getelement" class="tsd-anchor"></a>
+					<h3>get<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Element<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">JQuery</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2012</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the widget DOM element wrapped in a JQuery object.</p>
+								</div>
+								<p>A widget may add content to this element and for widgets not implemented using AngularJS
+								this is the only option for adding content.</p>
+								<p>Note that a widget is only allowed to add content as children to this element.
+									A widget is not allowed to explicitly add elements to other parts of the DOM. The only exceptions
+								are when elements are added implicitly using modal dialogs, popups etc.</p>
+								<p>AngularJS widgets may add compiled content to this element.
+								The angularContext property contains the the scope and the compile service required for compiling AngularJS elements.</p>
+								<p>AngularJS widgets that uses one of the template properties defined on the angularContext property (<a href="_lime_.iangularwidgetconfig.html">IAngularWidgetConfig</a>) in <a href="_lime_.iwidgetinstance.html">IWidgetInstance</a>
+								should ignore this property. In this case the framework will add content to the element automatically.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getid" class="tsd-anchor"></a>
+					<h3>get<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1980</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the widget ID.</p>
+								</div>
+								<p>This ID will be a either a standard widget ID or a published widget ID for a published widget.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getinforcurrentlanguage" class="tsd-anchor"></a>
+					<h3>get<wbr>Infor<wbr>Current<wbr>Language</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Language<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2546</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Infor current language if available.</p>
+								</div>
+								<p>This value can be also be resolved using the key &quot;inforCurrentLanguage&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.28</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the Infor current language or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getinforcurrentlocale" class="tsd-anchor"></a>
+					<h3>get<wbr>Infor<wbr>Current<wbr>Locale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Locale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2556</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Infor current locale if available.</p>
+								</div>
+								<p>This value can be also be resolved using the key &quot;inforCurrentLocale&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.28</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the Infor current locale or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getinforthemename" class="tsd-anchor"></a>
+					<h3>get<wbr>Infor<wbr>Theme<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Infor<wbr>Theme<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2566</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Infor theme name if available.</p>
+								</div>
+								<p>This value can be also be resolved using the key &quot;inforThemeName&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.28</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the Infor theme name or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getinfortimezone" class="tsd-anchor"></a>
+					<h3>get<wbr>Infor<wbr>Time<wbr>Zone</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2536</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Infor time zone if available.
+									Example: UTC-05:00</p>
+								</div>
+								<p>This value can be also be resolved using the key &quot;inforTimeZone&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.13</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>time zone or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getinfortimezoneraw" class="tsd-anchor"></a>
+					<h3>get<wbr>Infor<wbr>Time<wbr>Zone<wbr>Raw</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone<wbr>Raw<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2525</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the Infor time zone in raw format if available.
+									Example: (UTC-05:00)Eastern Time(US &amp; Canada)</p>
+								</div>
+								<p>This value can be also be resolved using the key &quot;inforTimeZoneRaw&quot;.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.13</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>time zone in raw format or null</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getionapicontextasync" class="tsd-anchor"></a>
+					<h3>get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_lime_.iionapioptions.html" class="tsd-signature-type">IIonApiOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2378</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an ION API context required when making ION API HTTP requests.</p>
+								</div>
+								<p>This function is asynchronous since a server request might be required to get the OAuth token for ION API.</p>
+								<p>In most cases an ION API request can be executed using the executeIonApiAsync function that will automatically
+									get the ION API context and retry requests when the OAuth token has expired. This function can be used when more
+								control is required when making the request or when the executeIonApiAsync fuction cannot be used for some other reason.</p>
+								<p>The OAuth token has a limited lifetime and will become invalid once it has timed out.
+									The OAuth token might be invalid if an ION API HTTP request returns 401.
+								A client can get a new ION API context with a new OAuth token by setting the refresh property to true on the options parameter.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="_lime_.iionapioptions.html" class="tsd-signature-type">IIonApiOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional object for specifying options when getting the context.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that will be resolved when the ION API context is available.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getionapicustomercontext" class="tsd-anchor"></a>
+					<h3>get<wbr>Ion<wbr>Api<wbr>Customer<wbr>Context</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Customer<wbr>Context<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2360</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the ION API customer context.</p>
+								</div>
+								<p>The ION API customer context must be used in the ION API URL for applications that are not Infor provisioned.
+									Applications that are provisioned in the cloud and is using the standard ION API suite name should not add the customer context to the ION API URL.
+									In most other cases such as on-premise and when using a non-standard ION API suite name the customer context must be added to the ION API URL.
+								There are a few exceptions to this for Infor Tech products that are always Infor provisioned both in cloud and on-premise.</p>
+								<p>The default value for the ION API customer context is &quot;CustomerApi&quot; but the value can be configured so it cannot be hardcoded.</p>
+								<p>Example (M3 application with standard API suite provisioned in cloud):
+								<a href="https://ionapiserver:54321/ACME_AX1/M3/">https://ionapiserver:54321/ACME_AX1/M3/</a></p>
+								<p>Example (M3 application with standard API suite on-premise):
+								<a href="https://ionapiserver:54321/ACME_AX1/CustomerApi/M3/">https://ionapiserver:54321/ACME_AX1/CustomerApi/M3/</a></p>
+								<p>Example (M3 application with custom API suite in cloud or on-premise):
+								<a href="https://ionapiserver:54321/ACME_AX1/CustomerApi/M3_CUSTOM/">https://ionapiserver:54321/ACME_AX1/CustomerApi/M3_CUSTOM/</a></p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The ION API customer context.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getlanguage" class="tsd-anchor"></a>
+					<h3>get<wbr>Language</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Language<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.ilanguage.html" class="tsd-signature-type">ILanguage</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1994</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the widget language object for the current user language.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.ilanguage.html" class="tsd-signature-type">ILanguage</a></h4>
+							<p>A language object.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getlogicalid" class="tsd-anchor"></a>
+					<h3>get<wbr>Logical<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Logical<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2274</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the logical ID.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The logical ID or null if the widget does not belong to an application.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getpageid" class="tsd-anchor"></a>
+					<h3>get<wbr>Page<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Page<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2449</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the pageId of the parent page or null if the widget does not have a parent context at this time.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getresolvedtitle" class="tsd-anchor"></a>
+					<h3>get<wbr>Resolved<wbr>Title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Resolved<wbr>Title<span class="tsd-signature-symbol">(</span>isTitleLocked<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2125</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a resolved widget title for a locked or unlocked title.</p>
+								</div>
+								<p>This function is intended for widgets with a custom settings UI that want to support
+									locked titles in the same way as the standard metadata settings UI. When the widget title
+								is locked is should revert back to a default title which can be retrieved by calling this function with true.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.2</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>isTitleLocked: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True if the widget is locked.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A widget title.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+					<a name="getservice" class="tsd-anchor"></a>
+					<h3>get<wbr>Service</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Service&lt;T&gt;<span class="tsd-signature-symbol">(</span>serviceType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2413</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a framework service.</p>
+								</div>
+								<p>This function can be used to get access to framework services implemented in Angular from a widget that
+									is not implemented in Angular. The function can be used from an Angular widget as well if the
+								normal dependency injection cannot be used for some reason.</p>
+								<p>The available services are documented in the API documentation.
+									Note that a widget is only allowed to request services that are part of the public API documentation.
+								Any other services that might be accessible could be removed or refactored at any time without prior notice.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serviceType: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>constructor<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon">new __type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in lime.ts:2413</li>
+														</ul>
+													</aside>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+										</ul>        </li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<p>A service instance or null if the service could not be found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getsettings" class="tsd-anchor"></a>
+					<h3>get<wbr>Settings</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Settings<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.iwidgetsettings.html" class="tsd-signature-type">IWidgetSettings</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1988</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the widget settings.</p>
+								</div>
+								<p>If the widget defines settings in the widget manifest the settings will contain default values when a widget is added to a page.
+								If a widget use ad-hoc settings or do not use settings at all the settings object might be empty.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.iwidgetsettings.html" class="tsd-signature-type">IWidgetSettings</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getstandardtitle" class="tsd-anchor"></a>
+					<h3>get<wbr>Standard<wbr>Title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Standard<wbr>Title<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2112</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the standard widget title as defined in the widget manifest.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A widget title.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getstandardwidgetid" class="tsd-anchor"></a>
+					<h3>get<wbr>Standard<wbr>Widget<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Standard<wbr>Widget<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2454</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the ID if the widget is a standard widget or the standard widget id the widget is based on.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getstate" class="tsd-anchor"></a>
+					<h3>get<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2098</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the current widget state.</p>
+								</div>
+								<p>See <a href="../classes/_lime_.widgetstate.html">WidgetState</a></p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A widget state.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="gettenantid" class="tsd-anchor"></a>
+					<h3>get<wbr>Tenant<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tenant<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2490</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the tenant ID.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the tenant ID</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="gettitle" class="tsd-anchor"></a>
+					<h3>get<wbr>Title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Title<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2105</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the current widget title.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A widget title.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="geturl" class="tsd-anchor"></a>
+					<h3>get<wbr>Url</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Url<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2027</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a URL to the widget folder or a resource in the wiget directory.</p>
+								</div>
+								<p>A widget must use an API such as this to get the URL to the widget directory since the widget directory location is an implementation
+								detail that might change in future versions.</p>
+								<p><strong>Example:</strong>
+									var iconUrl = widgetContext.getUrl(&quot;images/icon.png&quot;);
+								var baseUrl = widgetContext.getUrl();</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An optional relative path that will be appended to the widget directory URL. If this parameter is omitted or is blank the URL to the widget directory will be returned.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>A URL to the widget directory or a resource in the wiget directory.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getuserid" class="tsd-anchor"></a>
+					<h3>get<wbr>User<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>User<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2496</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the user ID.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>the user ID</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getviewurlasync" class="tsd-anchor"></a>
+					<h3>get<wbr>View<wbr>Url<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>View<wbr>Url<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iviewurloptions.html" class="tsd-signature-type">IViewUrlOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2337</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an application view URL.</p>
+								</div>
+								<p>The default behavior of this function is to get the view URL template for the current default application,
+									replace values in the template and return the URL. It is possible to specify another application and to
+								prevent variable replacement by using additional properties on the options object.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="_lime_.iviewurloptions.html" class="tsd-signature-type">IViewUrlOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Used to specifiy the view to get and other options.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that will be resolved when the URL is available. The promise will be rejected if the application or the view does not exist or if some other error occurs.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getwidgetinstanceid" class="tsd-anchor"></a>
+					<h3>get<wbr>Widget<wbr>Instance<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Widget<wbr>Instance<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2459</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the runtime instance id for the widget.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="isactive" class="tsd-anchor"></a>
+					<h3>is<wbr>Active</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Active<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2042</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget is active.</p>
+								</div>
+								<p>A widget is considered to be active if it is visible, the settings dialog is not open and the widget is not in edit mode.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the widget is active.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="isbanner" class="tsd-anchor"></a>
+					<h3>is<wbr>Banner</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Banner<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2068</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a value that indicates if the widget is running in the banner part of a page.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="iscloud" class="tsd-anchor"></a>
+					<h3>is<wbr>Cloud</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Cloud<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2477</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the Homepages server is running the cloud mode or on-premise mode.</p>
+								</div>
+								<p>This function can be used by widgets that needs to have a different behavior in cloud mode compared to on-premise mode.
+									Please note that Single Tenant Cloud installations are running in on-premise mode.
+								isSingleTenantCloud has been added to check this, but it is a grid property that needs to be set manually on those installations.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the server is running in cloud mode.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="isdev" class="tsd-anchor"></a>
+					<h3>is<wbr>Dev</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Dev<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2063</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget is running in the development environment.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="ispublished" class="tsd-anchor"></a>
+					<h3>is<wbr>Published</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Published<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2058</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget is a published widget or if the widget is on a published page.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True is the widget is pubished.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="issingletenantcloud" class="tsd-anchor"></a>
+					<h3>is<wbr>Single<wbr>Tenant<wbr>Cloud</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Single<wbr>Tenant<wbr>Cloud<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2484</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicated if the Homepages server is running in Single Tenant Cloud mode. This is an on-prem installation running in the cloud.
+									This information is used by some widgets to differentiate between on-prem in the cloud (eg. isCloud is false since that is true only for multitenant).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the grid property Server.IsSingleTenantCloud is set to True.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="istitleeditenabled" class="tsd-anchor"></a>
+					<h3>is<wbr>Title<wbr>Edit<wbr>Enabled</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Title<wbr>Edit<wbr>Enabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2157</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the user is allowed to edit the widget title.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if title editing is enabled.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="istitlelocked" class="tsd-anchor"></a>
+					<h3>is<wbr>Title<wbr>Locked</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Title<wbr>Locked<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2168</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget title is currently locked.</p>
+								</div>
+								<p>The widget title can be locked explicitly by the user or implicitly if the widget catalog
+									title is used for a published widget. The isTitleUnlockable function can be used to check if the widget title can be unlocked.
+								The title can also be locked using the setTitleLocked function.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the widget title is locked.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="istitleunlockable" class="tsd-anchor"></a>
+					<h3>is<wbr>Title<wbr>Unlockable</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Title<wbr>Unlockable<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2178</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget title can be unlocked.</p>
+								</div>
+								<p>The widget title may not be possible to unlock if the widget catalog title is used for a published widget.
+								There may also be other reasons in future versions for why the widget title cannot be unlocked.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the widget title can be unlocked.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="isvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Visible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2051</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if the widget is visible.</p>
+								</div>
+								<p>A widget is considered to be visible if the widget is part of the current page.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if the widget is visible.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="iswidgetonpage" class="tsd-anchor"></a>
+					<h3>is<wbr>Widget<wbr>OnPage</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Widget<wbr>OnPage<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.ifindwidgetoptions.html" class="tsd-signature-type">IFindWidgetOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2514</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a value that indicates if one or more widgets exists on the same page as the current widget.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>options: <a href="_lime_.ifindwidgetoptions.html" class="tsd-signature-type">IFindWidgetOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Options that defines which widget to find. At least one of the ID properties should be set.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True if one or more widgets matching the options exists on the page.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="launch" class="tsd-anchor"></a>
+					<h3>launch</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">launch<span class="tsd-signature-symbol">(</span>launchOptions<span class="tsd-signature-symbol">: </span><a href="_lime_.ilaunchoptions.html" class="tsd-signature-type">ILaunchOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2434</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Launches a URL or a drillback link.</p>
+								</div>
+								<p>This function can be used to launch a link in the browser or send a companyon message to open a drillback link.
+									The launchOptions will control if replacement variables should be resolved automatically or not. Default is true and any curly brackets would
+									result in that for example {lid://infor.m3} would be resolved to the for the Homepages default instance id for m3, eg {lid://infor.m3.1}. This is for example
+								used in the custom menu widget as it makes widget link configuration portable for the default application wihtout having to update logical ids.</p>
+								<p>The link can contain replacement variables for specific applications as well using the syntax with the logicalId prefix.
+								{lid://infor.homepages:Host}</p>
+								<p>Any url that starts with a slash or http or https would be considered a standard web link and will be handled by the browser opening a new window or tab.
+								All other url will be handled by Ming.le companyon.</p>
+								<p>Note that for this to work when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>launchOptions: <a href="_lime_.ilaunchoptions.html" class="tsd-signature-type">ILaunchOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The launch options.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="removewidgetmessage" class="tsd-anchor"></a>
+					<h3>remove<wbr>Widget<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Widget<wbr>Message<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2444</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the inline message in the widget.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="resolve" class="tsd-anchor"></a>
+					<h3>resolve</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">resolve<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2214</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resolves a key by searching for the key in the following order:</p>
+								</div>
+								<ul>
+									<li>Widget Settings</li>
+									<li>Ad-hoc properties</li>
+									<li>Application configuration in Ming.le.</li>
+								</ul>
+								<p>A key can contain any of the following reserved prefixes (followed by .) for accessing the key directly intead of using the search order:  widget, property, application.
+								For example application.hostname to get the hostname from the application&#39;s configuration.</p>
+								<p>The key is case sensitive.</p>
+								<p>Ad-hoc properties are defined by an administrator and can be useful if an installation has multiple links to another on-premise system.</p>
+								<p>This is only available if the widget has an application dependency defined in the Manifest by specifying applicationLogicalId and applicationVersion.</p>
+								<p>Note that for this to work with Ming.le configuration when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The value for the key or null if no value is found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="resolveandreplace" class="tsd-anchor"></a>
+					<h3>resolve<wbr>And<wbr>Replace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>And<wbr>Replace<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2243</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resolves a URL template with replacement variables in curly brachets.</p>
+								</div>
+								<p>For example: http://{application.host}:{application.port}/root/{resource}?view={selectedView}</p>
+								<p>By default all replacement variables will be encoded with the encodeURI function.</p>
+								<p>It is possible to add extra information in the expression to specify the encoding method that should be used and a default value if the value is null or empty.</p>
+								<p>For example: {selectedView|encode:component}</p>
+								<p>The encode takes three different options:</p>
+								<ul>
+									<li>none - no encoding {selectedView|encode:none}</li>
+									<li>uri - encodeURI {selectedView|encode:uri}</li>
+									<li>component - encodeURIComponent {selectedView|encode:component}</li>
+								</ul>
+								<p>Another option is to specify a default value, for example: {selectedView|default:standard}. If the selectedView cannot be resolved standard would be the fallback.</p>
+								<p>Note that for this to work with Ming.le configuration when using the Test Container, configuration data needs to be provided by setting dev-configuration.
+								See the developers guide or sample for more information.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>template: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The resolved template with all substitution variables replaced (or removed if they can&#39;t be resolved).</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="resolveandreplaceasync" class="tsd-anchor"></a>
+					<h3>resolve<wbr>And<wbr>Replace<wbr>Async</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>And<wbr>Replace<wbr>Async<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, logicalId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2325</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resolves a URL template with replacement variables in curly brackets using values from a Ming.le application.</p>
+								</div>
+								<p>If a logical ID is specified it must match exactly with an existing application instance.
+								If a logical ID prefix is not specified the default application instance will be used when resolving values.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>template: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> logicalId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The logical ID prefix for the application to use when resolving values.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that will be resolved when the template has been resolved.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="save" class="tsd-anchor"></a>
+					<h3>save</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2080</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Notifies the framework that the widget data has been changed and that the widget needs to be saved.</p>
+								</div>
+								<p>This function can be used explicity save widget data or settings, only if settings are enabled.
+									There is no need to call this function when the widget settings dialog is used since the framework saves automatically in that case.
+								This function should only be used if the widget modifies data or settings that the framework is not aware of.</p>
+								<p>The widget data is saved as part of the current page and this is asynchronous so there is no guarantee exactly when the data is saved.
+								There might be a delay and frequent calls to this function might not result in the same number of server calls.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setlogicalid" class="tsd-anchor"></a>
+					<h3>set<wbr>Logical<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Logical<wbr>Id<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2284</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the logical ID. This function can be called by widgets that supports multiple application instances
+									to change the default application instance.</p>
+								</div>
+								<p>Calling this function will only have an effect if the widget belongs to an application.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>logicalId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The logical ID.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setstandardtitle" class="tsd-anchor"></a>
+					<h3>set<wbr>Standard<wbr>Title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Standard<wbr>Title<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2145</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resets the widget title so it reverts to the widget standardtitle.</p>
+								</div>
+								<p>This function will revert all changes to the title.
+									should only be used by widgets which uses the setTitle method and needs to revert the title to the definition standard title.
+								If the widget is configured to have the same title as in the widget catalog calling this method will have no effect.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="setstate" class="tsd-anchor"></a>
+					<h3>set<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>State<span class="tsd-signature-symbol">(</span>state<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2089</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the widget state.</p>
+								</div>
+								<p>See <a href="../classes/_lime_.widgetstate.html">WidgetState</a></p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>state: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new widget state.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="settitle" class="tsd-anchor"></a>
+					<h3>set<wbr>Title</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Title<span class="tsd-signature-symbol">(</span>title<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2136</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the widget title.</p>
+								</div>
+								<p>This function will override the default title or a title set by the user and
+									should only be used by special widgets where the title is dependent on the configuration or the current data for example.
+								If the widget is configured to have the same title as in the widget catalog calling this method will have no effect.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>title: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The title to set.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="settitlelocked" class="tsd-anchor"></a>
+					<h3>set<wbr>Title<wbr>Locked</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Title<wbr>Locked<span class="tsd-signature-symbol">(</span>isLocked<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2188</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets a value that indicates if the widget title should be locked or not.</p>
+								</div>
+								<p>Note that calls to this function may be ignored if the widget catalog title is used for a published widget.
+								If the isTitleUnlockable function returns false calling this function will not have any effect.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>isLocked: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>True to lock the title, false to unlock.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="showwidgetmessage" class="tsd-anchor"></a>
+					<h3>show<wbr>Widget<wbr>Message</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Widget<wbr>Message<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="_lime_.iwidgetmessage.html" class="tsd-signature-type">IWidgetMessage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2439</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Displays a dismissable inline message in the widget.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <a href="_lime_.iwidgetmessage.html" class="tsd-signature-type">IWidgetMessage</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="updateprimaryaction" class="tsd-anchor"></a>
+					<h3>update<wbr>Primary<wbr>Action</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Primary<wbr>Action<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:2604</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tells the framework that the widget&#39;s primary action needs to be reevaluated.</p>
+								</div>
+								<p>This method can be used if the widget supports different primary actions, depending on e.g. state.
+									An example would be a widget that has one primary action that is only relevant when it is editable,
+								and a different action that should be primary if it is published.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.23</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_lime_.html">"lime"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_lime_.iwidgetcontext2.html" class="tsd-kind-icon">IWidget<wbr>Context2</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#enabletitleedit" class="tsd-kind-icon">enable<wbr>Title<wbr>Edit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+								<a href="_lime_.iwidgetcontext2.html#executeionapiasync" class="tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#findwidgetsonpage" class="tsd-kind-icon">find<wbr>Widgets<wbr>OnPage</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getapplication" class="tsd-kind-icon">get<wbr>Application</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getapplicationasync" class="tsd-kind-icon">get<wbr>Application<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getapplications" class="tsd-kind-icon">get<wbr>Applications</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getapplicationsasync" class="tsd-kind-icon">get<wbr>Applications<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getbannerbackgroundcolor" class="tsd-kind-icon">get<wbr>Banner<wbr>Background<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getcontainerurl" class="tsd-kind-icon">get<wbr>Container<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getcontextparameter" class="tsd-kind-icon">get<wbr>Context<wbr>Parameter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getdevice" class="tsd-kind-icon">get<wbr>Device</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getelement" class="tsd-kind-icon">get<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getinforcurrentlanguage" class="tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Language</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getinforcurrentlocale" class="tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Locale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getinforthemename" class="tsd-kind-icon">get<wbr>Infor<wbr>Theme<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getinfortimezone" class="tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getinfortimezoneraw" class="tsd-kind-icon">get<wbr>Infor<wbr>Time<wbr>Zone<wbr>Raw</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getionapicontextasync" class="tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getionapicustomercontext" class="tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Customer<wbr>Context</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getlanguage" class="tsd-kind-icon">get<wbr>Language</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getlogicalid" class="tsd-kind-icon">get<wbr>Logical<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getpageid" class="tsd-kind-icon">get<wbr>Page<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getresolvedtitle" class="tsd-kind-icon">get<wbr>Resolved<wbr>Title</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+								<a href="_lime_.iwidgetcontext2.html#getservice" class="tsd-kind-icon">get<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getsettings" class="tsd-kind-icon">get<wbr>Settings</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getstandardtitle" class="tsd-kind-icon">get<wbr>Standard<wbr>Title</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getstandardwidgetid" class="tsd-kind-icon">get<wbr>Standard<wbr>Widget<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getstate" class="tsd-kind-icon">get<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#gettenantid" class="tsd-kind-icon">get<wbr>Tenant<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#gettitle" class="tsd-kind-icon">get<wbr>Title</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#geturl" class="tsd-kind-icon">get<wbr>Url</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getuserid" class="tsd-kind-icon">get<wbr>User<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getviewurlasync" class="tsd-kind-icon">get<wbr>View<wbr>Url<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#getwidgetinstanceid" class="tsd-kind-icon">get<wbr>Widget<wbr>Instance<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#isactive" class="tsd-kind-icon">is<wbr>Active</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#isbanner" class="tsd-kind-icon">is<wbr>Banner</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#iscloud" class="tsd-kind-icon">is<wbr>Cloud</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#isdev" class="tsd-kind-icon">is<wbr>Dev</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#ispublished" class="tsd-kind-icon">is<wbr>Published</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#issingletenantcloud" class="tsd-kind-icon">is<wbr>Single<wbr>Tenant<wbr>Cloud</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#istitleeditenabled" class="tsd-kind-icon">is<wbr>Title<wbr>Edit<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#istitlelocked" class="tsd-kind-icon">is<wbr>Title<wbr>Locked</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#istitleunlockable" class="tsd-kind-icon">is<wbr>Title<wbr>Unlockable</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#iswidgetonpage" class="tsd-kind-icon">is<wbr>Widget<wbr>OnPage</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#launch" class="tsd-kind-icon">launch</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#removewidgetmessage" class="tsd-kind-icon">remove<wbr>Widget<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#resolve" class="tsd-kind-icon">resolve</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#resolveandreplace" class="tsd-kind-icon">resolve<wbr>And<wbr>Replace</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#resolveandreplaceasync" class="tsd-kind-icon">resolve<wbr>And<wbr>Replace<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#save" class="tsd-kind-icon">save</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#setlogicalid" class="tsd-kind-icon">set<wbr>Logical<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#setstandardtitle" class="tsd-kind-icon">set<wbr>Standard<wbr>Title</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#setstate" class="tsd-kind-icon">set<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#settitle" class="tsd-kind-icon">set<wbr>Title</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#settitlelocked" class="tsd-kind-icon">set<wbr>Title<wbr>Locked</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#showwidgetmessage" class="tsd-kind-icon">show<wbr>Widget<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext2.html#updateprimaryaction" class="tsd-kind-icon">update<wbr>Primary<wbr>Action</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

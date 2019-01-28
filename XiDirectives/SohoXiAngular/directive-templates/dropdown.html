@@ -1,0 +1,47 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Dropdown</h1>
+		<span class="label">Directive: xi-drop-down</span>
+		<span class="label">Directive options: xi.IDropDownOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<div class="form">
+			<label for="ddid">Label</label>
+			<select id="ddid" ng-model="ctrl.dropDownModel" ng-disabled="ctrl.isDropDownDisabled" ng-options="value as value for value in dropDownOptions" class="dropdown" xi-drop-down></select>
+		</div>
+		<br/>
+		<button class="btn-primary" type="button" ng-click="ctrl.addToDropDown()">Add an option</button>
+		<button class="btn-primary" type="button" ng-click="ctrl.changeDropDownValue()">Change value</button>
+		<button class="btn-primary" type="button" ng-click="ctrl.isDropDownDisabled = !ctrl.isDropDownDisabled">Toggle ng-disabled</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		<h1>Dropdown Dependant</h1>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<div class="field">
+			<select ng-model="ctrl.ddmodel" ng-options="item for item in ctrl.dditems" ng-change="ctrl.firstDropdownChange()" class="dropdown" xi-drop-down></select>
+			model: {{ctrl.ddmodel}}
+		</div>
+
+		<div class="field" ng-if="ctrl.dditems2.length">
+			<select ng-model="ctrl.ddmodel2" ng-options="item for item in ctrl.dditems2" ng-change="ctrl.secondDropdownChange()" class="dropdown" xi-drop-down></select>
+			model: {{ctrl.ddmodel2}}
+		</div>
+
+		<div class="field" ng-if="ctrl.dditems3.length">
+			<select ng-model="ctrl.ddmodel3" ng-options="item for item in ctrl.dditems3" class="dropdown" xi-drop-down></select>
+			model: {{ctrl.ddmodel3}}
+		</div>
+
+		<button class="btn-primary" ng-click="ctrl.ddReset()">RESET</button>
+	</div>
+</div>

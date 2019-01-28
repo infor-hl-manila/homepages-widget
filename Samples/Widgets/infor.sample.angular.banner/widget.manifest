@@ -1,0 +1,74 @@
+{
+	"widgetId": "infor.sample.angular.banner",
+	"type": "inline",
+	"name": "Infor Sample Banner Widget",
+	"version": "1.0",
+	"category": "application",
+	"framework": "angular",
+	"aotVersion": "",
+	"targets": ["banner", "default"],
+	"settings": [
+		{
+			"name": "primaryChartType",
+			"type": "selector",
+			"defaultValue": "column",
+			"labelId": "primaryChartType",
+			"values": [
+				{
+					"textId": "area",
+					"value": "area"
+				},
+				{
+					"textId": "bar",
+					"value": "bar"
+				},
+				{
+					"textId": "column",
+					"value": "column"
+				},
+				{
+					"textId": "donut",
+					"value": "donut"
+				}
+			]
+		},
+		{
+			"name": "secondaryChartType",
+			"type": "selector",
+			"defaultValue": "donut",
+			"labelId": "secondaryChartType",
+			"values": [
+				{
+					"textId": "area",
+					"value": "area"
+				},
+				{
+					"textId": "bar",
+					"value": "bar"
+				},
+				{
+					"textId": "column",
+					"value": "column"
+				},
+				{
+					"textId": "donut",
+					"value": "donut"
+				}
+			]
+		}
+	],
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Banner",
+			"widgetDescription": "Banner sample widget.",
+			"primaryChartType": "Primary chart type",
+			"secondaryChartType": "Secondary chart type",
+			"area": "Area",
+			"bar": "Bar",
+			"donut": "Donut",
+			"pie": "Pie",
+			"column": "Column Bar",
+			"data": "Data"
+		}
+	}
+}

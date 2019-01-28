@@ -1,0 +1,38 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Toolbar</h1>
+		<span class="label">Directive: xi-control="toolbar"</span>
+		<hr />
+		<div class="one-half column">
+			<div class="toolbar" role="toolbar" xi-control="toolbar">
+				<div class="buttonset">
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='First'">
+						First
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn=toolbarBtnText">
+						{{toolbarBtnText}}
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Third'">
+						Third
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Fourth'">
+						Fourth
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Fifth'">
+						Fifth
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Sixth'">
+						Sixth
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Seventh'">
+						Seventh
+					</button>
+					<button class="btn-tertiary" type="button" ng-click="clickedBtn='Eighth'">
+						Eighth
+					</button>
+				</div>
+			</div>
+			Clicked: {{clickedBtn}}
+		</div>
+	</div>
+</div>

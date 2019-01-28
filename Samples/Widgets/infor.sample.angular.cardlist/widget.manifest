@@ -1,0 +1,19 @@
+{
+	"widgetId": "infor.sample.angular.cardlist",
+	"type": "inline",
+	"framework": "angular",
+	"aotVersion": "",
+	"name": "Infor Sample Cardlist",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Card List",
+			"widgetDescription": "Card List sample widget.",
+			"order": "Order",
+			"ascending": "Ascending",
+			"descending": "Descending"
+		}
+	}
+}

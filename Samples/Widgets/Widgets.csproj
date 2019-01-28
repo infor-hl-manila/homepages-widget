@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{05A9B90F-D547-4309-AB37-795EFA579FB5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="index.html" />
+    <Content Include="infor.sample.minify\bottom.png" />
+    <Content Include="infor.sample.minify\middle.png" />
+    <Content Include="infor.sample.minify\top.png" />
+    <Content Include="lime-config.js" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="infor.sample.angular.helloworld\widget.manifest" />
+    <Content Include="infor.sample.helloworld\widget.manifest" />
+    <Content Include="infor.sample.settings.ui\widget.manifest" />
+    <Content Include="infor.sample.angular.cardlist\widget.manifest" />
+    <Content Include="infor.sample.helloworld\settings.json" />
+    <Content Include="infor.sample.helloworld\custom-manifest.json" />
+    <Content Include="configuration.json" />
+    <Content Include="infor.sample.angular.quicknote\widget.manifest" />
+    <Content Include="infor.sample.ionapi.m3\widget.manifest" />
+    <Content Include="infor.sample.angular.dialogs\widget.manifest" />
+    <Content Include="infor.sample.ionapi.social\widget.manifest" />
+    <Content Include="infor.sample.w2wreceiver\widget.manifest" />
+    <Content Include="infor.sample.w2wsender\widget.manifest" />
+    <Content Include="infor.sample.external.app\widget.manifest" />
+    <Content Include="infor.sample.minify\widget.manifest" />
+    <Content Include="infor.sample.angular.settings.ui.metadata\widget.manifest" />
+    <Content Include="custom.json" />
+    <Content Include="infor.sample.angular.banner\widget.manifest" />
+    <Content Include="infor.sample.angular.contextviewer\widget.manifest" />
+    <Content Include="tsconfig.json" />
+    <Content Include="infor.sample.angular.findwidgets\widget.manifest" />
+    <Content Include="infor.sample.angular.submenu\widget.manifest" />
+    <Content Include="infor.sample.sharedmodule\widget.manifest" />
+    <Content Include="infor.sample.sharedmodule2\widget.manifest" />
+    <Content Include="infor.sample.angular.contextparameters\widget.manifest" />
+    <Content Include="infor.sample.angular.contenttranslation\widget.manifest" />
+    <Content Include="infor.sample.angular.responsive\widget.manifest" />
+    <Content Include="infor.sample.angular.lifecycle\widget.manifest" />
+    <Content Include="infor.sample.angular.cardgroupaction\widget.manifest" />
+    <Content Include="tenant.sample.angular.helloworld\widget.manifest" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Widgets</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>27293</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:27293/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include=".\scripts\lime\**\*.d.ts">
+    </TypeScriptCompile>
+    <Content Include=".\scripts\lime\**\*.js">
+    </Content>
+    <Content Include=".\scripts\lime\**\*.css">
+    </Content>
+    <Content Include=".\scripts\lime\**\*.html">
+    </Content>
+    <Content Include=".\scripts\lime\**\*.map">
+    </Content>
+    <Content Include=".\scripts\xi\**\*.*">
+    </Content>
+    <Content Include=".\scripts\vendor\**">
+    </Content>
+    <TypeScriptCompile Include=".\scripts\typings\**\*.ts">
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="infor.sample.angular.banner\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.banner\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.cardgroupaction\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.cardlist\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.cardlist\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contenttranslation\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contenttranslation\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contenttranslation\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.cardlist\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextparameters\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextparameters\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextviewer\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextviewer\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextviewer\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.dialogs\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.dialogs\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.dialogs\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.contextparameters\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.findwidgets\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.findwidgets\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.helloworld\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.helloworld\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.helloworld\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.banner\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.lifecycle\lifecycle.component.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.lifecycle\lifecycle.module.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.lifecycle\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.lifecycle\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.quicknote\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.quicknote\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.quicknote\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.responsive\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.responsive\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.responsive\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.settings.ui.metadata\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.settings.ui.metadata\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.settings.ui.metadata\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.findwidgets\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.submenu\main.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.submenu\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.angular.submenu\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.helloworld\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.m3\main.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.m3\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.m3\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.social\main.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.social\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.ionapi.social\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.minify\dialog\dialog.ts" />
+    <TypeScriptCompile Include="infor.sample.minify\main.ts" />
+    <TypeScriptCompile Include="infor.sample.minify\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.minify\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.settings.ui\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule2\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule\main.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule2\sample-shared-usercontext.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule2\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule\sample-shared-usercontext.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.sharedmodule\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wreceiver\main.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wreceiver\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wreceiver\widget.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wsender\main.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wsender\widget-aot.ts" />
+    <TypeScriptCompile Include="infor.sample.w2wsender\widget.ts" />
+    <TypeScriptCompile Include="tenant.sample.angular.helloworld\main.ts" />
+    <TypeScriptCompile Include="tenant.sample.angular.helloworld\widget-aot.ts" />
+    <TypeScriptCompile Include="tenant.sample.angular.helloworld\widget.ts" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>

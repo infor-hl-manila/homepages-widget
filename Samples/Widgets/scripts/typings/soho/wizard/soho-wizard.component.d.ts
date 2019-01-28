@@ -1,0 +1,42 @@
+/// <reference path="soho-wizard.d.ts" />
+import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, AfterContentInit } from '@angular/core';
+import { SohoWizardHeaderComponent } from './soho-wizard-header.component';
+import { SohoWizardPagesComponent } from './soho-wizard-pages.component';
+import { SohoWizardPageComponent } from './soho-wizard-page.component';
+export declare class SohoWizardComponent implements AfterViewInit, AfterContentInit, OnDestroy {
+    private elementRef;
+    pagesContainer: SohoWizardPagesComponent;
+    header: SohoWizardHeaderComponent;
+    ticks: SohoWizardTick[];
+    currentTickId: string;
+    private beforeActivate?;
+    activated: EventEmitter<SohoWizardEvent>;
+    afteractivated: EventEmitter<SohoWizardEvent>;
+    isWizardClass: boolean;
+    private jQueryElement;
+    private wizard;
+    private _options;
+    private _steps;
+    private finished;
+    constructor(elementRef: ElementRef);
+    readonly currentPage: SohoWizardPageComponent;
+    first(): void;
+    next(): void;
+    previous(): void;
+    last(): void;
+    finish(): void;
+    hasNext(): boolean;
+    hasPrevious(): boolean;
+    hasFinished(): boolean;
+    reset(): void;
+    ngAfterViewInit(): void;
+    ngAfterContentInit(): void;
+    ngOnDestroy(): void;
+    private onActivated(tick);
+    private onBeforeActivate(tick);
+    private stepCount();
+    private steps();
+    private stepAt(index);
+    private currentIndex();
+    private currentStep();
+}

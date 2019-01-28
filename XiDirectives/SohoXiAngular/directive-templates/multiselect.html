@@ -1,0 +1,24 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Multiselect</h1>
+		<span class="label">Directive: xi-multiselect</span>
+		<span class="label">Directive options: xi.IMultiSelectOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="multi">Default</label>
+			<select multiple ng-model="multiselectModel" ng-options="fruit for fruit in multiselectFruits" class="multiselect" id="multi" xi-multiselect></select>
+			<br/>
+			<button class="btn-primary" type="button" ng-click="ctrl.addToMultiSelect()">Add an option</button>
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="multi2">With options (maxSelected: 2)</label>
+			<select multiple ng-model="multiselectModel2" ng-options="fruit for fruit in multiselectFruits2" class="multiselect" id="multi2" xi-multiselect="ctrl.multiselectOptions"></select>
+		</div>
+	</div>
+</div>

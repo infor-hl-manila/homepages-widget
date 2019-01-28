@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./soho-tree.module","export":["SohoTreeModule"]},{"from":"./soho-tree.component","export":["SohoTreeComponent"]},{"from":"./soho-tree.service","export":["SohoTreeService"]}]}]

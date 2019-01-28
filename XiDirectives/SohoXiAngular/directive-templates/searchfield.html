@@ -1,0 +1,24 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Searchfield</h1>
+		<span class="label">Directive: xi-searchfield</span>
+		<span class="label">Directive options: xi.ISearchFieldOptions</span>
+		<span class="error">Known error: Does not adjust if dropdown doesn't fit within the view area</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="six columns">
+		<div class="field">
+			<label for="searchfield1">With custom template, acts on select</label>
+			<input name="searchfield" id="searchfield1" class="searchfield" placeholder="Search for names on 'A'" xi-searchfield="ctrl.searchfieldOptions"/>
+			Selected: {{searchfieldModel}}
+		</div>
+	</div>
+	<div class="six columns">
+		<div class="field">
+			<label for="searchfield2">With standard template, clearable</label>
+			<input name="searchfield" id="searchfield2" class="searchfield" placeholder="Search for weekdays" xi-searchfield="ctrl.searchfieldOptions2" />
+		</div>
+	</div>
+</div>

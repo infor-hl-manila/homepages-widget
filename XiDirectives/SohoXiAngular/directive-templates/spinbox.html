@@ -1,0 +1,33 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Spinbox</h1>
+		<span class="label">Directive: xi-spinbox</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="regular-spinbox">Spinbox (no attributes)</label>
+			<input xi-spinbox id="regular-spinbox" name="regular-spinbox" type="text" class="spinbox" />
+		</div>
+		<div class="field">
+			<label for="limited-spinbox">Spinbox (init 0, min -50, max 50)</label>
+			<input xi-spinbox id="limited-spinbox" name="limited-spinbox" type="text" class="spinbox" min="-50" max="50" value="0" />
+		</div>
+		<div class="field">
+			<label for="dirty-spinbox">Spinbox with Dirty Tracking</label>
+			<input xi-spinbox id="dirty-spinbox" name="dirty-spinbox" type="text" class="spinbox" xi-track-dirty />
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="disabled-spinbox">Spinbox (disabled)</label>
+			<input xi-spinbox id="disabled-spinbox" name="disabled-spinbox" type="text" class="spinbox" min="-50" max="50" value="0" disabled />
+		</div>
+		<div class="field">
+			<label for="stepped-spinbox">Spinbox (init 0, min -99, max 99, step 3)</label>
+			<input xi-spinbox id="stepped-spinbox" name="stepped-spinbox" type="text" class="spinbox" min="-99" max="99" value="0" step="3" />
+		</div>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+{
+	"widgetId": "infor.sample.external.app",
+	"type": "external",
+	"name": "External with Application dependency",
+	"version": "1.0",
+	"applicationLogicalId": "lid://infor.externalapp",
+	"category": "application",
+	"url": "{Scheme}://{Hostname}:{Port}/{path}",
+	"moduleName": "widget",
+	"settingsUI": "metadata",
+	"settings": [
+		{
+			"name": "path",
+			"type": "selector",
+			"labelId": "application",
+			"defaultValue": "",
+			"values": [
+				{
+					"value": "",
+					"text": "Home"
+				},
+				{
+					"value": "_layouts/MyQuickLinks.aspx",
+					"text": "My Links"
+				},
+				{
+					"value": "company/communications/default.aspx",
+					"text": "Corporate Communications"
+				}
+			]
+		}
+	],
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Application widget with URL templating",
+			"widgetDescription":
+				"External sample widget that opens a page in an iframe relative the application. The path can be changed in the widget settings dialog to select what application to view in an iframe.",
+			"application": "Select View"
+		}
+	}
+}

@@ -1,0 +1,45 @@
+/// <reference path="soho-colorpicker.d.ts" />
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
+import { NgControl } from '@angular/forms';
+export declare class SohoColorPickerComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+    private element;
+    private ngZone;
+    ngControl: NgControl;
+    ref: ChangeDetectorRef;
+    private runUpdatedOnCheck;
+    private valueAccessor;
+    private jQueryElement;
+    private colorpicker;
+    private isEditable;
+    private isUppercase;
+    private isClearable;
+    private isDisabled;
+    private isReadOnly;
+    private isShowLabel;
+    private isColorOnly;
+    private clearableTextString;
+    private options;
+    colors: Array<SohoColorOption>;
+    disabled: boolean;
+    editable: boolean;
+    uppercase: boolean;
+    clearable: boolean;
+    colorOnly: boolean;
+    clearableText: string;
+    readonly: boolean;
+    showLabel: boolean;
+    change: EventEmitter<SohoColorPickerEvent>;
+    updatedEvent: EventEmitter<Object>;
+    getLabelValue(): any;
+    getHexValue(): any;
+    readonly isColorpicker: boolean;
+    constructor(element: ElementRef, ngZone: NgZone, ngControl: NgControl, ref: ChangeDetectorRef);
+    ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
+    private onChanged(event);
+    updated(): SohoColorPickerComponent;
+    private onUpdated(event);
+    setDisabledState(isDisabled: boolean): void;
+    ngOnDestroy(): void;
+    markForRefresh(): void;
+}

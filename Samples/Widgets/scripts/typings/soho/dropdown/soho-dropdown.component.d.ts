@@ -1,0 +1,55 @@
+/// <reference path="soho-dropdown.d.ts" />
+/// <reference types="jquery" />
+import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { NgControl } from '@angular/forms';
+export declare class SohoDropDownComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
+    private element;
+    private ngZone;
+    ngControl: NgControl;
+    ref: ChangeDetectorRef;
+    private static counter;
+    private runUpdatedOnCheck;
+    private valueAccessor;
+    private isDisabled;
+    private isReadOnly;
+    private jQueryElement;
+    private dropdown;
+    private options;
+    closeOnSelect: boolean;
+    cssClass: string;
+    delay: number;
+    empty: boolean;
+    maxSelected: number;
+    moveSelectedToTop: boolean;
+    moveSelected: SohoDropDownMoveSelectedOptions;
+    showEmptyGroupHeaders: boolean;
+    sourceArguments: any;
+    reloadSourceOnOpen: boolean;
+    reload: SohoDropDownReloadStyles;
+    maxWidth: number;
+    filterMode: SohoDropDownFilterModeOptions;
+    multiple: boolean;
+    name: string;
+    noSearch: boolean;
+    source: SohoDropDownSourceFunction | Object | string;
+    showSelectAll: boolean;
+    change: EventEmitter<JQuery.Event>;
+    updatedEvent: EventEmitter<Object>;
+    readonly id: string;
+    readonly isMultiple: boolean;
+    readonly isDropdown: boolean;
+    readonly isMultiSelect: boolean;
+    constructor(element: ElementRef, ngZone: NgZone, ngControl: NgControl, ref: ChangeDetectorRef);
+    ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
+    ngOnDestroy(): void;
+    private onRequestEnd(event, searchTerm, data);
+    private onUpdated(event);
+    private onChanged(event);
+    updated(): SohoDropDownComponent;
+    disabled: boolean;
+    readonly: boolean;
+    setFocus(): void;
+    selectValue(value: any): void;
+    markForRefresh(): void;
+}

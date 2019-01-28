@@ -1,0 +1,28 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Time Picker</h1>
+		<span class="label">Directive: xi-timepicker</span>
+		<span class="label">Directive options: xi.ITimePickerOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="time-field" class="label">Time Field Default</label>
+			<input xi-timepicker id="time-field" class="timepicker" name="time-field" type="text">
+		</div>
+		<div class="field">
+			<label for="twentyfour-time-field" class="label">Time Field 24-hour (with attributes)</label>
+			<span class="label">Has 10 minute intervals, and rounds minutes to the nearest interval</span>
+			<input xi-timepicker id="twentyfour-time-field" class="timepicker" name="twentyfour-time-field" data-minute-interval="10" data-force-hour-mode="24" data-round-to-interval="true" type="text">
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="twentyfour-time-field2" class="label">Time Field 24-hour (with options)</label>
+			<span class="label">Has 5 minute intervals, and rounds minutes to the nearest interval</span>
+			<input xi-timepicker="ctrl.timepickerOptions" id="twentyfour-time-field2" class="timepicker" name="twentyfour-time-field2" type="text">
+		</div>
+	</div>
+</div>

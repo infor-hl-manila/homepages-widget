@@ -1,0 +1,45 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            // This task is only needed until https://github.com/Microsoft/vscode/issues/35593 is fixed
+            "label": "Typescript Watch",
+            "type": "shell",
+            "command": "npx tsc -p . -w",
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Start Server",
+            "group": "build",
+            "type": "shell",
+            "command": "node server",
+            "options": {
+                "cwd": "../"
+            },
+            "windows": {
+                "options": {
+                    "cwd": "..\\"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Install Snippets extension (requires reload)",
+            "type": "shell",
+            "group": "none",
+            "command": "code --install-extension .vscode/lime-snippets-latest.vsix",
+            "problemMatcher": []
+        },
+    ]
+}

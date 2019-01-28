@@ -1,0 +1,39 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Autocomplete</h1>
+		<span class="label">Directive: xi-autocomplete</span>
+		<span class="label">Directive options: xi.IAutoCompleteOptions</span>
+		<span class="error">Known error: Does not adjust if dropdown doesn't fit within the view area.</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="six columns">
+		<div class="field">
+			<label for="autocomplete">Weekdays</label>
+			<input xi-autocomplete="ctrl.autocompleteOptions" type="text" id="autocomplete" class="autocomplete" placeholder="Type to search..."/>
+		</div>
+	</div>
+	<div class="six columns">
+		<div class="field">
+			<label for="autocomplete">Persons with template from JS</label>
+			<input xi-autocomplete="ctrl.autocompleteOptionsPersons" type="text" id="autocomplete" class="autocomplete" placeholder="Type to search..." />
+		</div>
+		<div class="field">
+			<label for="autocomplete">Persons with template from HTML</label>
+			<input xi-autocomplete="ctrl.autocompleteOptionsPersons2" type="text" id="autocomplete" class="autocomplete" placeholder="Type to search..." data-tmpl="#autocomplete-template" />
+		</div>
+	</div>
+</div>
+<script id="autocomplete-template" type="text/html">
+	<li id="{{listItemId}}" {{#hasValue}} data-value="{{value}}" {{/hasValue}} role="listitem">
+		<a href="#" tabindex="-1">
+			<span class="display-value">
+				{{& label}}
+			</span>
+			<small style="font-size: 12px !important; font-style: italic; margin-top: -3px; margin-bottom: 5px; display: block;">
+				{{& email}}
+			</small>
+		</a>		
+	</li>
+</script>

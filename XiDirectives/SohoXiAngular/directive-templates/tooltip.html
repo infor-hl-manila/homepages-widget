@@ -1,0 +1,16 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Tooltip</h1>
+		<span class="label">Directive: xi-tooltip</span>
+		<span class="label">Directive options: inline text or scope variable with text</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<h3 xi-tooltip="'Inline tooltip text'">Tooltip - inline</h3>
+		<h3 xi-tooltip="tooltip">Tooltip - scope</h3>
+		<h3 xi-tooltip="undefinedTooltip">Tooltip - empty, not showing</h3>
+		<button class="btn-primary" type="button" ng-click="undefinedTooltip = 'Test'">Set empty tooltip to "Test"</button>
+	</div>
+</div>

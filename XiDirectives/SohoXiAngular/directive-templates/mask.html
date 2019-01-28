@@ -1,0 +1,60 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Mask</h1>
+		<span class="label">Directive: xi-mask</span>
+		<span class="label">Directive options: xi.IMaskOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<!-- With attributes -->
+	<div class="one-half column">
+		<div class="field currency">
+			<label for="currency-a">Currency (with attributes)</label>
+			<input id="currency-a" xi-mask data-mask-mode="number" data-show-currency="currency" data-mask="###.00" inputmode="numeric" placeholder="0.00" />
+		</div>
+		<div class="field">
+			<label for="phone-number-a">Phone Number (with attributes)</label>
+			<input id="phone-number-a" xi-mask data-mask-mode="group" data-mask="(###) ###-####" placeholder="(123) 456-7890" />
+		</div>
+		<div class="field">
+			<label for="date-a">Date (with attributes)</label>
+			<input id="date-a" xi-mask data-mask-mode="date" data-mask="##/##/####" placeholder="M/d/yyyy" />
+		</div>
+		<div class="field">
+			<label for="thousands-a">Thousands (with attributes)</label>
+			<input id="thousands-a" xi-mask data-mask-mode="number" data-mask="#######" data-thousands="true" placeholder="100,000" />
+		</div>
+		<div class="field">
+			<label for="mustcomplete-a">Must Complete (with attributes)</label>
+			<input id="mustcomplete-a" xi-mask data-mask-mode="number" data-mask="####" data-must-complete="true" placeholder="1000" />
+		</div>
+	</div>
+	<!-- With options object -->
+	<div class="one-half column">
+		<div class="field currency">
+			<label for="currency-b">Currency (with options)</label>
+			<input id="currency-b" xi-mask="ctrl.maskCurrencyOptions" inputmode="numeric" placeholder="0.00" />
+		</div>
+		<div class="field">
+			<label for="phone-number-b">Phone Number (with options)</label>
+			<input id="phone-number-b" xi-mask="ctrl.maskPhoneOptions" placeholder="(123) 456-7890" />
+		</div>
+		<div class="field">
+			<label for="date-b">Date (with options)</label>
+			<input id="date-b" xi-mask="ctrl.maskDateOptions" placeholder="M/d/yyyy" />
+		</div>
+		<div class="field">
+			<label for="thousands-b">Thousands (with options)</label>
+			<input id="thousands-b" xi-mask="ctrl.maskThousandsOptions" placeholder="100,000" />
+		</div>
+		<div class="field">
+			<label for="mustcomplete-b">Must Complete (with options)</label>
+			<input id="mustcomplete-b" xi-mask="ctrl.maskMustCompleteOptions" placeholder="1000" />
+		</div>
+		<div class="field">
+			<label for="custdef-a">Custom definition (with options) - Only allow numbers 0-4.</label>
+			<input id="custdef-a" xi-mask="ctrl.maskCustDefOptions" placeholder="1234" />
+		</div>
+	</div>
+</div>

@@ -1,0 +1,15 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Lookup</h1>
+		<span class="label">Directive: xi-lookup</span>
+		<span class="label">Directive options: xi.ILookupOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<label for="lookup-example" class="label">Lookup input field</label>
+		<input id="lookup-example" data-init="false" class="lookup" ng-model="lookupResult" type="text" xi-lookup="ctrl.lookupOptions">
+		Selected from lookup table: {{lookupResult}}
+	</div>
+</div>

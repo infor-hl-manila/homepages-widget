@@ -1,0 +1,26 @@
+{
+	"widgetId": "infor.sample.angular.contextviewer",
+	"type": "inline",
+	"framework": "angular",
+	"aotVersion": "",
+	"name": "Context Viewer",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"settingsUI": "metadata",
+	"settings": [
+		{
+			"name": "MessageType",
+			"type": "string",
+			"defaultValue": "inforBusinessContext",
+			"labelId": "message"
+		}
+	],
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Context Viewer - Sample",
+			"widgetDescription": "Context Viewer sample widget.",
+			"message": "Message Type"
+		}
+	}
+}

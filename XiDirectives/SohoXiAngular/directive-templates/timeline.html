@@ -1,0 +1,28 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Timeline</h1>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<div class="timeline">
+			<div class="timeline-block" ng-repeat="block in timeline">
+				<div class="indicator-container">
+					<div class="indicator" ng-class="{'processing': block.status == 'processing' , 'darker': block.status == 'done' }"></div>
+				</div>
+				<div class="content">
+					<div class="heading">{{block.heading}}</div>
+					<div class="sub-heading">{{block.subheading}}</div>
+				</div>
+				<div class="date" ng-if="block.date" ng-class="{'estimated': block.dueDate}">
+					<svg class="icon">
+						<use xlink:href="#icon-datepicker"></use>
+					</svg>
+					<span>{{block.date}}</span>
+					<span>{{block.time}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

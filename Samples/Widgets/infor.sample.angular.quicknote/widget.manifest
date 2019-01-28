@@ -1,0 +1,17 @@
+{
+	"widgetId": "infor.sample.angular.quicknote",
+	"type": "inline",
+	"framework": "angular",
+	"aotVersion": "",
+	"name": "Infor Sample QuickNote",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Quicknote Sample",
+			"widgetDescription": "Quicknote sample widget.",
+			"clear": "Clear"
+		}
+	}
+}

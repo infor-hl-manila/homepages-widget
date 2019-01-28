@@ -1,0 +1,36 @@
+{
+	"extends": [
+		"./tslint.json"
+	],
+	"defaultSeverity": "error",
+	"rules": {
+		"cyclomatic-complexity": [true, 5],
+		"max-line-length":[true, 120],
+		"object-literal-sort-keys":true,
+		"no-any": {
+			"severity": "error"
+		},
+		"comment-format": {
+			"options": ["check-space"]
+		},
+		"indent": [true, "tabs"],
+		"ban": {
+			"options": [
+				{"name": ["$", "Deferred"], "message": "Use native Promise instead"},
+				{"name": ["jQuery", "Deferred"], "message": "Use native Promise instead"},
+				{"name": ["$", "ajax"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["jQuery", "ajax"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["$", "get"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["jQuery", "get"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["$", "getJSON"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["jQuery", "getJSON"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["$", "post"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["jQuery", "post"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."},
+				{"name": ["XMLHttpRequest"], "message": "Ajax/XHR Should only be used in edge-cases. Preferrably use widgetContext.executeIonApi instead."}
+			],
+			"severity": "warning"
+		},
+		"no-console":true,
+		"trailing-comma":true
+	}
+}

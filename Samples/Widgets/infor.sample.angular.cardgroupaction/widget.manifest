@@ -1,0 +1,18 @@
+{
+	"widgetId": "infor.sample.angular.cardgroupaction",
+	"type": "inline",
+	"framework": "angular",
+	"name": "Infor Sample Card Group Action",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Card Group Action",
+			"widgetDescription": "Card Group sample widget.",
+			"order": "Order",
+			"ascending": "Ascending",
+			"descending": "Descending"
+		}
+	}
+}

@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./soho-toast.module","export":["SohoToastModule"]},{"from":"./soho-toast.service","export":["SohoToastService"]}]}]

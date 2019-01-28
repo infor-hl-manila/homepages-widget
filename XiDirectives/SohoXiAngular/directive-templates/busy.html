@@ -1,0 +1,27 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Busy Indicator</h1>
+		<span class="label">Directive: xi-busy</span>
+		<span class="label">Directive options: boolean flag controlling start/stop</span>
+		<span class="label">Additional attribute: busy-delay</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="six columns">
+		<div class="row" xi-busy="isBusy">
+			<h3>This area might be busy</h3>
+		</div>
+		<label class="label" for="btn1">With default delay of 3000 ms</label>
+		<button id="btn1" class="btn-primary" type="button" ng-click="isBusy = !isBusy">Toggle busy state</button>
+	</div>
+	<div class="six columns">
+		<div class="row" xi-busy="isBusy2" busy-delay="0">
+			<h3>This area might be busy</h3>
+		</div>
+		<label class="label" for="btn2">Without delay</label>
+		<button id="btn2" class="btn-primary" type="button" ng-click="isBusy2 = !isBusy2">Toggle busy state</button>
+	</div>
+</div>
+
+

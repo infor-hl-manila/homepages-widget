@@ -1,0 +1,22 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Textarea</h1>
+		<span class="label">Directive: xi-textarea</span>
+		<span class="label">Directive options: xi.ITextAreaOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="one-half column">
+		<div class="field">
+			<label for="textarea-a">Textarea (without options)</label>
+			<textarea xi-textarea type="text" maxlength="100" name="textarea-a"></textarea>
+		</div>
+	</div>
+	<div class="one-half column">
+		<div class="field">
+			<label for="textarea-b">Textarea (with options, characterCounter: false)</label>
+			<textarea xi-textarea="ctrl.textareaOptions" type="text" maxlength="100" name="textarea-b"></textarea>
+		</div>
+	</div>
+</div>

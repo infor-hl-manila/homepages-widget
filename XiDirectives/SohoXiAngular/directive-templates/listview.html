@@ -1,0 +1,78 @@
+﻿<div class="row">
+	<div class="twelve columns">
+		<h1>Listview</h1>
+		<span class="label">Directive: xi-listview</span>
+		<span class="label">Directive options: xi.IListViewOptions</span>
+		<hr />
+	</div>
+</div>
+<div class="row">
+	<div class="four columns">
+		<div class="card" id="card-listview">
+			<div class="card-header">
+				<h2 class="card-title">Listview example (multiselect & delete)</h2>
+			</div>
+			<div class="card-content">
+				<div class="toolbar listview-toolbar is-hidden">
+					<div class="buttonset">
+						<button class="btn-tertiary" title="remove" type="button" ng-click="ctrl.removeSelected()">Remove</button>
+					</div>
+				</div>
+				<div class="listview is-muliselect" id="multiselect-listview" xi-listview="ctrl.listviewOptions">
+					<ul>
+						<li ng-repeat="data in listviewData track by $id($index)">
+							<p>{{data}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="four columns">
+		<div class="card">
+			<div class="card-header">
+				<h2 class="card-title">Listview search example</h2>
+			</div>
+			<div class="card-content">
+				<div class="listview-search">
+					<label class="audible" for="gridfilter">Search</label>
+					<input class="searchfield" ng-model="listSearch" placeholder="Search My Alerts" name="searchfield" id="gridfilter" xi-searchfield>
+				</div>
+				<div class="listview" id="search-listview" xi-listview>
+					<ul>
+						<li ng-repeat="entry in listviewSearchOptions | filter : listSearch track by $id($index)">
+							<p class="listview-subheading">{{entry}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="four columns">
+		<div class="card">
+			<div class="card-header">
+				<h2 class="card-title">Other widget search example</h2>
+			</div>
+			<div class="card-content">
+				<div class="listview-search">
+					<label class="audible" for="gridfilter">Search</label>
+					<input class="searchfield" id="form-searchfield" placeholder="Search name (on A) to fill form" name="searchfield" xi-searchfield="ctrl.searchfieldOptions3">
+				</div>
+				<div class="column full" style="margin-top: 20px;">
+					<div class="field">
+						<label class="label">Name</label>
+						<input readonly ng-model="searchForm.label" />
+					</div>
+					<div class="field">
+						<label class="label">Phone</label>
+						<input readonly ng-model="searchForm.phone" />
+					</div>
+					<div class="field">
+						<label class="label">Country</label>
+						<input readonly ng-model="searchForm.country" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
