@@ -1,0 +1,15 @@
+{
+	"widgetId": "infor.sample.angular.expense",
+	"type": "inline",
+	"framework": "angular",
+	"aotVersion": "",
+	"name": "Expense",
+	"version": "1.0",
+	"category": "application",
+	"localization": {
+		"en-US": {
+			"widgetTitle": "Expense",
+			"widgetDescription": "Expense widget."
+		}
+	}
+}
