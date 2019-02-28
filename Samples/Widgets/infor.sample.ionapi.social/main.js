@@ -108,7 +108,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs/
             var _this = this;
             var reader = new FileReader();
             reader.onload = function () {
-                _this.photoUrl = reader.result;
+                // this.photoUrl = reader.result;
                 _this.setBusy(false);
             };
             reader.readAsDataURL(response);

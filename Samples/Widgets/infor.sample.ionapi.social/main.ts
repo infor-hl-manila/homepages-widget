@@ -199,7 +199,7 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	private updatePhoto(response: Blob): void {
 		const reader = new FileReader();
 		reader.onload = () => {
-			this.photoUrl = reader.result;
+			// this.photoUrl = reader.result;
 			this.setBusy(false);
 		};
 		reader.readAsDataURL(response);

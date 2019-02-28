@@ -89,7 +89,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         CardGroupActionComponent.prototype.onSelected = function (event) {
             var filterChoice = $(event.args).text().trim();
             if (filterChoice !== this.category[0]) {
-                var filterItems = this.originalItems.filter(function (item) { return item.category == filterChoice; });
+                var filterItems = this.originalItems.filter(function (item) { return item.category === filterChoice; });
                 this.sortedItems = this.sortCollection(filterItems, this.reverse);
             }
             else {

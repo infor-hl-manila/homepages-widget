@@ -49,36 +49,38 @@ interface IMyLanguage extends ILanguage {
 				Manage your expenses easily, use <a href='https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8'>
 			Infor Expense Mobile</a>
 			</div>
-		<div>
-		<div class='expense-ob-container'>
-			<div [ngClass]='{\"expense-ob\": true,\"expense-ob-clear\":isExpenseClear}'>
-				<span>{{ outstandingBalance }}</span>
-				<br />
-				<span class='text-small text-strong text-muted'>{{currencyCode}}</span>
-			</div>
-			<div [ngClass]='{\"expense-ob-label\":true,\"expense-ob-label-clear\":isExpenseClear,\"text-secondary\":true}'>
-				Outstanding Balance
-			</div>
 		</div>
-		<div class='expense-list'>
-			<soho-listview>
-				<li soho-listview-item *ngFor=\"let item of expenseData\">
-					<div class='expense-panel-left'>
-						<div class='expense-date nobreak text-base'>
-							{{ item.date }}
+		<div class='expense-content-container'>
+			<div class='expense-ob-container'>
+				<div [ngClass]='{\"expense-ob\": true,\"expense-ob-clear\":isExpenseClear}'>
+					<span>{{ outstandingBalance }}</span>
+					<br />
+					<span class='text-small text-strong text-muted'>{{currencyCode}}</span>
+				</div>
+				<div [ngClass]='{\"expense-ob-label\":true,\"expense-ob-label-clear\":isExpenseClear,\"text-secondary\":true}'>
+					Outstanding Balance
+				</div>
+			</div>
+			<div class='expense-list'>
+				<soho-listview>
+					<li soho-listview-item *ngFor=\"let item of expenseData\">
+						<div class='expense-panel-left'>
+							<div class='expense-date nobreak text-base'>
+								{{ item.date }}
+							</div>
+							<div [ngClass]='{\"nobreak\":true,\"expense-vendor\":true,\"expense-vendor-empty\":!item.hasVendor, \"text-primary\": true}'>
+								{{item.vendorName}}
+							</div>
+							<div [ngClass]='{\"nobreak\":true,\"expense-expense-type\":true,\"expense-expense-type-empty\":!item.hasExpenseType,\"text-secondary\":true}'>
+								{{item.expenseType}}
+							</div>
 						</div>
-						<div [ngClass]='{\"nobreak\":true,\"expense-vendor\":true,\"expense-vendor-empty\":!item.hasVendor, \"text-primary\": true}'>
-							{{item.vendorName}}
+						<div class='expense-panel-right nobreak text-primary' [attr.title]='item.currencyAmount'>
+							<span class='expense-amount'>{{item.currencyAmount}}</span>
 						</div>
-						<div [ngClass]='{\"nobreak\":true,\"expense-expense-type\":true,\"expense-expense-type-empty\":!item.hasExpenseType,\"text-secondary\":true}'>
-							{{item.expenseType}}
-						</div>
-					</div>
-					<div class='expense-panel-right nobreak data-large' [attr.title]='item.currencyAmount'>
-						<span class='expense-amount'>{{item.currencyAmount}}</span>
-					</div>
-				</li>
-			</soho-listview>
+					</li>
+				</soho-listview>
+			</div>	
 		</div>`,
 	styles: [`
 		.expense-download {
@@ -138,7 +140,7 @@ interface IMyLanguage extends ILanguage {
 		}
 		
 		.expense-list {
-			width: 380px;
+			width: 343px;
 			display: inline-block;
 			float: right;
 		}
@@ -224,17 +226,28 @@ export class ExpenseComponent implements OnInit, IWidgetComponent {
 	}
 
 	ngOnInit() {
+		// Download App
+		this.widgetInstance.actions[0].execute = () => {
+			window.open('https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8', '_blank');
+		};
+
+		// Launch App
+		this.widgetInstance.actions[1].execute = () => {
+			window.open('https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8', '_blank');
+		};
+
 		this.language = this.widgetContext.getLanguage();
 
-		// this.getToken();
-		this.getdummyData();
+		this.getToken();
+		// this.getdummyData();
 
 		this.recomputeSize(this.widgetContext.getElement());
 	}
 
 	recomputeSize(element: any) {
-		const leftPanel = element[0].children[0].children[0].children[1].children[0];
-		const rightPanel = element[0].children[0].children[0].children[1].children[1];
+		const panelContainer = element[0].children[0].children[1];
+		const leftPanel = panelContainer.children[0];
+		const rightPanel = panelContainer.children[1];
 		const containerWidth = element[0].offsetWidth;
 		const containerHeight = element[0].offsetHeight - 30; //deduct height of banner
 		
@@ -251,8 +264,14 @@ export class ExpenseComponent implements OnInit, IWidgetComponent {
 		if (containerWidth > 800) {
 			rightPanel.setAttribute('style','height:' + containerHeight + 'px;overflow-y:scroll;width:775px;border-left:1px solid #BDBDBD;');
 		} else if (containerWidth > 400) {
-			rightPanel.setAttribute('style','height:' + containerHeight + 'px;overflow-y:scroll;width:380px;border-left:1px solid #BDBDBD;');
+			rightPanel.setAttribute('style','height:' + containerHeight + 'px;overflow-y:scroll;width:343px;border-left:1px solid #BDBDBD;');
 		} else {
+			if (containerHeight > 400) {
+				panelContainer.setAttribute('style', 'height:678px;overflow-y:scroll');
+			} else {
+				panelContainer.setAttribute('style', 'height:288px;overflow-y:scroll');
+			}
+
 			rightPanel.setAttribute('style','height:auto;overflow-y:hidden;width:100%;border-left:0;');
 		}
 	};
@@ -370,7 +389,7 @@ export class ExpenseComponent implements OnInit, IWidgetComponent {
 				currencyAmount: 'USD 12,345.00'
 			}),
 			new ExpenseItem({
-				date: getFormatDate(new Date()),
+				date: getFormatDate(new Date(Date.now() - 86400000)),
 				hasVendor: true,
 				vendorName: 'Restaurant 2',
 				hasExpenseType: false,
@@ -458,3 +477,15 @@ export class ExpenseComponent implements OnInit, IWidgetComponent {
 })
 export class ExpenseModule {
 }
+
+export const getActions = (context: IWidgetContext2): IWidgetAction[] => {
+	const language = context.getLanguage();
+	return [{
+		isSubmenu: false,
+		text: language.get("downloadExpenseApp")
+	}, {
+		isPrimary: true,
+		standardIconName: "#icon-launch",
+		text: language.get("launchExpenseApp")
+	}];
+};

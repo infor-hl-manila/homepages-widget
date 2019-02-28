@@ -9,7 +9,9 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Expense",
-			"widgetDescription": "Expense widget."
+			"widgetDescription": "Expense widget.",
+			"downloadExpenseApp": "Download Expense App",
+			"launchExpenseApp": "Launch Expense App"
 		}
 	}
 }

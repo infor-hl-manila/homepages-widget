@@ -61,14 +61,23 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/comm
             this._http = _http;
         }
         ExpenseComponent.prototype.ngOnInit = function () {
+            // Download App
+            this.widgetInstance.actions[0].execute = function () {
+                window.open('https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8', '_blank');
+            };
+            // Launch App
+            this.widgetInstance.actions[1].execute = function () {
+                window.open('https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8', '_blank');
+            };
             this.language = this.widgetContext.getLanguage();
-            // this.getToken();
-            this.getdummyData();
+            this.getToken();
+            // this.getdummyData();
             this.recomputeSize(this.widgetContext.getElement());
         };
         ExpenseComponent.prototype.recomputeSize = function (element) {
-            var leftPanel = element[0].children[0].children[0].children[1].children[0];
-            var rightPanel = element[0].children[0].children[0].children[1].children[1];
+            var panelContainer = element[0].children[0].children[1];
+            var leftPanel = panelContainer.children[0];
+            var rightPanel = panelContainer.children[1];
             var containerWidth = element[0].offsetWidth;
             var containerHeight = element[0].offsetHeight - 30; //deduct height of banner
             if (containerWidth > 400 && containerHeight > 400) {
@@ -86,9 +95,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/comm
                 rightPanel.setAttribute('style', 'height:' + containerHeight + 'px;overflow-y:scroll;width:775px;border-left:1px solid #BDBDBD;');
             }
             else if (containerWidth > 400) {
-                rightPanel.setAttribute('style', 'height:' + containerHeight + 'px;overflow-y:scroll;width:380px;border-left:1px solid #BDBDBD;');
+                rightPanel.setAttribute('style', 'height:' + containerHeight + 'px;overflow-y:scroll;width:343px;border-left:1px solid #BDBDBD;');
             }
             else {
+                if (containerHeight > 400) {
+                    panelContainer.setAttribute('style', 'height:678px;overflow-y:scroll');
+                }
+                else {
+                    panelContainer.setAttribute('style', 'height:288px;overflow-y:scroll');
+                }
                 rightPanel.setAttribute('style', 'height:auto;overflow-y:hidden;width:100%;border-left:0;');
             }
         };
@@ -171,7 +186,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/comm
                     currencyAmount: 'USD 12,345.00'
                 }),
                 new ExpenseItem({
-                    date: getFormatDate(new Date()),
+                    date: getFormatDate(new Date(Date.now() - 86400000)),
                     hasVendor: true,
                     vendorName: 'Restaurant 2',
                     hasExpenseType: false,
@@ -260,8 +275,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/comm
         ], ExpenseComponent.prototype, "widgetInstance", void 0);
         ExpenseComponent = __decorate([
             core_1.Component({
-                template: "\n\t\t<div>\n\t\t\t<div class='expense-download'>\n\t\t\t\tManage your expenses easily, use <a href='https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8'>\n\t\t\tInfor Expense Mobile</a>\n\t\t\t</div>\n\t\t<div>\n\t\t<div class='expense-ob-container'>\n\t\t\t<div [ngClass]='{\"expense-ob\": true,\"expense-ob-clear\":isExpenseClear}'>\n\t\t\t\t<span>{{ outstandingBalance }}</span>\n\t\t\t\t<br />\n\t\t\t\t<span class='text-small text-strong text-muted'>{{currencyCode}}</span>\n\t\t\t</div>\n\t\t\t<div [ngClass]='{\"expense-ob-label\":true,\"expense-ob-label-clear\":isExpenseClear,\"text-secondary\":true}'>\n\t\t\t\tOutstanding Balance\n\t\t\t</div>\n\t\t</div>\n\t\t<div class='expense-list'>\n\t\t\t<soho-listview>\n\t\t\t\t<li soho-listview-item *ngFor=\"let item of expenseData\">\n\t\t\t\t\t<div class='expense-panel-left'>\n\t\t\t\t\t\t<div class='expense-date nobreak text-base'>\n\t\t\t\t\t\t\t{{ item.date }}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div [ngClass]='{\"nobreak\":true,\"expense-vendor\":true,\"expense-vendor-empty\":!item.hasVendor, \"text-primary\": true}'>\n\t\t\t\t\t\t\t{{item.vendorName}}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div [ngClass]='{\"nobreak\":true,\"expense-expense-type\":true,\"expense-expense-type-empty\":!item.hasExpenseType,\"text-secondary\":true}'>\n\t\t\t\t\t\t\t{{item.expenseType}}\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class='expense-panel-right nobreak data-large' [attr.title]='item.currencyAmount'>\n\t\t\t\t\t\t<span class='expense-amount'>{{item.currencyAmount}}</span>\n\t\t\t\t\t</div>\n\t\t\t\t</li>\n\t\t\t</soho-listview>\n\t\t</div>",
-                styles: ["\n\t\t.expense-download {\n\t\t\ttext-align: left;\n\t\t\tpadding: 9px;\n\t\t\tbackground-color: black;\n\t\t\tcolor: white;\n\t\t}\n\t\t\n\t\t.expense-download > a {\n\t\t\tcolor:white;\n\t\t}\n\t\t\n\t\t.expense-ob-container {\n\t\t\ttext-align: center;\n\t\t\twidth: 343px;\n\t\t\tdisplay: inline-block;\n\t\t\tmargin-top:30px;\n\t\t}\n\t\t\n\t\t.expense-ob {\n\t\t\tdisplay: inline-block;\n\t\t\tmargin-top: 20px;\n\t\t\tmargin-bottom: 10px;\n\t\t\tpadding-top: 50px;\n\t\t\tborder: 2px solid black;\n\t\t\theight: 150px;\n\t\t\twidth: 150px;\n\t\t\t-webkit-border-radius: 150px;\n\t\t\t-moz-border-radius: 150px;\n\t\t\tborder-radius: 150px;\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tfont-size: 28px;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align:center;\n\t\t}\n\t\t\n\t\t.expense-ob-clear {\n\t\t\tborder-color:#7ED321;\n\t\t}\n\t\t\n\t\t.expense-currency-code {\n\t\t\tcolor:#BDBDBD;\n\t\t\tfont-weight:bold;\n\t\t}\n\n\t\t.expense-ob-label {\n\t\t\tfont-family: HelveticaNeue-Bold;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align: center;\n\t\t}\n\t\t\n\t\t.expense-ob-label-clear {\n\t\t\tcolor: #7ED321;\n\t\t}\n\t\t\n\t\t.expense-list {\n\t\t\twidth: 380px;\n\t\t\tdisplay: inline-block;\n\t\t\tfloat: right;\n\t\t}\n\t\t\n\t\t.expense-panel-left {\n\t\t\tdisplay: inline-block;\n\t\t\theight: 68px;\n\t\t\twidth: 49%;\n\t\t}\n\t\t\n\t\t.expense-date {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #999999;\n\t\t\tletter-spacing: 0;\n\t\t\tmargin-bottom: 10px;\n\t\t}\n\t\t\n\t\t.expense-vendor {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t}\n\t\t\n\t\t.expense-vendor-empty {\n\t\t\tcolor:#BDBDBD\n\t\t}\n\t\t\n\t\t.expense-expense-type {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #454545;\n\t\t\tletter-spacing:0;\n\t\t}\n\t\t\n\t\t.expense-expense-type-empty {\n\t\t\tcolor: #BDBDBD\n\t\t}\n\t\t\n\t\t.expense-panel-right {\n\t\t\tdisplay: inline-block;\n\t\t\theight: 68px;\n\t\t\twidth: 49%;\n\t\t\tline-height: 68px;\n\t\t\ttext-align: right;\n\t\t}\n\t\t\n\t\t.expense-amount {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align: right;\n\t\t}\n\t\t\n\t\t.nobreak {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t\twhite-space: nowrap;\n\t\t}\n\t\t\n\t\tli:last-child {\n\t\t\tborder-bottom: 0;\n\t\t}"]
+                template: "\n\t\t<div>\n\t\t\t<div class='expense-download'>\n\t\t\t\tManage your expenses easily, use <a href='https://itunes.apple.com/us/app/infor-expense/id1401347288?mt=8'>\n\t\t\tInfor Expense Mobile</a>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class='expense-content-container'>\n\t\t\t<div class='expense-ob-container'>\n\t\t\t\t<div [ngClass]='{\"expense-ob\": true,\"expense-ob-clear\":isExpenseClear}'>\n\t\t\t\t\t<span>{{ outstandingBalance }}</span>\n\t\t\t\t\t<br />\n\t\t\t\t\t<span class='text-small text-strong text-muted'>{{currencyCode}}</span>\n\t\t\t\t</div>\n\t\t\t\t<div [ngClass]='{\"expense-ob-label\":true,\"expense-ob-label-clear\":isExpenseClear,\"text-secondary\":true}'>\n\t\t\t\t\tOutstanding Balance\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class='expense-list'>\n\t\t\t\t<soho-listview>\n\t\t\t\t\t<li soho-listview-item *ngFor=\"let item of expenseData\">\n\t\t\t\t\t\t<div class='expense-panel-left'>\n\t\t\t\t\t\t\t<div class='expense-date nobreak text-base'>\n\t\t\t\t\t\t\t\t{{ item.date }}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div [ngClass]='{\"nobreak\":true,\"expense-vendor\":true,\"expense-vendor-empty\":!item.hasVendor, \"text-primary\": true}'>\n\t\t\t\t\t\t\t\t{{item.vendorName}}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div [ngClass]='{\"nobreak\":true,\"expense-expense-type\":true,\"expense-expense-type-empty\":!item.hasExpenseType,\"text-secondary\":true}'>\n\t\t\t\t\t\t\t\t{{item.expenseType}}\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class='expense-panel-right nobreak text-primary' [attr.title]='item.currencyAmount'>\n\t\t\t\t\t\t\t<span class='expense-amount'>{{item.currencyAmount}}</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</li>\n\t\t\t\t</soho-listview>\n\t\t\t</div>\t\n\t\t</div>",
+                styles: ["\n\t\t.expense-download {\n\t\t\ttext-align: left;\n\t\t\tpadding: 9px;\n\t\t\tbackground-color: black;\n\t\t\tcolor: white;\n\t\t}\n\t\t\n\t\t.expense-download > a {\n\t\t\tcolor:white;\n\t\t}\n\t\t\n\t\t.expense-ob-container {\n\t\t\ttext-align: center;\n\t\t\twidth: 343px;\n\t\t\tdisplay: inline-block;\n\t\t\tmargin-top:30px;\n\t\t}\n\t\t\n\t\t.expense-ob {\n\t\t\tdisplay: inline-block;\n\t\t\tmargin-top: 20px;\n\t\t\tmargin-bottom: 10px;\n\t\t\tpadding-top: 50px;\n\t\t\tborder: 2px solid black;\n\t\t\theight: 150px;\n\t\t\twidth: 150px;\n\t\t\t-webkit-border-radius: 150px;\n\t\t\t-moz-border-radius: 150px;\n\t\t\tborder-radius: 150px;\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tfont-size: 28px;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align:center;\n\t\t}\n\t\t\n\t\t.expense-ob-clear {\n\t\t\tborder-color:#7ED321;\n\t\t}\n\t\t\n\t\t.expense-currency-code {\n\t\t\tcolor:#BDBDBD;\n\t\t\tfont-weight:bold;\n\t\t}\n\n\t\t.expense-ob-label {\n\t\t\tfont-family: HelveticaNeue-Bold;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align: center;\n\t\t}\n\t\t\n\t\t.expense-ob-label-clear {\n\t\t\tcolor: #7ED321;\n\t\t}\n\t\t\n\t\t.expense-list {\n\t\t\twidth: 343px;\n\t\t\tdisplay: inline-block;\n\t\t\tfloat: right;\n\t\t}\n\t\t\n\t\t.expense-panel-left {\n\t\t\tdisplay: inline-block;\n\t\t\theight: 68px;\n\t\t\twidth: 49%;\n\t\t}\n\t\t\n\t\t.expense-date {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #999999;\n\t\t\tletter-spacing: 0;\n\t\t\tmargin-bottom: 10px;\n\t\t}\n\t\t\n\t\t.expense-vendor {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t}\n\t\t\n\t\t.expense-vendor-empty {\n\t\t\tcolor:#BDBDBD\n\t\t}\n\t\t\n\t\t.expense-expense-type {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #454545;\n\t\t\tletter-spacing:0;\n\t\t}\n\t\t\n\t\t.expense-expense-type-empty {\n\t\t\tcolor: #BDBDBD\n\t\t}\n\t\t\n\t\t.expense-panel-right {\n\t\t\tdisplay: inline-block;\n\t\t\theight: 68px;\n\t\t\twidth: 49%;\n\t\t\tline-height: 68px;\n\t\t\ttext-align: right;\n\t\t}\n\t\t\n\t\t.expense-amount {\n\t\t\tfont-family: HelveticaNeue;\n\t\t\tcolor: #1A1A1A;\n\t\t\tletter-spacing: 0;\n\t\t\ttext-align: right;\n\t\t}\n\t\t\n\t\t.nobreak {\n\t\t\toverflow: hidden;\n\t\t\ttext-overflow: ellipsis;\n\t\t\twhite-space: nowrap;\n\t\t}\n\t\t\n\t\tli:last-child {\n\t\t\tborder-bottom: 0;\n\t\t}"]
             }),
             core_1.Injectable(),
             __metadata("design:paramtypes", [http_1.HttpClient])
@@ -282,5 +297,16 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/comm
         return ExpenseModule;
     }());
     exports.ExpenseModule = ExpenseModule;
+    exports.getActions = function (context) {
+        var language = context.getLanguage();
+        return [{
+                isSubmenu: false,
+                text: language.get("downloadExpenseApp")
+            }, {
+                isPrimary: true,
+                standardIconName: "#icon-launch",
+                text: language.get("launchExpenseApp")
+            }];
+    };
 });
 //# sourceMappingURL=main.js.map

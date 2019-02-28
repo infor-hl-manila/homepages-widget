@@ -18,7 +18,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         }
         InformationDialogComponent.prototype.ngOnInit = function () {
             this.infoMessage =
-                "infor.companyon.client.listeningMessageTypes.applicationDrillback[0].handler(\n\t\t\t\t{ \"applicationDrillback\": \"?LogicalId=lid://infor.homepages.1&page=" + this.pageId + "&param1=hellofromparamone&param2=contentfromparam2\" })";
+                "infor.companyon.client.listeningMessageTypes.applicationDrillback[0].handler({ \"applicationDrillback\": \"?LogicalId=lid://infor.homepages.1&page=" + this.pageId + "&param1=hellofromparamone&param2=contentfromparam2\" })";
         };
         InformationDialogComponent.prototype.close = function () {
             this.dialog.close();
