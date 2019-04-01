@@ -79,9 +79,6 @@
 						<dt>since</dt>
 						<dd><p>1.0</p>
 						</dd>
-						<dt>deprecated</dt>
-						<dd><p>See IWidgetContext2</p>
-						</dd>
 					</dl>
 				</div>
 			</section>
@@ -90,6 +87,11 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">IWidgetContext</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_lime_.iwidgetcontext2.html" class="tsd-signature-type">IWidgetContext2</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -103,7 +105,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#enabletitleedit" class="tsd-kind-icon">enable<wbr>Title<wbr>Edit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetcontext.html#executeionapiasync" class="tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#findwidgetsonpage" class="tsd-kind-icon">find<wbr>Widgets<wbr>OnPage</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getangularcontext" class="tsd-kind-icon">get<wbr>Angular<wbr>Context</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getapplication" class="tsd-kind-icon">get<wbr>Application</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getapplicationasync" class="tsd-kind-icon">get<wbr>Application<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getapplications" class="tsd-kind-icon">get<wbr>Applications</a></li>
@@ -111,6 +112,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getbannerbackgroundcolor" class="tsd-kind-icon">get<wbr>Banner<wbr>Background<wbr>Color</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getcontainerurl" class="tsd-kind-icon">get<wbr>Container<wbr>Url</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getcontextparameter" class="tsd-kind-icon">get<wbr>Context<wbr>Parameter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getdevice" class="tsd-kind-icon">get<wbr>Device</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getelement" class="tsd-kind-icon">get<wbr>Element</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#getinforcurrentlanguage" class="tsd-kind-icon">get<wbr>Infor<wbr>Current<wbr>Language</a></li>
@@ -158,6 +160,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#settitle" class="tsd-kind-icon">set<wbr>Title</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#settitlelocked" class="tsd-kind-icon">set<wbr>Title<wbr>Locked</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#showwidgetmessage" class="tsd-kind-icon">show<wbr>Widget<wbr>Message</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetcontext.html#updateprimaryaction" class="tsd-kind-icon">update<wbr>Primary<wbr>Action</a></li>
 							</ul>
 						</section>
 					</div>
@@ -175,7 +178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1498</li>
+									<li>Defined in lime.ts:1225</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,13 +203,13 @@
 					<a name="executeionapiasync" class="tsd-anchor"></a>
 					<h3>execute<wbr>Ion<wbr>Api<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async&lt;T&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iionapirequestoptions.html" class="tsd-signature-type">IIonApiRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ng.IHttpPromiseCallbackArg</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Ion<wbr>Api<wbr>Async&lt;T&gt;<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iionapirequestoptions.html" class="tsd-signature-type">IIonApiRequestOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapiresponse.html" class="tsd-signature-type">IIonApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1750</li>
+									<li>Defined in lime.ts:1471</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -218,8 +221,6 @@
 								<p>If the ION API HTTP request returns a 401 response code this function will perform a single retry. The retry attempt
 									will get a fresh OAuth token and repeat the same request. If the second request completes without errors it will be
 								transparent to the caller. If the second request fails the promise will be rejected.</p>
-								<p>Since this function is a wrapper of the AngularJS $http service refer to the documentation here for more details:
-								<a href="https://docs.angularjs.org/api/ng/service/$http">https://docs.angularjs.org/api/ng/service/$http</a></p>
 								<p>If more control is required when making the request the getIonApiContextAsync function can be used to
 								get the OAuth token and ION API base URL. In this case the retry for expired OAuth tokens must be handled manually.</p>
 							</div>
@@ -234,12 +235,12 @@
 								<li>
 									<h5>options: <a href="_lime_.iionapirequestoptions.html" class="tsd-signature-type">IIonApiRequestOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>An object that describes the request (also see documentation for the $http service).</p>
+										<p>An object that describes the request.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ng.IHttpPromiseCallbackArg</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A promise that will be resolved when the request completes or fails.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapiresponse.html" class="tsd-signature-type">IIonApiResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An observable that can be subscribed to.</p>
 						</li>
 					</ul>
 				</section>
@@ -253,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1869</li>
+									<li>Defined in lime.ts:1580</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,11 +262,6 @@
 									<p>Finds widgets that are part of the same page as the current widget.</p>
 								</div>
 								<p>If no options are specified the function will find all widgets on the page except for the current widget.</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.11</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -282,29 +278,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="getangularcontext" class="tsd-anchor"></a>
-					<h3>get<wbr>Angular<wbr>Context</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Angular<wbr>Context<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.iangularcontext.html" class="tsd-signature-type">IAngularContext</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in lime.ts:1379</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the AngularJS context that can be used by widgets implemented using AngularJS.</p>
-								</div>
-								<p>Widgets that do not use AngularJS should ignore this property.</p>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_lime_.iangularcontext.html" class="tsd-signature-type">IAngularContext</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getapplication" class="tsd-anchor"></a>
 					<h3>get<wbr>Application</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -314,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1606</li>
+									<li>Defined in lime.ts:1330</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,13 +308,13 @@
 					<a name="getapplicationasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Application<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Application<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Application<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1648</li>
+									<li>Defined in lime.ts:1372</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +335,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that will be resolved when the application settings are available.</p>
 						</li>
 					</ul>
@@ -377,7 +350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1618</li>
+									<li>Defined in lime.ts:1342</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,13 +370,13 @@
 					<a name="getapplicationsasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Applications<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Applications<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Applications<wbr>Async<span class="tsd-signature-symbol">(</span>logicalId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1664</li>
+									<li>Defined in lime.ts:1388</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -425,7 +398,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iapplication.html" class="tsd-signature-type">IApplication</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that will be resolved when the application settings are available.</p>
 						</li>
 					</ul>
@@ -440,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1946</li>
+									<li>Defined in lime.ts:1652</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -450,11 +423,6 @@
 								<p>This method is useful for banner widget implementation only, for instance to
 								be able to apply specific styles that are coherent with the current background color</p>
 								<p>Example: #0E5B52</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.12</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Banner background color string or null if the widget does not have a parent context at this time</p>
@@ -471,7 +439,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1820</li>
+									<li>Defined in lime.ts:1540</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -495,7 +463,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1961</li>
+									<li>Defined in lime.ts:1667</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,6 +495,34 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="getdevice" class="tsd-anchor"></a>
+					<h3>get<wbr>Device</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Device<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.idevice.html" class="tsd-signature-type">IDevice</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1107</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the device, which should primarily be used to access native features of the mobile device that is
+									running the widget.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>12.0.32</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.idevice.html" class="tsd-signature-type">IDevice</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="getelement" class="tsd-anchor"></a>
 					<h3>get<wbr>Element</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -536,7 +532,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1355</li>
+									<li>Defined in lime.ts:1085</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -567,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1323</li>
+									<li>Defined in lime.ts:1053</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -590,7 +586,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1911</li>
+									<li>Defined in lime.ts:1620</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -619,7 +615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1921</li>
+									<li>Defined in lime.ts:1630</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -648,7 +644,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1931</li>
+									<li>Defined in lime.ts:1640</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -677,7 +673,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1901</li>
+									<li>Defined in lime.ts:1610</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -707,7 +703,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1890</li>
+									<li>Defined in lime.ts:1599</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -731,13 +727,13 @@
 					<a name="getionapicontextasync" class="tsd-anchor"></a>
 					<h3>get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_lime_.iionapioptions.html" class="tsd-signature-type">IIonApiOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Ion<wbr>Api<wbr>Context<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="_lime_.iionapioptions.html" class="tsd-signature-type">IIonApiOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1728</li>
+									<li>Defined in lime.ts:1452</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -761,7 +757,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_lime_.iionapicontext.html" class="tsd-signature-type">IIonApiContext</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that will be resolved when the ION API context is available.</p>
 						</li>
 					</ul>
@@ -776,7 +772,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1710</li>
+									<li>Defined in lime.ts:1434</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -810,7 +806,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1337</li>
+									<li>Defined in lime.ts:1067</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -833,7 +829,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1624</li>
+									<li>Defined in lime.ts:1348</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -856,7 +852,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1802</li>
+									<li>Defined in lime.ts:1523</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -878,7 +874,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1472</li>
+									<li>Defined in lime.ts:1199</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -912,23 +908,23 @@
 					<a name="getservice" class="tsd-anchor"></a>
 					<h3>get<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Service&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Service&lt;T&gt;<span class="tsd-signature-symbol">(</span>serviceType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1766</li>
+									<li>Defined in lime.ts:1487</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a named framework service.</p>
+									<p>Gets a framework service.</p>
 								</div>
-								<p>This function can be used to get access to framework services implemented in AngularJS from a widget that
-									is not implemented in AngularJS. The function can be used from an AngularJS widget as well if the
+								<p>This function can be used to get access to framework services implemented in Angular from a widget that
+									is not implemented in Angular. The function can be used from an Angular widget as well if the
 								normal dependency injection cannot be used for some reason.</p>
-								<p>The names of the available services are documented in the service interface API documentation.
+								<p>The available services are documented in the API documentation.
 									Note that a widget is only allowed to request services that are part of the public API documentation.
 								Any other services that might be accessible could be removed or refactored at any time without prior notice.</p>
 							</div>
@@ -941,10 +937,30 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The name of the service to get.</p>
-									</div>
+									<h5>serviceType: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>constructor<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon">new __type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in lime.ts:1487</li>
+														</ul>
+													</aside>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+										</ul>        </li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
@@ -962,7 +978,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1331</li>
+									<li>Defined in lime.ts:1061</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -986,7 +1002,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1459</li>
+									<li>Defined in lime.ts:1186</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1009,7 +1025,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1807</li>
+									<li>Defined in lime.ts:1528</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1031,7 +1047,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1445</li>
+									<li>Defined in lime.ts:1172</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1055,18 +1071,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1849</li>
+									<li>Defined in lime.ts:1564</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets the tenant ID.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.6</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>the tenant ID</p>
@@ -1083,7 +1094,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1452</li>
+									<li>Defined in lime.ts:1179</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1106,7 +1117,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1372</li>
+									<li>Defined in lime.ts:1100</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1115,9 +1126,8 @@
 								</div>
 								<p>A widget must use an API such as this to get the URL to the widget directory since the widget directory location is an implementation
 								detail that might change in future versions.</p>
-								<p>Please note that directories within the widget is not supported.</p>
 								<p><strong>Example:</strong>
-									var iconUrl = widgetContext.getUrl(&quot;icon.png&quot;);
+									var iconUrl = widgetContext.getUrl(&quot;images/icon.png&quot;);
 								var baseUrl = widgetContext.getUrl();</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1125,7 +1135,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> path: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>An optional file name that will be appended to the widget directory URL. If this parameter is omitted or is blank the URL to the widget directory will be returned.</p>
+										<p>An optional relative path that will be appended to the widget directory URL. If this parameter is omitted or is blank the URL to the widget directory will be returned.</p>
 									</div>
 								</li>
 							</ul>
@@ -1144,18 +1154,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1857</li>
+									<li>Defined in lime.ts:1570</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets the user ID.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.6</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>the user ID</p>
@@ -1166,13 +1171,13 @@
 					<a name="getviewurlasync" class="tsd-anchor"></a>
 					<h3>get<wbr>View<wbr>Url<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>View<wbr>Url<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iviewurloptions.html" class="tsd-signature-type">IViewUrlOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>View<wbr>Url<wbr>Async<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="_lime_.iviewurloptions.html" class="tsd-signature-type">IViewUrlOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1687</li>
+									<li>Defined in lime.ts:1411</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1192,7 +1197,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that will be resolved when the URL is available. The promise will be rejected if the application or the view does not exist or if some other error occurs.</p>
 						</li>
 					</ul>
@@ -1207,7 +1212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1812</li>
+									<li>Defined in lime.ts:1533</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1229,7 +1234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1388</li>
+									<li>Defined in lime.ts:1116</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1253,18 +1258,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1415</li>
+									<li>Defined in lime.ts:1142</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get a value that indicates if the widget is running in the banner part of a page.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.11</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
@@ -1280,7 +1280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1833</li>
+									<li>Defined in lime.ts:1551</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1290,11 +1290,6 @@
 								<p>This function can be used by widgets that needs to have a different behavior in cloud mode compared to on-premise mode.
 									Please note that Single Tenant Cloud installations are running in on-premise mode.
 								isSingleTenantCloud has been added to check this, but it is a grid property that needs to be set manually on those installations.</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.1</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>True if the server is running in cloud mode.</p>
@@ -1311,7 +1306,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1409</li>
+									<li>Defined in lime.ts:1137</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1333,7 +1328,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1404</li>
+									<li>Defined in lime.ts:1132</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1356,7 +1351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1841</li>
+									<li>Defined in lime.ts:1558</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1364,11 +1359,6 @@
 									<p>Gets a value that indicated if the Homepages server is running in Single Tenant Cloud mode. This is an on-prem installation running in the cloud.
 									This information is used by some widgets to differentiate between on-prem in the cloud (eg. isCloud is false since that is true only for multitenant).</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.13</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>True if the grid property Server.IsSingleTenantCloud is set to True.</p>
@@ -1385,7 +1375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1504</li>
+									<li>Defined in lime.ts:1231</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1408,7 +1398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1516</li>
+									<li>Defined in lime.ts:1242</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1418,11 +1408,6 @@
 								<p>The widget title can be locked explicitly by the user or implicitly if the widget catalog
 									title is used for a published widget. The isTitleUnlockable function can be used to check if the widget title can be unlocked.
 								The title can also be locked using the setTitleLocked function.</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.2</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>True if the widget title is locked.</p>
@@ -1439,7 +1424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1527</li>
+									<li>Defined in lime.ts:1252</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1448,11 +1433,6 @@
 								</div>
 								<p>The widget title may not be possible to unlock if the widget catalog title is used for a published widget.
 								There may also be other reasons in future versions for why the widget title cannot be unlocked.</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.2</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 							<p>True if the widget title can be unlocked.</p>
@@ -1469,7 +1449,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1397</li>
+									<li>Defined in lime.ts:1125</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1493,18 +1473,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1879</li>
+									<li>Defined in lime.ts:1588</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets a value that indicates if one or more widgets exists on the same page as the current widget.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.11</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1530,7 +1505,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1787</li>
+									<li>Defined in lime.ts:1508</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1571,7 +1546,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1797</li>
+									<li>Defined in lime.ts:1518</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1593,7 +1568,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1564</li>
+									<li>Defined in lime.ts:1288</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1634,7 +1609,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1593</li>
+									<li>Defined in lime.ts:1317</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1670,13 +1645,13 @@
 					<a name="resolveandreplaceasync" class="tsd-anchor"></a>
 					<h3>resolve<wbr>And<wbr>Replace<wbr>Async</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">resolve<wbr>And<wbr>Replace<wbr>Async<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, logicalId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>And<wbr>Replace<wbr>Async<span class="tsd-signature-symbol">(</span>template<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, logicalId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1675</li>
+									<li>Defined in lime.ts:1399</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1698,7 +1673,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ng.IPromise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that will be resolved when the template has been resolved.</p>
 						</li>
 					</ul>
@@ -1713,7 +1688,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1427</li>
+									<li>Defined in lime.ts:1154</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1740,7 +1715,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1634</li>
+									<li>Defined in lime.ts:1358</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1773,7 +1748,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1492</li>
+									<li>Defined in lime.ts:1219</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1798,7 +1773,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1436</li>
+									<li>Defined in lime.ts:1163</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1830,7 +1805,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1483</li>
+									<li>Defined in lime.ts:1210</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1864,7 +1839,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1538</li>
+									<li>Defined in lime.ts:1262</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1873,11 +1848,6 @@
 								</div>
 								<p>Note that calls to this function may be ignored if the widget catalog title is used for a published widget.
 								If the isTitleUnlockable function returns false calling this function will not have any effect.</p>
-								<dl class="tsd-comment-tags">
-									<dt>since</dt>
-									<dd><p>1.0.2</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1902,7 +1872,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1792</li>
+									<li>Defined in lime.ts:1513</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1916,6 +1886,36 @@
 									<h5>message: <a href="_lime_.iwidgetmessage.html" class="tsd-signature-type">IWidgetMessage</a></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="updateprimaryaction" class="tsd-anchor"></a>
+					<h3>update<wbr>Primary<wbr>Action</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Primary<wbr>Action<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1678</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tells the framework that the widget&#39;s primary action needs to be reevaluated.</p>
+								</div>
+								<p>This method can be used if the widget supports different primary actions, depending on e.g. state.
+									An example would be a widget that has one primary action that is only relevant when it is editable,
+								and a different action that should be primary if it is published.</p>
+								<dl class="tsd-comment-tags">
+									<dt>since</dt>
+									<dd><p>1.0.23</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -1950,9 +1950,6 @@
 								<a href="_lime_.iwidgetcontext.html#findwidgetsonpage" class="tsd-kind-icon">find<wbr>Widgets<wbr>OnPage</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_lime_.iwidgetcontext.html#getangularcontext" class="tsd-kind-icon">get<wbr>Angular<wbr>Context</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetcontext.html#getapplication" class="tsd-kind-icon">get<wbr>Application</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -1972,6 +1969,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetcontext.html#getcontextparameter" class="tsd-kind-icon">get<wbr>Context<wbr>Parameter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext.html#getdevice" class="tsd-kind-icon">get<wbr>Device</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetcontext.html#getelement" class="tsd-kind-icon">get<wbr>Element</a>
@@ -2113,6 +2113,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetcontext.html#showwidgetmessage" class="tsd-kind-icon">show<wbr>Widget<wbr>Message</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetcontext.html#updateprimaryaction" class="tsd-kind-icon">update<wbr>Primary<wbr>Action</a>
 							</li>
 						</ul>
 					</li>

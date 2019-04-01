@@ -1,3 +1,12 @@
+Version 1.0.32
+- Removed support for AngularJS widgets (which was deprecated in version 1.0.17).
+- Remove the following interfaces, properties and functions related to AngularJS: IAngularContext, IAngularScopeValue, IAngularTemplateInfo, IDialogService, IDialogOptions.scope, IDialogOptions.template, IDialogOptions.templateUrl
+- Refactored the X2 interfaces (IWidgetContext2 etc). Widgets no longer need to use X2 interfaces and can revert to the regular interfaces since AngularJS is no longer supported. All X2 interfaces still exists but are now empty, extending the regular interfaces (IWidgetContext2 extends IWidgetContext etc).
+- Added support to define custom icon, heading, description and button functionality for the empty UI rendered when the widget requires configuration. See EmptyConfig in the Developers Guide.
+- Updated to Angular 7.2.
+- Updated to IDS Enterprise 4.14.0 
+- Updated to IDS Enterprise NG 5.0.0. 
+
 Version 1.0.30
 - Updated IDS Enterprise to 4.11.0
 
@@ -30,7 +39,7 @@ Version 1.0.23
 - Added homepages command script for packaging widget packages, deprecated the minifyWidget script.
 - Adopted AOT support for all sample Angular widgets.
 - Added support for radio buttons as part of the metadata setting UI. See sample "infor.sample.angular.helloworld" on how to use it.
-- Added possiblity to tell the framework to reevalute the widget's primary action in the widget header, see IWidgetContext2 in the API Documentation for more information.
+- Added possibility to tell the framework to reevalute the widget's primary action in the widget header, see IWidgetContext2 in the API Documentation for more information.
 
 
 Version 1.0.22

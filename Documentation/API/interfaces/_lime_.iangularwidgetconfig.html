@@ -70,22 +70,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Represents the configuration for a widget implemented using AngularJS.</p>
+						<p>Represents the configuration for a widget implemented using Angular.</p>
 					</div>
-					<p>When this configuration is used the framework will create the widget UI using a template or a template URL.
-					The widget factory should not modify the parent DOM element directly when IAngularWidgetConfig is used.</p>
-					<p>Only one of the properties defined in this interface should be set since they are mutually exclusive.
-					If more than one property is set the order of evaluation is template, cachedTemplateUrl, relativeTemplateUrl.</p>
-					<p>This relativeTemplateUrl property is mainly intended for development purposes. In a production environment
-						the widget code and any HTML templates should be optimized and minimized into a single file. The template, templates and
-					cachedTemplateUrl URL properties should be used when a widget is minimized into a single file.</p>
-					<p>A widget can check if it is running in development mode or not using the <a href="_lime_.iwidgetcontext.html">IWidgetContext</a>.isDev() function.</p>
+					<p>When this configuration is used the framework will create the widget UI using an Angular module and
+					a component type or a component selector.</p>
+					<p>The widget factory should not modify the parent DOM element directly when IAngularWidgetConfig is used.</p>
 					<dl class="tsd-comment-tags">
 						<dt>since</dt>
 						<dd><p>1.0</p>
-						</dd>
-						<dt>deprecated</dt>
-						<dd><p>See IAngularWidgetConfig2 which is used for Angular widgets</p>
 						</dd>
 					</dl>
 				</div>
@@ -95,6 +87,11 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">IAngularWidgetConfig</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_lime_.iangularwidgetconfig2.html" class="tsd-signature-type">IAngularWidgetConfig2</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -105,11 +102,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#cachedtemplateurl" class="tsd-kind-icon">cached<wbr>Template<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#relativetemplateurl" class="tsd-kind-icon">relative<wbr>Template<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#scopevalue" class="tsd-kind-icon">scope<wbr>Value</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#template" class="tsd-kind-icon">template</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#templates" class="tsd-kind-icon">templates</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#componenttype" class="tsd-kind-icon">component<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#modulefactory" class="tsd-kind-icon">module<wbr>Factory</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iangularwidgetconfig.html#moduletype" class="tsd-kind-icon">module<wbr>Type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,92 +113,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="cachedtemplateurl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> cached<wbr>Template<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">cached<wbr>Template<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="componenttype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> component<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">component<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:382</li>
+							<li>Defined in lime.ts:316</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Gets or sets the URL for a cached AngularJS template.</p>
-						</div>
-						<p>The template must exist in the AngularJS template cache when the widget is created.
-							A template can be added to the AngularJS template cache using the templates property. The framework will
-							ensure that the templates are added to the AngularJS template cache before the cachedTemplateUrl is used
-						to create the widget.</p>
-						<p>The value for this property should in most cases be created using the The <a href="_lime_.iangularcontext.html">IAngularContext</a>.getTemplateUrl function
-						to ensure that the template key is unique.</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="relativetemplateurl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> relative<wbr>Template<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">relative<wbr>Template<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in lime.ts:390</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Gets or sets the relative URL for a AngularJS template file.</p>
-						</div>
-						<p>The URL should be relative to the widget directory.
-						The framework will create the correct absolute URL in runtime.</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="scopevalue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> scope<wbr>Value</h3>
-					<div class="tsd-signature tsd-kind-icon">scope<wbr>Value<span class="tsd-signature-symbol">:</span> <a href="_lime_.iangularscopevalue.html" class="tsd-signature-type">IAngularScopeValue</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in lime.ts:395</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Angular scope value.</p>
+							<p>Gets or sets an Angular component type used to find the Angular component factory for the widget component.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="template" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> template</h3>
-					<div class="tsd-signature tsd-kind-icon">template<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="modulefactory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> module<wbr>Factory</h3>
+					<div class="tsd-signature tsd-kind-icon">module<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:359</li>
+							<li>Defined in lime.ts:311</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Gets or sets an AngularJS HTML template string.</p>
+							<p>Gets or sets the Angular AOT module factory.</p>
 						</div>
-						<p>This property can be used by a widget that has a single template that is constructed or cached in the widget code.
-							This property can also be used in combination with the templates property. A widget could set the main template
-						using the template property and additional templates using the templates property.</p>
+						<pre><code>This <span class="hljs-keyword">property</span> <span class="hljs-keyword">is</span> mandatory <span class="hljs-keyword">for</span> an AOT widget.
+@<span class="hljs-keyword">since</span> <span class="hljs-number">1.0</span><span class="hljs-number">.22</span>
+</code></pre>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="templates" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> templates</h3>
-					<div class="tsd-signature tsd-kind-icon">templates<span class="tsd-signature-symbol">:</span> <a href="_lime_.iangulartemplateinfo.html" class="tsd-signature-type">IAngularTemplateInfo</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="moduletype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> module<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">module<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:369</li>
+							<li>Defined in lime.ts:303</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Gets or sets an array of AngularJS templates that will be added to the AngularJS template cache.</p>
+							<p>Gets or sets an Angular module type that has at least one component.</p>
 						</div>
-						<p>This property can be used by widgets that have more than one template that needs to be cached.</p>
-						<p>All templates in the array will be added to the AngularJS template cache unless they already exists.
-						A template provided in this array can be used with the cachedTemplateUrl property.</p>
+						<p>This property is mandatory for a JIT widget, but optional for a widget settings component.</p>
 					</div>
 				</section>
 			</section>
@@ -227,19 +182,13 @@
 						<a href="_lime_.iangularwidgetconfig.html" class="tsd-kind-icon">IAngular<wbr>Widget<wbr>Config</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lime_.iangularwidgetconfig.html#cachedtemplateurl" class="tsd-kind-icon">cached<wbr>Template<wbr>Url</a>
+								<a href="_lime_.iangularwidgetconfig.html#componenttype" class="tsd-kind-icon">component<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lime_.iangularwidgetconfig.html#relativetemplateurl" class="tsd-kind-icon">relative<wbr>Template<wbr>Url</a>
+								<a href="_lime_.iangularwidgetconfig.html#modulefactory" class="tsd-kind-icon">module<wbr>Factory</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lime_.iangularwidgetconfig.html#scopevalue" class="tsd-kind-icon">scope<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lime_.iangularwidgetconfig.html#template" class="tsd-kind-icon">template</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_lime_.iangularwidgetconfig.html#templates" class="tsd-kind-icon">templates</a>
+								<a href="_lime_.iangularwidgetconfig.html#moduletype" class="tsd-kind-icon">module<wbr>Type</a>
 							</li>
 						</ul>
 					</li>

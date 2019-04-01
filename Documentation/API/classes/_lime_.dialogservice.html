@@ -91,17 +91,27 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_lime_.dialogservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_lime_.dialogservice.html#language" class="tsd-kind-icon">language</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_lime_.dialogservice.html#messagefunction" class="tsd-kind-icon">message<wbr>Function</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_lime_.dialogservice.html#messageservice" class="tsd-kind-icon">message<wbr>Service</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lime_.dialogservice.html#copytoclipboard" class="tsd-kind-icon">copy<wbr>ToClipboard</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_lime_.dialogservice.html#resolvemessagedialog" class="tsd-kind-icon">resolve<wbr>Message<wbr>Dialog</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_lime_.dialogservice.html#setdefaultbuttons" class="tsd-kind-icon">set<wbr>Default<wbr>Buttons</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_lime_.dialogservice.html#setspecificbuttons" class="tsd-kind-icon">set<wbr>Specific<wbr>Buttons</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lime_.dialogservice.html#showmessage" class="tsd-kind-icon">show<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_lime_.dialogservice.html#showtoast" class="tsd-kind-icon">show<wbr>Toast</a></li>
 							</ul>
@@ -109,7 +119,33 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Dialog<wbr>Service<span class="tsd-signature-symbol">(</span>messageService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SohoMessageService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_lime_.dialogservice.html" class="tsd-signature-type">DialogService</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:3987</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>messageService: <span class="tsd-signature-type">SohoMessageService</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_lime_.dialogservice.html" class="tsd-signature-type">DialogService</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="language" class="tsd-anchor"></a>
@@ -117,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{} as ILanguageLime</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:4750</li>
+							<li>Defined in lime.ts:3986</li>
 						</ul>
 					</aside>
 				</section>
@@ -127,7 +163,17 @@
 					<div class="tsd-signature tsd-kind-icon">message<wbr>Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:4751</li>
+							<li>Defined in lime.ts:3987</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="messageservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> message<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">message<wbr>Service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SohoMessageService</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lime.ts:3989</li>
 						</ul>
 					</aside>
 				</section>
@@ -144,7 +190,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:4774</li>
+									<li>Defined in lime.ts:4026</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -165,6 +211,87 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="resolvemessagedialog" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> resolve<wbr>Message<wbr>Dialog</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Message<wbr>Dialog<span class="tsd-signature-symbol">(</span>subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span>, result<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:4125</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subject: <span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>result: <a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setdefaultbuttons" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Default<wbr>Buttons</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Default<wbr>Buttons<span class="tsd-signature-symbol">(</span>defaults<span class="tsd-signature-symbol">: </span><a href="../enums/_lime_.standarddialogbuttons.html" class="tsd-signature-type">StandardDialogButtons</a>, subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span>, hasPrimaryButton<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_lime_.idialogbuttonex.html" class="tsd-signature-type">IDialogButtonEx</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:4069</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>defaults: <a href="../enums/_lime_.standarddialogbuttons.html" class="tsd-signature-type">StandardDialogButtons</a></h5>
+								</li>
+								<li>
+									<h5>subject: <span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>hasPrimaryButton: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_lime_.idialogbuttonex.html" class="tsd-signature-type">IDialogButtonEx</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setspecificbuttons" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> set<wbr>Specific<wbr>Buttons</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Specific<wbr>Buttons<span class="tsd-signature-symbol">(</span>specificButtons<span class="tsd-signature-symbol">: </span><a href="../interfaces/_lime_.idialogbutton.html" class="tsd-signature-type">IDialogButton</a><span class="tsd-signature-symbol">[]</span>, subject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_lime_.idialogbuttonex.html" class="tsd-signature-type">IDialogButtonEx</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:4112</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>specificButtons: <a href="../interfaces/_lime_.idialogbutton.html" class="tsd-signature-type">IDialogButton</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>subject: <span class="tsd-signature-type">AsyncSubject</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_lime_.idialogresult.html" class="tsd-signature-type">IDialogResult</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_lime_.idialogbuttonex.html" class="tsd-signature-type">IDialogButtonEx</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="showmessage" class="tsd-anchor"></a>
 					<h3>show<wbr>Message</h3>
@@ -175,7 +302,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:4759</li>
+									<li>Defined in lime.ts:3997</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +334,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:4805</li>
+									<li>Defined in lime.ts:4057</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -246,14 +373,29 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_lime_.dialogservice.html" class="tsd-kind-icon">Dialog<wbr>Service</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_lime_.dialogservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_lime_.dialogservice.html#language" class="tsd-kind-icon">language</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_lime_.dialogservice.html#messagefunction" class="tsd-kind-icon">message<wbr>Function</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="_lime_.dialogservice.html#messageservice" class="tsd-kind-icon">message<wbr>Service</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_lime_.dialogservice.html#copytoclipboard" class="tsd-kind-icon">copy<wbr>ToClipboard</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_lime_.dialogservice.html#resolvemessagedialog" class="tsd-kind-icon">resolve<wbr>Message<wbr>Dialog</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_lime_.dialogservice.html#setdefaultbuttons" class="tsd-kind-icon">set<wbr>Default<wbr>Buttons</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_lime_.dialogservice.html#setspecificbuttons" class="tsd-kind-icon">set<wbr>Specific<wbr>Buttons</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_lime_.dialogservice.html#showmessage" class="tsd-kind-icon">show<wbr>Message</a>
