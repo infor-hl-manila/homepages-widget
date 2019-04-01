@@ -28,10 +28,10 @@ export declare class SohoContextualActionPanelRef<T> {
     afterOpen(eventFn: Function): SohoContextualActionPanelRef<T>;
     closed(eventFn: SohoContextualActionPanelEventFunction<T>): SohoContextualActionPanelRef<T>;
     afterClose(eventFn: SohoContextualActionPanelEventFunction<T>): SohoContextualActionPanelRef<T>;
-    private onOpen(event);
-    private onAfterOpen(event);
-    private onClose(event, isCancelled);
-    private onAfterClose(event);
+    private onOpen;
+    private onAfterOpen;
+    private onClose;
+    private onAfterClose;
 }
 export declare type SohoContextualActionPanelEventFunction<T> = (result: any, panelRef: SohoContextualActionPanelRef<T>, panelComponent: T) => void;
 export interface SohoContextualActionPanelComponent<T> {

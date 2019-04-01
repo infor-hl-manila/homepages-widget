@@ -26,7 +26,7 @@ export declare class SohoToolbarSearchFieldComponent implements AfterViewChecked
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
     clear(): void;
-    private markForRefresh();
+    private markForRefresh;
 }
 export declare class SohoToolbarMoreButtonComponent {
     readonly isMoreButton: boolean;
@@ -37,6 +37,10 @@ export declare class SohoPageTitleComponent {
 }
 export declare class SohoSectionTitleComponent {
     readonly isSectionTitle: boolean;
+}
+export declare class SohoSelectionCountComponent {
+    readonly isTitle: boolean;
+    readonly isSelectionCount: boolean;
 }
 export declare class SohoToolbarNavButtonComponent {
     readonly isIconButton: boolean;
@@ -64,7 +68,6 @@ export declare class SohoToolbarComponent implements AfterViewChecked, AfterView
     resizeContainers: boolean;
     favorButtonset: boolean;
     moreMenuSettings: SohoPopupMenuOptions;
-    registerForEvents: any;
     beforeActivated: EventEmitter<SohoToolbarEvent>;
     activated: EventEmitter<SohoToolbarEvent>;
     afterActivated: EventEmitter<SohoToolbarEvent>;
@@ -78,8 +81,7 @@ export declare class SohoToolbarComponent implements AfterViewChecked, AfterView
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
-    private hookupRegisteredEvents();
     updated(settings?: any): void;
     handleResize(): void;
-    private markForRefresh();
+    private markForRefresh;
 }

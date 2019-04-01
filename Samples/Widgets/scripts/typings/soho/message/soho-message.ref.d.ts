@@ -13,7 +13,9 @@ export declare class SohoMessageRef {
     buttons(buttons: SohoModalButton[]): SohoMessageRef;
     isError(isError: boolean): SohoMessageRef;
     message(message: string): SohoMessageRef;
+    status(status: string): SohoMessageRef;
     cssClass(cssClass: string): SohoMessageRef;
+    allowedTags(allowedTags: string): SohoMessageRef;
     returnFocus(returnFocus: JQuery): SohoMessageRef;
     dialogResult: any;
     constructor();
@@ -22,7 +24,7 @@ export declare class SohoMessageRef {
     beforeOpen(eventFn: () => boolean): SohoMessageRef;
     opened(eventFn: Function): SohoMessageRef;
     beforeClose(eventFn: () => boolean): SohoMessageRef;
-    private onBeforeOpen(event);
-    private onBeforeClose(event);
-    private onOpen(event);
+    private onBeforeOpen;
+    private onBeforeClose;
+    private onOpen;
 }

@@ -1,7 +1,8 @@
 /// <reference path="soho-line.d.ts" />
-import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
-export declare class SohoLineComponent implements AfterViewInit, OnDestroy {
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
+export declare class SohoLineComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
+    private ngZone;
     private options;
     readonly isLine: boolean;
     dataset: Array<any>;
@@ -23,10 +24,12 @@ export declare class SohoLineComponent implements AfterViewInit, OnDestroy {
     rendered: EventEmitter<Object>;
     private jQueryElement;
     private line;
-    constructor(element: ElementRef);
+    private updateRequired;
+    constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
     setSelected(selected: SohoLineSelected): void;
     toggleSelected(selected: SohoLineSelected): void;
-    getSelected(): void;
+    getSelected(): any;
 }

@@ -6,7 +6,6 @@ export declare class SohoInputValidateDirective implements AfterViewInit {
     private jQueryElement;
     private validator;
     dataValidate: string;
-    registerForEvents: any;
     error: EventEmitter<SohoInputValidateEvent>;
     alert: EventEmitter<SohoInputValidateEvent>;
     confirm: EventEmitter<SohoInputValidateEvent>;
@@ -17,5 +16,4 @@ export declare class SohoInputValidateDirective implements AfterViewInit {
     ngAfterViewInit(): void;
     removeMessage(type: any): void;
     validate(event: any): void;
-    private hookupRegisteredEvents();
 }

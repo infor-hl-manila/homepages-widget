@@ -64,7 +64,6 @@ export declare class SohoTabsComponent implements AfterViewInit, AfterViewChecke
     tabCounts: boolean;
     verticalResponsive: boolean;
     disableAutoUpdatedCall: boolean;
-    registerForEvents: any;
     beforeActivated: EventEmitter<SohoTabsEvent>;
     beforeActivate: DeprecatedEventEmitter<SohoTabsEvent>;
     activated: EventEmitter<SohoTabsEvent>;
@@ -84,11 +83,10 @@ export declare class SohoTabsComponent implements AfterViewInit, AfterViewChecke
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
-    private hookupRegisteredEvents();
-    private updateTabInfo();
-    private getTabLiList();
-    private getTabIds();
-    private getTabTitles($liList?);
+    private updateTabInfo;
+    private getTabLiList;
+    private getTabIds;
+    private getTabTitles;
     updated(): void;
     handleResize(): void;
     add(tabId: string, options: any, atIndex: number): void;
@@ -105,11 +103,11 @@ export declare class SohoTabsComponent implements AfterViewInit, AfterViewChecke
     select(href: string): void;
     disable(): void;
     enable(): void;
-    private onBeforeActivated(event, tab);
-    private onActivated(event, tab);
-    private onAfterActivated(event, tab);
-    private onBeforeClose(event, tab);
-    private onClose(event, tab);
-    private onAfterClose(event, tab);
-    private onTabAdded(event, tab);
+    private onBeforeActivated;
+    private onActivated;
+    private onAfterActivated;
+    private onBeforeClose;
+    private onClose;
+    private onAfterClose;
+    private onTabAdded;
 }

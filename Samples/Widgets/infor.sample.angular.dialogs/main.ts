@@ -6,8 +6,8 @@ import {
 	DialogButtonType,
 	DialogService,
 	IDialogResult,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	StandardDialogButtons,
 	widgetContextInjectionToken,
 	widgetInstanceInjectionToken,
@@ -89,8 +89,8 @@ export class DialogsComponent {
 	instanceId: string;
 
 	constructor(
-		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext2,
-		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance2,
+		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext,
+		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance,
 		private readonly dialogService: DialogService,
 		private readonly sohoModalDialogService: SohoModalDialogService) {
 		this.instanceId = widgetContext.getWidgetInstanceId();

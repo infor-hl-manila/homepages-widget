@@ -3,8 +3,8 @@ import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { SohoListViewModule } from "@infor/sohoxi-angular";
 import {
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	IWidgetSettingMetadata,
 	IWidgetSettingsArg,
 	Log,
@@ -33,9 +33,9 @@ class CardItem {
 })
 export class CardListComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 	sortedItems: CardItem[] = [];
 
 	private logPrefix = "[CardListComponent] ";

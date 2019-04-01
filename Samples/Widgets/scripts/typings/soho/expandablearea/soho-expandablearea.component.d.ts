@@ -16,7 +16,6 @@ export declare class ExpandableAreaComponent implements AfterViewInit, OnDestroy
     disabled: boolean;
     closed: boolean;
     toggle: Observable<boolean>;
-    registerForEvents: any;
     header: ExpandableHeaderComponent;
     panes: QueryList<ExpandablePaneComponent>;
     footer: ExpandablePaneComponent;
@@ -33,22 +32,21 @@ export declare class ExpandableAreaComponent implements AfterViewInit, OnDestroy
     hasFixedPane: boolean;
     constructor(element: ElementRef, changeDetectorRef: ChangeDetectorRef, ngZone: NgZone);
     ngAfterViewInit(): void;
-    private hookupRegisteredEvents();
     ngOnDestroy(): void;
     disable(): void;
     enable(): void;
     toggleOpen(open: boolean): void;
-    private close();
-    private open();
+    private close;
+    private open;
     readonly expandableAreaClasses: string;
     readonly headerClasses: string;
     readonly paneClasses: string;
     readonly footerClasses: string;
     readonly visiblePaneClasses: string;
-    private onBeforeExpand(event);
-    private onBeforeCollapse(event);
-    private onExpand(event);
-    private onCollapse(event);
-    private onAfterExpand(event);
-    private onAfterCollapse(event);
+    private onBeforeExpand;
+    private onBeforeCollapse;
+    private onExpand;
+    private onCollapse;
+    private onAfterExpand;
+    private onAfterCollapse;
 }

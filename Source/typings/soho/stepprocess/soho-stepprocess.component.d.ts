@@ -62,6 +62,6 @@ export declare class SohoStepProcessComponent implements AfterViewInit, OnDestro
     ngAfterViewInit(): void;
     private beforeSelectStepPromise;
     private beforeSelectStepResponse;
-    private fireOnSaveClose();
+    private fireOnSaveClose;
     ngOnDestroy(): void;
 }

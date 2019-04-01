@@ -23,7 +23,7 @@ export declare class SohoTooltipDirective implements AfterViewInit, OnDestroy, O
     private tooltip;
     constructor(element: ElementRef);
     ngAfterViewInit(): void;
-    private createControl();
+    private createControl;
     show(): void;
     hide(): void;
     ngOnDestroy(): void;

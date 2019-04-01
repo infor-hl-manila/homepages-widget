@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoButtonModule, SohoListViewModule } from "@infor/sohoxi-angular";
-import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
+import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 
 @Component({
 	template: `
@@ -22,9 +22,9 @@ import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext2,
 })
 export class QuicknoteComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 	text: string;
 	items: string[] = [];
 	lang: ILanguage;

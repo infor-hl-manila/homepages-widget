@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "@angular/common", "@angular/core", "lime", "./sample-shared-usercontext"], function (require, exports, common_1, core_1, lime_1, sample_shared_usercontext_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "lime", "sample-shared-usercontext"], function (require, exports, common_1, core_1, lime_1, sample_shared_usercontext_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var SharedModuleSampleOneComponent = /** @class */ (function () {

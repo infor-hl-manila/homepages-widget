@@ -1,5 +1,4 @@
 /// <reference path="soho-dropdown.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 export declare class SohoDropDownComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
@@ -43,9 +42,9 @@ export declare class SohoDropDownComponent implements AfterViewInit, AfterViewCh
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
-    private onRequestEnd(event, searchTerm, data);
-    private onUpdated(event);
-    private onChanged(event);
+    private onRequestEnd;
+    private onUpdated;
+    private onChanged;
     updated(): SohoDropDownComponent;
     disabled: boolean;
     readonly: boolean;

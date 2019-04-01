@@ -18,7 +18,7 @@
 		"sourceMap": true,
 		"target": "es5",
 		"typeRoots": ["./scripts/typings", "../node_modules/@types"],
-		"types": ["jquery", "angular", "systemjs", "infor", "soho", "lime"]
+		"types": ["jquery", "systemjs", "infor", "soho", "lime"]
 	},
 	"exclude": ["./**/*-aot.ts"]
 }

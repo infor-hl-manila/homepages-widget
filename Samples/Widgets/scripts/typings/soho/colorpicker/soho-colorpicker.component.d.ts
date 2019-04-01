@@ -36,9 +36,9 @@ export declare class SohoColorPickerComponent implements AfterViewInit, AfterVie
     constructor(element: ElementRef, ngZone: NgZone, ngControl: NgControl, ref: ChangeDetectorRef);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
-    private onChanged(event);
+    private onChanged;
     updated(): SohoColorPickerComponent;
-    private onUpdated(event);
+    private onUpdated;
     setDisabledState(isDisabled: boolean): void;
     ngOnDestroy(): void;
     markForRefresh(): void;

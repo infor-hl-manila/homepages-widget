@@ -41,6 +41,8 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     alternateRowShading: boolean;
     dataset: Array<any>;
     columnReorder: boolean;
+    disableClientSort: boolean;
+    disableClientFilter: boolean;
     editable: boolean;
     isList: boolean;
     menuId: any;
@@ -91,7 +93,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     rendered: EventEmitter<SohoDataGridRenderedEvent>;
     afterRender: EventEmitter<SohoDataGridAfterRenderEvent>;
     isDisabled: boolean;
-    readonly datagridRole: string;
+    readonly datagridRole: "treegrid" | "datagrid";
     private jQueryElement;
     private datagrid;
     private gridData;
@@ -144,43 +146,43 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     findRowsByValue(fieldName: string, value: any): number[];
     triggerSource(pagerType: SohoDataGridTriggerSourcePagerType, callback?: Function): void;
     exportToExcel(fileName: string, worksheetName: string, customDs: Object[]): void;
-    exportToCsv(fileName: string, customDs: Object[]): void;
+    exportToCsv(fileName: string, customDs: Object[], separator?: string): void;
     updateColumns(columns: SohoDataGridColumn[], columnGroups: SohoDataGridColumnGroup[]): void;
     columnsFromString(columns: string): Object;
     restoreUserSettings(settings: any): void;
-    private onDataRequest(request, response);
-    private onExpandRow(args);
-    private onCollapseRow(args);
-    private onRowAdd(args);
-    private onCellChange(args);
-    private onRowClicked(args);
-    private onCloseFilterRow(args);
-    private onContextMenu(args);
-    private onDoubleClick(args);
-    private onFiltered(args);
-    private onOpenFilterRow(args);
-    private onRowRemove(args);
-    private onRendered(args);
-    private onAfterRendere(args);
-    private onRowActivated(args);
-    private onRowDeactivated(args);
-    private onRowReordered(args);
-    private onSelected(args);
-    private onSettingsChanged(args);
-    private onSorted(args);
+    private onDataRequest;
+    private onExpandRow;
+    private onCollapseRow;
+    private onRowAdd;
+    private onCellChange;
+    private onRowClicked;
+    private onCloseFilterRow;
+    private onContextMenu;
+    private onDoubleClick;
+    private onFiltered;
+    private onOpenFilterRow;
+    private onRowRemove;
+    private onRendered;
+    private onAfterRendere;
+    private onRowActivated;
+    private onRowDeactivated;
+    private onRowReordered;
+    private onSelected;
+    private onSettingsChanged;
+    private onSorted;
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
-    private destroyDataGrid();
-    private onPostRenderCell(container, args);
-    private onDestroyCell(args);
-    private onEditCell(editor);
-    private buildDataGrid();
-    private markForRefresh(optionName, hint);
-    private updateControl();
-    private updateSource(source);
-    private checkForComponentEditors();
+    private destroyDataGrid;
+    private onPostRenderCell;
+    private onDestroyCell;
+    private onEditCell;
+    private buildDataGrid;
+    private markForRefresh;
+    private updateControl;
+    private updateSource;
+    private checkForComponentEditors;
 }
 export declare enum SohoGridColumnFilterTypes {
     Text = "text",
@@ -191,7 +193,7 @@ export declare enum SohoGridColumnFilterTypes {
     Integer = "integer",
     Lookup = "lookup",
     Percent = "percent",
-    Select = "select",
+    Select = "select"
 }
 export interface SohoDataGridToggleRowEvent extends SohoDataGridRowExpandEvent {
     grid: SohoDataGridComponent;

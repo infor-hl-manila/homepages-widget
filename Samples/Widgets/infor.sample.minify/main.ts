@@ -43,7 +43,7 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule, ViewChild, ViewContainerRef } from "@angular/core";
 import { SohoButtonModule, SohoModalDialogModule, SohoModalDialogService } from "@infor/sohoxi-angular";
-import { IDialogResult, IWidgetAction, IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log } from "lime";
+import { IDialogResult, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, Log } from "lime";
 import { IMyDialogParameters, MyDialogComponent } from "./dialog/dialog";
 
 @Component({
@@ -70,9 +70,9 @@ import { IMyDialogParameters, MyDialogComponent } from "./dialog/dialog";
 })
 export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	topIcon: string;
 	middleIcon: string;

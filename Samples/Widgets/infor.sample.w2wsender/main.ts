@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { SohoListViewModule } from "@infor/sohoxi-angular";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log, StringUtil } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, StringUtil } from "lime";
 
 interface IPerson {
 	id: number;
@@ -107,9 +107,9 @@ const persons: IPerson[] = [
 })
 export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	persons: IPerson[];
 

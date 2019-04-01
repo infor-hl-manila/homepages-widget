@@ -1,5 +1,4 @@
 /// <reference path="soho-fileupload-advanced.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 export declare class SohoFileUploadAdvancedComponent implements AfterViewInit, OnDestroy {
     private element;

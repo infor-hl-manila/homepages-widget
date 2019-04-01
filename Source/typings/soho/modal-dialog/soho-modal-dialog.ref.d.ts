@@ -35,13 +35,13 @@ export declare class SohoModalDialogRef<T> {
     closed(eventFn: SohoModalDialogEventFunction<T>): SohoModalDialogRef<T>;
     afterClose(eventFn: SohoModalDialogEventFunction<T>): SohoModalDialogRef<T>;
     beforeDestroy(eventFn: () => boolean): SohoModalDialogRef<T>;
-    private onAfterOpen(event);
-    private onBeforeOpen(event);
-    private onBeforeClose(event);
-    private onBeforeDestroy(event);
-    private onOpen(event);
-    private onClose(event, isCancelled);
-    private onAfterClose(event);
+    private onAfterOpen;
+    private onBeforeOpen;
+    private onBeforeClose;
+    private onBeforeDestroy;
+    private onOpen;
+    private onClose;
+    private onAfterClose;
 }
 export declare type SohoModalDialogEventFunction<T> = (result: any, dialogRef: SohoModalDialogRef<T>, dialogComponent: T) => void;
 export declare type SohoModalDialogEventVetoFunction<T> = (dialogRef: SohoModalDialogRef<T>) => boolean;

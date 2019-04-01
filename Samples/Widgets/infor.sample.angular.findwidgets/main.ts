@@ -7,8 +7,8 @@ import {
 	ILanguage,
 	IWidgetAction,
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	IWidgetInstanceInfo,
 	Log,
 	WidgetMessageType,
@@ -30,9 +30,9 @@ import {
 })
 export class FindWidgetsComponent implements IWidgetComponent, OnInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	@ViewChild("findWidgetsContainer", { read: ViewContainerRef })
 	placeholder: ViewContainerRef;
@@ -163,7 +163,7 @@ export class SearchDialogComponent {
 export class FindWidgetsModule {
 }
 
-export const getActions = (context: IWidgetContext2): IWidgetAction[] => {
+export const getActions = (context: IWidgetContext): IWidgetAction[] => {
 	const language = context.getLanguage();
 	return [{
 		isPrimary: true,

@@ -1,8 +1,8 @@
 ﻿import { W2WSenderComponent } from "./main";
 import { W2WSenderModuleNgFactory } from "./main.ngfactory";
-import { IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 
-export const widgetFactory = (context: IWidgetContext2): IWidgetInstance2 => {
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 	return {
 		angularConfig: {
 			moduleFactory: W2WSenderModuleNgFactory,

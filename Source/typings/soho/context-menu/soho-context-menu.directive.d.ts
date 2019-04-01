@@ -13,10 +13,8 @@ export declare class SohoContextMenuDirective implements AfterViewInit, OnDestro
     trigger: SohoPopupMenuTrigger;
     menu: string;
     beforeOpen: SohoPopupMenuSourceFunction;
-    registerForEvents: any;
     constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
-    private hookupRegisteredEvents();
     updated(): void;
     teardown(): void;
     ngOnDestroy(): void;

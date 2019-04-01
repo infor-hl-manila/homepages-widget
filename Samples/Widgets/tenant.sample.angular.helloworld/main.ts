@@ -1,6 +1,6 @@
 ﻿import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 
 @Component({
 	template: `
@@ -12,9 +12,9 @@ import { IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
 })
 export class HelloWorldComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 	message: string;
 	color: string;
 	fontSize: string;

@@ -12,7 +12,7 @@ interface ILocale {
 	/**
 	* Set the current Locale
 	*/
-	set(locale: string): ng.IPromise<string>;
+	set(locale: string): Promise<string>;
 
 	/**
 	* Format a Date Object and return it parsed in the current locale.

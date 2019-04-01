@@ -23,6 +23,8 @@ export declare class SohoButtonComponent implements AfterViewInit, OnDestroy, On
     buttonOptions: SohoButtonOptions;
     toggleOnIcon: string;
     toggleOffIcon: string;
+    replaceText: boolean;
+    hideMenuArrow: boolean;
     isToggle: boolean;
     isTogglePressed: boolean;
     icon: string;
@@ -45,7 +47,7 @@ export declare class SohoButtonComponent implements AfterViewInit, OnDestroy, On
     moveToRight: any;
     moveToSelected: any;
     readonly noRipple: boolean;
-    readonly type: string;
+    readonly type: "button" | "submit";
     readonly isExpandableExpander: boolean;
     toggleState(): void;
     readonly ariaPressed: boolean;

@@ -21,8 +21,8 @@ import {
 } from "@angular/core";
 import {
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	IWidgetSettingsArg,
 	Log,
 	widgetContextInjectionToken,
@@ -75,8 +75,8 @@ export class LifecycleComponent implements IWidgetComponent, OnInit, AfterViewIn
 	private counter = 0;
 
 	constructor(
-		@Inject(widgetContextInjectionToken) readonly widgetContext: IWidgetContext2,
-		@Inject(widgetInstanceInjectionToken) readonly widgetInstance: IWidgetInstance2, ) {
+		@Inject(widgetContextInjectionToken) readonly widgetContext: IWidgetContext,
+		@Inject(widgetInstanceInjectionToken) readonly widgetInstance: IWidgetInstance, ) {
 		this.t0 = performance.now();
 		this.log("constructor", "Start of time");
 

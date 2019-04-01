@@ -1,4 +1,4 @@
-import { IWidgetContext2 } from "lime";
+import { IWidgetContext } from "lime";
 import { AsyncSubject } from "rxjs/AsyncSubject";
 import { Observable } from "rxjs/Observable";
 
@@ -14,7 +14,7 @@ export class UserContextService {
 	private pendingContextSubjects: AsyncSubject<IUserContext>[];
 	private noOfContextRequests = 0;
 
-	getUserContext(widgetContext: IWidgetContext2): Observable<IUserContext> {
+	getUserContext(widgetContext: IWidgetContext): Observable<IUserContext> {
 		this.noOfContextRequests++;
 		const subject = new AsyncSubject<IUserContext>();
 
@@ -36,7 +36,7 @@ export class UserContextService {
 		return subject.asObservable();
 	}
 
-	private loadUserContext(widgetContext: IWidgetContext2): void {
+	private loadUserContext(widgetContext: IWidgetContext): void {
 		const pending = this.pendingContextSubjects;
 
 		// *** Real scenario would be to load the context through some ION API ***

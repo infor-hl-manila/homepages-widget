@@ -111,7 +111,7 @@ infor.companyon.client.getMobileOperatingSystem = function () {
    		return "Android";
    	}
 
-	// iOS detection from: http://stackoverflow.com/a/9039885/177710
+	// iOS detection
  	if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
      	return "iOS";
  	}
@@ -131,20 +131,20 @@ infor.companyon.client.sendMessage = function (type, data, target) {
     }
     var encodedMessage = JSON.stringify(message);
 
-	try {
-		var osName = infor.companyon.client.getMobileOperatingSystem();
-		
-		if(osName == "iOS" && webkit.messageHandlers) {
-			webkit.messageHandlers.callbackHandler.postMessage(encodedMessage);
-		}
-		
-		if(osName == "Android" && InforGoAndroid) {
-			InforGoAndroid.getLoadedPageInfo(encodedMessage);
-		}
-	} catch(e) {
+    try {
+        var osName = infor.companyon.client.getMobileOperatingSystem();
+
+        if (osName == "iOS" && webkit.messageHandlers) {
+            webkit.messageHandlers.callbackHandler.postMessage(encodedMessage);
+        }
+
+        if (osName == "Android" && InforGoAndroid) {
+            InforGoAndroid.getLoadedPageInfo(encodedMessage);
+        }
+    } catch(e) {
         //ignore error. This will occur only if the application is accessed in mobile mode of the browser in desktop.
     }
-	
+
     var targetWindow = null;
 
     if (infor.companyon.containerWindow === true) {
@@ -247,9 +247,6 @@ infor.companyon.client.adjustHeight = function (height) {
 
 }
 
-
-
-
 /** 
 * Send prepareFavoriteContext to handle the shortcut execution
 **/
@@ -279,9 +276,6 @@ infor.companyon.client.getValueQuerystring = function (key) {
     }
     return value;
 }
-
-
-
 
 /** 
 * Function to register a handler for a given message type in a given namespace. The array of 
@@ -411,7 +405,6 @@ infor.companyon.client.relayMessage = function (data) {
 }
 
 $(function () {
-    
 
     //Don't do anything if an app iframe is already present. This is only needed for SharePoint based applications
     if (infor.companyon.iframeId != null) {
@@ -428,7 +421,6 @@ $(function () {
     }
 
     // drillback click handler
-
     if ('undefined' === typeof ($('body').live)) {
         $('body').on({
             click: function () {
@@ -478,5 +470,60 @@ $(function () {
 });
 
 infor.companyon.client.sendMobileMessage = function(type, data) {
-	infor.companyon.client.listeningMessageTypes[type][0].handler(data);
+	var msgData;
+	// Since the message was stringified try and parse it back to an object
+	try {
+		msgData = $.parseJSON(data);
+	} catch (e) {
+		// ignore any errors during the parsing of the JSON message and use the default data instead
+		msgData = data;
+	}
+
+	infor.companyon.client.listeningMessageTypes[type][0].handler(msgData);
 }
+
+// code to detect the scroll in inforGo App and send the message to the App.
+var lastY;
+var lastMsg;
+var mosName = infor.companyon.client.getMobileOperatingSystem();
+var msg;
+
+$(window).on('touchstart', function(e) {
+    lastY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
+});
+
+$(window).on('touchmove', function (e) {
+    try {
+		var currentY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
+        if (Math.abs(currentY - lastY) < 15) { return; }
+		if (currentY > lastY) {
+			msg = { type: "scrolledDown", data: {} };
+			if(lastMsg != msg.type){
+				lastMsg = msg.type;
+				var encodeMsg = JSON.stringify(msg);
+				
+				if(mosName == "iOS" && webkit.messageHandlers) {
+					webkit.messageHandlers.callbackHandler.postMessage(encodeMsg);
+				}
+				else if (mosName == "Android" && InforGoAndroid) {
+					InforGoAndroid.getLoadedPageInfo(encodeMsg);
+				}
+			}
+		} else {
+			msg = { type: "scrolledUp", data: {} };
+			if (lastMsg != msg.type) {
+				lastMsg = msg.type;
+				var encodeMessage = JSON.stringify(msg);
+				
+				if(mosName == "iOS" && webkit.messageHandlers) {
+					webkit.messageHandlers.callbackHandler.postMessage(encodeMessage);
+				}
+				else if (mosName == "Android" && InforGoAndroid) {
+					InforGoAndroid.getLoadedPageInfo(encodeMessage);
+				}
+			}
+		}
+    } catch (e) {
+        console.log("From Companyon error occured is " +e);
+    }
+});

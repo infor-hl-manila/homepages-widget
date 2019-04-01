@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, Inject, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoModalDialogRef, SohoModalDialogService, SohoTextAreaModule } from "@infor/sohoxi-angular";
-import { IWidgetContext2, IWidgetInstance2, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
+import { IWidgetContext, IWidgetInstance, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
 
 @Component({
 	template: `
@@ -73,8 +73,8 @@ export class ContextParametersComponent implements OnInit {
 	paramValue2: string;
 
 	constructor(
-		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext2,
-		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance2,
+		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext,
+		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance,
 		private readonly sohoModalDialogService: SohoModalDialogService) {
 
 		widgetInstance.activated = () => {

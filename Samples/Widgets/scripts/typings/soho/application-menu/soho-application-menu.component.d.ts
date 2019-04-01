@@ -1,7 +1,8 @@
 /// <reference path="soho-application-menu.d.ts" />
-import { AfterViewInit, OnDestroy, EventEmitter, ElementRef } from '@angular/core';
-export declare class SohoApplicationMenuComponent implements AfterViewInit, OnDestroy {
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone } from '@angular/core';
+export declare class SohoApplicationMenuComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private elementRef;
+    private ngZone;
     breakpoint: SohoApplicationMenuBreakPoint;
     openOnLarge: boolean;
     dismissOnClickMobile: boolean;
@@ -17,13 +18,15 @@ export declare class SohoApplicationMenuComponent implements AfterViewInit, OnDe
     visibility: EventEmitter<boolean>;
     menuVisibility: EventEmitter<boolean>;
     filtered: EventEmitter<any[]>;
-    constructor(elementRef: ElementRef);
+    private updateRequired;
+    constructor(elementRef: ElementRef, ngZone: NgZone);
     closeMenu(): void;
-    openMenu(): void;
+    openMenu(noFocus?: boolean, userOpened?: boolean, openedByClass?: boolean): void;
     isOpen(): boolean;
     updated(): void;
     updateLazy(applicationMenu: SohoApplicationMenuComponent, target: any): void;
     toggleAndSelectHeader(applicationMenu: SohoApplicationMenuComponent, header: any): void;
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
 }

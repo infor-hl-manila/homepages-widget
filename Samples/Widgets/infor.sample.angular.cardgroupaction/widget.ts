@@ -2,8 +2,8 @@
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { SohoComponentsModule } from "@infor/sohoxi-angular";
 import { IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	IWidgetSettingMetadata,
 	IWidgetSettingsArg,
 	Log,
@@ -60,8 +60,8 @@ class CardItem {
 		`]
 })
 export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent {
-	@Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 	originalItems: CardItem[] = [];
 	sortedItems: CardItem[] = [];
 	category = ["All", "Customer", "Warehouse"];
@@ -194,7 +194,7 @@ export class CardGroupActionModule {
 }
 
 // Widget factory function
-export const widgetFactory = (context: IWidgetContext2): IWidgetInstance2 => {
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 	return {
 		angularConfig: {
 			moduleType: CardGroupActionModule,

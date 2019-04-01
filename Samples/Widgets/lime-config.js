@@ -4,16 +4,6 @@
 	meta: {
 		"*": {
 			authorization: true
-		},
-		"angular": {
-			"format": "global",
-			"exports": "angular"
-		},
-		"sohoxi": {
-			"deps": ["angular"]
-		},
-		"main": {
-			"deps": ["sohoxi"]
 		}
 	},
 	map: {
@@ -24,13 +14,11 @@
 		"@angular/forms": "node_modules/@angular/forms/bundles/forms.umd.js",
 		"@angular/platform-browser": "node_modules/@angular/platform-browser/bundles/platform-browser.umd.js",
 		"@angular/platform-browser-dynamic": "node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js",
-		"@angular/upgrade/static": "node_modules/@angular/upgrade/bundles/upgrade-static.umd.js",
-		"angular": "node_modules/angular/angular.min.js",
 		"tslib": "scripts/vendor/tslib.js",
 		"@infor/sohoxi-angular": "scripts/soho/index",
 		"@infor/sohoxi-angular/": "scripts/soho/",
-		"sohoxi": "scripts/xi/sohoxi-angular.js",
 		"lime": "scripts/lime/core/lime.js",
+		"lime/core": "scripts/lime/core/index",
 		"lime.common": "scripts/lime/common/common.module-aot",
 		"lime.mobile": "scripts/lime/mobile/mobile.module-aot",
 		"main": "scripts/lime/core/main-aot.js",

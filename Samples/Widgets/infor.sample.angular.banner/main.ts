@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit, ViewChild } from "@angular/core";
 import { SohoChartComponent, SohoChartModule, SohoToastService } from "@infor/sohoxi-angular";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log } from "lime";
 
 class SettingKeys {
 	static primaryChartType = "primaryChartType";
@@ -36,9 +36,9 @@ class SettingKeys {
 })
 export class WidgetComponent implements IWidgetComponent, OnInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	@ViewChild("primaryChart")
 	primaryChart: SohoChartComponent;

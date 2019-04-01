@@ -18,8 +18,8 @@ import {
 	} from "@infor/sohoxi-angular";
 import {
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	IWidgetSettings,
 	IWidgetSettingsComponent,
 	IWidgetSettingsContext2,
@@ -55,9 +55,9 @@ class SettingKeys {
 })
 export class WidgetComponent implements IWidgetComponent, OnInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	textStyle: ITextStyle = {};
 

@@ -1,8 +1,9 @@
 /// <reference path="soho-lookup.d.ts" />
-import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
+import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 import { BaseControlValueAccessor } from '../utils/base-control-value-accessor';
 export declare class SohoLookupComponent extends BaseControlValueAccessor<any> implements AfterViewInit, OnDestroy {
     private element;
+    private ngZone;
     asobject: boolean;
     beforeShow: SohoLookupBeforeShowFunction;
     columns: SohoDataGridColumn[];
@@ -28,7 +29,7 @@ export declare class SohoLookupComponent extends BaseControlValueAccessor<any> i
     private lookup;
     private _options;
     private _dataset;
-    constructor(element: ElementRef);
+    constructor(element: ElementRef, ngZone: NgZone);
     onKeyUp(event: KeyboardEvent): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
@@ -39,5 +40,5 @@ export declare class SohoLookupComponent extends BaseControlValueAccessor<any> i
     processValue(value: Object | Object[]): string;
     setValue(event: SohoLookupChangeEvent[]): void;
     writeValue(value: any): void;
-    private parseValue(event);
+    private parseValue;
 }

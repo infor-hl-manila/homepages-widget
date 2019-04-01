@@ -1,8 +1,8 @@
-import { IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 import { ContextViewerComponent } from "./main";
 import { ContextViewerModuleNgFactory } from "./main.ngfactory";
 
-export const widgetFactory = (context: IWidgetContext2): IWidgetInstance2 => {
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
     return {
         angularConfig: {
             moduleFactory: ContextViewerModuleNgFactory,

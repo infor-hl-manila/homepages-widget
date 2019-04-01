@@ -246,6 +246,12 @@ interface SohoDataGridOptions {
    *  If false children nodes will not be selected when the parent node is selected
    */
   selectChildren?: boolean;
+
+  /**
+   *  Makes it possible to save selections when changing pages on server side paging.
+   *  You may want to also use showSelectAllCheckBox: false
+   */
+  allowSelectAcrossPages?: boolean;
 }
 
 /**
@@ -696,6 +702,12 @@ interface SohoDataGridColumn {
   /** Tooltip for the content of a column cell. */
   contentTooltip?: boolean;
 
+  /** Minimum width of the column (in pixels). */
+  minWidth?: number;
+
+  /** If true the text will be transformed to upper case in readonly view. Also in edit mode uppercase will be enforced. */
+  uppercase?: boolean;
+
   /**
    *  Option for tree datagrid
    *  If false children nodes will not be selected when the parent node is selected
@@ -704,6 +716,9 @@ interface SohoDataGridColumn {
 
   /** Enforce a max length when editing this column */
   maxLength?: boolean;
+
+  /** Validators to assign to any editable columns. */
+  validate?: string;
 }
 
 interface SohoDataGridColumnNumberFormat {
@@ -866,7 +881,7 @@ interface SohoDataGridStatic {
 
   exportToExcel(fileName: string, worksheetName: string, customDs: Object[]): void;
 
-  exportToCsv(fileName: string, customDs: Object[]): void;
+  exportToCsv(fileName: string, customDs: Object[], separator: string): void;
 
   /**
    * Returns an array of all the rows in the grid marked as dirty.
@@ -971,7 +986,7 @@ interface SohoDataGridFilteredEvent extends SohoDataGridOpenFilteredEvent {
  * @deprecated use SohoDataGridFilteredEvent instead
  */
 interface SohoDataGridOpenFilteredEvent {
-  conditions: SohoDataGridFilterCondition;
+  conditions: SohoDataGridFilterCondition[];
   op: 'apply' | 'clear';
   trigger: string;
 }
@@ -1041,7 +1056,7 @@ interface JQueryStatic {
   datagrid: SohoDataGridStatic;
 }
 
-interface JQuery {
+interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
   datagrid(options?: SohoDataGridOptions): JQuery;
   on(events: 'cellchange' | 'activecellchange', handler: JQuery.EventHandlerBase<any, SohoDataGridCellChangeEvent>): this;
   on(events: 'rowremove', handler: JQuery.EventHandlerBase<any, SohoDataGridRowRemoveEvent>): this;

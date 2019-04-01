@@ -33,12 +33,14 @@ export declare class SohoTreeComponent implements AfterViewInit, OnInit, OnDestr
     expandAll(): void;
     collapseAll(): void;
     removeNode(node: SohoTreeNode): void;
+    preserveEnablementState(): SohoTreeNode[];
+    restoreEnablementState(): void;
     selectNode(id: string, focus?: boolean): void;
     getSelectedNodes(): SohoTreeNode[];
     addNode(treeNode: SohoTreeNode, location?: any): void;
     findById(id: string): SohoTreeNode;
     toggleNode(node: SohoTreeNode): void;
-    private onDataRequest(event, response);
+    private onDataRequest;
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

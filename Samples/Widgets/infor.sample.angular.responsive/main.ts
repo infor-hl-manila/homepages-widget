@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { SohoButtonModule, SohoChartModule, SohoListViewModule } from "@infor/sohoxi-angular";
-import { IWidgetAction, IWidgetComponent, IWidgetContext2, IWidgetInstance2, WidgetMessageType } from "lime";
+import { IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, WidgetMessageType } from "lime";
 
 @Component({
 	template: `
@@ -58,9 +58,9 @@ import { IWidgetAction, IWidgetComponent, IWidgetContext2, IWidgetInstance2, Wid
 })
 export class ResponsiveWidgetComponent implements IWidgetComponent, OnInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	chartData: SohoDataSet;
 	items: string[];

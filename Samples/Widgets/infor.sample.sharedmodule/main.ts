@@ -1,6 +1,6 @@
 ﻿import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log, WidgetState } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
 import { IUserContext, userContextProviders, UserContextService } from "sample-shared-usercontext";
 
 @Component({
@@ -37,9 +37,9 @@ import { IUserContext, userContextProviders, UserContextService } from "sample-s
 })
 export class SharedModuleSampleOneComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	userContext: IUserContext;
 

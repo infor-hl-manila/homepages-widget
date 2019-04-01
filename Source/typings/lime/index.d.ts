@@ -1,8 +1,8 @@
 declare module 'lime' {
 /// <reference path="../../../../scripts/typings/sohoxi/sohoxi.d.ts" />
-/// <reference types="angular" />
 import { Observable } from "rxjs";
 import { InjectionToken, ViewContainerRef } from "@angular/core";
+import { SohoMessageService } from "@infor/sohoxi-angular";
 export interface IApplication {
     isDefault: boolean;
     version: string;
@@ -38,8 +38,7 @@ export interface ILanguage {
 export interface IWidgetModule {
     widgetFactory(context: IWidgetContext): IWidgetInstance;
 }
-export interface IWidgetModule2 {
-    widgetFactory(context: IWidgetContext2): IWidgetInstance2;
+export interface IWidgetModule2 extends IWidgetModule {
 }
 export class WidgetState {
     static running: string;
@@ -61,32 +60,12 @@ export class WidgetActivationType {
     static settings: string;
     static edit: string;
 }
-export interface IAngularScopeValue {
-    name: string;
-    value: any;
-}
-export interface IAngularTemplateInfo {
-    key: string;
-    value: string;
-}
 export interface IAngularWidgetConfig {
-    template?: string;
-    templates?: IAngularTemplateInfo[];
-    cachedTemplateUrl?: string;
-    relativeTemplateUrl?: string;
-    scopeValue?: IAngularScopeValue;
-}
-export interface IAngularWidgetConfig2 {
     moduleType?: any;
     moduleFactory?: any;
     componentType?: any;
 }
-export interface IAngularContext {
-    module: ng.IModule;
-    scope: ng.IScope;
-    compile: ng.ICompileService;
-    q: ng.IQService;
-    getTemplateUrl(relativeUrl: string): string;
+export interface IAngularWidgetConfig2 extends IAngularWidgetConfig {
 }
 export interface IWidgetAction {
     text?: string;
@@ -108,26 +87,7 @@ export interface IWidgetMessage {
 export enum WidgetMessageType {
     Info = 0,
     Alert = 1,
-    Error = 2,
-}
-export interface IWidgetInstance2 {
-    activated?: (arg: IWidgetActivationArg) => void;
-    deactivated?: (arg: IWidgetActivationArg) => void;
-    destroy?: (arg: IWidgetDestroyArg) => void;
-    settingsOpening?: (arg: IWidgetSettingsArg) => void;
-    settingsSaved?: (arg: IWidgetSettingsArg) => void;
-    restored?: (arg: IWidgetRestoreArg) => void;
-    refreshed?: (arg: IWidgetRefreshArg) => void;
-    bannerBackgroundChanged?: (newBackgroundColor: string) => void;
-    getMetadata?: () => IWidgetSettingMetadata[];
-    getMetadataAsync?: () => Observable<IWidgetSettingMetadata[]>;
-    isConfigured?: (settings: IWidgetSettings) => boolean;
-    editing?: () => void;
-    edited?: () => void;
-    publishing?: () => void;
-    angularConfig?: IAngularWidgetConfig2;
-    widgetSettingsFactory?: (context: IWidgetSettingsContext2) => IWidgetSettingsInstance2;
-    actions?: IWidgetAction[];
+    Error = 2
 }
 export interface IWidgetInstance {
     activated?: (arg: IWidgetActivationArg) => void;
@@ -139,14 +99,17 @@ export interface IWidgetInstance {
     refreshed?: (arg: IWidgetRefreshArg) => void;
     bannerBackgroundChanged?: (newBackgroundColor: string) => void;
     getMetadata?: () => IWidgetSettingMetadata[];
-    getMetadataAsync?: () => ng.IPromise<IWidgetSettingMetadata[]>;
+    getMetadataAsync?: () => Observable<IWidgetSettingMetadata[]>;
     isConfigured?: (settings: IWidgetSettings) => boolean;
+    emptyConfigClicked?: () => void;
     editing?: () => void;
     edited?: () => void;
     publishing?: () => void;
     angularConfig?: IAngularWidgetConfig;
     widgetSettingsFactory?: (context: IWidgetSettingsContext) => IWidgetSettingsInstance;
     actions?: IWidgetAction[];
+}
+export interface IWidgetInstance2 extends IWidgetInstance {
 }
 export interface IWidgetRestoreArg {
     userSettings?: boolean;
@@ -239,66 +202,6 @@ export interface IWidgetContext {
     getLanguage(): ILanguage;
     getElement(): JQuery;
     getUrl(path?: string): string;
-    getAngularContext(): IAngularContext;
-    isActive(): boolean;
-    isVisible(): boolean;
-    isPublished(): boolean;
-    isDev(): boolean;
-    isBanner(): boolean;
-    save(): void;
-    setState(state: string): void;
-    getState(): string;
-    getTitle(): string;
-    getStandardTitle(): string;
-    getResolvedTitle(isTitleLocked: boolean): string;
-    setTitle(title: string): void;
-    setStandardTitle(): void;
-    enableTitleEdit(isEnabled: boolean): void;
-    isTitleEditEnabled(): boolean;
-    isTitleLocked(): boolean;
-    isTitleUnlockable(): boolean;
-    setTitleLocked(isLocked: boolean): void;
-    resolve(key: string): string;
-    resolveAndReplace(template: string): string;
-    getApplication(): IApplication;
-    getApplications(): IApplication[];
-    getLogicalId(): string;
-    setLogicalId(logicalId: string): void;
-    getApplicationAsync(logicalId: string): ng.IPromise<IApplication>;
-    getApplicationsAsync(logicalId: string): ng.IPromise<IApplication[]>;
-    resolveAndReplaceAsync(template: string, logicalId?: string): ng.IPromise<string>;
-    getViewUrlAsync(options: IViewUrlOptions): ng.IPromise<string>;
-    getIonApiCustomerContext(): string;
-    getIonApiContextAsync(options?: IIonApiOptions): ng.IPromise<IIonApiContext>;
-    executeIonApiAsync<T>(options: IIonApiRequestOptions): ng.IPromise<ng.IHttpPromiseCallbackArg<T>>;
-    getService<T>(name: string): T;
-    launch(launchOptions: ILaunchOptions): void;
-    showWidgetMessage(message: IWidgetMessage): void;
-    removeWidgetMessage(): void;
-    getPageId(): string;
-    getStandardWidgetId(): string;
-    getWidgetInstanceId(): string;
-    getContainerUrl(): string;
-    isCloud(): boolean;
-    isSingleTenantCloud(): boolean;
-    getTenantId(): string;
-    getUserId(): string;
-    findWidgetsOnPage(options?: IFindWidgetOptions): IWidgetInstanceInfo[];
-    isWidgetOnPage(options: IFindWidgetOptions): boolean;
-    getInforTimeZoneRaw(): string;
-    getInforTimeZone(): string;
-    getInforCurrentLanguage(): string;
-    getInforCurrentLocale(): string;
-    getInforThemeName(): string;
-    getBannerBackgroundColor(): string;
-    getContextParameter(parameter: string): string;
-}
-export interface IWidgetContext2 {
-    getId(): string;
-    getSettings(): IWidgetSettings;
-    getLanguage(): ILanguage;
-    getElement(): JQuery;
-    getUrl(path?: string): string;
     getDevice(): Observable<IDevice>;
     isActive(): boolean;
     isVisible(): boolean;
@@ -356,6 +259,8 @@ export interface IWidgetContext2 {
     getContextParameter(parameter: string): string;
     updatePrimaryAction(): void;
 }
+export interface IWidgetContext2 extends IWidgetContext {
+}
 export interface IWidgetInstanceInfo {
     instanceId: string;
     id: string;
@@ -392,9 +297,7 @@ export interface IWidgetSettingsInstance {
     closing?: (arg: IWidgetSettingsCloseArg) => void;
     angularConfig?: IAngularWidgetConfig;
 }
-export interface IWidgetSettingsInstance2 {
-    closing?: (arg: IWidgetSettingsCloseArg) => void;
-    angularConfig?: IAngularWidgetConfig2;
+export interface IWidgetSettingsInstance2 extends IWidgetSettingsInstance {
 }
 export interface IWidgetSettingsContext {
     getWidgetContext(): IWidgetContext;
@@ -403,12 +306,7 @@ export interface IWidgetSettingsContext {
     getElement(): JQuery;
     close(isSave?: boolean): void;
 }
-export interface IWidgetSettingsContext2 {
-    getWidgetContext(): IWidgetContext2;
-    enableSave(isEnabled: boolean): void;
-    isSaveEnabled(): boolean;
-    getElement(): JQuery;
-    close(isSave?: boolean): void;
+export interface IWidgetSettingsContext2 extends IWidgetSettingsContext {
 }
 export class WidgetConstants {
     static widgetInstanceKey: string;
@@ -417,12 +315,12 @@ export class WidgetConstants {
     static widgetDescription: string;
 }
 export interface IWidgetComponent {
-    widgetContext: IWidgetContext2;
-    widgetInstance: IWidgetInstance2;
+    widgetContext: IWidgetContext;
+    widgetInstance: IWidgetInstance;
 }
 export interface IWidgetSettingsComponent {
-    widgetSettingsContext: IWidgetSettingsContext2;
-    widgetSettingsInstance: IWidgetSettingsInstance2;
+    widgetSettingsContext: IWidgetSettingsContext;
+    widgetSettingsInstance: IWidgetSettingsInstance;
 }
 export interface ILogAppender {
     (level: number, text: string, ex?: any): any;
@@ -552,7 +450,7 @@ export class ArrayUtil {
     static concat<T>(items: T[], items2: T[]): T[];
 }
 export class NumUtil {
-    private static getLocaleSeparator();
+    private static getLocaleSeparator;
     private static defaultSeparator;
     private static defaultOptions;
     static getDefaultOptions(): INumberFormatOptions;
@@ -562,7 +460,7 @@ export class NumUtil {
     static format(value: any, options?: INumberFormatOptions): string;
     static pad(num: number, length: number): string;
     static hasOnlyIntegers(s: string): boolean;
-    static tryGetInt(input: any, defaultValue?: number): number;
+    static mod(dividend: number, divisor: number): number;
 }
 export class CommonUtil {
     static copyJson<T>(value: T): T;
@@ -612,9 +510,9 @@ export class Log {
     private static appenders;
     static addAppender(appender: ILogAppender): void;
     static removeAppender(appender: ILogAppender): void;
-    private static getTime();
+    private static getTime;
     static getLogEntry(level: number, text: string, ex?: any): string;
-    private static log(currentLevel, level, text, ex?);
+    private static log;
     static setDefault(): void;
     static fatal(text: string, ex?: any): void;
     static error(text: string, ex?: any): void;
@@ -631,7 +529,7 @@ export enum StandardDialogButtons {
     Ok = 1,
     OkCancel = 2,
     YesNo = 3,
-    YesNoCancel = 4,
+    YesNoCancel = 4
 }
 export enum DialogButtonType {
     None = 1,
@@ -639,7 +537,7 @@ export enum DialogButtonType {
     Cancel = 3,
     Yes = 4,
     No = 5,
-    Custom = 6,
+    Custom = 6
 }
 export interface IDialogResult {
     button?: DialogButtonType;
@@ -675,9 +573,6 @@ export interface IToastOptions {
 export interface IDialogOptions {
     title: string;
     parameter?: any;
-    scope?: ng.IScope;
-    template?: string;
-    templateUrl?: string;
     buttons?: IDialogButton[];
     style?: string;
     cssClass?: string;
@@ -700,22 +595,20 @@ export interface ICopyToClipboardOptions {
     copyData: string;
     forceDialog?: boolean;
 }
-export interface IDialogService {
-    showContextualActionPanel(template: string, parameter?: any): ng.IPromise<IDialogResult>;
-    show(options?: IDialogOptions): ng.IPromise<IDialogResult>;
-    showMessage(options: IMessageDialogOptions, isTrustedContent?: boolean): ng.IPromise<IDialogResult>;
-    showToast(options: IToastOptions): void;
-    copyToClipboard(options: ICopyToClipboardOptions, forceDialog?: boolean): void;
-}
 export class DialogService {
+    protected readonly messageService: SohoMessageService;
     private language;
     private messageFunction;
+    constructor(messageService: SohoMessageService);
     showMessage(options: IMessageDialogOptions): Observable<IDialogResult>;
     copyToClipboard(options: ICopyToClipboardOptions): void;
     showToast(options: IToastOptions): void;
+    private setDefaultButtons;
+    private setSpecificButtons;
+    private resolveMessageDialog;
 }
-export const widgetContextInjectionToken: InjectionToken<IWidgetContext2>;
-export const widgetInstanceInjectionToken: InjectionToken<IWidgetInstance2>;
+export const widgetContextInjectionToken: InjectionToken<IWidgetContext>;
+export const widgetInstanceInjectionToken: InjectionToken<IWidgetInstance>;
 export interface ITranslationItem {
     label: string;
     name: string;
@@ -724,6 +617,7 @@ export interface ITranslationItem {
     defaultValue?: string;
     labelId?: string;
     valueId?: string;
+    isRequired?: boolean;
 }
 export interface ITranslationOptions {
     view?: ViewContainerRef;
@@ -745,7 +639,7 @@ export class TranslationService implements ITranslationService {
     isEnabled(): boolean;
     translate(options: ITranslationOptions): Observable<ITranslationResult>;
     getLanguage(): string;
-    private getInstance();
+    private getInstance;
 }
 
 }

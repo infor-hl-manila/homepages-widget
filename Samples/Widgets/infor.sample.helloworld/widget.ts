@@ -1,10 +1,10 @@
-import { IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 
-class HelloWorld implements IWidgetInstance2 {
+class HelloWorld implements IWidgetInstance {
 
 	private messageElement: JQuery;
 
-	constructor(private widgetContext: IWidgetContext2) {
+	constructor(private widgetContext: IWidgetContext) {
 		// Add content to the widget element
 		this.addContent();
 
@@ -32,7 +32,7 @@ class HelloWorld implements IWidgetInstance2 {
 }
 
 // Widget factory function
-export const widgetFactory = (context: IWidgetContext2): IWidgetInstance2 => {
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 	// Create and return the widget instance
 	return new HelloWorld(context);
 };

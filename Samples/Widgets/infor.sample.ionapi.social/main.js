@@ -71,8 +71,6 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs/
     exports.dataService = new DataService();
     var IonApiSocialComponent = /** @class */ (function () {
         function IonApiSocialComponent() {
-            this.serviceUrl = "Mingle/SocialService.Svc";
-            this.retryAttempted = false;
         }
         IonApiSocialComponent.prototype.ngOnInit = function () {
             this.setBusy(true);

@@ -16,5 +16,5 @@ export declare class SohoEmptyMessageDirective implements AfterViewChecked, Afte
     constructor(changeDetector: ChangeDetectorRef, element: ElementRef);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
-    private markForCheck();
+    private markForCheck;
 }

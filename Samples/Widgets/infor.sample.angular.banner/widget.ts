@@ -1,7 +1,7 @@
-import { IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 import { WidgetComponent, WidgetModule } from "./main";
 
-export const widgetFactory = (context: IWidgetContext2): IWidgetInstance2 => ({
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => ({
 	angularConfig: {
 		moduleType: WidgetModule,
 		componentType: WidgetComponent

@@ -1,7 +1,8 @@
 /// <reference path="soho-radar.d.ts" />
-import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
-export declare class SohoRadarComponent implements AfterViewInit, OnDestroy {
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
+export declare class SohoRadarComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
+    private ngZone;
     private options;
     readonly isRadar: boolean;
     dataset: Array<any>;
@@ -30,10 +31,12 @@ export declare class SohoRadarComponent implements AfterViewInit, OnDestroy {
     rendered: EventEmitter<Object>;
     private jQueryElement;
     private radar;
-    constructor(element: ElementRef);
+    private updateRequired;
+    constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
     setSelected(selected: SohoRadarSelected): void;
     toggleSelected(selected: SohoRadarSelected): void;
-    getSelected(): void;
+    getSelected(): any;
 }

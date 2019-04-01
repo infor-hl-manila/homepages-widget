@@ -1,5 +1,5 @@
 /// <reference path="soho-listview.d.ts" />
-import { AfterViewInit, AfterViewChecked, ElementRef, EventEmitter, OnDestroy, QueryList } from '@angular/core';
+import { AfterViewInit, AfterViewChecked, ElementRef, EventEmitter, OnDestroy, QueryList, NgZone } from '@angular/core';
 import { SohoSearchFieldComponent } from '../searchfield/soho-searchfield.component';
 export declare class SohoListViewSearchComponent {
     buildSearch: boolean;
@@ -25,6 +25,7 @@ export declare class SohoListViewMicroComponent {
     readonly isMicro: boolean;
 }
 export declare class SohoListViewComponent implements AfterViewInit, OnDestroy, AfterViewChecked {
+    private ngZone;
     private element;
     items: QueryList<SohoListViewItemComponent>;
     class: string;
@@ -59,7 +60,7 @@ export declare class SohoListViewComponent implements AfterViewInit, OnDestroy, 
     private jQueryElement;
     private listview;
     private options;
-    constructor(element: ElementRef);
+    constructor(ngZone: NgZone, element: ElementRef);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     ngOnDestroy(): void;
@@ -73,7 +74,7 @@ export declare class SohoListViewComponent implements AfterViewInit, OnDestroy, 
     activatedItem(): any;
     deactivateItem(item?: SohoListViewItemReference): void;
     toggleItemActivation(item: SohoListViewItemReference): void;
-    private apply(fn, index);
-    private boundsCheck(index);
+    private apply;
+    private boundsCheck;
     private readonly itemCount;
 }

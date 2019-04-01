@@ -12,8 +12,8 @@ import {
 	CommonUtil,
 	ILanguage,
 	ITranslationResult,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	TranslationService,
 	widgetContextInjectionToken,
 	widgetInstanceInjectionToken,
@@ -163,8 +163,8 @@ export class ContentTranslationComponent {
 	private readonly languageCode: string;
 
 	constructor(
-		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext2,
-		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance2,
+		@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext,
+		@Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance,
 		private readonly sohoModalDialogService: SohoModalDialogService,
 		private readonly translationService: TranslationService) {
 

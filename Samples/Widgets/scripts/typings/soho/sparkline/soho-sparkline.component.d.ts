@@ -1,11 +1,12 @@
 /// <reference path="soho-sparkline.d.ts" />
-import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
-export declare class SohoSparklineComponent implements AfterViewInit, OnDestroy {
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
+export declare class SohoSparklineComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
+    private ngZone;
     private options;
     readonly isSparkline: boolean;
     dataset: Array<any>;
-    type: string;
+    type: SohoSparklineType;
     colors: Array<any>;
     isDots: boolean;
     isPeakDot: boolean;
@@ -14,7 +15,9 @@ export declare class SohoSparklineComponent implements AfterViewInit, OnDestroy 
     rendered: EventEmitter<Object>;
     private jQueryElement;
     private sparkline;
-    constructor(element: ElementRef);
+    private updateRequired;
+    constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
 }

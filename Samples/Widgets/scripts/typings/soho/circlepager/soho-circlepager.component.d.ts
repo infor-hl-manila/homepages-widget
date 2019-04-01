@@ -1,7 +1,8 @@
 /// <reference path="soho-circlepager.d.ts" />
-import { AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
-export declare class SohoCirclepagerComponent implements AfterViewInit, OnDestroy {
+import { AfterViewChecked, AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+export declare class SohoCirclepagerComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
+    private ngZone;
     private settings;
     readonly isCirclePager: boolean;
     slidesToShow: number;
@@ -9,7 +10,9 @@ export declare class SohoCirclepagerComponent implements AfterViewInit, OnDestro
     loop: boolean;
     private jQueryElement;
     private circlepager;
-    constructor(element: ElementRef);
+    private updateRequired;
+    constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
 }

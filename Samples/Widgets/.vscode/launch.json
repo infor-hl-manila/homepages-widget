@@ -15,7 +15,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "[Mobile] Launch Chrome against localhost",
-            "url": "http://localhost:8080?mobile=true",
+            "url": "http://localhost:8080?lm-mode=1",
             "runtimeArgs": [
                 "--auto-open-devtools-for-tabs"
             ],

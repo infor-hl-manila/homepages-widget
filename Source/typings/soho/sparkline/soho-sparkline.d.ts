@@ -5,13 +5,20 @@
  * interface of the Soho jQuery Sparkline control.
  */
 
+type SohoSparklineType =
+  'sparkline-dots-n-peak' |
+  'sparkline-peak' |
+  'sparkline-medianrange-n-peak' |
+  'sparkline-minmax' |
+  'sparkline';
+
 /**
  * Sparkline Options
  */
 interface SohoSparklineOptions {
 
   /** Chart Type */
-  type?: string;
+  type?: SohoSparklineType;
 
   /** Defines the data to use, must be specified for this component. */
   dataset?: Object[];
@@ -47,6 +54,6 @@ interface SohoSparkline {
   destroy(): void;
 }
 
-interface JQuery {
+interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
   sparkline(options?: SohoSparklineOptions): JQuery;
 }

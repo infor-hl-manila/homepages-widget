@@ -1,12 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit } from "@angular/core";
 import {
-	IIonApiContext,
 	IIonApiRequestOptions,
 	IIonApiResponse,
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	WidgetMessageType,
 	WidgetState
 } from "lime";
@@ -70,9 +69,9 @@ interface IUserDetailResponse {
 export class DataService {
 	private userSubject: AsyncSubject<IIonApiResponse<IUserDetailResponse>>;
 	private serviceUrl = "Mingle/SocialService.Svc";
-	private widgetContext: IWidgetContext2;
+	private widgetContext: IWidgetContext;
 
-	init(widgetContext: IWidgetContext2): void {
+	init(widgetContext: IWidgetContext): void {
 		this.widgetContext = widgetContext;
 
 		this.preLoadUser();
@@ -152,16 +151,12 @@ export const dataService = new DataService();
 	`
 })
 export class IonApiSocialComponent implements IWidgetComponent, OnInit {
-	@Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	fullName: string;
 	photoUrl: string;
 	user: ISocialUser;
-
-	private ionApiContext: IIonApiContext;
-	private serviceUrl = "Mingle/SocialService.Svc";
-	private retryAttempted = false;
 
 	ngOnInit(): void {
 		this.setBusy(true);
@@ -199,7 +194,7 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	private updatePhoto(response: Blob): void {
 		const reader = new FileReader();
 		reader.onload = () => {
-			this.photoUrl = reader.result;
+			this.photoUrl = reader.result as string;
 			this.setBusy(false);
 		};
 		reader.readAsDataURL(response);

@@ -41,8 +41,8 @@ Soho.Locale.addCulture('en-US', {
     dayPeriods: ['AM', 'PM']
   }],
 
-  // numbers/currencyFormats-numberSystem-latn/standard (Replace Sign http://www.currencysymbols.in ?)
-  currencySign: '$', // (Replace Sign http://www.currencysymbols.in ?)
+  // numbers/currencyFormats-numberSystem-latn/standard
+  currencySign: '$', // (Replace Sign http://www.currencysymbols.in)
   currencyFormat: '¤#,##0.00',
   // numbers/symbols-numberSystem-latn
   numbers: {
@@ -52,7 +52,7 @@ Soho.Locale.addCulture('en-US', {
     decimal: '.',
     group: ','
   },
-  // Resx - Approved By Translation Team
+  // Resx - Provided By Translation Team
   messages: {
     AboutText: { id: 'AboutText', value: 'Copyright &copy; {0} Infor. All rights reserved. The word and design marks set forth herein are trademarks and/or registered trademarks of Infor and/or its affiliates and subsidiaries. All rights reserved. All other trademarks listed herein are the property of their respective owners' },
     Actions: { id: 'Actions', value: 'Actions', comment: 'Tooltip text for the action button with additional in context actions' },
@@ -98,6 +98,7 @@ Soho.Locale.addCulture('en-US', {
     Checked: { id: 'Checked', value: 'Checked', comment: 'Checked tooltip' },
     Clear: { id: 'Clear', value: 'Clear', comment: 'Tooltip for a Clear Action' },
     ClearFilter: { id: 'ClearFilter', value: 'Clear Filter', comment: 'Clear the current filter criteria' },
+    ClearFormatting: { id: 'ClearFormatting', value: 'Clear Formatting', comment: 'Clear the formatting in editor' },
     ClearSelection: { id: 'ClearSelection', value: '(Clear Selection)', comment: 'clear dropdown selection' },
     Clock: { id: 'Clock', value: 'Clock', comment: 'Clock tooltip' },
     Close: { id: 'Close', value: 'Close', comment: 'Tooltip for a Close Button Action' },
@@ -119,12 +120,14 @@ Soho.Locale.addCulture('en-US', {
     Cut: { id: 'Cut', value: 'Cut', comment: 'Cut tooltip' },
     Date: { id: 'Date', value: 'Date', comment: 'Describes filtering by a date data type' },
     Day: { id: 'Day', value: 'Day', comment: 'Shows view with day events' },
+    Days: { id: 'Days', value: 'Days ', comment: 'Show how many days until an event' },
     DaysOverdue: { id: 'DaysOverdue', value: '{0} Days Overdue', comment: 'For a task /date UI' },
     DaysRemaining: { id: 'DaysRemaining', value: '{0} Days Remaining', comment: 'For a task /date UI' },
     Delete: { id: 'Delete', value: 'Delete', comment: 'Delete Toolbar Action Tooltip' },
+    DeviceName: { id: 'Device', value: 'Device', comment: 'Name of the Device' },
     DistributeHoriz: { id: 'DistributeHoriz', value: 'Distribute Horizontally', comment: 'Icon button tooltip for action that distributes elements across Horizontally' },
     Document: { id: 'Document', value: 'Document', comment: 'Document tooltip' },
-    DiscretionaryTimeOff: { id: 'DiscretionaryTimeOff', value: 'Tiempo discrecional desactivado', comment: 'As in work time off' },
+    DiscretionaryTimeOff: { id: 'DiscretionaryTimeOff', value: 'Discretionary Time Off', comment: 'As in work time off' },
     Dirty: { id: 'Dirty', value: 'Row has changed', comment: 'Record is dirty / modified' },
     Drilldown: { id: 'Drilldown', value: 'Drill down', comment: 'Drill by moving page flow into a record' },
     Drillup: { id: 'Drillup', value: 'Drill Up', comment: 'Opposite of Drilldown, move back up to a larger set of records' },
@@ -173,7 +176,8 @@ Soho.Locale.addCulture('en-US', {
     GreaterOrEquals: { id: 'GreaterOrEquals', value: 'Greater Than Or Equals', comment: 'Greater Than Or Equals in icons for filtering' },
     GreaterThan: { id: 'GreaterThan', value: 'Greater Than', comment: 'Greater Than in icons for filtering' },
     Grid: { id: 'Grid', value: 'Grid', comment: 'Grid tooltip' },
-    Hours: { id: 'Hours', value: 'Hours', comment: 'the hour portion of a time' },
+    Hour: { id: 'Hour', value: 'Hour', comment: 'the hour portion of a time' },
+    Hours: { id: 'Hours', value: 'Hours', comment: 'the hour portion of a time (plural)' },
     HeadingThree: { id: 'HeadingThree', value: 'Heading Three', comment: 'Heading Three tooltip' },
     HeadingFour: { id: 'HeadingFour', value: 'Heading Four', comment: 'Heading Four tooltip' },
     Highest: { id: 'Highest', value: 'Highest', comment: 'Highest Four tooltip' },
@@ -232,6 +236,7 @@ Soho.Locale.addCulture('en-US', {
     MoveToLeft: { id: 'MoveToLeft', value: 'Move to left', comment: 'Button tooltip used in a list of movable items' },
     MoveToRight: { id: 'MoveToRight', value: 'Move to right', comment: 'Button tooltip used in a list of movable items' },
     MsgDirty: { id: 'MsgDirty', value: ', Modified', comment: 'for modified form fields' },
+    New: { id: 'New', value: 'New', comment: 'Add new rowstatus in datagrid' },
     NewDocument: { id: 'NewDocument', value: 'New Document', comment: 'New Document tooltip' },
     NewItem: { id: 'NewItem', value: 'New item', comment: 'New item in listbuilder' },
     NewWindow: { id: 'NewWindow', value: 'New Window', comment: 'Contents open in a new browser window.' },
@@ -251,11 +256,12 @@ Soho.Locale.addCulture('en-US', {
     Ok: { id: 'Ok', value: 'Ok', comment: 'Ok button on a dialog' },
     OpenBackClose: { id: 'OpenBackClose', value: 'Open / Back / Close', comment: 'Open / Back / Close tooltip' },
     OpenClose: { id: 'OpenClose', value: 'Open / Close', comment: 'Open / Close tooltip' },
+    OperatingSystem: { id: 'OperatingSystem', value: 'Operating System', comment: 'Device Operating System' },
     OrderedList: { id: 'OrderedList', value: 'Insert/Remove Numbered List', comment: 'Insert an Ordered list in the editor' },
     Page: { id: 'Page', value: 'page ', comment: 'Text on the pager links' },
     PageOf: { id: 'PageOf', value: 'Page {0} of {1}', comment: 'Pager Text Showing current and number of pages' },
     PageOn: { id: 'PageOn', value: 'You are currently on page ', comment: 'Text on the pager links' },
-    PaidTimeOff: { id: 'PaidTimeOff', value: 'Tiempo libre pagado', comment: 'As in vacation from work' },
+    PaidTimeOff: { id: 'PaidTimeOff', value: 'Paid Time Off', comment: 'As in vacation from work' },
     Paste: { id: 'Paste', value: 'Paste', comment: 'Paste icon tooltip' },
     PasswordValidation: { id: 'PasswordValidation', value: '<strong>Password must</strong><br>Be at least 10 characters long<br>Have at least one upper case character<br>Have at least one lower case character<br>Contain one special character<br>Not contain your username<br>Can not be a Previously used password<br>', comment: 'Password validation requirements' },
     PasswordConfirmValidation: { id: 'PasswordConfirmValidation', value: 'Password must match', comment: 'Password Confirm validation' },
@@ -310,7 +316,7 @@ Soho.Locale.addCulture('en-US', {
     ShowFilterRow: { id: 'ShowFilterRow', value: 'Show Filter Row', comment: 'Toggle a row with filer info above a list' },
     ShowLess: { id: 'ShowLess', value: 'Show Less', comment: 'Show less form content' },
     ShowMore: { id: 'ShowMore', value: 'Show More', comment: 'Show more form content' },
-    SickTime: { id: 'SickTime', value: 'Tiempo de enfermedad', comment: 'Time off sick from work' },
+    SickTime: { id: 'SickTime', value: 'Sick Time', comment: 'Time off sick from work' },
     Slate: { id: 'Slate', value: 'Slate', comment: 'Color in our color pallette' },
     SlideOf: { id: 'SlideOf', value: 'Slide {0} of {1}', comment: 'Slide Text Showing current and total number of slides' },
     SlidesOf: { id: 'SlidesOf', value: 'Slides {0} and {1} of {2}', comment: 'Slides Text Showing current slides and total number of slides' },
@@ -356,7 +362,8 @@ Soho.Locale.addCulture('en-US', {
     TreeExpand: { id: 'TreeExpand', value: 'Expand Tree', comment: 'Tree Expand tooltip' },
     Turquoise: { id: 'Turquoise', value: 'Turquoise', comment: 'Color in our color pallette' },
     Up: { id: 'Up', value: 'Up', comment: 'Up tooltip' },
-    UpComingEvents: { id: 'UpComingEvent', value: 'Upcoming Events', comment: 'List of upcoming calendar events' },
+    UpComing: { id: 'UpComing', value: 'Upcoming', comment: 'List of upcoming things (general)' },
+    UpComingEvents: { id: 'UpComingEvents', value: 'Upcoming Events', comment: 'List of upcoming calendar events' },
     UpComingTimeOff: { id: 'UpComingTimeOff', value: 'Upcoming Time Off', comment: 'As in time off work' },
     Upload: { id: 'Upload', value: 'Upload', comment: 'Upload tooltip' },
     UnavailableDate: { id: 'UnavailableDate', value: 'Unavailable Date', comment: 'Unavailable Date Text' },
@@ -370,6 +377,7 @@ Soho.Locale.addCulture('en-US', {
     UseEnter: { id: 'UseEnter', value: '. Use enter or down arrow to lookup.', comment: 'Instructional comments for screen readers' },
     User: { id: 'User', value: 'User', comment: 'User tooltip' },
     UserProfile: { id: 'UserProfile', value: 'User Profile', comment: 'User Profile tooltip' },
+    Version: { id: 'Version', value: 'IDS Version', comment: 'Version of IDS' },
     VerticalMiddleAlign: { id: 'VerticalMiddleAlign', value: 'Vertical Align Center', comment: 'Vertical Align tooltip' },
     ViewSource: { id: 'ViewSource', value: 'View Source', comment: 'Toggle the source view in the editor' },
     ViewVisual: { id: 'ViewVisual', value: 'View Visual', comment: 'Toggle the visual view in the editor' },

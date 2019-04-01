@@ -12,6 +12,7 @@ export declare class SohoDatePickerComponent extends BaseControlValueAccessor<an
     private isReadOnly;
     private _options;
     showTime: boolean;
+    useCurrentTime: boolean;
     timeFormat: string;
     minuteInterval: number;
     secondInterval: number;

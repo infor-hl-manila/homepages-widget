@@ -33,7 +33,6 @@ export declare class SohoPopupMenuComponent implements AfterViewInit, OnDestroy 
     eventObj: any;
     placementOpts: SohoPopupmenuPlacementOpts;
     offset: SohoPopupmenuOffset;
-    registerForEvents: any;
     selected: EventEmitter<SohoPopupMenuEvent>;
     popupmenuafterplace: EventEmitter<SohoPopupMenuEvent>;
     beforeopen: EventEmitter<SohoPopupMenuEvent>;
@@ -46,7 +45,6 @@ export declare class SohoPopupMenuComponent implements AfterViewInit, OnDestroy 
     private _popupMenuOptions;
     constructor(elementRef: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
-    private hookupRegisteredEvents();
     getSelected(): any;
     updated(settings: any): void;
     teardown(): void;

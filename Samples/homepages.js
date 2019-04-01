@@ -6,7 +6,7 @@ var archiver = require("archiver");
 var del = require('del');
 var p = require("child_process");
 var ncp = require("ncp");
-var sohoVersion = "4.11.0";
+var sohoVersion = "5.0.0";
 var ZIP_TIMEOUT = 100;
 var _tempDirectory;
 var _argv;
@@ -103,13 +103,6 @@ function getSystemJsBuilderConfig(task, sharedModuleName, isSharedModuleFactory)
             "*": {
                 authorization: true
             },
-            "angular": {
-                "format": "global",
-                "exports": "angular"
-            },
-            "sohoxi": {
-                "deps": ["angular"]
-            },
             "@angular/*": {
                 build: false
             },
@@ -185,8 +178,7 @@ function getBaseTypeScriptConfig(task) {
             "noImplicitAny": false,
             "paths": {
                 "lime": [relativeScriptsPath + "scripts/typings/lime"],
-                "@infor/sohoxi-angular": [relativeScriptsPath + "scripts/typings/soho"],
-                "xi": [relativeScriptsPath + "scripts/typings/sohoxi/sohoxi-angular.d.ts"]
+                "@infor/sohoxi-angular": [relativeScriptsPath + "scripts/typings/soho"]
             },
             "removeComments": true,
             "skipLibCheck": true,
@@ -195,7 +187,6 @@ function getBaseTypeScriptConfig(task) {
         },
         "include": [
             "./" + widgetDirectoryName + "/**/*",
-            relativeScriptsPath + "scripts/typings/sohoxi/sohoxi-angular.d.ts",
             relativeScriptsPath + "scripts/typings/infor/index.d.ts",
             relativeScriptsPath + "scripts/typings/soho/**/*"
         ]
@@ -213,17 +204,15 @@ function getBaseTypeScriptConfig(task) {
 }
 function buildTypeScriptTsc(task) {
     var operation = begin("TypeScript build with tsc");
-    var widgetDirectoryName = task.widgetDirectoryName;
-    var moduleName = task.moduleName;
-    var manifest = task.manifest;
-    var tempDirectory = task.tempDirectory;
     var tscOptions = getBaseTypeScriptConfig(task);
     if (task.isAot) {
         tscOptions.exclude = ["./**/*-aot.ts"];
     }
-    var tscPath = tempDirectory + "/tsconfig-prod.json";
-    fs.writeFileSync(tscPath, JSON.stringify(tscOptions), "utf8");
-    execSync("tsc -p \"" + tscPath + "\"");
+    var tscConfigPath = task.tempDirectory + "/tsconfig-prod.json";
+    fs.writeFileSync(tscConfigPath, JSON.stringify(tscOptions), "utf8");
+    var tscPath = path.join(".bin", "tsc");
+    tscPath = path.join(task.absoluteNodeModulesPath, tscPath);
+    execSync(tscPath + " -p \"" + tscConfigPath + "\"");
     end(operation);
 }
 function buildTypeScriptNgc(task) {

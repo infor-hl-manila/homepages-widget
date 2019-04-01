@@ -5,8 +5,8 @@ import {
 	ILanguage,
 	IWidgetAction,
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	Log
 } from "lime";
 
@@ -26,9 +26,9 @@ interface IMyLanguage extends ILanguage {
 })
 export class SubmenuComponent implements OnInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 	language: IMyLanguage;
 
 	constructor(private dialogService: DialogService) { }
@@ -65,7 +65,7 @@ export class SubmenuComponent implements OnInit, IWidgetComponent {
 export class SubmenuModule {
 }
 
-export const getActions = (context: IWidgetContext2): IWidgetAction[] => {
+export const getActions = (context: IWidgetContext): IWidgetAction[] => {
 	const language = context.getLanguage();
 	return [{
 		isSubmenu: true,

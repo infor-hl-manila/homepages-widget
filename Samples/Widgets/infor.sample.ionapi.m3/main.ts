@@ -5,8 +5,8 @@ import { SohoListViewModule, SohoMessageService } from "@infor/sohoxi-angular";
 import {
 	IIonApiRequestOptions,
 	IWidgetComponent,
-	IWidgetContext2,
-	IWidgetInstance2,
+	IWidgetContext,
+	IWidgetInstance,
 	Log,
 	WidgetState
 	} from "lime";
@@ -84,9 +84,9 @@ interface IListItem {
 })
 export class IonApiM3Component implements IWidgetComponent, OnInit {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	customerItems: IListItem[];
 

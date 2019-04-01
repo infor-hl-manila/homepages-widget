@@ -32,11 +32,11 @@ export declare class SohoWizardComponent implements AfterViewInit, AfterContentI
     ngAfterViewInit(): void;
     ngAfterContentInit(): void;
     ngOnDestroy(): void;
-    private onActivated(tick);
-    private onBeforeActivate(tick);
-    private stepCount();
-    private steps();
-    private stepAt(index);
-    private currentIndex();
-    private currentStep();
+    private onActivated;
+    private onBeforeActivate;
+    private stepCount;
+    private steps;
+    private stepAt;
+    private currentIndex;
+    private currentStep;
 }

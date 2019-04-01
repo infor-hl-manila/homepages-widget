@@ -1,7 +1,8 @@
 /// <reference path="soho-homepage.d.ts" />
-import { AfterViewInit, ElementRef } from '@angular/core';
-export declare class SohoHomePageComponent implements AfterViewInit {
+import { AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+export declare class SohoHomePageComponent implements AfterViewInit, OnDestroy {
     private elementRef;
+    private ngZone;
     homePageOptions: SohoHomePageOptions;
     columns: number;
     gutterSize: number;
@@ -14,6 +15,7 @@ export declare class SohoHomePageComponent implements AfterViewInit {
     private jQueryElement;
     private homePage;
     private _homePageOptions;
-    constructor(elementRef: ElementRef);
+    constructor(elementRef: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngOnDestroy(): void;
 }

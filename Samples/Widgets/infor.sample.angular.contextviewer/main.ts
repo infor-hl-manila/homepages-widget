@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoTextAreaModule } from "@infor/sohoxi-angular";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 
 @Component({
 	template: `
@@ -11,8 +11,8 @@ import { IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
 	</div>`
 })
 export class ContextViewerComponent implements AfterViewInit, IWidgetComponent {
-	@Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 	messageData: string;
 
 	private messageType: string;

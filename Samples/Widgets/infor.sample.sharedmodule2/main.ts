@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoButtonModule } from "@infor/sohoxi-angular";
-import { IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log, WidgetState } from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
 import { IUserContext, userContextProviders, UserContextService } from "sample-shared-usercontext";
 
 @Component({
@@ -54,8 +54,8 @@ import { IUserContext, userContextProviders, UserContextService } from "sample-s
 	]
 })
 export class SharedModuleSampleTwoComponent implements IWidgetComponent {
-	@Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	userContext: IUserContext;
 

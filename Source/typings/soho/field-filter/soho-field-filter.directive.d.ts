@@ -18,5 +18,5 @@ export declare class SohoFieldFilterDirective implements AfterViewChecked, After
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     markForRefresh(): void;
-    private onFiltered(event, args);
+    private onFiltered;
 }

@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, NgZone, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoAccordionModule, SohoButtonModule, SohoLabelModule, SohoRadioButtonModule } from "@infor/sohoxi-angular";
-import { IDevice, IGetNetworkResult, IGetSensorsResult, IMapCoordinates, IMediaSource, IWidgetComponent, IWidgetContext2, IWidgetInstance2 } from "lime";
+import { IDevice, IGetNetworkResult, IGetSensorsResult, IMapCoordinates, IMediaSource, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 import { Observable, Observer, Subject } from "rxjs";
 import { map, scan, switchMap } from "rxjs/operators";
 
@@ -119,15 +119,7 @@ export interface ILogEntry {
 				</div>
 			</soho-accordion-pane>
 
-			<soho-accordion-header>Logs</soho-accordion-header>
-			<soho-accordion-pane>
-				<div class="accordion-content">
-					<button soho-button="tertiary" (click)="initLogging()">Clear</button>
-					<div class="log-container">
-						<p *ngFor="let logEntry of logs$ | async" [class.error-msg]="logEntry.isError">{{logEntry.message}}</p>
-					</div>
-				</div>
-			</soho-accordion-pane>
+			
 		</soho-accordion>
 	`,
 	styles: [`
@@ -144,8 +136,8 @@ export interface ILogEntry {
 	`]
 })
 export class MobileWidgetComponent implements IWidgetComponent, OnInit {
-	@Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	imageSource: IMediaSource = "all";
 	videoSource: IMediaSource = "all";

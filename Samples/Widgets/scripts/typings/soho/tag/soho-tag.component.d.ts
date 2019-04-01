@@ -9,7 +9,7 @@ export declare class SohoTagListComponent implements AfterViewInit, OnDestroy {
     private jQueryElement;
     constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
-    private onAfterTagRemove(e);
+    private onAfterTagRemove;
     ngOnDestroy(): void;
 }
 export declare class SohoTagComponent implements AfterViewInit, OnDestroy {
@@ -36,8 +36,8 @@ export declare class SohoTagComponent implements AfterViewInit, OnDestroy {
     private tag;
     constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
-    private onBeforeTagRemove(event, element);
-    private onClick(event);
+    private onBeforeTagRemove;
+    private onClick;
     updated(): void;
     ngOnDestroy(): void;
 }

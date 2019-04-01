@@ -1,7 +1,8 @@
 /// <reference path="soho-chart.d.ts" />
-import { AfterViewInit, ElementRef, OnDestroy, EventEmitter } from '@angular/core';
-export declare class SohoChartComponent implements AfterViewInit, OnDestroy {
+import { AfterViewInit, ElementRef, OnDestroy, EventEmitter, NgZone, AfterViewChecked } from '@angular/core';
+export declare class SohoChartComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private elementRef;
+    private ngZone;
     chartOptions: SohoChartOptions;
     selectedIndex: number;
     dataSet: SohoDataSet;
@@ -21,8 +22,10 @@ export declare class SohoChartComponent implements AfterViewInit, OnDestroy {
     private _chartOptions;
     private jQueryElement;
     private chart;
-    constructor(elementRef: ElementRef);
+    private updateRequired;
+    constructor(elementRef: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
     getChartOptions(): SohoChartOptions;
     updated(): void;

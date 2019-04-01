@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule, NgZone } from "@angular/core";
-import { ILanguage, IWidgetComponent, IWidgetContext2, IWidgetInstance2, Log, StringUtil } from "lime";
+import { ILanguage, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, StringUtil } from "lime";
 
 interface IPerson {
 	id: number;
@@ -40,9 +40,9 @@ interface IMyLanguage extends ILanguage {
 })
 export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 	@Input()
-	widgetContext: IWidgetContext2;
+	widgetContext: IWidgetContext;
 	@Input()
-	widgetInstance: IWidgetInstance2;
+	widgetInstance: IWidgetInstance;
 
 	person: IPerson;
 	language: IMyLanguage;

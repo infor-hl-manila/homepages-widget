@@ -17,5 +17,5 @@ export declare class SohoIconComponent {
     private _alert;
     private _icon;
     constructor(elementRef: ElementRef, renderer: Renderer2);
-    private setAlertIcon();
+    private setAlertIcon;
 }
