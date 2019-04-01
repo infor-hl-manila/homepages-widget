@@ -3,7 +3,7 @@ name: Support Request
 about: Create a support request for repository maintenance.
 title: ''
 labels: 'Support: Request'
-assignees: tjamesallen15
+assignees: ericangeles tjamesallen15
 
 ---
 
