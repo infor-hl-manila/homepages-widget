@@ -98,6 +98,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#customiconname" class="tsd-kind-icon">custom<wbr>Icon<wbr>Name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#execute" class="tsd-kind-icon">execute</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#isenablednotconfigured" class="tsd-kind-icon">is<wbr>Enabled<wbr>Not<wbr>Configured</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#isprimary" class="tsd-kind-icon">is<wbr>Primary</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#isseparator" class="tsd-kind-icon">is<wbr>Separator</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_lime_.iwidgetaction.html#issubmenu" class="tsd-kind-icon">is<wbr>Submenu</a></li>
@@ -118,7 +119,7 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Icon<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:397</li>
+							<li>Defined in lime.ts:411</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,7 +134,7 @@
 					<div class="tsd-signature tsd-kind-icon">execute<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:348</li>
+							<li>Defined in lime.ts:349</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -148,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:355</li>
+							<li>Defined in lime.ts:356</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,12 +160,37 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="isenablednotconfigured" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Enabled<wbr>Not<wbr>Configured</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Enabled<wbr>Not<wbr>Configured<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in lime.ts:370</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets or sets a value that indicates if the action should be available
+							even if the widget is not configured.</p>
+						</div>
+						<p>Actions are normally not available when a widget that requires configuration is not configured.
+							This property can be used to override this behavior for specific actions that can still be used
+						when the widget is not configured.</p>
+						<p>The default value is false.</p>
+						<dl class="tsd-comment-tags">
+							<dt>since</dt>
+							<dd><p>1.0.34</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="isprimary" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Primary</h3>
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Primary<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:385</li>
+							<li>Defined in lime.ts:399</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:370</li>
+							<li>Defined in lime.ts:384</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -196,7 +222,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Submenu<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:379</li>
+							<li>Defined in lime.ts:393</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -217,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:363</li>
+							<li>Defined in lime.ts:377</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">standard<wbr>Icon<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:391</li>
+							<li>Defined in lime.ts:405</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -248,7 +274,7 @@
 					<div class="tsd-signature tsd-kind-icon">submenu<wbr>Items<span class="tsd-signature-symbol">:</span> <a href="_lime_.iwidgetaction.html" class="tsd-signature-type">IWidgetAction</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:404</li>
+							<li>Defined in lime.ts:418</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -268,7 +294,7 @@
 					<div class="tsd-signature tsd-kind-icon">text<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in lime.ts:343</li>
+							<li>Defined in lime.ts:344</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -305,6 +331,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetaction.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_lime_.iwidgetaction.html#isenablednotconfigured" class="tsd-kind-icon">is<wbr>Enabled<wbr>Not<wbr>Configured</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetaction.html#isprimary" class="tsd-kind-icon">is<wbr>Primary</a>

@@ -60,7 +60,7 @@
 					<a href="_lime_.iwidgetsettings.html">IWidgetSettings</a>
 				</li>
 			</ul>
-			<h1>Interface IWidgetSettings</h1>
+			<h1>Interface IWidgetSettings&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -80,6 +80,14 @@
 					</dl>
 				</div>
 			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -98,14 +106,14 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#enablesettingsmenu" class="tsd-kind-icon">enable<wbr>Settings<wbr>Menu</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#get" class="tsd-kind-icon">get</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#getstring" class="tsd-kind-icon">get<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#getstring" class="tsd-kind-icon">get<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#getvalues" class="tsd-kind-icon">get<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#hasmandatory" class="tsd-kind-icon">has<wbr>Mandatory</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#ismandatory" class="tsd-kind-icon">is<wbr>Mandatory</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#issettingenabled" class="tsd-kind-icon">is<wbr>Setting<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#issettingvisible" class="tsd-kind-icon">is<wbr>Setting<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#ismandatory" class="tsd-kind-icon">is<wbr>Mandatory</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#issettingenabled" class="tsd-kind-icon">is<wbr>Setting<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#issettingvisible" class="tsd-kind-icon">is<wbr>Setting<wbr>Visible</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#issettingsenabled" class="tsd-kind-icon">is<wbr>Settings<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#set" class="tsd-kind-icon">set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_lime_.iwidgetsettings.html#set" class="tsd-kind-icon">set</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#setmetadata" class="tsd-kind-icon">set<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#setvalues" class="tsd-kind-icon">set<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_lime_.iwidgetsettings.html#showsettings" class="tsd-kind-icon">show<wbr>Settings</a></li>
@@ -126,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1906</li>
+									<li>Defined in lime.ts:1992</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -152,42 +160,81 @@
 					<a name="get" class="tsd-anchor"></a>
 					<h3>get</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">get&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">get&lt;V, N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">N</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">V[N]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">V[N]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get&lt;RT&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RT</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RT</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1837</li>
+									<li>Defined in lime.ts:1914</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets a property of type T.</p>
+									<p>Gets a property.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>T</h4>
+									<h4>V<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NonNullable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								</li>
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof V</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">string</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <span class="tsd-signature-type">N</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The name of the property.</p>
+										<p>The name of the property. Must be a valid property name of T.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">T</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">V[N]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Optional default value to return if the property is missing.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">V[N]</span></h4>
+							<p>The property value or the default value.</p>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in lime.ts:1922</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a property of type RT.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>RT</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> defaultValue: <span class="tsd-signature-type">RT</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional default value to return if the property is missing.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RT</span></h4>
 							<p>The property value or the default value.</p>
 						</li>
 					</ul>
@@ -202,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1819</li>
+									<li>Defined in lime.ts:1896</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -215,17 +262,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 					<a name="getstring" class="tsd-anchor"></a>
 					<h3>get<wbr>String</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>String<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>String&lt;N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span>, defaultValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1858</li>
+									<li>Defined in lime.ts:1944</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -234,10 +281,16 @@
 								</div>
 								<p>If the property value is not a string it will be converted to a string by this function.</p>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof Nullable&lt;T&gt;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The name of the property.</p>
 									</div>
@@ -258,13 +311,13 @@
 					<a name="getvalues" class="tsd-anchor"></a>
 					<h3>get<wbr>Values</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Values<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Values<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1804</li>
+									<li>Defined in lime.ts:1881</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +326,7 @@
 								</div>
 								<p>This object can be used directly instead of using the get/set functions if necessary.</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The settings value object.</p>
 						</li>
 					</ul>
@@ -288,7 +341,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1911</li>
+									<li>Defined in lime.ts:1997</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,17 +355,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 					<a name="ismandatory" class="tsd-anchor"></a>
 					<h3>is<wbr>Mandatory</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Mandatory<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Mandatory&lt;N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1916</li>
+									<li>Defined in lime.ts:2002</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,27 +375,33 @@
 									</dd>
 								</dl>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof Nullable&lt;T&gt;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 					<a name="issettingenabled" class="tsd-anchor"></a>
 					<h3>is<wbr>Setting<wbr>Enabled</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Setting<wbr>Enabled<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Setting<wbr>Enabled&lt;N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1888</li>
+									<li>Defined in lime.ts:1974</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -352,10 +411,16 @@
 								<p>A setting might be disabled for a published widget.
 								A widget implementation with custom settings management should check if a setting is enabled or not.</p>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof Nullable&lt;T&gt;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The name of the setting</p>
 									</div>
@@ -366,17 +431,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 					<a name="issettingvisible" class="tsd-anchor"></a>
 					<h3>is<wbr>Setting<wbr>Visible</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Setting<wbr>Visible<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Setting<wbr>Visible&lt;N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1899</li>
+									<li>Defined in lime.ts:1985</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,10 +451,16 @@
 								<p>A setting might be hidden for a published widget.
 								A widget implementation with custom settings management should check if a setting is hidden or not.</p>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof Nullable&lt;T&gt;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The name of the setting</p>
 									</div>
@@ -410,7 +481,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1877</li>
+									<li>Defined in lime.ts:1963</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -425,17 +496,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 					<a name="set" class="tsd-anchor"></a>
 					<h3>set</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">set&lt;N&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T[N]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1847</li>
+									<li>Defined in lime.ts:1932</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,16 +515,22 @@
 								</div>
 								<p>Note that the value must be possible to serialize to JSON.</p>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof Nullable&lt;T&gt;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<h5>name: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The name of the setting.</p>
 									</div>
 								</li>
 								<li>
-									<h5>value: <span class="tsd-signature-type">any</span></h5>
+									<h5>value: <span class="tsd-signature-type">T[N]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The setting value.</p>
 									</div>
@@ -473,7 +550,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1828</li>
+									<li>Defined in lime.ts:1905</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -499,13 +576,13 @@
 					<a name="setvalues" class="tsd-anchor"></a>
 					<h3>set<wbr>Values</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Values<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Values<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1813</li>
+									<li>Defined in lime.ts:1890</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -517,7 +594,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>values: <span class="tsd-signature-type">any</span></h5>
+									<h5>values: <a href="../modules/_lime_.html#nullable" class="tsd-signature-type">Nullable</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The settings value object.</p>
 									</div>
@@ -537,7 +614,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in lime.ts:1869</li>
+									<li>Defined in lime.ts:1955</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -578,7 +655,7 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_lime_.iwidgetsettings.html" class="tsd-kind-icon">IWidget<wbr>Settings</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -590,7 +667,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetsettings.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_lime_.iwidgetsettings.html#getstring" class="tsd-kind-icon">get<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
@@ -599,19 +676,19 @@
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetsettings.html#hasmandatory" class="tsd-kind-icon">has<wbr>Mandatory</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_lime_.iwidgetsettings.html#ismandatory" class="tsd-kind-icon">is<wbr>Mandatory</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_lime_.iwidgetsettings.html#issettingenabled" class="tsd-kind-icon">is<wbr>Setting<wbr>Enabled</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_lime_.iwidgetsettings.html#issettingvisible" class="tsd-kind-icon">is<wbr>Setting<wbr>Visible</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_lime_.iwidgetsettings.html#issettingsenabled" class="tsd-kind-icon">is<wbr>Settings<wbr>Enabled</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_lime_.iwidgetsettings.html#set" class="tsd-kind-icon">set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
