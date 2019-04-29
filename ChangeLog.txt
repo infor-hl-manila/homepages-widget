@@ -1,3 +1,11 @@
+Version 1.0.36
+
+Version 1.0.34
+- Added Widget ZIP validator.
+- Added getMode and getSubMode to IWidgetContext to be able to get the mode the widget is running in (Default, Mobile etc.)
+- Added support for Early Access widgets, including manifest properties isEarlyAccess and EarlyAccessInfo.
+- Added wrapper methods send, receive on IWidgetContext that should be used instead of accessing infor.companyon.client directly.
+
 Version 1.0.32
 - Removed support for AngularJS widgets (which was deprecated in version 1.0.17).
 - Remove the following interfaces, properties and functions related to AngularJS: IAngularContext, IAngularScopeValue, IAngularTemplateInfo, IDialogService, IDialogOptions.scope, IDialogOptions.template, IDialogOptions.templateUrl
@@ -11,8 +19,8 @@ Version 1.0.30
 - Updated IDS Enterprise to 4.11.0
 
 Version 1.0.29
-- Added tenant widget sample, tenant.sample.angular.helloworld
-- Added technology disclaimer that tenant widgets might require regular code changes due to updates of dependencies
+- Added tenant widget sample, tenant.sample.angular.helloworld.
+- Added technology disclaimer that tenant widgets might require regular code changes due to updates of dependencies.
 
 Version 1.0.28
 - Added optional destroy function on IWidgetInstance and IWidgetInstance2.
