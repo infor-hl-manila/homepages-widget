@@ -1,4 +1,4 @@
-import { IIonApiRequestOptions, IIonApiResponse, IWidgetContext } from "lime";
+import { IWidgetContext } from "lime";
 import { AsyncSubject } from "rxjs/AsyncSubject";
 import { Observable } from "rxjs/Observable";
 
@@ -59,15 +59,15 @@ export class UserContextService {
 
 		// *** Using mock data for sample ***
 		setTimeout(() => {
-				const userContext = {
-					name: "Hulk Holding",
-					userId: "hholding",
-					department: "Dept. A",
-					area: "10"
-				};
-				this.userContext = userContext;
-				this.resolve(pending, userContext);
-			},
+			const userContext = {
+				name: "Hulk Holding",
+				userId: "hholding",
+				department: "Dept. A",
+				area: "10"
+			};
+			this.userContext = userContext;
+			this.resolve(pending, userContext);
+		},
 			3000);
 	}
 

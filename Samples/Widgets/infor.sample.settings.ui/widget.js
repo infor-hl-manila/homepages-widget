@@ -47,7 +47,7 @@ define(["require", "exports"], function (require, exports) {
          * Updates the color of the SVG icon.
          */
         SettingsSample.prototype.updateColor = function () {
-            this.svg.css("fill", this.getColor());
+            this.svg.css("color", this.getColor());
         };
         /**
          * Saves the color setting value and updates the content with the new color.

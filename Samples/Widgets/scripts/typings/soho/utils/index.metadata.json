@@ -1,1 +1,1 @@
-[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./argument.helper"},{"from":"./base-control-value-accessor"},{"from":"./deprecated-event-emitter"},{"from":"./soho-icon.utils"}]}]
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./argument.helper"},{"from":"./base-control-value-accessor"},{"from":"./deprecated-event-emitter"},{"from":"./soho-icon.utils"},{"from":"./test.helper"}]}]

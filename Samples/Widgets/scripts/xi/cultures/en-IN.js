@@ -22,7 +22,9 @@ Soho.Locale.addCulture('en-IN', {
       month: 'd MMMM',
       year: 'MMMM, yyyy',
       timestamp: 'h:mm:ss a',
-      datetime: 'dd/MM/yyyy h:mm a'
+      datetime: 'dd/MM/yyyy h:mm a',
+      timezone: 'dd/MM/yyyy h:mm a zz',
+      timezoneLong: 'dd/MM/yyyy h:mm a zzzz'
     }, // Infered short + short gregorian/dateTimeFormats
     // ca-gregorian/main/dates/calendars/gregorian/days/format/short or abbreviated (2 digit)
     days: {
@@ -42,14 +44,15 @@ Soho.Locale.addCulture('en-IN', {
   }],
   // numbers/currencyFormats-numberSystem-latn/standard
   currencySign: '₹',
-  currencyFormat: '#,##,##0%',
+  currencyFormat: '###%',
   // numbers/symbols-numberSystem-latn
   numbers: {
     percentSign: '%',
-    percentFormat: '#,##0 %',
+    percentFormat: '### %',
     minusSign: '-',
     decimal: '.',
-    group: ','
+    group: ',',
+    groupSizes: [3, 2]
   },
   messages: {
     AboutText: { id: 'AboutText', value: 'Copyright &copy; {0} Infor. All rights reserved. The word and design marks set forth herein are trademarks and/or registered trademarks of Infor and/or its affiliates and subsidiaries. All rights reserved. All other trademarks listed herein are the property of their respective owners' },

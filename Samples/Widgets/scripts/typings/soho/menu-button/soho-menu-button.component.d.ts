@@ -35,7 +35,7 @@ export declare class SohoMenuButtonComponent implements AfterViewInit, AfterView
     updated(): void;
     teardown(): void;
     close(): void;
-    open(event: JQuery.Event, ajaxReturn?: boolean, useDelay?: boolean): void;
+    open(event: JQuery.TriggeredEvent, ajaxReturn?: boolean, useDelay?: boolean): void;
     ngOnDestroy(): void;
     markForRefresh(): void;
 }

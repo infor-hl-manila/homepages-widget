@@ -11,7 +11,7 @@ export declare class SohoPersonalizeDirective implements AfterViewInit, OnDestro
     changecolors: EventEmitter<SohoChangeColorsPersonalizeEvent>;
     constructor(ngZone: NgZone);
     ngAfterViewInit(): void;
-    onChangeTheme(e: JQuery.Event, theme: string): void;
-    onChangeColors(e: JQuery.Event, colors: any): void;
+    onChangeTheme(e: JQuery.TriggeredEvent, theme: string): void;
+    onChangeColors(e: JQuery.TriggeredEvent, colors: any): void;
     ngOnDestroy(): void;
 }

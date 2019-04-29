@@ -106,21 +106,17 @@ const persons: IPerson[] = [
 	</soho-listview>`
 })
 export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	persons: IPerson[];
 
-	private instanceId: string;
 	private pageId: string;
 	private messageType: string;
 	private logPrefix: string;
 
 	ngAfterViewInit(): void {
 		const widgetContext = this.widgetContext;
-		this.instanceId = widgetContext.getWidgetInstanceId();
 		this.pageId = widgetContext.getPageId();
 		this.logPrefix = `[${widgetContext.getId()}] `;
 
@@ -137,7 +133,7 @@ export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
 
 	sendMessage(person: IPerson): void {
 		if (person) {
-			infor.companyon.client.sendMessage(this.messageType, person);
+			this.widgetContext.send(this.messageType, person);
 
 			Log.debug(this.logPrefix + "Message sent for message type: " + this.messageType);
 		}

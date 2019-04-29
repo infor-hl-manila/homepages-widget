@@ -7,9 +7,8 @@ export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 			moduleType: EmptyStateModule,
 			componentType: EmptyStateComponent
 		},
-		isConfigured: () : boolean => {
-			if(context.getSettings().get<string>("Message"))
-			{
+		isConfigured: (): boolean => {
+			if (context.getSettings().get<string>("Message")) {
 				return true;
 			} else {
 				return false;

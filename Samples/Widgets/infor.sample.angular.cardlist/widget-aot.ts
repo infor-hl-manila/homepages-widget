@@ -1,4 +1,4 @@
-﻿import { IWidgetContext, IWidgetInstance, } from "lime";
+﻿import { IWidgetContext, IWidgetInstance } from "lime";
 import { CardListComponent } from "./main";
 import { CardListModuleNgFactory } from "./main.ngfactory";
 

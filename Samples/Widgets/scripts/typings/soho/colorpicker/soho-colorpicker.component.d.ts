@@ -17,6 +17,7 @@ export declare class SohoColorPickerComponent implements AfterViewInit, AfterVie
     private isReadOnly;
     private isShowLabel;
     private isColorOnly;
+    private hasCustomColor;
     private clearableTextString;
     private options;
     colors: Array<SohoColorOption>;
@@ -24,6 +25,7 @@ export declare class SohoColorPickerComponent implements AfterViewInit, AfterVie
     editable: boolean;
     uppercase: boolean;
     clearable: boolean;
+    customColors: boolean;
     colorOnly: boolean;
     clearableText: string;
     readonly: boolean;

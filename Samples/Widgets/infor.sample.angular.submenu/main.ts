@@ -1,14 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit } from "@angular/core";
-import {
-	DialogService,
-	ILanguage,
-	IWidgetAction,
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	Log
-} from "lime";
+import { DialogService, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, Log } from "lime";
 
 interface IMyLanguage extends ILanguage {
 	widgetText?: string;

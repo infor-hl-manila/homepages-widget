@@ -5,29 +5,8 @@
  * events such as Angular change detection.
  */
 
-import {
-	AfterContentChecked,
-	AfterContentInit,
-	AfterViewChecked,
-	AfterViewInit,
-	Component,
-	DoCheck,
-	Inject,
-	Input,
-	OnChanges,
-	OnDestroy,
-	OnInit,
-	SimpleChanges,
-} from "@angular/core";
-import {
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	IWidgetSettingsArg,
-	Log,
-	widgetContextInjectionToken,
-	widgetInstanceInjectionToken,
-} from "lime";
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Inject, OnChanges, OnDestroy, OnInit, SimpleChanges } from "@angular/core";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetSettingsArg, Log, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
 
 interface ILoggedEvent {
 	time: number;
@@ -88,17 +67,17 @@ export class LifecycleComponent implements IWidgetComponent, OnInit, AfterViewIn
 		 * 	this.widgetInstance.foo = (args: Bar) => this.foo(args);
 		 */
 		const instance = this.widgetInstance;
-		instance.activated = this.activated.bind(this);
-		instance.deactivated = this.deactivated.bind(this);
-		instance.isConfigured = this.isConfigured.bind(this);
-		instance.settingsOpening = this.settingsOpening.bind(this);
-		instance.settingsSaved = this.settingsSaved.bind(this);
-		instance.editing = this.editing.bind(this);
-		instance.edited = this.edited.bind(this);
-		instance.publishing = this.publishing.bind(this);
-		instance.refreshed = this.refreshed.bind(this);
-		instance.restored = this.restored.bind(this);
-		instance.bannerBackgroundChanged = this.bannerBackgroundChanged.bind(this);
+		instance.activated = () => this.activated();
+		instance.deactivated = () => this.deactivated();
+		instance.isConfigured = () => this.isConfigured();
+		instance.settingsOpening = () => this.settingsOpening();
+		instance.settingsSaved = (arg) => this.settingsSaved(arg);
+		instance.editing = () => this.editing();
+		instance.edited = () => this.edited();
+		instance.publishing = () => this.publishing();
+		instance.refreshed = () => this.refreshed();
+		instance.restored = () => this.restored();
+		instance.bannerBackgroundChanged = (color) => this.bannerBackgroundChanged(color);
 
 		if (this.isConfigured()) {
 			this.startAsyncOperation();

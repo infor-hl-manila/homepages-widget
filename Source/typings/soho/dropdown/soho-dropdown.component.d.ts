@@ -32,7 +32,7 @@ export declare class SohoDropDownComponent implements AfterViewInit, AfterViewCh
     noSearch: boolean;
     source: SohoDropDownSourceFunction | Object | string;
     showSelectAll: boolean;
-    change: EventEmitter<JQuery.Event>;
+    change: EventEmitter<JQuery.TriggeredEvent>;
     updatedEvent: EventEmitter<Object>;
     readonly id: string;
     readonly isMultiple: boolean;

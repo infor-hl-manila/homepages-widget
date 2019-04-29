@@ -17,7 +17,7 @@ export declare class SohoFileUploadAdvancedComponent implements AfterViewInit, O
     textBtnCancel: string;
     textBtnCloseError: string;
     textBtnRemove: string;
-    filesdragenter: EventEmitter<JQuery.Event<EventTarget, null>>;
+    filesdragenter: EventEmitter<JQuery.TriggeredEvent<any, any, any, any>>;
     filesdropped: EventEmitter<File[]>;
     beforecreatestatus: EventEmitter<File[]>;
     aftercreatestatus: EventEmitter<File[]>;

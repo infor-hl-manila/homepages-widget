@@ -1,14 +1,7 @@
 import { CommonModule } from "@angular/common";
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, Input, NgModule, OnInit } from "@angular/core";
-import {
-	IIonApiRequestOptions,
-	IIonApiResponse,
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	WidgetMessageType,
-	WidgetState
-} from "lime";
+import { IIonApiRequestOptions, IIonApiResponse, IWidgetComponent, IWidgetContext, IWidgetInstance, WidgetMessageType, WidgetState } from "lime";
 import { AsyncSubject } from "rxjs/AsyncSubject";
 import { Observable } from "rxjs/Observable";
 
@@ -171,7 +164,7 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	private loadUser(): void {
 		dataService.loadUser().subscribe(response => {
 			this.updateUser(response.data);
-		}, (error) => {
+		}, (error: HttpErrorResponse) => {
 			this.onRequestError(error);
 		});
 	}
@@ -186,7 +179,7 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	private loadPhoto(): void {
 		dataService.loadPhoto(this.user.UserGUID).subscribe(response => {
 			this.updatePhoto(response.data);
-		}, (error) => {
+		}, (error: HttpErrorResponse) => {
 			this.onRequestError(error);
 		});
 	}
@@ -200,7 +193,7 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 		reader.readAsDataURL(response);
 	}
 
-	private onRequestError(error: {}): void {
+	private onRequestError(error: HttpErrorResponse): void {
 		this.widgetContext.showWidgetMessage({
 			message: "Failed to call ION API: " + JSON.stringify(error),
 			type: WidgetMessageType.Error

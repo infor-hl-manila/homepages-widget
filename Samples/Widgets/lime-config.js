@@ -20,7 +20,6 @@
 		"lime": "scripts/lime/core/lime.js",
 		"lime/core": "scripts/lime/core/index",
 		"lime.common": "scripts/lime/common/common.module-aot",
-		"lime.mobile": "scripts/lime/mobile/mobile.module-aot",
 		"main": "scripts/lime/core/main-aot.js",
 		"rxjs/operators/": "node_modules/rxjs/operators/",
 		"rxjs/operators": "node_modules/rxjs/operators/index.js",
@@ -104,6 +103,9 @@
 			defaultExtension: "js"
 		},
 		"infor.sample.w2wreceiver": {
+			defaultExtension: "js"
+		},
+		"infor.sample.ids.test": {
 			defaultExtension: "js"
 		}
 	}

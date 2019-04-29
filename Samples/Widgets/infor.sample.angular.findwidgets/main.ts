@@ -2,17 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoListViewModule, SohoModalDialogService } from "@infor/sohoxi-angular";
-import {
-	IFindWidgetOptions,
-	ILanguage,
-	IWidgetAction,
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	IWidgetInstanceInfo,
-	Log,
-	WidgetMessageType,
-} from "lime";
+import { IFindWidgetOptions, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetInstanceInfo, Log, WidgetMessageType } from "lime";
 
 @Component({
 	template: `

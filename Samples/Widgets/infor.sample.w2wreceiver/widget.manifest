@@ -18,8 +18,7 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Widget-to-Widget Receiver",
-			"widgetDescription":
-				"Sample inline widget for receiving and displaying messages from widgets sending messages for a specific message type.",
+			"widgetDescription": "Sample inline widget for receiving and displaying messages from widgets sending messages for a specific message type.",
 			"messageType": "Message type",
 			"title": "Title",
 			"status": "Status",

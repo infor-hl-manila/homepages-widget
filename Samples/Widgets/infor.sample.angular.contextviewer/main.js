@@ -22,15 +22,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             this.registerHandler();
         };
         ContextViewerComponent.prototype.registerHandler = function () {
+            var _this = this;
             // Unregister any existing handler
-            if (this.messageType) {
-                infor.companyon.client.unRegisterMessageHandler(this.messageType);
+            if (this.messageSubscription) {
+                this.messageSubscription.unsubscribe();
             }
             // Register a handler with the message type defined in settings
             this.messageType = this.widgetContext.getSettings().getString("MessageType");
-            var self = this;
-            infor.companyon.client.registerMessageHandler(this.messageType, function (data) {
-                self.messageData = JSON.stringify(data, null, 3);
+            this.messageSubscription = this.widgetContext.receive(this.messageType).subscribe(function (data) {
+                _this.messageData = JSON.stringify(data, null, 3);
             });
         };
         __decorate([

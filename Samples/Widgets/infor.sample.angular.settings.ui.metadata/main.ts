@@ -9,22 +9,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit, ViewChild } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {
-	SohoBusyIndicatorDirective,
-	SohoBusyIndicatorModule,
-	SohoButtonModule,
-	SohoColorPickerModule,
-	SohoDropDownModule
-	} from "@infor/sohoxi-angular";
-import {
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	IWidgetSettings,
-	IWidgetSettingsComponent,
-	IWidgetSettingsContext2,
-	IWidgetSettingsInstance2,
-	} from "lime";
+import { SohoBusyIndicatorDirective, SohoBusyIndicatorModule, SohoButtonModule, SohoColorPickerModule, SohoDropDownModule } from "@infor/sohoxi-angular";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetSettings, IWidgetSettingsComponent, IWidgetSettingsContext2, IWidgetSettingsInstance2 } from "lime";
 
 interface ITextStyle {
 	fontWeight?: string;
@@ -224,11 +210,11 @@ export class SettingsComponent implements IWidgetSettingsComponent, OnInit {
 	private fetchStyleSettingsAsync(): void {
 		this.busyIndicator.activated = true;
 		setTimeout(() => {
-				const settings = this.widgetSettingsContext.getWidgetContext().getSettings();
-				this.textStyleOptions = ["Normal", "Italic", "Bold"];
-				this.textStyle = settings.get<string>(SettingKeys.textStyle);
-				this.busyIndicator.activated = false;
-			},
+			const settings = this.widgetSettingsContext.getWidgetContext().getSettings();
+			this.textStyleOptions = ["Normal", "Italic", "Bold"];
+			this.textStyle = settings.get<string>(SettingKeys.textStyle);
+			this.busyIndicator.activated = false;
+		},
 			3000);
 	}
 

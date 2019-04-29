@@ -1,4 +1,4 @@
-import { IWidgetContext, IWidgetInstance, } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 import { CardListComponent, CardListModule } from "./main";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {

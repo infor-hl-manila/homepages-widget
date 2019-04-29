@@ -1,12 +1,16 @@
 /// <reference path="soho-accordion.d.ts" />
-import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, QueryList } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy, QueryList } from '@angular/core';
 import { SohoAccordionHeaderComponent } from './soho-accordion-header.component';
-export declare class SohoAccordionComponent implements AfterViewInit, OnDestroy {
+import { SohoAccordionPaneComponent } from './soho-accordion-pane.component';
+export declare class SohoAccordionComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
+    private ngZone;
     headers: QueryList<SohoAccordionHeaderComponent>;
-    private options;
+    panes: QueryList<SohoAccordionPaneComponent>;
+    options: SohoAccordionOptions;
     private jQueryElement;
     private accordion;
+    private updateRequired;
     beforeexpandEvent: EventEmitter<any>;
     beforecollapseEvent: EventEmitter<any>;
     beforeselectEvent: EventEmitter<any>;
@@ -23,8 +27,9 @@ export declare class SohoAccordionComponent implements AfterViewInit, OnDestroy 
     hasPanels: boolean;
     inverse: boolean;
     alternate: boolean;
+    enableTooltips: boolean;
     hasSubheaderSeparators: boolean;
-    constructor(element: ElementRef);
+    constructor(element: ElementRef, ngZone: NgZone);
     getHeader(index: number): SohoAccordionHeaderComponent;
     expand(header: SohoAccordionHeaderComponent): void;
     collapse(header: SohoAccordionHeaderComponent): void;
@@ -32,10 +37,12 @@ export declare class SohoAccordionComponent implements AfterViewInit, OnDestroy 
     collapseAll(): void;
     disable(): void;
     enable(): void;
-    isDisabled(header: SohoAccordionHeaderComponent): void;
-    isExpanded(header: SohoAccordionHeaderComponent): void;
+    isDisabled(header: SohoAccordionHeaderComponent): boolean;
+    isExpanded(header: SohoAccordionHeaderComponent): boolean;
     toggle(header: SohoAccordionHeaderComponent): void;
-    updated(): void;
+    updated(headers?: JQuery[], settings?: SohoAccordionOptions): void;
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
     ngOnDestroy(): void;
+    private markForUpdate;
 }

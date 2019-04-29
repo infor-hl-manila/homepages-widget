@@ -18,8 +18,7 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Widget-to-Widget Sender",
-			"widgetDescription":
-				"Sample inline widget for sending messages to widgets registered to receive messages for a specific message type.",
+			"widgetDescription": "Sample inline widget for sending messages to widgets registered to receive messages for a specific message type.",
 			"messageType": "Message type"
 		}
 	}

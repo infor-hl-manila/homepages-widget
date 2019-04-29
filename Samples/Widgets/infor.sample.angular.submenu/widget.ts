@@ -1,4 +1,4 @@
-import { IWidgetAction, IWidgetContext, IWidgetInstance } from "lime";
+import { IWidgetContext, IWidgetInstance } from "lime";
 import { getActions, SubmenuComponent, SubmenuModule } from "./main";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {

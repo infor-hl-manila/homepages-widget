@@ -3,6 +3,7 @@ import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoTextAreaModule } from "@infor/sohoxi-angular";
 import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
+import { Subscription } from "rxjs";
 
 @Component({
 	template: `
@@ -16,6 +17,7 @@ export class ContextViewerComponent implements AfterViewInit, IWidgetComponent {
 	messageData: string;
 
 	private messageType: string;
+	private messageSubscription?: Subscription;
 
 	ngAfterViewInit() {
 		// Subscribe to the event that is triggered when settings are saved to update message type to subscribe to
@@ -28,15 +30,14 @@ export class ContextViewerComponent implements AfterViewInit, IWidgetComponent {
 
 	private registerHandler(): void {
 		// Unregister any existing handler
-		if (this.messageType) {
-			infor.companyon.client.unRegisterMessageHandler(this.messageType);
+		if (this.messageSubscription) {
+			this.messageSubscription.unsubscribe();
 		}
 
 		// Register a handler with the message type defined in settings
 		this.messageType = this.widgetContext.getSettings().getString("MessageType");
-		const self = this;
-		infor.companyon.client.registerMessageHandler(this.messageType, (data: {}) => {
-			self.messageData = JSON.stringify(data, null, 3);
+		this.messageSubscription = this.widgetContext.receive(this.messageType).subscribe(data => {
+			this.messageData = JSON.stringify(data, null, 3);
 		});
 	}
 }

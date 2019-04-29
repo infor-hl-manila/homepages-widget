@@ -59,7 +59,7 @@ class SettingsSample implements lm.IWidgetInstance {
 	 * Updates the color of the SVG icon.
 	 */
 	private updateColor() {
-		this.svg.css("fill", this.getColor());
+		this.svg.css("color", this.getColor());
 	}
 
 	/**

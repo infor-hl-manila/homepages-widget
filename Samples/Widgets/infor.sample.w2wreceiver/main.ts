@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule, NgZone } from "@angular/core";
+import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { ILanguage, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, StringUtil } from "lime";
+import { Subscription } from "rxjs";
 
 interface IPerson {
 	id: number;
@@ -39,26 +40,20 @@ interface IMyLanguage extends ILanguage {
 	`
 })
 export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	person: IPerson;
 	language: IMyLanguage;
 
-	private instanceId: string;
 	private pageId: string;
 	private messageType: string;
-	private isHandlerRegistered: boolean;
 	private logPrefix: string;
-
-	constructor(private zone: NgZone) {}
+	private messageSubscription?: Subscription;
 
 	ngAfterViewInit(): void {
 		const widgetContext = this.widgetContext;
 		this.language = widgetContext.getLanguage();
-		this.instanceId = widgetContext.getWidgetInstanceId();
 		this.pageId = widgetContext.getPageId();
 		this.logPrefix = `[${widgetContext.getId()}] `;
 
@@ -73,17 +68,18 @@ export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 
 	private registerHandler(messageType: string): void {
 		const callback = (args: IPerson) => this.handleMessage(args);
-		infor.companyon.client.registerMessageHandler(messageType, callback);
+		this.messageSubscription = this.widgetContext.receive(messageType).subscribe(callback);
 		this.messageType = messageType;
-		this.isHandlerRegistered = true;
 
 		Log.debug(this.logPrefix + "Message handler registered for message type: " + messageType);
 	}
 
-	private unregisterHandler(messageType: string): void {
-		infor.companyon.client.unRegisterMessageHandler(messageType);
+	private unregisterHandler(): void {
+		if (this.messageSubscription) {
+			this.messageSubscription.unsubscribe();
+		}
 
-		Log.debug(this.logPrefix + "Message handler unregistered for message type: " + messageType);
+		Log.debug(this.logPrefix + "Message handler unregistered");
 	}
 
 	private updateMessageType(): void {
@@ -91,18 +87,14 @@ export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 		const newMessageType = messageType + this.pageId;
 		const original = this.messageType;
 		if (!StringUtil.isNullOrWhitespace(messageType) && newMessageType !== original) {
-			if (this.isHandlerRegistered) {
-				this.unregisterHandler(original);
-			}
+			this.unregisterHandler();
 			this.registerHandler(newMessageType);
 		}
 	}
 
 	private handleMessage(person: IPerson): void {
 		if (person) {
-			this.zone.run(() => {
-				this.person = person;
-			});
+			this.person = person;
 		}
 
 		Log.debug(this.logPrefix + "Received message from sender widget: " + JSON.stringify(person));

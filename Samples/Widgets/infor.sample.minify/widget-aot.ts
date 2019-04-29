@@ -1,6 +1,6 @@
 ﻿import { IWidgetContext, IWidgetInstance } from "lime";
+import { getActions, MinifySampleComponent } from "./main";
 import { MinifySampleModuleNgFactory } from "./main.ngfactory";
-import { MinifySampleComponent, getActions } from "./main";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 	return {

@@ -3,20 +3,23 @@ import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@ang
 export declare class SohoBlockGridComponent implements AfterViewInit, OnDestroy {
     private element;
     private ngZone;
-    private options;
     readonly isBlockGrid: boolean;
     dataset: Array<any>;
-    selectable: any;
+    selectable: SohoBlockGridSelectable;
     selected: EventEmitter<Object[]>;
     deselected: EventEmitter<Object[]>;
     activated: EventEmitter<Object[]>;
     deactivated: EventEmitter<Object[]>;
+    private options;
     private jQueryElement;
     private blockgrid;
     constructor(element: ElementRef, ngZone: NgZone);
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     updated(settings: any): SohoBlockGridComponent;
+    activateBlock(idx: number): void;
+    deactivateBlock(): void;
+    selectBlocks(idx: number[]): void;
     private onSelected;
     private onDeselected;
     private onActivated;

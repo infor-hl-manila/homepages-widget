@@ -19,9 +19,11 @@ export interface IApplication {
 export interface ICustomProperties {
     [key: string]: any;
 }
-export interface ILanguage {
-    get(id: string): string;
+export interface ILanguage<T = null> extends ISharedLanguage {
+    get(id: T extends null ? string : keyof (T & ISharedLanguage)): string;
     format(text: string, value: string): string;
+}
+interface ISharedLanguage {
     ok: string;
     cancel: string;
     yes: string;
@@ -71,6 +73,7 @@ export interface IWidgetAction {
     text?: string;
     execute?: Function;
     isEnabled?: boolean;
+    isEnabledNotConfigured?: boolean;
     isVisible?: boolean;
     isSeparator?: boolean;
     isSubmenu?: boolean;
@@ -199,7 +202,9 @@ export interface IIonApiContext {
 export interface IWidgetContext {
     getId(): string;
     getSettings(): IWidgetSettings;
+    getSettings<T>(): IWidgetSettings<T>;
     getLanguage(): ILanguage;
+    getLanguage<T extends ILanguage<T>>(): T;
     getElement(): JQuery;
     getUrl(path?: string): string;
     getDevice(): Observable<IDevice>;
@@ -252,12 +257,17 @@ export interface IWidgetContext {
     isWidgetOnPage(options: IFindWidgetOptions): boolean;
     getInforTimeZoneRaw(): string;
     getInforTimeZone(): string;
+    getInforStdTimeZone(): string;
     getInforCurrentLanguage(): string;
     getInforCurrentLocale(): string;
     getInforThemeName(): string;
     getBannerBackgroundColor(): string;
     getContextParameter(parameter: string): string;
     updatePrimaryAction(): void;
+    getMode(): Mode;
+    getSubMode(): SubMode;
+    send(name: string, data: unknown): void;
+    receive(name: string): Observable<unknown>;
 }
 export interface IWidgetContext2 extends IWidgetContext {
 }
@@ -277,21 +287,23 @@ export interface ILaunchOptions {
     url: string;
     resolve?: boolean;
 }
-export interface IWidgetSettings {
-    getValues(): any;
-    setValues(values: any): void;
+declare type Nullable<A, B = any, C = A> = A extends null ? B : C;
+export interface IWidgetSettings<T = null> {
+    getValues(): Nullable<T>;
+    setValues(values: Nullable<T>): void;
     getMetadata(): IWidgetSettingMetadata[];
     setMetadata(metadata: IWidgetSettingMetadata[]): any;
-    get<T>(name: string, defaultValue?: T): T;
-    set(name: string, value: any): void;
-    getString(name: string, defaultValue?: string): string;
+    get<V extends NonNullable<T>, N extends keyof V & string>(name: N, defaultValue?: V[N]): V[N];
+    get<RT>(name: Nullable<T, string, never>, defaultValue?: RT): RT;
+    set<N extends keyof Nullable<T>>(name: Nullable<T, string, N>, value: Nullable<T>[N]): void;
+    getString<N extends keyof Nullable<T>>(name: Nullable<T, string, N>, defaultValue?: string): string;
     showSettings(options?: IShowSettingsOptions): void;
     isSettingsEnabled(): boolean;
-    isSettingEnabled(name: string): boolean;
-    isSettingVisible(name: string): boolean;
+    isSettingEnabled<N extends keyof Nullable<T>>(name: Nullable<T, string, N>): boolean;
+    isSettingVisible<N extends keyof Nullable<T>>(name: Nullable<T, string, N>): boolean;
     enableSettingsMenu(enabled: boolean): void;
     hasMandatory(): boolean;
-    isMandatory(name: string): boolean;
+    isMandatory<N extends keyof Nullable<T>>(name: Nullable<T, string, N>): boolean;
 }
 export interface IWidgetSettingsInstance {
     closing?: (arg: IWidgetSettingsCloseArg) => void;
@@ -448,6 +460,7 @@ export class ArrayUtil {
     static move(array: any[], index: number, newIndex: number): void;
     static swap(items: any[], index1: number, index2: number): void;
     static concat<T>(items: T[], items2: T[]): T[];
+    static rotateLeft<T>(array: T[], clicks: number): T[];
 }
 export class NumUtil {
     private static getLocaleSeparator;
@@ -461,6 +474,7 @@ export class NumUtil {
     static pad(num: number, length: number): string;
     static hasOnlyIntegers(s: string): boolean;
     static mod(dividend: number, divisor: number): number;
+    static randomInt(min: number, max: number): number;
 }
 export class CommonUtil {
     static copyJson<T>(value: T): T;
@@ -641,5 +655,16 @@ export class TranslationService implements ITranslationService {
     getLanguage(): string;
     private getInstance;
 }
+export enum Mode {
+    Default = 0,
+    Mobile = 1,
+    ContextApp = 2
+}
+export enum SubMode {
+    Default = 0,
+    MobilePage = 1,
+    MobileSingle = 2
+}
+export {};
 
 }

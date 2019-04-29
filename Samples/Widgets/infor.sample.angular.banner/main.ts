@@ -63,7 +63,7 @@ export class WidgetComponent implements IWidgetComponent, OnInit {
 
 	private logPrefix = "[infor.sample.angular.banner] ";
 
-	constructor(private toastService: SohoToastService) {}
+	constructor(private toastService: SohoToastService) { }
 
 	ngOnInit(): void {
 		if (this.widgetContext.isBanner()) {

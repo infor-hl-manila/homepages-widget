@@ -22,7 +22,9 @@ Soho.Locale.addCulture('nl-NL', {
       month: 'dd MMMM',
       year: 'MMMM yyyy',
       timestamp: 'HH:mm:ss',
-      datetime: 'd/M/yyyy HH:mm'
+      datetime: 'd/M/yyyy HH:mm',
+      timezone: 'd/M/yyyy HH:mm zz',
+      timezoneLong: 'd/M/yyyy HH:mm zzzz'
     }, // Infered short + short gregorian/dateTimeFormats
     // ca-gregorian/main/dates/calendars/gregorian/days/format/short or abbreviated (2 digit)
     days: {
@@ -33,7 +35,7 @@ Soho.Locale.addCulture('nl-NL', {
     // ca-gregorian/main/dates/calendars/gregorian/months/format/wide
     months: {
       wide: ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
-      abbreviated: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jul', 'Jul', 'aug', 'sep', 'okt', 'nov', 'dec']
+      abbreviated: ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec']
     },
     // ca-gregorian/main/dates/calendars/gregorian/timeFormats/short
     timeFormat: 'HH:mm',
@@ -42,14 +44,15 @@ Soho.Locale.addCulture('nl-NL', {
   }],
   // numbers/currencyFormats-numberSystem-latn/standard
   currencySign: '€',
-  currencyFormat: '¤ #,##0.00',
+  currencyFormat: '¤ ###',
   // numbers/symbols-numberSystem-latn
   numbers: {
     percentSign: '%',
-    percentFormat: '#,##0 %',
+    percentFormat: '### %',
     minusSign: '-',
     decimal: ',',
-    group: '.'
+    group: '.',
+    groupSizes: [3, 3]
   },
   // Resx - Provided By Translation Team
   messages: {

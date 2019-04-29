@@ -1,15 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { SohoListViewModule } from "@infor/sohoxi-angular";
-import {
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	IWidgetSettingMetadata,
-	IWidgetSettingsArg,
-	Log,
-	WidgetSettingsType,
-	} from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetSettingMetadata, IWidgetSettingsArg, Log, WidgetSettingsType } from "lime";
 
 class CardItem {
 	isError?: boolean;

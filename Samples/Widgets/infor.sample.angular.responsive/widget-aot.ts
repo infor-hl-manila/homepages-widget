@@ -1,5 +1,5 @@
 import { IWidgetContext, IWidgetInstance } from "lime";
-import { ResponsiveWidgetComponent, getActions } from "./main";
+import { getActions, ResponsiveWidgetComponent } from "./main";
 import { ResponsiveWidgetModuleNgFactory } from "./main.ngfactory";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {

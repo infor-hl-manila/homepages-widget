@@ -18,6 +18,9 @@ interface SohoAutoCompleteOptions {
   /** Menu template, appropriate markup is expected. */
   template?: string;
 
+  /** if true, causes filter results that don't match case to be thrown out */
+  caseSensitive?: boolean;
+
   /** Filters based on the first character('startsWidth') of the string, or the entire string('contains') */
   filterMode?: SohoAutoCompleteFilterMode;
 
@@ -32,20 +35,26 @@ interface SohoAutoCompleteOptions {
 
   /** Selects first item menu */
   autoSelectFirstItem?: boolean;
- }
- type SohoAutoCompleteSource = Object[] | string | Object | SohoAutoCompleteSourceFunction;
+}
 
- type SohoAutoCompleteResponseFunction = (term: string, data: any[]) => void;
+type SohoAutoCompleteSource = Object[] | string | Object | SohoAutoCompleteSourceFunction;
 
- type SohoAutoCompleteSourceFunction = (term: string, response: SohoAutoCompleteResponseFunction) => void;
+type SohoAutoCompleteResponseFunction = (term: string, data: any[]) => void;
 
- type SohoAutoCompleteFilterMode = 'startsWith' | 'contains';
+type SohoAutoCompleteSourceFunction = (term: string, response: SohoAutoCompleteResponseFunction) => void;
 
- type SohoAutoCompleteWidth = number | string;
+type SohoAutoCompleteFilterMode = 'startsWith' | 'contains';
+
+type SohoAutoCompleteWidth = number | string;
 
 interface SohoAutoCompleteOffset {
   top?: number | string;
   left?: number | string;
+}
+
+interface SohoAutoCompleteEvent {
+  elem?: HTMLElement;
+  value?: string;
 }
 
  interface SohoAutoCompleteStatic {
@@ -74,4 +83,6 @@ interface JQueryStatic {
 
 interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
   autocomplete(options?: SohoAutoCompleteOptions): JQuery
+
+  on(events: 'beforeopen', handler: JQuery.EventHandlerBase<any, SohoAutoCompleteEvent>): this;
 }

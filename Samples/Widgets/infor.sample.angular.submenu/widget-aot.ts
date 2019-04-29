@@ -1,5 +1,5 @@
-import { IWidgetContext, IWidgetInstance, IWidgetAction } from "lime";
-import { SubmenuComponent, getActions } from "./main";
+import { IWidgetContext, IWidgetInstance } from "lime";
+import { getActions, SubmenuComponent } from "./main";
 import { SubmenuModuleNgFactory } from "./main.ngfactory";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {

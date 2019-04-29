@@ -36,6 +36,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     static CONTENT_ONLY: SohoDataGridType;
     gridOptions: SohoDataGridOptions;
     idProperty: string;
+    frozenColumns: SohoDataGridFrozenColumns;
     cellNavigation: boolean;
     rowNavigation: boolean;
     alternateRowShading: boolean;
@@ -71,7 +72,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     stretchColumn: string;
     showPageSizeSelector: boolean;
     columnGroup: SohoDataGridColumnGroup[];
-    emptyMessage: SohoEmptyMessageOptions;
+    emptyMessage: SohoEmptyMessageOptions | null | undefined;
     sohoDatagrid: SohoDataGridType;
     selected: EventEmitter<SohoDataGridSelectedEvent>;
     cellchange: EventEmitter<SohoDataGridCellChangeEvent>;
@@ -81,6 +82,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     expandrow: EventEmitter<SohoDataGridToggleRowEvent>;
     collapserow: EventEmitter<SohoDataGridToggleRowEvent>;
     sorted: EventEmitter<SohoDataGridSortedEvent>;
+    beforeRowActivated: EventEmitter<SohoDataGridRowActivated>;
     rowActivated: EventEmitter<SohoDataGridRowActivated>;
     rowDeactivated: EventEmitter<SohoDataGridRowActivated>;
     rowClicked: EventEmitter<SohoDataGridRowClicked>;
@@ -123,6 +125,14 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     addRow(data: any, location?: 'top' | 'bottom' | number): void;
     removeRow(data: any): void;
     dirtyRows(): Array<any>;
+    dirtyCells(): Array<any>;
+    clearDirty(): void;
+    clearDirtyRow(row: number): void;
+    clearDirtyCell(row: number, cell: number): void;
+    clearAllCellError(row: number, cell: number): void;
+    clearCellError(row: number, cell: number, type: any): void;
+    clearRowError(row: number): void;
+    clearAllErrors(): void;
     rowStatus(idx: number, status: string, tooltip: string): void;
     removeSelected(): void;
     toggleFilterRow(): void;
@@ -163,13 +173,16 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     private onOpenFilterRow;
     private onRowRemove;
     private onRendered;
-    private onAfterRendere;
+    private onAfterRender;
+    private onBeforeRowActivated;
     private onRowActivated;
     private onRowDeactivated;
     private onRowReordered;
     private onSelected;
     private onSettingsChanged;
     private onSorted;
+    rowNode(row: number, includeGroups: boolean): any;
+    cellNode(row: number, cell: number, includeGroups: boolean): any;
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
@@ -183,17 +196,6 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     private updateControl;
     private updateSource;
     private checkForComponentEditors;
-}
-export declare enum SohoGridColumnFilterTypes {
-    Text = "text",
-    Checkbox = "checkbox",
-    Contents = "contents",
-    Date = "date",
-    Decimal = "decimal",
-    Integer = "integer",
-    Lookup = "lookup",
-    Percent = "percent",
-    Select = "select"
 }
 export interface SohoDataGridToggleRowEvent extends SohoDataGridRowExpandEvent {
     grid: SohoDataGridComponent;

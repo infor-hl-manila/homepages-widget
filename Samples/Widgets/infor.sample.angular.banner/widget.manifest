@@ -6,7 +6,10 @@
 	"category": "application",
 	"framework": "angular",
 	"aotVersion": "",
-	"targets": ["banner", "default"],
+	"targets": [
+		"banner",
+		"default"
+	],
 	"settings": [
 		{
 			"name": "primaryChartType",

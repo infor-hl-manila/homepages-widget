@@ -14,8 +14,7 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Widget #1 using shared module",
-			"widgetDescription":
-				"This widget shares a user context module with other widget(s). The shared module will be loaded by the Framework and made available to all widgets importing it. The shared module loads user context information, or returns it if already loaded."
+			"widgetDescription": "This widget shares a user context module with other widget(s). The shared module will be loaded by the Framework and made available to all widgets importing it. The shared module loads user context information, or returns it if already loaded."
 		}
 	}
 }

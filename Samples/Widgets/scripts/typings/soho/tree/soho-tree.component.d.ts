@@ -12,9 +12,15 @@ export declare class SohoTreeComponent implements AfterViewInit, OnInit, OnDestr
     selectable: SohoTreeSelectable;
     hideCheckboxes: boolean;
     source: SohoTreeSourceFunction;
+    folderIconOpen: string;
+    folderIconClosed: string;
     expand: EventEmitter<SohoTreeEvent>;
     collapse: EventEmitter<SohoTreeEvent>;
     selected: EventEmitter<SohoTreeEvent>;
+    sortstart: EventEmitter<SohoTreeEvent>;
+    sortend: EventEmitter<SohoTreeEvent>;
+    menuselect: EventEmitter<SohoTreeEvent>;
+    menuopen: EventEmitter<SohoTreeEvent>;
     isDisabled: boolean;
     treeClass: boolean;
     treeRole: string;
@@ -36,8 +42,9 @@ export declare class SohoTreeComponent implements AfterViewInit, OnInit, OnDestr
     preserveEnablementState(): SohoTreeNode[];
     restoreEnablementState(): void;
     selectNode(id: string, focus?: boolean): void;
+    unSelectedNode(id: string, focus?: boolean): void;
     getSelectedNodes(): SohoTreeNode[];
-    addNode(treeNode: SohoTreeNode, location?: any): void;
+    addNode(treeNode: SohoTreeNode, location?: any, isBeforeOrAfter?: string): void;
     findById(id: string): SohoTreeNode;
     toggleNode(node: SohoTreeNode): void;
     private onDataRequest;

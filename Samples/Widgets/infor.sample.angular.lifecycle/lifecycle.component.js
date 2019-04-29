@@ -21,6 +21,7 @@ define(["require", "exports", "@angular/core", "lime"], function (require, expor
     Object.defineProperty(exports, "__esModule", { value: true });
     var LifecycleComponent = /** @class */ (function () {
         function LifecycleComponent(widgetContext, widgetInstance) {
+            var _this = this;
             this.widgetContext = widgetContext;
             this.widgetInstance = widgetInstance;
             this.events = [];
@@ -35,17 +36,17 @@ define(["require", "exports", "@angular/core", "lime"], function (require, expor
              * 	this.widgetInstance.foo = (args: Bar) => this.foo(args);
              */
             var instance = this.widgetInstance;
-            instance.activated = this.activated.bind(this);
-            instance.deactivated = this.deactivated.bind(this);
-            instance.isConfigured = this.isConfigured.bind(this);
-            instance.settingsOpening = this.settingsOpening.bind(this);
-            instance.settingsSaved = this.settingsSaved.bind(this);
-            instance.editing = this.editing.bind(this);
-            instance.edited = this.edited.bind(this);
-            instance.publishing = this.publishing.bind(this);
-            instance.refreshed = this.refreshed.bind(this);
-            instance.restored = this.restored.bind(this);
-            instance.bannerBackgroundChanged = this.bannerBackgroundChanged.bind(this);
+            instance.activated = function () { return _this.activated(); };
+            instance.deactivated = function () { return _this.deactivated(); };
+            instance.isConfigured = function () { return _this.isConfigured(); };
+            instance.settingsOpening = function () { return _this.settingsOpening(); };
+            instance.settingsSaved = function (arg) { return _this.settingsSaved(arg); };
+            instance.editing = function () { return _this.editing(); };
+            instance.edited = function () { return _this.edited(); };
+            instance.publishing = function () { return _this.publishing(); };
+            instance.refreshed = function () { return _this.refreshed(); };
+            instance.restored = function () { return _this.restored(); };
+            instance.bannerBackgroundChanged = function (color) { return _this.bannerBackgroundChanged(color); };
             if (this.isConfigured()) {
                 this.startAsyncOperation();
             }

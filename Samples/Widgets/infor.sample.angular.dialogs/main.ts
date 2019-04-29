@@ -2,16 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, Inject, NgModule, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoButtonModule, SohoModalDialogRef, SohoModalDialogService } from "@infor/sohoxi-angular";
-import {
-	DialogButtonType,
-	DialogService,
-	IDialogResult,
-	IWidgetContext,
-	IWidgetInstance,
-	StandardDialogButtons,
-	widgetContextInjectionToken,
-	widgetInstanceInjectionToken,
-} from "lime";
+import { DialogButtonType, DialogService, IDialogResult, IWidgetContext, IWidgetInstance, StandardDialogButtons, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
 
 @Component({
 	template: `
@@ -139,7 +130,7 @@ export class DialogsComponent {
 			.modal(CustomDialogComponent, this.dialogWidgetView)
 			.title("A custom dialog title")
 			.afterClose((result: IDialogResult) => {
-				const message = result ? result.value : "Dialog cancelled";
+				const message: string = result ? result.value as string : "Dialog cancelled";
 				this.dialogService.showMessage({
 					title: "Result",
 					message: message

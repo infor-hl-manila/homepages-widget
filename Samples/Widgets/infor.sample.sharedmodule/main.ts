@@ -53,8 +53,8 @@ export class SharedModuleSampleOneComponent implements AfterViewInit, IWidgetCom
 	private getAndSetUserContext(): void {
 		this.setBusy(true);
 		this.userContextService.getUserContext(this.widgetContext).subscribe((result: IUserContext) => {
-				this.userContext = result;
-			},
+			this.userContext = result;
+		},
 			(onError) => {
 				Log.error(`Failed to get User Context ${onError}`);
 			},

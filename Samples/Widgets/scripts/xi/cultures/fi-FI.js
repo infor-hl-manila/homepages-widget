@@ -22,7 +22,9 @@ Soho.Locale.addCulture('fi-FI', {
       month: 'd. MMMM',
       year: 'MMMM yyyy',
       timestamp: 'H:mm:ss',
-      datetime: 'd.M.y H:mm'
+      datetime: 'd.M.y H:mm',
+      timezone: 'd.M.y H:mm zz',
+      timezoneLong: 'd.M.y H:mm zzzz'
     }, // Infered short + short gregorian/dateTimeFormats
     // ca-gregorian/main/dates/calendars/gregorian/days/format/short or abbreviated (2 digit)
     days: {
@@ -42,14 +44,15 @@ Soho.Locale.addCulture('fi-FI', {
   }],
   // numbers/currencyFormats-numberSystem-latn/standard
   currencySign: '€',
-  currencyFormat: '#,##0.00 ¤',
+  currencyFormat: '### ¤',
   // numbers/symbols-numberSystem-latn
   numbers: {
     percentSign: '%',
-    percentFormat: '#,##0 %',
+    percentFormat: '### %',
     minusSign: '-',
     decimal: ',',
-    group: ' '
+    group: ' ',
+    groupSizes: [3, 3]
   },
   // Resx - Provided By Translation Team
   messages: {

@@ -16,6 +16,7 @@ export declare class SohoDatePickerComponent extends BaseControlValueAccessor<an
     timeFormat: string;
     minuteInterval: number;
     secondInterval: number;
+    firstDayOfWeek: SohoDatePickerDayOfWeek;
     mode: SohoDatePickerMode;
     range: SohoDatePickerRange;
     roundToInterval: boolean;
@@ -23,7 +24,6 @@ export declare class SohoDatePickerComponent extends BaseControlValueAccessor<an
     placeholder: string;
     disable: any;
     showLegend: boolean;
-    customValidation: boolean;
     showMonthYearPicker: boolean;
     hideDays: boolean;
     advanceMonths: number;

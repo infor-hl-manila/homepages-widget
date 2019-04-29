@@ -15,7 +15,7 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
          * Empty State configuration (icon, titleId, descriptionId, buttonId) is set in the widget manifest.
          * Possible icon choices: "generic", "error-loading", "new-project", "no-alerts", "no-analytics", "no-budget",
          * "no-data", "no-events", "no-notes", "no-orders", "no-tasks"
-        **/
+         */
         function EmptyStateComponent() {
         }
         EmptyStateComponent.prototype.ngOnInit = function () {
@@ -26,16 +26,16 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
             };
             // Initial update of the message text
             this.updateContent();
-            /**
-             *	 	The optional function
-             * 		emptyConfigClicked? () => void;
-             * 		can be used to override the default behaviour of the empty state button, which is to open the Settings Dialog.
-             * 		Code example:
-             * 		----------------------------------------------------
-             * 		this.widgetInstance.emptyConfigClicked = () => {
-             * 			// custom behaviour
-             * 		}
-             * 		----------------------------------------------------
+            /*
+                The optional function
+                emptyConfigClicked? () => void;
+                can be used to override the default behaviour of the empty state button, which is to open the Settings Dialog.
+                Code example:
+                ----------------------------------------------------
+                this.widgetInstance.emptyConfigClicked = () => {
+                    // custom behaviour
+                }
+                ----------------------------------------------------
             */
         };
         EmptyStateComponent.prototype.updateContent = function () {
@@ -58,7 +58,7 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
              * Empty State configuration (icon, titleId, descriptionId, buttonId) is set in the widget manifest.
              * Possible icon choices: "generic", "error-loading", "new-project", "no-alerts", "no-analytics", "no-budget",
              * "no-data", "no-events", "no-notes", "no-orders", "no-tasks"
-            **/
+             */
         ], EmptyStateComponent);
         return EmptyStateComponent;
     }());

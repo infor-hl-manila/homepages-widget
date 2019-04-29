@@ -30,5 +30,5 @@ export declare class SohoBusyIndicatorDirective implements AfterViewInit, AfterV
 export interface SohoBusyIndicatorEvent {
     type: 'afterstart' | 'complete';
     component: SohoBusyIndicatorDirective;
-    event: JQuery.Event;
+    event: JQuery.TriggeredEvent;
 }

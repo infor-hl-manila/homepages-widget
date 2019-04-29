@@ -2,14 +2,7 @@ import { CommonModule } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { SohoListViewModule, SohoMessageService } from "@infor/sohoxi-angular";
-import {
-	IIonApiRequestOptions,
-	IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	Log,
-	WidgetState
-	} from "lime";
+import { IIonApiRequestOptions, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
 
 // Prerequisites
 // =============
@@ -92,14 +85,14 @@ export class IonApiM3Component implements IWidgetComponent, OnInit {
 
 	private logPrefix = "[IonApiM3Component] ";
 
-	constructor(private messageService: SohoMessageService) {}
+	constructor(private messageService: SohoMessageService) { }
 
 	ngOnInit() {
 		this.setBusy(true);
 		const request = this.createRequest();
 		this.widgetContext.executeIonApiAsync<IMIResponse>(request).subscribe(
 			(response) => this.parseCustomers(response.data),
-			(error) => this.showErrorMessage(error)
+			(error: HttpErrorResponse) => this.showErrorMessage(error)
 		);
 	}
 

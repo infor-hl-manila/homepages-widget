@@ -7,4 +7,4 @@ import { LifecycleComponent } from "./lifecycle.component";
 	declarations: [LifecycleComponent],
 	entryComponents: [LifecycleComponent],
 })
-export class LifecycleModule {}
+export class LifecycleModule { }

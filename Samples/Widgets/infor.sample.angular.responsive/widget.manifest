@@ -10,8 +10,7 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Responsive",
-			"widgetDescription":
-				"Responsive sample widget. Uses SoHo CSS classes on widget element to determine its current width. Content is displayed differently based on width."
+			"widgetDescription": "Responsive sample widget. Uses SoHo CSS classes on widget element to determine its current width. Content is displayed differently based on width."
 		}
 	}
 }

@@ -19,7 +19,9 @@ export declare class SohoEditorComponent extends BaseControlValueAccessor<any> i
     anchor: SohoEditorAnchor;
     image: SohoEditorOptionsImage;
     buttons: SohoEditorButtons;
-    onLinkClick: (e: JQuery.Event, elem: any) => void;
+    onLinkClick: (e: JQuery.TriggeredEvent, elem: any) => void;
+    showHtmlView: boolean;
+    preview: boolean;
     change: EventEmitter<SohoEditorEvent>;
     updated: EventEmitter<SohoEditorEvent>;
     private jQueryElement;

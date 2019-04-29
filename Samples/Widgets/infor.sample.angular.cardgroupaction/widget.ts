@@ -1,14 +1,7 @@
 ﻿import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
 import { SohoComponentsModule } from "@infor/sohoxi-angular";
-import { IWidgetComponent,
-	IWidgetContext,
-	IWidgetInstance,
-	IWidgetSettingMetadata,
-	IWidgetSettingsArg,
-	Log,
-	WidgetSettingsType,
-} from "lime";
+import { IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetSettingMetadata, IWidgetSettingsArg, Log, WidgetSettingsType } from "lime";
 
 class CardItem {
 	isError?: boolean;
@@ -44,7 +37,7 @@ class CardItem {
 			</li>
 		</soho-listview>
 	</div>`,
-		styles: [`
+	styles: [`
 		.card-content {
 			overflow: hidden;
 			display: flex;
@@ -98,8 +91,6 @@ export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent
 			this.sortedItems = this.sortCollection(this.sortedItems, this.reverse);
 		};
 
-		
-
 		// Get items
 		const items = [
 			{
@@ -134,7 +125,7 @@ export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent
 		// Create a new sorted array
 		this.originalItems = items;
 		this.sortedItems = this.sortCollection(items, this.reverse);
-		
+
 	}
 
 	onRendered(event: Event) {
@@ -142,7 +133,7 @@ export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent
 	}
 	onSelected(event: SohoPopupMenuEvent) {
 		const filterChoice = $(event.args).text().trim();
-		if(filterChoice !== this.category[0]) {
+		if (filterChoice !== this.category[0]) {
 			const filterItems = this.originalItems.filter(item => item.category === filterChoice);
 			this.sortedItems = this.sortCollection(filterItems, this.reverse);
 		} else {

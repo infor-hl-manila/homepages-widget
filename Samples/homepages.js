@@ -6,7 +6,7 @@ var archiver = require("archiver");
 var del = require('del');
 var p = require("child_process");
 var ncp = require("ncp");
-var sohoVersion = "5.0.0";
+var sohoVersion = "5.2.1";
 var ZIP_TIMEOUT = 100;
 var _tempDirectory;
 var _argv;
@@ -124,6 +124,9 @@ function getSystemJsBuilderConfig(task, sharedModuleName, isSharedModuleFactory)
             "lime": {
                 build: false
             },
+            "lime/core": {
+                build: false
+            }
         },
         map: {},
         packages: {
@@ -178,6 +181,7 @@ function getBaseTypeScriptConfig(task) {
             "noImplicitAny": false,
             "paths": {
                 "lime": [relativeScriptsPath + "scripts/typings/lime"],
+                "lime/core": [relativeScriptsPath + "lime-main.js"],
                 "@infor/sohoxi-angular": [relativeScriptsPath + "scripts/typings/soho"]
             },
             "removeComments": true,
@@ -1181,6 +1185,120 @@ function deleteTempDirectory() {
         error("Failed to delete temporary directory: " + _tempDirectory + " - " + ex);
     }
 }
+function generateManifestTypes(task) {
+    resolveWidgetDirectory(task);
+    var fileContent = createFileContent();
+    writeToFile("manifest-types.d.ts", fileContent);
+    function createFileContent() {
+        var result = "";
+        var _a = parseManifest(), language = _a.language, settings = _a.settings;
+        result += addHeader();
+        result += addImports();
+        result += addLanguageInterface(language);
+        result += addSettingsInterface(settings);
+        return result;
+    }
+    function parseManifest() {
+        var manifest = getManifest(task.widgetDirectory);
+        return {
+            language: parseLanguage(manifest),
+            settings: parseSettings(manifest),
+        };
+    }
+    function parseLanguage(manifest) {
+        if (manifest && manifest.localization && manifest.localization["en-US"]) {
+            return manifest.localization["en-US"];
+        }
+        else {
+            info("en-US localization not found in manifest. Language constants will not be generated.");
+            return {};
+        }
+    }
+    function parseSettings(manifest) {
+        if (manifest.settings && manifest.settings.length) {
+            return manifest.settings;
+        }
+        else {
+            info("Manifest does not contain any settings. Settings constants will not be generated.");
+            return [];
+        }
+    }
+    function addHeader() {
+        var result = "";
+        result += "// NOTE: This file has been automatically generated. It should never be manually edited.\n";
+        result += "/* tslint:disable */\n";
+        return result;
+    }
+    function addImports() {
+        var result = "";
+        result += "import { ILanguage } from \"lime\";\n";
+        return result;
+    }
+    function addLanguageInterface(localization) {
+        var result = "";
+        result += "export interface IManifestLanguage extends ILanguage<IManifestLanguage> {\n";
+        Object.keys(localization).sort(sortAlphabetically).forEach(function (localizationKey) {
+            result += formattedInterfaceProperty(localizationKey, "string", localization[localizationKey]);
+        });
+        result += "}\n";
+        return result;
+    }
+    function addSettingsInterface(settings) {
+        var result = "";
+        result += "export interface IManifestSettings {\n";
+        settings.sort(sortSettingsAlphabetically).forEach(function (setting) {
+            result += formattedInterfaceProperty(setting.name, mapSettingType(setting.type), "Type: " + setting.type);
+        });
+        result += "}\n";
+        return result;
+        function mapSettingType(settingType) {
+            switch (settingType) {
+                case "boolean":
+                    return settingType;
+                case "number":
+                    return settingType;
+                case "string":
+                    return settingType;
+                case "object":
+                    return "any";
+                case "radio":
+                    return "any";
+                case "selector":
+                    return "any";
+                default:
+                    return "any";
+            }
+        }
+    }
+    function formattedInterfaceProperty(name, type, comment) {
+        if (type === void 0) { type = "unknown"; }
+        var result = "";
+        if (comment) {
+            result += "\t/** " + escape(comment) + " */\n";
+        }
+        result += "\t" + escape(name) + ": " + type + ";\n";
+        return result;
+    }
+    function escape(text) {
+        if (text.length) {
+            return JSON.stringify(text).replace(/^\"(.+)\"$/, "$1");
+        }
+        else {
+            return "";
+        }
+    }
+    function writeToFile(filename, content) {
+        var filePath = path.join(task.widgetDirectory, filename);
+        info("Writing to " + filePath);
+        fs.writeFileSync(filePath, content, "utf8");
+    }
+    function sortSettingsAlphabetically(settingA, settingB) {
+        return sortAlphabetically(settingA.name, settingB.name);
+    }
+    function sortAlphabetically(a, b) {
+        return a.localeCompare(b);
+    }
+}
 function _exit(code) {
     process.exit(code);
 }
@@ -1280,6 +1398,7 @@ function printUsage() {
     info("");
     info("Commands:");
     info("pack                Builds, minifies, bundles and creates a widget zip package");
+    info("generate-types      Generate TypeScript types from manifest");
     info("help                Prints usage information");
     info("");
     info("Parameters:");
@@ -1304,6 +1423,7 @@ function printUsage() {
     info("node homepages pack --widget \"Widgets/infor.sample.angular.helloworld\" --outputPath \"C:\\Builds\"");
     info("node homepages pack --widget \"C:\\\\Source\\Widgets\\infor.sample.angular.helloworld\" --outputPath \"C:\\Builds\"");
     info("node homepages pack \"Widgets/infor.sample.angular.helloworld\"");
+    info("node homepages generate-types \"Widgets/infor.sample.angular.helloworld\"");
     info("");
     info("Advanced examples");
     info("-----------------");
@@ -1356,6 +1476,11 @@ function start() {
         _isMultiWidgetMode = _buildTasksArray.length > 1;
         task = _buildTasksArray[0];
         pack(task);
+    }
+    else if (command === "generate-types") {
+        _buildTasksArray = getBuildTasksArray(task);
+        task = _buildTasksArray[0];
+        generateManifestTypes(task);
     }
     else {
         error("The command \"" + command + "\" is not supported");

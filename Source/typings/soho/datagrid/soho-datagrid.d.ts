@@ -12,6 +12,8 @@
  */
 type SohoDataGridRowHeight = 'short' | 'medium' | 'normal';
 
+type SohoDataGridTextAlign = 'left' | 'center' | 'right';
+
 /**
  * Selection options.
  * Mixed mode allows for single row activated state with multiple selection checkbox states.
@@ -21,6 +23,11 @@ type SohoDataGridRowHeight = 'short' | 'medium' | 'normal';
  * Siblings mode is used with treeGrid to give a mode where adgacent siblings are selected.
  */
 type SohoDataGridSelectable = boolean | 'single' | 'multiple' | 'mixed' | 'siblings';
+
+interface SohoDataGridFrozenColumns {
+  left?: any[];
+  right?: any[];
+}
 
 /**
  * Settings for the Soho datagrid control.
@@ -57,6 +64,9 @@ interface SohoDataGridOptions {
 
   /** Initial dataset. */
   dataset?: Object[];
+
+  /** set frozen columns */
+  frozenColumns?: SohoDataGridFrozenColumns;
 
   /** Allow column reorder. */
   columnReorder?: boolean;
@@ -252,6 +262,17 @@ interface SohoDataGridOptions {
    *  You may want to also use showSelectAllCheckBox: false
    */
   allowSelectAcrossPages?: boolean;
+
+  /**
+   * if true:
+   * and if only parent got match then add all children nodes too
+   * or if one or more child node got match then add parent node and all the children nodes
+   * if false:
+   * and if only parent got match then make expand/collapse button to be collapsed, disabled
+   * and do not add any children nodes
+   * or if one or more child node got match then add parent node and only matching children nodes
+   */
+  allowChildExpandOnMatch?: boolean;
 }
 
 /**
@@ -354,7 +375,13 @@ type SohoDataGridSortFunction = (
   ascending: boolean
 ) => boolean;
 
-type SohoDataGridColumnFilterType = 'text' | 'checkbox' | 'contents' | 'date' | 'decimal' | 'integer' | 'percent' | 'select' | 'time';
+type SohoDataGridColumnFilterType = 'text' | 'checkbox' | 'contents' | 'date' | 'decimal' |
+  'integer' | 'lookup' | 'percent' | 'select' | 'time' | 'lookup';
+
+type SohoDataGridColumnFilterConditions = 'contains' | 'does-not-contain' | 'equals' | 'does-not-equal' | 'is-empty' |
+  'is-not-empty' | 'selected-notselected' | 'selected' | 'not-selected' | 'equals' | 'does-not-equal' |
+  'is-empty' | 'is-not-empty' | 'in-range' | 'less-than' | 'less-equals' | 'greater-than' |
+  'greater-equals' | 'end-with' | 'does-not-end-with' | 'start-with' | 'does-not-start-with';
 
 interface SohoDataGridCellEditor {
   className: string;
@@ -595,6 +622,9 @@ interface SohoDataGridColumn {
   // 'checkbox', 'date', 'decimal', 'contents', 'select' otherwise a string.
   filterType?: SohoDataGridColumnFilterType | string;
 
+  /** Limit filter conditions to a prescribed set of conditionals.  */
+  filterConditions?: SohoDataGridColumnFilterConditions[];
+
   /** Column formatter function.  */
   filterFormatter?: SohoDataGridColumnFormatterFunction | string;
 
@@ -715,10 +745,13 @@ interface SohoDataGridColumn {
   selectChildren?: boolean;
 
   /** Enforce a max length when editing this column */
-  maxLength?: boolean;
+  maxLength?: number;
 
   /** Validators to assign to any editable columns. */
   validate?: string;
+
+  /** align the header text */
+  headerAlign?: SohoDataGridTextAlign;
 }
 
 interface SohoDataGridColumnNumberFormat {
@@ -864,7 +897,7 @@ interface SohoDataGridStatic {
 
   /**
   * Toggle the current selection state from on to off.
-  * @param {number} idx The row to select/unselect
+  * @param number idx The row to select/unselect
   */
   toggleRowSelection(idx: number): void;
 
@@ -891,6 +924,57 @@ interface SohoDataGridStatic {
   dirtyRows(): Array<any>;
 
   /**
+   * Returns an array of all the cells in the grid marked as dirty.
+   *
+   * @return an array of all the cells in the grid marked as dirty.
+   */
+  dirtyCells(): Array<any>;
+
+  /**
+   * Clear all dirty cells.
+   */
+  clearDirty(): void;
+
+  /**
+   * Clear all dirty cells in given row.
+   * @param row - the row number (idx) of the row.
+   */
+  clearDirtyRow(row: number): void;
+
+  /**
+   * Clear dirty on given cell.
+   * @param row - the row number (idx) of the row
+   * @param cell - the cell number (idx) of the cell
+   */
+  clearDirtyCell(row: number, cell: number): void;
+
+  /**
+   * Clear all error for a given cell in a row
+   * @param row The row index.
+   * @param cell The cell index.
+   */
+  clearAllCellError(row: number, cell: number): void;
+
+  /**
+   * Clear a cell with an error of a given type
+   * @param row The row index.
+   * @param cell The cell index.
+   * @param type of error.
+   */
+  clearCellError(row: number, cell: number, type: any): void;
+
+  /**
+   * Clear a row level all errors, alerts, info messages
+   * @param row The row index.
+   */
+  clearRowError(row: number): void;
+
+  /**
+   * Clear all errors, alerts and info messages in entire datagrid.
+   */
+  clearAllErrors(): void;
+
+  /**
    * Sets the status of a given row in the grid.
    *
    * @param idx - the row number (idx) of the row
@@ -898,6 +982,23 @@ interface SohoDataGridStatic {
    * @param tooltip - string value for tooltip message e.g. 'Error'
    */
   rowStatus(idx: number, status: string, tooltip: string): void;
+
+  /**
+   * Returns the row dom jQuery node.
+   * @param  row The row index.
+   * @param  includeGroups If true groups are taken into account.
+   * @return The dom jQuery node
+   */
+  rowNode(row: number, includeGroups: boolean): any;
+
+  /**
+   * Returns the cell dom node.
+   * @param  row The row index.
+   * @param  cell The cell index.
+   * @param  includeGroups If true groups are taken into account.
+   * @return The dom node
+   */
+  cellNode(row: number, cell: number, includeGroups: boolean): any;
 
   /**
    * Destructor,
@@ -938,12 +1039,12 @@ interface SohoDataGridSelectedRow {
 interface SohoDataGridRowClicked {
   cell: number;
   item: any;
-  originalEvent: JQuery.Event;
+  originalEvent: JQuery.TriggeredEvent;
   row: number;
 }
 
 interface SohoDataGridSelectedEvent {
-  e: JQuery.Event;
+  e: JQuery.TriggeredEvent;
   rows: SohoDataGridSelectedRow[];
 }
 
@@ -1021,6 +1122,10 @@ interface SohoToolbarOptions {
   rowHeight?: boolean;
   title?: string;
   views?: boolean;
+  resetLayout?: boolean;
+  exportToExcel?: boolean;
+  fullWidth?: boolean;
+  contextualToolbar?: boolean;
 }
 
 /**
@@ -1070,8 +1175,8 @@ interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
   on(events: 'rowreorder', handler: JQuery.EventHandlerBase<any, SohoDataGridRowReorderedEvent>): this;
   on(events: 'sorted', handler: JQuery.EventHandlerBase<any, SohoDataGridSortedEvent>): this;
   on(events: 'expandrow', handler: JQuery.EventHandlerBase<any, SohoDataGridRowExpandEvent>): this;
-  on(events: 'rowactivated', handler: JQuery.EventHandlerBase<any, SohoDataGridRowActivatedEvent>): this;
-  on(events: 'rowdeactivated', handler: JQuery.EventHandlerBase<any, SohoDataGridRowDeactivatedEvent>):this;
+  on(events: 'rowactivated | beforerowactivated', handler: JQuery.EventHandlerBase<any, SohoDataGridRowActivatedEvent>): this;
+  on(events: 'rowdeactivated', handler: JQuery.EventHandlerBase<any, SohoDataGridRowDeactivatedEvent>): this;
   on(events: 'selected', handler: JQuery.EventHandlerBase<any, SohoDataGridSelectedRow[]>): this;
 }
 
@@ -1118,4 +1223,5 @@ interface SohoDataGridColumnGroup {
   colspan: number;
   id: string;
   name: string;
+  align?: 'left' | 'right' | 'align';
 }

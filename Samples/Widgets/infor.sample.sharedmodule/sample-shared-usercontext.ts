@@ -59,15 +59,15 @@ export class UserContextService {
 
 		// *** Using mock data for sample ***
 		setTimeout(() => {
-				const userContext = {
-					name: "Hulk Holding",
-					userId: "hholding",
-					department: "Dept. A",
-					area: "10"
-				};
-				this.userContext = userContext;
-				this.resolve(pending, userContext);
-			},
+			const userContext = {
+				name: "Hulk Holding",
+				userId: "hholding",
+				department: "Dept. A",
+				area: "10"
+			};
+			this.userContext = userContext;
+			this.resolve(pending, userContext);
+		},
 			3000);
 	}
 

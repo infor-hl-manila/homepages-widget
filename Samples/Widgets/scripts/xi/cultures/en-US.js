@@ -22,7 +22,9 @@ Soho.Locale.addCulture('en-US', {
       month: 'MMMM d',
       year: 'MMMM yyyy',
       timestamp: 'h:mm:ss a',
-      datetime: 'M/d/yyyy h:mm a'
+      datetime: 'M/d/yyyy h:mm a',
+      timezone: 'M/d/yyyy h:mm a zz',
+      timezoneLong: 'M/d/yyyy h:mm a zzzz'
     }, // Infered short + short gregorian/dateTimeFormats
     // ca-gregorian/main/dates/calendars/gregorian/days/format/short or abbreviated (2 digit)
     days: {
@@ -43,14 +45,15 @@ Soho.Locale.addCulture('en-US', {
 
   // numbers/currencyFormats-numberSystem-latn/standard
   currencySign: '$', // (Replace Sign http://www.currencysymbols.in)
-  currencyFormat: '¤#,##0.00',
+  currencyFormat: '¤###',
   // numbers/symbols-numberSystem-latn
   numbers: {
     percentSign: '%',
-    percentFormat: '#,##0 %',
+    percentFormat: '### %',
     minusSign: '-',
     decimal: '.',
-    group: ','
+    group: ',',
+    groupSizes: [3, 3]
   },
   // Resx - Provided By Translation Team
   messages: {
@@ -124,6 +127,7 @@ Soho.Locale.addCulture('en-US', {
     DaysOverdue: { id: 'DaysOverdue', value: '{0} Days Overdue', comment: 'For a task /date UI' },
     DaysRemaining: { id: 'DaysRemaining', value: '{0} Days Remaining', comment: 'For a task /date UI' },
     Delete: { id: 'Delete', value: 'Delete', comment: 'Delete Toolbar Action Tooltip' },
+    DeleteEvent: { id: 'DeleteEvent', value: 'Delete Event', comment: 'Delete an Event (from a calendar)' },
     DeviceName: { id: 'Device', value: 'Device', comment: 'Name of the Device' },
     DistributeHoriz: { id: 'DistributeHoriz', value: 'Distribute Horizontally', comment: 'Icon button tooltip for action that distributes elements across Horizontally' },
     Document: { id: 'Document', value: 'Document', comment: 'Document tooltip' },
@@ -237,6 +241,8 @@ Soho.Locale.addCulture('en-US', {
     MoveToRight: { id: 'MoveToRight', value: 'Move to right', comment: 'Button tooltip used in a list of movable items' },
     MsgDirty: { id: 'MsgDirty', value: ', Modified', comment: 'for modified form fields' },
     New: { id: 'New', value: 'New', comment: 'Add new rowstatus in datagrid' },
+    NewEvent: { id: 'NewEvent', value: 'New Event', comment: 'Menu item for adding a new calendar event.' },
+    NewEventDetails: { id: 'NewEventDetails', value: 'New Event Details', comment: 'Placholder text for adding a new calendar event.' },
     NewDocument: { id: 'NewDocument', value: 'New Document', comment: 'New Document tooltip' },
     NewItem: { id: 'NewItem', value: 'New item', comment: 'New item in listbuilder' },
     NewWindow: { id: 'NewWindow', value: 'New Window', comment: 'Contents open in a new browser window.' },
@@ -244,11 +250,13 @@ Soho.Locale.addCulture('en-US', {
     NextPage: { id: 'NextPage', value: 'Next Page', comment: 'Next on Pager' },
     NextMonth: { id: 'NextMonth', value: 'Next Month', comment: 'the label for the button that moves calendar to next/prev' },
     No: { id: 'No', value: 'No', comment: 'On a dialog button' },
+    NoCommentsEntered: { id: 'NoCommentsEntered', value: 'No Comments Entered', comment: 'Placeholder for where no comments are added.' },
     NoData: { id: 'NoData', value: 'No Data Available', comment: 'Shown when there is no rows shown in a list' },
     NoDataFilter: { id: 'NoDataFilter', value: 'No data available, make a new filter selection to see more results.', comment: 'Shown when there is no rows shown in a list' },
     NoDataList: { id: 'NoDataList', value: 'No data available, make a selection in the list above to see more results.', comment: 'Shown when there is no rows shown in a list' },
     None: { id: 'None', value: 'None', comment: 'None to pick clear color' },
     NoResults: { id: 'NoResults', value: 'No Results', comment: 'Search Results Text' },
+    NoTitle: { id: 'NoTitle', value: '(No Title)', comment: 'Placeholder text for when you add an event to the calendar with no title typed.' },
     Normal: { id: 'Normal', value: 'Normal', comment: 'Normal row height' },
     Notes: { id: 'Notes', value: 'Notes', comment: 'Notes icon tooltip' },
     NotSelected: { id: 'NotSelected', value: 'Not Selected', comment: 'Not Selected in icons for filtering' },
@@ -313,6 +321,7 @@ Soho.Locale.addCulture('en-US', {
     SetTime: { id: 'SetTime', value: 'Set Time', comment: 'button text that inserts time when clicked' },
     Settings: { id: 'Settings', value: 'Settings', comment: 'Settings tooltip' },
     Short: { id: 'Short', value: 'Short', comment: 'Describes a Shorted Row Height in a grid/list' },
+    ShowEvent: { id: 'ShowEvent', value: 'Show Event', comment: 'Show an event (in a calendar)' },
     ShowFilterRow: { id: 'ShowFilterRow', value: 'Show Filter Row', comment: 'Toggle a row with filer info above a list' },
     ShowLess: { id: 'ShowLess', value: 'Show Less', comment: 'Show less form content' },
     ShowMore: { id: 'ShowMore', value: 'Show More', comment: 'Show more form content' },

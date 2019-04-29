@@ -33,7 +33,9 @@ export class InformationDialogComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.infoMessage =
-			`infor.companyon.client.listeningMessageTypes.applicationDrillback[0].handler({ "applicationDrillback": "?LogicalId=lid://infor.homepages.1&page=${this.pageId}&param1=hellofromparamone&param2=contentfromparam2" })`;
+			`infor.companyon.client.listeningMessageTypes.applicationDrillback[0].handler` +
+			`({ "applicationDrillback": "?LogicalId=lid://infor.homepages.1&page=${this.pageId}&` +
+			`param1=hellofromparamone&param2=contentfromparam2" })`;
 	}
 
 	close(): void {

@@ -14,8 +14,7 @@
 			"toastMessage": "Show a Toast Message",
 			"widgetTitle": "Submenu - Sample",
 			"widgetDescription": "Submenu sample widget.",
-			"widgetText":
-				"Use the widget menu top-right to inspect the submenu. If the subitems are not avaible, try editing the page and then save it."
+			"widgetText": "Use the widget menu top-right to inspect the submenu. If the subitems are not avaible, try editing the page and then save it."
 		}
 	}
 }

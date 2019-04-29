@@ -1,23 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Inject, NgModule, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, Inject, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import {
-	SohoButtonModule,
-	SohoListViewModule,
-	SohoModalDialogRef,
-	SohoModalDialogService
-} from "@infor/sohoxi-angular";
-import {
-	ArrayUtil,
-	CommonUtil,
-	ILanguage,
-	ITranslationResult,
-	IWidgetContext,
-	IWidgetInstance,
-	TranslationService,
-	widgetContextInjectionToken,
-	widgetInstanceInjectionToken,
-} from "lime";
+import { SohoButtonModule, SohoListViewModule, SohoModalDialogRef, SohoModalDialogService } from "@infor/sohoxi-angular";
+import { ArrayUtil, CommonUtil, ITranslationResult, IWidgetContext, IWidgetInstance, TranslationService, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
+import { IManifestLanguage } from "./manifest-types";
 
 interface IListItemMap {
 	[key: string]: ListItem;
@@ -31,7 +17,7 @@ class ListItem {
 
 interface IEditItemParameter {
 	item: ListItem;
-	lang: ILanguage;
+	lang: IManifestLanguage;
 }
 
 @Component({
@@ -68,14 +54,14 @@ interface IEditItemParameter {
 		</div>
 	</div>`
 })
-export class EditItemComponent implements AfterViewInit {
+export class EditItemComponent implements OnInit {
 	@ViewChild("editItemView", { read: ViewContainerRef })
 	view: ViewContainerRef;
 
 	dialog: SohoModalDialogRef<EditItemComponent>;
 	parameter: IEditItemParameter;
 	// tslint:disable-next-line:no-any
-	lang: any = {};
+	lang: IManifestLanguage;
 	item: ListItem = {};
 	isTranslation: boolean;
 
@@ -87,7 +73,7 @@ export class EditItemComponent implements AfterViewInit {
 		this.isTranslation = translationService.isEnabled();
 	}
 
-	ngAfterViewInit(): void {
+	ngOnInit() {
 		this.item = this.parameter.item;
 		this.lang = this.parameter.lang;
 	}
@@ -131,7 +117,7 @@ export class EditItemComponent implements AfterViewInit {
 		};
 
 		this.translationService.translate(options).subscribe((result: ITranslationResult) => {
-			item.translations = result.data;
+			item.translations = result.data as IListItemMap;
 		}, cancelResult => {
 			// Handle cancel
 		});
@@ -157,7 +143,7 @@ export class ContentTranslationComponent {
 	view: ViewContainerRef;
 
 	items: ListItem[] = [];
-	lang: ILanguage;
+	lang: IManifestLanguage;
 
 	private itemKey = "items";
 	private readonly languageCode: string;
@@ -168,7 +154,7 @@ export class ContentTranslationComponent {
 		private readonly sohoModalDialogService: SohoModalDialogService,
 		private readonly translationService: TranslationService) {
 
-		this.lang = widgetContext.getLanguage();
+		this.lang = widgetContext.getLanguage<IManifestLanguage>();
 		this.languageCode = translationService.getLanguage();
 		this.items = widgetContext.getSettings().get<ListItem[]>(this.itemKey) || [];
 

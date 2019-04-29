@@ -14,6 +14,7 @@ export declare class SohoHierarchyComponent implements OnDestroy, AfterViewInit 
     templateId: string;
     readonly leafTemplateId: string;
     paging: boolean;
+    layout: SohoHierarchyLayoutType;
     selected: EventEmitter<SohoHierarchyEvent>;
     doubleClick: EventEmitter<SohoHierarchyDoubleClickEvent>;
     constructor(elementRef: ElementRef);

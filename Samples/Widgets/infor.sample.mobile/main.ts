@@ -2,9 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, NgZone, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoAccordionModule, SohoButtonModule, SohoLabelModule, SohoRadioButtonModule } from "@infor/sohoxi-angular";
-import { IDevice, IGetNetworkResult, IGetSensorsResult, IMapCoordinates, IMediaSource, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
-import { Observable, Observer, Subject } from "rxjs";
+import { IDevice, IGetNetworkResult, IGetSensorsResult, IMapCoordinates, IMediaSource, IWidgetComponent, IWidgetContext, IWidgetInstance, WidgetMessageType } from "lime";
+import { forkJoin, Observable, of, Subject } from "rxjs";
 import { map, scan, switchMap } from "rxjs/operators";
+import { Base64AudioPipe, Base64ImagePipe, Base64VideoPipe } from "./pipes";
 
 export interface ILogEntry {
 	message: string;
@@ -58,8 +59,8 @@ export interface ILogEntry {
 				<div class="accordion-content">
 					<button soho-button="primary" (click)="getSensors()">Get sensors</button>
 					<p *ngIf="sensors$ | async as sensors">
-						acceleration: <b>{{sensors.acceleration}}</b>,
-						gyroscope: <b>{{sensors.gyroscope}}</b>
+						acceleration: <b>{{sensors.acceleration | json}}</b>,
+						gyroscope: <b>{{sensors.gyroscope | json}}</b>
 					</p>
 				</div>
 			</soho-accordion-pane>
@@ -67,11 +68,15 @@ export interface ILogEntry {
 			<soho-accordion-header>Maps</soho-accordion-header>
 			<soho-accordion-pane>
 				<div class="accordion-content">
-					<button soho-button="tertiary" (click)="showMapLocation()">Open map with a location</button>
+					<button soho-button="tertiary" (click)="showMapLocation()">Map with a location</button>
 					<br/>
-					<button soho-button="tertiary" (click)="showMapMarkers()">Open map with markers</button>
+					<button soho-button="tertiary" (click)="showMapLocation(true)">Map with current position</button>
 					<br/>
-					<button soho-button="tertiary" (click)="showMapNavigation()">Open map with navigation</button>
+					<button soho-button="tertiary" (click)="showMapMarkers()">Map with markers</button>
+					<br/>
+					<button soho-button="tertiary" (click)="showMapNavigation()">Navigation map</button>
+					<br/>
+					<button soho-button="tertiary" (click)="showMapNavigation(true)">Navigation map from current position</button>
 				</div>
 			</soho-accordion-pane>
 
@@ -81,31 +86,66 @@ export interface ILogEntry {
 					<input soho-radiobutton type="radio" id="i-source-all" name="i-source-all" value="all" [(ngModel)]="imageSource">
 					<label soho-label [forRadioButton]="true" for="i-source-all">Both</label>
 					<br/>
-					<input soho-radiobutton type="radio" id="i-source-camera" name="i-source-camera" value="camera" [(ngModel)]="imageSource">
-					<label soho-label [forRadioButton]="true" for="i-source-camera">Camera</label>
+					<input soho-radiobutton
+								type="radio"
+								id="i-source-camera"
+								name="i-source-camera"
+								value="camera"
+								[(ngModel)]="imageSource">
+					<label soho-label
+								[forRadioButton]="true"
+								for="i-source-camera">Camera</label>
 					<br/>
-					<input soho-radiobutton type="radio" id="i-source-library" name="i-source-library" value="library" [(ngModel)]="imageSource">
-					<label soho-label [forRadioButton]="true" for="i-source-library">Library</label>
+					<input soho-radiobutton
+								type="radio"
+								id="i-source-library"
+								name="i-source-library"
+								value="library"
+								[(ngModel)]="imageSource">
+					<label soho-label
+								[forRadioButton]="true"
+								for="i-source-library">Library</label>
 					<br/>
 					<button soho-button="primary" (click)="getImage(imageSource)">Get Image</button>
-					<img *ngIf="image$ | async as imageUrl" [src]="imageUrl">
+					<img *ngIf="image$ | async as imageData" [src]="imageData | base64Image">
 				</div>
 			</soho-accordion-pane>
 
 			<soho-accordion-header>Video</soho-accordion-header>
 			<soho-accordion-pane>
 				<div class="accordion-content">
-					<input soho-radiobutton type="radio" id="v-source-all" name="v-source-all" value="all" [(ngModel)]="videoSource">
-					<label soho-label [forRadioButton]="true" for="v-source-all">Both</label>
+					<input soho-radiobutton
+								type="radio"
+								id="v-source-all"
+								name="v-source-all"
+								value="all"
+								[(ngModel)]="videoSource">
+					<label soho-label
+								[forRadioButton]="true"
+								for="v-source-all">Both</label>
 					<br/>
-					<input soho-radiobutton type="radio" id="v-source-camera" name="v-source-camera" value="camera" [(ngModel)]="videoSource">
-					<label soho-label [forRadioButton]="true" for="v-source-camera">Camera</label>
+					<input soho-radiobutton
+								type="radio"
+								id="v-source-camera"
+								name="v-source-camera"
+								value="camera"
+								[(ngModel)]="videoSource">
+					<label soho-label
+								[forRadioButton]="true"
+								for="v-source-camera">Camera</label>
 					<br/>
-					<input soho-radiobutton type="radio" id="v-source-library" name="v-source-library" value="library" [(ngModel)]="videoSource">
-					<label soho-label [forRadioButton]="true" for="v-source-library">Library</label>
+					<input soho-radiobutton
+								type="radio"
+								id="v-source-library"
+								name="v-source-library"
+								value="library"
+								[(ngModel)]="videoSource">
+					<label soho-label
+								[forRadioButton]="true"
+								for="v-source-library">Library</label>
 					<br/>
 					<button soho-button="primary" (click)="getVideo(videoSource)">Get Video</button>
-					<video *ngIf="video$ | async as videoUrl" [src]="videoUrl" controls></video>
+					<video *ngIf="video$ | async as videoData" [src]="videoData | base64Video" controls></video>
 				</div>
 			</soho-accordion-pane>
 
@@ -113,13 +153,22 @@ export interface ILogEntry {
 			<soho-accordion-pane>
 				<div class="accordion-content">
 					<button soho-button="primary" (click)="getAudio()">Get Audio</button>
-					<audio *ngIf="audio$ | async as audioUrl" controls>
-						<source [src]="audioUrl" type="audio/mp3">
+					<audio *ngIf="audio$ | async as audioData" controls>
+						<source [src]="audioData | base64Audio" type="audio/wav">
+						<source [src]="audioData | base64Audio: 'mp3'" type="audio/mp3">
 					</audio>
 				</div>
 			</soho-accordion-pane>
 
-			
+			<soho-accordion-header>Logs</soho-accordion-header>
+			<soho-accordion-pane>
+				<div class="accordion-content">
+					<button soho-button="tertiary" (click)="initLogging()">Clear</button>
+					<div class="log-container">
+						<p *ngFor="let logEntry of logs$ | async" [class.error-msg]="logEntry.isError">{{logEntry.message}}</p>
+					</div>
+				</div>
+			</soho-accordion-pane>
 		</soho-accordion>
 	`,
 	styles: [`
@@ -132,6 +181,11 @@ export interface ILogEntry {
 		}
 		.error-msg {
 			color: red;
+		}
+
+		video {
+			max-width: 100%;
+			border: 1px solid gray;
 		}
 	`]
 })
@@ -175,28 +229,32 @@ export class MobileWidgetComponent implements IWidgetComponent, OnInit {
 		this.device$.pipe(
 			switchMap(device => device.getImage({ source })),
 			map(result => result.data),
-		).subscribe(imageData => this.image$.next(imageData));
+		).subscribe(imageData => this.image$.next(imageData), this.errorHandler("Failed to get image"));
 	}
 
 	getVideo(source: IMediaSource) {
 		this.device$.pipe(
 			switchMap(device => device.getVideo({ source })),
 			map(result => result.data),
-		).subscribe(videoData => this.video$.next(videoData));
+		).subscribe(videoData => this.video$.next(videoData), this.errorHandler("Failed to get video"));
 	}
 
 	getAudio() {
 		this.device$.pipe(
 			switchMap(device => device.getAudio()),
 			map(result => result.data),
-		).subscribe(audioData => this.audio$.next(audioData));
+		).subscribe(audioData => this.audio$.next(audioData), this.errorHandler("Failed to get audio"));
 	}
 
-	showMapLocation() {
-		this.device$.pipe(
-			switchMap(device => device.showMap({
+	showMapLocation(useCurrentLocation?: boolean) {
+		const currentLocation$ = this.device$.pipe(
+			switchMap(device => device.getLocation()),
+		);
+		const coordinates$ = useCurrentLocation ? currentLocation$ : of({ latitude: 40.740770, longitude: -73.994754 });
+		forkJoin(this.device$, coordinates$).pipe(
+			switchMap(([device, coordinates]) => device.showMap({
 				mapType: "location",
-				coordinates: { latitude: 0, longitude: 0 },
+				coordinates,
 			})),
 		).subscribe();
 	}
@@ -207,28 +265,32 @@ export class MobileWidgetComponent implements IWidgetComponent, OnInit {
 				mapType: "marker",
 				markers: [
 					{
-						coordinates: {latitude: 0, longitude: 0},
-						label: "Marker 1",
+						coordinates: { latitude: 40.740770, longitude: -73.994754 },
+						label: "Infor Headquarters",
 					},
 					{
-						coordinates: {latitude: 0, longitude: 0.1},
-						label: "Marker 2",
+						coordinates: { latitude: 40.758891, longitude: -73.985128 },
+						label: "Times Square",
 					},
 					{
-						coordinates: {latitude: 0, longitude: 0.2},
-						label: "Marker 3",
+						coordinates: { latitude: 40.748402, longitude: -73.985593 },
+						label: "Empire State Building",
 					},
 				],
 			})),
 		).subscribe();
 	}
 
-	showMapNavigation() {
-		this.device$.pipe(
-			switchMap(device => device.showMap({
+	showMapNavigation(fromCurrentLocation?: boolean) {
+		const currentLocation$ = this.device$.pipe(
+			switchMap(device => device.getLocation()),
+		);
+		const startLocation = fromCurrentLocation ? currentLocation$ : of({ latitude: 40.722926, longitude: -74.002157 });
+		forkJoin(this.device$, startLocation).pipe(
+			switchMap(([device, start]) => device.showMap({
 				mapType: "navigation",
-				start: { latitude: 0, longitude: 0 },
-				destination: { latitude: 1, longitude: 1 },
+				start,
+				destination: { latitude: 40.740770, longitude: -73.994754 },
 			})),
 		).subscribe();
 	}
@@ -236,26 +298,26 @@ export class MobileWidgetComponent implements IWidgetComponent, OnInit {
 	getLocation() {
 		this.device$.pipe(
 			switchMap(device => device.getLocation()),
-		).subscribe(location => this.location$.next(location));
+		).subscribe(location => this.location$.next(location), this.errorHandler("Failed to get location"));
 	}
 
 	readQR() {
 		this.device$.pipe(
 			switchMap(device => device.readQRCode()),
 			map(result => result.text),
-		).subscribe(value => this.qr$.next(value));
+		).subscribe(value => this.qr$.next(value), this.errorHandler("Failed to read QR"));
 	}
 
 	getNetwork() {
 		this.device$.pipe(
 			switchMap(device => device.getNetwork()),
-		).subscribe(data => this.network$.next(data));
+		).subscribe(data => this.network$.next(data), this.errorHandler("Failed to get network"));
 	}
 
 	getSensors() {
 		this.device$.pipe(
 			switchMap(device => device.getSensors()),
-		).subscribe(sensorData => this.sensors$.next(sensorData));
+		).subscribe(sensorData => this.sensors$.next(sensorData), this.errorHandler("Failed to get sensors"));
 	}
 
 	/**
@@ -264,7 +326,7 @@ export class MobileWidgetComponent implements IWidgetComponent, OnInit {
 	 * and it is quite dangerous to do even in development.
 	 */
 	initLogging() {
-		const consoleLogs$: Observable<ILogEntry> = Observable.create((observer: Observer<ILogEntry>) => {
+		const consoleLogs$: Observable<ILogEntry> = new Observable<ILogEntry>(observer => {
 			const oldConsoleLog = console.log;
 			const oldConsoleError = console.error;
 			console.log = (...args: {}[]) => {
@@ -282,10 +344,25 @@ export class MobileWidgetComponent implements IWidgetComponent, OnInit {
 			scan<ILogEntry, ILogEntry[]>((entries, entry) => [entry, ...entries], []),
 		);
 	}
+
+	private errorHandler = (message: string) => (error?: Error) => this.showError(message, error);
+
+	private showError(message: string, error?: Error) {
+		const details = error && error.message ? error.message : `${JSON.stringify(error)}`;
+		this.widgetContext.showWidgetMessage({
+			message: `${message}: ${details}`,
+			type: WidgetMessageType.Error,
+		});
+	}
 }
 
 @NgModule({
-	declarations: [MobileWidgetComponent],
+	declarations: [
+		MobileWidgetComponent,
+		Base64ImagePipe,
+		Base64AudioPipe,
+		Base64VideoPipe,
+	],
 	entryComponents: [MobileWidgetComponent],
 	imports: [
 		CommonModule,

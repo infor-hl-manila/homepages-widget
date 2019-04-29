@@ -21,14 +21,12 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
     var EditItemComponent = /** @class */ (function () {
         function EditItemComponent(translationService) {
             this.translationService = translationService;
-            // tslint:disable-next-line:no-any
-            this.lang = {};
             this.item = {};
             this.maxTitle = 40;
             this.maxDescription = 100;
             this.isTranslation = translationService.isEnabled();
         }
-        EditItemComponent.prototype.ngAfterViewInit = function () {
+        EditItemComponent.prototype.ngOnInit = function () {
             this.item = this.parameter.item;
             this.lang = this.parameter.lang;
         };

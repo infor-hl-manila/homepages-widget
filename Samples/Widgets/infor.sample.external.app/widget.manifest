@@ -33,8 +33,7 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "Application widget with URL templating",
-			"widgetDescription":
-				"External sample widget that opens a page in an iframe relative the application. The path can be changed in the widget settings dialog to select what application to view in an iframe.",
+			"widgetDescription": "External sample widget that opens a page in an iframe relative the application. The path can be changed in the widget settings dialog to select what application to view in an iframe.",
 			"application": "Select View"
 		}
 	}

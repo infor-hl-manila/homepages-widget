@@ -1,4 +1,4 @@
-﻿import { IWidgetAction, IWidgetContext, IWidgetInstance } from "lime";
+﻿import { IWidgetContext, IWidgetInstance } from "lime";
 import { FindWidgetsComponent, getActions } from "./main";
 import { FindWidgetsModuleNgFactory } from "./main.ngfactory";
 

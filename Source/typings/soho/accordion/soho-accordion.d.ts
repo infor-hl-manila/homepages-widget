@@ -48,6 +48,11 @@
     * Sets the color scheme to alternate
     */
    alternate?: boolean;
+
+   /**
+    * Enables tooltips for longer text that is handled with ellipsis
+    */
+   enableTooltips?: boolean;
  }
 
 /**
@@ -84,7 +89,7 @@ interface SohoAccordionStatic {
   toggle(jQuery): void;
 
   /** Updates the accordion with any new settings. */
-  updated(): void;
+  updated(headers?: JQuery[], settings?: SohoAccordionOptions): void;
 
   /** Destroys the control on completion. */
   destroy(): void;
@@ -108,6 +113,6 @@ interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
     handler: JQuery.EventHandlerBase<TElement, SohoAccordionEvent>): this;
 }
 
-interface SohoAccordionEvent extends JQuery.Event {
+interface SohoAccordionEvent extends JQuery.TriggeredEvent {
   anchor: HTMLAnchorElement;
 }

@@ -7,6 +7,7 @@ export declare class SohoAutoCompleteComponent extends BaseControlValueAccessor<
     source: SohoAutoCompleteSource;
     sourceArguments: string;
     template: string;
+    caseSensitive: boolean;
     filterMode: SohoAutoCompleteFilterMode;
     delay: number;
     width: SohoAutoCompleteWidth;
@@ -14,6 +15,7 @@ export declare class SohoAutoCompleteComponent extends BaseControlValueAccessor<
     autoSelectFirstItem: boolean;
     change: EventEmitter<SohoInputEvent[]>;
     selected: EventEmitter<Object[]>;
+    beforeopen: EventEmitter<SohoAutoCompleteEvent>;
     readonly isAutoComplete: boolean;
     disabled: boolean;
     readonly: boolean;

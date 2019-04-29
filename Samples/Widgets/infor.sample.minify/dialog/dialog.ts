@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SohoModalDialogModule, SohoModalDialogRef } from "@infor/sohoxi-angular";
+import { SohoModalDialogRef } from "@infor/sohoxi-angular";
 
 export interface IMyDialogParameters {
 	topIcon: string;

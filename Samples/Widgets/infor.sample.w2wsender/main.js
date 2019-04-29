@@ -99,7 +99,6 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         W2WSenderComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             var widgetContext = this.widgetContext;
-            this.instanceId = widgetContext.getWidgetInstanceId();
             this.pageId = widgetContext.getPageId();
             this.logPrefix = "[" + widgetContext.getId() + "] ";
             // Subscribe to the event that is triggered when settings are saved to be able to update the message type
@@ -112,7 +111,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         };
         W2WSenderComponent.prototype.sendMessage = function (person) {
             if (person) {
-                infor.companyon.client.sendMessage(this.messageType, person);
+                this.widgetContext.send(this.messageType, person);
                 lime_1.Log.debug(this.logPrefix + "Message sent for message type: " + this.messageType);
             }
         };

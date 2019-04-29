@@ -11,14 +11,12 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime"], funct
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var W2WReceiverComponent = /** @class */ (function () {
-        function W2WReceiverComponent(zone) {
-            this.zone = zone;
+        function W2WReceiverComponent() {
         }
         W2WReceiverComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             var widgetContext = this.widgetContext;
             this.language = widgetContext.getLanguage();
-            this.instanceId = widgetContext.getWidgetInstanceId();
             this.pageId = widgetContext.getPageId();
             this.logPrefix = "[" + widgetContext.getId() + "] ";
             // Subscribe to the event that is triggered when settings are saved to be able to update the message type
@@ -31,32 +29,28 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime"], funct
         W2WReceiverComponent.prototype.registerHandler = function (messageType) {
             var _this = this;
             var callback = function (args) { return _this.handleMessage(args); };
-            infor.companyon.client.registerMessageHandler(messageType, callback);
+            this.messageSubscription = this.widgetContext.receive(messageType).subscribe(callback);
             this.messageType = messageType;
-            this.isHandlerRegistered = true;
             lime_1.Log.debug(this.logPrefix + "Message handler registered for message type: " + messageType);
         };
-        W2WReceiverComponent.prototype.unregisterHandler = function (messageType) {
-            infor.companyon.client.unRegisterMessageHandler(messageType);
-            lime_1.Log.debug(this.logPrefix + "Message handler unregistered for message type: " + messageType);
+        W2WReceiverComponent.prototype.unregisterHandler = function () {
+            if (this.messageSubscription) {
+                this.messageSubscription.unsubscribe();
+            }
+            lime_1.Log.debug(this.logPrefix + "Message handler unregistered");
         };
         W2WReceiverComponent.prototype.updateMessageType = function () {
             var messageType = this.widgetContext.getSettings().get("MessageType");
             var newMessageType = messageType + this.pageId;
             var original = this.messageType;
             if (!lime_1.StringUtil.isNullOrWhitespace(messageType) && newMessageType !== original) {
-                if (this.isHandlerRegistered) {
-                    this.unregisterHandler(original);
-                }
+                this.unregisterHandler();
                 this.registerHandler(newMessageType);
             }
         };
         W2WReceiverComponent.prototype.handleMessage = function (person) {
-            var _this = this;
             if (person) {
-                this.zone.run(function () {
-                    _this.person = person;
-                });
+                this.person = person;
             }
             lime_1.Log.debug(this.logPrefix + "Received message from sender widget: " + JSON.stringify(person));
         };
@@ -71,8 +65,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime"], funct
         W2WReceiverComponent = __decorate([
             core_1.Component({
                 template: "\n\t<div class=\"twelve columns lm-margin-md-t\">\n\t\t<div *ngIf=\"person\">\n\t\t\t<h2 class=\"lm-margin-xl-b\">{{person?.id}} - {{person?.firstName}} {{person?.lastName}}</h2>\n\n\t\t\t<h3>{{language?.title}}</h3>\n\t\t\t<p>{{person?.title}}</p>\n\n\t\t\t<h3 class=\"lm-margin-lg-t\">{{language?.status}}</h3>\n\t\t\t<p>{{person?.status}}</p>\n\n\t\t\t<h3 class=\"lm-margin-lg-t\">{{language?.anniversary}}</h3>\n\t\t\t<p>{{person?.anniversary}}</p>\n\t\t</div>\n\n\t\t<p *ngIf=\"!person\">{{language?.noContent}}</p>\n\t</div>\n\t"
-            }),
-            __metadata("design:paramtypes", [core_1.NgZone])
+            })
         ], W2WReceiverComponent);
         return W2WReceiverComponent;
     }());
