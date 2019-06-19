@@ -4,7 +4,7 @@ import { IWidgetContext, IWidgetInstance } from "lime";
 
 @Component({
 	template: `
-		<div style="min-width: 1280px" id="lm-tst-mod">
+		<div id="lm-tst-mod">
 			<ids-components
 				[widgetContext]="widgetContext"
 				[widgetInstance]="widgetInstance"

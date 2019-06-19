@@ -71,7 +71,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             });
         };
         __decorate([
-            core_1.ViewChild("editItemView", { read: core_1.ViewContainerRef }),
+            core_1.ViewChild("editItemView", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
         ], EditItemComponent.prototype, "view", void 0);
         EditItemComponent = __decorate([
@@ -169,7 +169,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             }).open();
         };
         __decorate([
-            core_1.ViewChild("contentTranslationView", { read: core_1.ViewContainerRef }),
+            core_1.ViewChild("contentTranslationView", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
         ], ContentTranslationComponent.prototype, "view", void 0);
         ContentTranslationComponent = __decorate([
@@ -189,7 +189,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         }
         ContentTranslationModule = __decorate([
             core_1.NgModule({
-                imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoButtonModule],
+                imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoButtonModule, sohoxi_angular_1.SohoInputValidateModule],
                 declarations: [ContentTranslationComponent, EditItemComponent],
                 entryComponents: [ContentTranslationComponent, EditItemComponent]
             })

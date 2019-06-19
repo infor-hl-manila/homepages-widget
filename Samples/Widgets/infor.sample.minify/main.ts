@@ -80,8 +80,7 @@ export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 	buttonMessage: string;
 	show: boolean;
 
-	@ViewChild("myDialogContent", { read: ViewContainerRef })
-	private componentView: ViewContainerRef;
+	@ViewChild("myDialogContent", { read: ViewContainerRef, static: true }) private componentView: ViewContainerRef;
 
 	constructor(private sohoDialogService: SohoModalDialogService) {
 		this.buttonMessage = "Divide images";

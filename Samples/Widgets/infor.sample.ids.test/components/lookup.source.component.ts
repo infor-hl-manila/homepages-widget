@@ -49,12 +49,30 @@ export class LookupSourceComponent extends ComponentBase {
 	}
 
 	lookupSource = (req: SohoDataGridSourceRequest, response: SohoDataGridResponseFunction) => {
-		if (this.isAsync) {
-			setTimeout(() => {
-				response(this.dataset, req);
-			}, 1000);
-		} else {
-			response(this.dataset, req);
+		const filter = req.filterExpr && req.filterExpr[0] && req.filterExpr[0].value;
+		const result = this.getData(filter, req.activePage, req.pagesize);
+		req.total = result.total;
+
+		setTimeout(() => {
+			response(result.data, req);
+		}, this.isAsync ? 1000 : 0);
+	}
+
+	private getData(filter: string, page: number, pageSize: number): { total: number, data: Object[] } {
+		let dataResult = this.dataset;
+
+		if (filter) {
+			dataResult = this.dataset.filter(data => data.productId.includes(filter) ||
+				data.productName.toLowerCase().includes(filter));
 		}
+
+		const startIndex = (page - 1) * pageSize;
+		const endIndex = page * pageSize;
+		dataResult = dataResult.slice(startIndex, endIndex);
+
+		return {
+			total: this.dataset.length,
+			data: dataResult
+		};
 	}
 }

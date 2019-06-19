@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SohoListViewModule, SohoModalDialogService } from "@infor/sohoxi-angular";
+import { SohoInputValidateModule, SohoListViewModule, SohoModalDialogService } from "@infor/sohoxi-angular";
 import { IFindWidgetOptions, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, IWidgetInstanceInfo, Log, WidgetMessageType } from "lime";
 
 @Component({
@@ -19,13 +19,10 @@ import { IFindWidgetOptions, ILanguage, IWidgetAction, IWidgetComponent, IWidget
 	`
 })
 export class FindWidgetsComponent implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
-	@ViewChild("findWidgetsContainer", { read: ViewContainerRef })
-	placeholder: ViewContainerRef;
+	@ViewChild("findWidgetsContainer", { read: ViewContainerRef, static: true }) placeholder: ViewContainerRef;
 
 	widgets: IWidgetInstanceInfo[];
 
@@ -148,7 +145,7 @@ export class SearchDialogComponent {
 @NgModule({
 	declarations: [FindWidgetsComponent, SearchDialogComponent],
 	entryComponents: [FindWidgetsComponent, SearchDialogComponent],
-	imports: [CommonModule, FormsModule, SohoListViewModule]
+	imports: [CommonModule, FormsModule, SohoListViewModule, SohoInputValidateModule]
 })
 export class FindWidgetsModule {
 }

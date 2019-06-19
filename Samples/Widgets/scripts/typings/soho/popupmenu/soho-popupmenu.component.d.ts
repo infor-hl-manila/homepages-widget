@@ -16,6 +16,7 @@ export declare class SohoPopupMenuItemComponent {
     isChecked: boolean;
     isSelectable: boolean;
     isDisabled: boolean;
+    isIndented: boolean;
     subMenu: boolean;
 }
 export declare class SohoPopupMenuComponent implements AfterViewInit, OnDestroy {

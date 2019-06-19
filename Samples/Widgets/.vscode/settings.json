@@ -1,269 +1,43 @@
 {
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "/*.manifest"
-            ],
-            "schema": {
-                "title": "Homepages Widget Manifest",
-                "type":"object",
-                "properties": {
-                    "widgetId": {
-                        "type": "string",
-                        "description": "The unique widget identifier. The ID must be unique among all widgets and should be chosen carefully. The ID should be similar to a package/namespace with lowercase words separated by dots. Include abbreviated product suites and product names in the ID to make it unique.",
-                        "pattern": "^[a-z0-9\\.]+$",
-                        "maxLength": 64
-                    },
-                    "type": {
-                        "type":"string",
-                        "description": "The type of widget. The only supported types are inline and external. A hybrid widget should be defined as inline.",
-                        "enum": [
-                            "inline",
-                            "external"
-                        ]
-                    },
-                    "version": {
-                        "type":"string",
-                        "description": "The widget version number. The version number should consist of a minimum of two and a maximum of four positive integers separated by dots. Example: 1.10.4",
-                        "pattern": "^(\\d+\\.)?(\\d+\\.)?\\d+\\.\\d+$",
-                        "minLength": 3,
-                        "maxLength": 32
-                    },
-                    "name": {
-                        "type": "string",
-                        "maxLength": 64
-                    },
-                    "localization": {
-                        "type":"object",
-                        "patternProperties": {
-                            "af-ZA|ar-SA|cs-CZ|da-DK|de-DE|el-GR|en-US|es-ES|fi-FI|fr-FR|he-IL|hu-HU|it-IT|ja-JP|nb-NO|nl-NL|pl-PL|pt-BR|pt-PT|ro-RO|ru-RU|sv-SE|th-TH|tr-TR|uk-UA|vi-VN|zh-CN|zh-TW": {
-                                "type":"object",
-                                "properties": {
-                                    "widgetTitle": {
-                                        "type":"string",
-                                        "maxLength": 40
-                                    },
-                                    "widgetDescription": {
-                                        "type":"string"
-                                    }
-                                },
-                                "additionalProperties": true,
-                                "required": ["widgetTitle", "widgetDescription"]
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "title": {
-                        "type":"string",
-                        "maxLength": 40
-                    },
-                    "description": {
-                        "type":"string"
-                    },
-                    "moduleName": {
-                        "type": "string",
-                        "default": "widget"
-                    },
-                    "url": {
-                        "type":"string"
-                    },
-                    "framework": {
-                        "type": "string",
-                        "enum": [
-                            "angular",
-                            "jquery",
-                            "angularjs"
-                        ]
-                    },
-                    "aotVersion": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "displayVersion": {
-                        "type": "string"
-                    },
-                    "category": {
-                        "type":"string",
-                        "enum": [
-                            "application",
-                            "businessintelligence",
-                            "businessprocess",
-                            "social",
-                            "utilities",
-                            "statisticsusage"
-                        ]
-                    },
-                    "applicationLogicalId": {
-                        "type":"string",
-                        "pattern": "lid://.+"
-                    },
-                    "applicationVersion": {
-                        "type":"string"
-                    },
-                    "sharedModules": {
-                        "type":"array",
-                        "items": {
-                            "type":"object",
-                            "properties": {
-                                "name": {
-                                    "type":"string"
-                                },
-                                "path": {
-                                    "type":"string"
-                                }
-                            },
-                            "required": ["name"]
-                        }
-                    },
-                    "helpUrl": {
-                        "type":"string"
-                    },
-                    "screenshots": {
-                        "type": "number",
-                        "minimum": 1,
-                        "maximum": 3,
-                        "description": "Number of screenshots"
-                    },
-                    "settings": {
-                        "type":"array",
-                        "items": {
-                            "type":"object",
-                            "properties": {
-                                "name": {
-                                    "type":"string"
-                                },
-                                "type": {
-                                    "type":"string",
-                                    "enum": [
-                                        "boolean",
-                                        "object",
-                                        "number",
-                                        "radio",
-                                        "selector",
-                                        "string"
-                                    ],
-                                    "default": "string"
-                                },
-                                "defaultValue": {},
-                                "labelId": {
-                                    "type":"string"
-                                },
-                                "isHidden": {
-                                    "type":"boolean",
-                                    "default": false
-                                },
-                                "maxLength": {
-                                    "type":"number"
-                                },
-                                "values": {
-                                    "type":"array",
-                                    "items": {
-                                        "type":"object",
-                                        "properties": {
-                                            "value": {},
-                                            "text": {
-                                                "type":"string"
-                                            },
-                                            "textId": {
-                                                "type":"string"
-                                            }
-                                        }
-                                    }
-                                },
-                                "isEnabledWhenPublished": {
-                                    "type": "boolean",
-                                    "default": true
-                                }
-                            },
-                            "required": ["name"]
-                        }
-                    },
-                    "defaultSize": {
-                        "type":"string",
-                        "pattern": "^[1-4](,[1-2])?$"
-                    },
-                    "enablePublish": {
-                        "type":"boolean",
-                        "default":true
-                    },
-                    "enableSettingsWhenPublished": {
-                        "type": "boolean",
-                        "default": true
-                    },
-                    "enableTitleEdit": {
-                        "type":"boolean",
-                        "default":true
-                    },
-                    "enableSettings": {
-                        "type":"boolean",
-                        "default":true
-                    },
-					 "enableApplicationSelector": {
-                        "type":"boolean",
-                        "default":true
-                    },
-                    "enableCatalog": {
-                        "type":"boolean",
-                        "default":true
-                    },
-                    "enableCustomProperties": {
-                        "type":"boolean",
-                        "default":false
-                    },
-                    "iconFile": {
-                        "type":"string",
-                        "pattern": "^.+\\.png$",
-                        "default": "icon.png"
-                    },
-					  "maxSize": {
-                        "type":"string",
-                        "pattern": "^[1-4](,[1-2])?$"
-                    },
-                    "requiresConfig": {
-                        "type":"boolean",
-                        "default":false
-                    },
-                    "target": {
-                        "type":"string",
-                        "enum": [
-                            "banner",
-                            "default",
-                            "mobile"
-                        ]
-                    },
-                    "targets": {
-                        "type":"array",
-                        "items": {
-                            "type":"string",
-                            "enum": [
-                                "banner",
-                                "default",
-                                "mobile"
-                            ]
-                        }
-                    }
-                },
-                "required": ["widgetId", "type", "version", "name", "framework"]
-            }
-        }
-    ],
-    "editor.rulers": [
-        120
-    ],
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/*.js": { "when": "$(basename).ts" },
-        "**/*.js.map": { "when": "$(basename)" }
-    },
-    "files.associations": {
-        "widget.manifest": "json"
-    },
-    "tslint.enable": true,
-    "tslint.autoFixOnSave": true,
-    "tslint.configFile": "tslint.json"
-    //"tslint.configFile": "tslint-strict.json" // Uncomment for strict linting
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"/*.manifest"
+			],
+			"url": "./schema/manifest.schema.json"
+		}
+	],
+	"editor.rulers": [
+		120
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/*.js": {
+			"when": "$(basename).ts"
+		},
+		"**/*.js.map": {
+			"when": "$(basename)"
+		}
+	},
+	"editor.formatOnSave": true,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"editor.tabSize": 3,
+	"typescript.tsdk": "../node_modules/typescript/lib",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.associations": {
+		"widget.manifest": "json"
+	},
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true,
+		"source.fixAll": true
+	},
+	// "tslint.configFile": "tslint.json"
+	"tslint.configFile": "tslint-strict.json"
 }

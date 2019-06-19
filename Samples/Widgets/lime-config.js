@@ -107,6 +107,9 @@
 		},
 		"infor.sample.ids.test": {
 			defaultExtension: "js"
+		},
+		"infor.sample.workspace": {
+			defaultExtension: "js"
 		}
 	}
 });

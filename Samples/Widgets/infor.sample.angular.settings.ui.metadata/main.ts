@@ -169,10 +169,8 @@ export class SettingsComponent implements IWidgetSettingsComponent, OnInit {
 	@Input()
 	widgetSettingsInstance: IWidgetSettingsInstance2;
 
-	@ViewChild(TitleSettingComponent)
-	titleSettingComponent: TitleSettingComponent;
-	@ViewChild(SohoBusyIndicatorDirective)
-	busyIndicator: SohoBusyIndicatorDirective;
+	@ViewChild(TitleSettingComponent, { static: true }) titleSettingComponent: TitleSettingComponent;
+	@ViewChild(SohoBusyIndicatorDirective, { static: true }) busyIndicator: SohoBusyIndicatorDirective;
 
 	colorEditEnabled: boolean;
 	colorEditVisible: boolean;

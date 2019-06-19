@@ -80,6 +80,9 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     rowAdd: EventEmitter<SohoDataGridAddRowEvent>;
     filtered: EventEmitter<SohoDataGridFilteredEvent>;
     expandrow: EventEmitter<SohoDataGridToggleRowEvent>;
+    exiteditmode: EventEmitter<SohoDataGridEditModeEvent>;
+    beforeentereditmode: EventEmitter<SohoDataGridEditModeEvent>;
+    entereditmode: EventEmitter<SohoDataGridEditModeEvent>;
     collapserow: EventEmitter<SohoDataGridToggleRowEvent>;
     sorted: EventEmitter<SohoDataGridSortedEvent>;
     beforeRowActivated: EventEmitter<SohoDataGridRowActivated>;
@@ -159,9 +162,14 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     exportToCsv(fileName: string, customDs: Object[], separator?: string): void;
     updateColumns(columns: SohoDataGridColumn[], columnGroups: SohoDataGridColumnGroup[]): void;
     columnsFromString(columns: string): Object;
+    resetColumns(): void;
+    personalizeColumns(): void;
     restoreUserSettings(settings: any): void;
     private onDataRequest;
     private onExpandRow;
+    private onExitEditMode;
+    private onBeforeEnterEditMode;
+    private onEnterEditMode;
     private onCollapseRow;
     private onRowAdd;
     private onCellChange;

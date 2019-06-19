@@ -68,8 +68,7 @@ export class InformationDialogComponent implements OnInit {
 	`]
 })
 export class ContextParametersComponent implements OnInit {
-	@ViewChild("widgetView", { read: ViewContainerRef })
-	widgetView: ViewContainerRef;
+	@ViewChild("widgetView", { read: ViewContainerRef, static: true }) widgetView: ViewContainerRef;
 
 	paramValue1: string;
 	paramValue2: string;

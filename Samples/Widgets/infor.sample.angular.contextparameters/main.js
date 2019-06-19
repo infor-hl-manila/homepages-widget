@@ -77,7 +77,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             }).open();
         };
         __decorate([
-            core_1.ViewChild("widgetView", { read: core_1.ViewContainerRef }),
+            core_1.ViewChild("widgetView", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
         ], ContextParametersComponent.prototype, "widgetView", void 0);
         ContextParametersComponent = __decorate([

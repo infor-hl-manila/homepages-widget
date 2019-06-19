@@ -96,11 +96,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             __metadata("design:type", Object)
         ], WidgetComponent.prototype, "widgetInstance", void 0);
         __decorate([
-            core_1.ViewChild("primaryChart"),
+            core_1.ViewChild("primaryChart", { static: true }),
             __metadata("design:type", sohoxi_angular_1.SohoChartComponent)
         ], WidgetComponent.prototype, "primaryChart", void 0);
         __decorate([
-            core_1.ViewChild("secondaryChart"),
+            core_1.ViewChild("secondaryChart", { static: true }),
             __metadata("design:type", sohoxi_angular_1.SohoChartComponent)
         ], WidgetComponent.prototype, "secondaryChart", void 0);
         WidgetComponent = __decorate([

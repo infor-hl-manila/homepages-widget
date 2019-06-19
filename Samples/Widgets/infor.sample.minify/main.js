@@ -111,7 +111,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             __metadata("design:type", Object)
         ], MinifySampleComponent.prototype, "widgetInstance", void 0);
         __decorate([
-            core_1.ViewChild("myDialogContent", { read: core_1.ViewContainerRef }),
+            core_1.ViewChild("myDialogContent", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
         ], MinifySampleComponent.prototype, "componentView", void 0);
         MinifySampleComponent = __decorate([

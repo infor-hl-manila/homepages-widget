@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Inject, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SohoButtonModule, SohoListViewModule, SohoModalDialogRef, SohoModalDialogService } from "@infor/sohoxi-angular";
+import { SohoButtonModule, SohoInputValidateModule, SohoListViewModule, SohoModalDialogRef, SohoModalDialogService } from "@infor/sohoxi-angular";
 import { ArrayUtil, CommonUtil, ITranslationResult, IWidgetContext, IWidgetInstance, TranslationService, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
 import { IManifestLanguage } from "./manifest-types";
 
@@ -55,8 +55,7 @@ interface IEditItemParameter {
 	</div>`
 })
 export class EditItemComponent implements OnInit {
-	@ViewChild("editItemView", { read: ViewContainerRef })
-	view: ViewContainerRef;
+	@ViewChild("editItemView", { read: ViewContainerRef, static: true }) view: ViewContainerRef;
 
 	dialog: SohoModalDialogRef<EditItemComponent>;
 	parameter: IEditItemParameter;
@@ -139,8 +138,7 @@ export class EditItemComponent implements OnInit {
 	</div>`
 })
 export class ContentTranslationComponent {
-	@ViewChild("contentTranslationView", { read: ViewContainerRef })
-	view: ViewContainerRef;
+	@ViewChild("contentTranslationView", { read: ViewContainerRef, static: true }) view: ViewContainerRef;
 
 	items: ListItem[] = [];
 	lang: IManifestLanguage;
@@ -244,7 +242,7 @@ export class ContentTranslationComponent {
 }
 
 @NgModule({
-	imports: [CommonModule, FormsModule, SohoListViewModule, SohoButtonModule],
+	imports: [CommonModule, FormsModule, SohoListViewModule, SohoButtonModule, SohoInputValidateModule],
 	declarations: [ContentTranslationComponent, EditItemComponent],
 	entryComponents: [ContentTranslationComponent, EditItemComponent]
 })

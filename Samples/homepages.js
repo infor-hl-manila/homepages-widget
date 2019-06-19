@@ -6,7 +6,7 @@ var archiver = require("archiver");
 var del = require('del');
 var p = require("child_process");
 var ncp = require("ncp");
-var sohoVersion = "5.2.1";
+var sohoVersion = "5.3.0";
 var ZIP_TIMEOUT = 100;
 var _tempDirectory;
 var _argv;

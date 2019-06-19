@@ -111,7 +111,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             __metadata("design:type", Object)
         ], FindWidgetsComponent.prototype, "widgetInstance", void 0);
         __decorate([
-            core_1.ViewChild("findWidgetsContainer", { read: core_1.ViewContainerRef }),
+            core_1.ViewChild("findWidgetsContainer", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
         ], FindWidgetsComponent.prototype, "placeholder", void 0);
         FindWidgetsComponent = __decorate([
@@ -145,7 +145,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             core_1.NgModule({
                 declarations: [FindWidgetsComponent, SearchDialogComponent],
                 entryComponents: [FindWidgetsComponent, SearchDialogComponent],
-                imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule]
+                imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoInputValidateModule]
             })
         ], FindWidgetsModule);
         return FindWidgetsModule;

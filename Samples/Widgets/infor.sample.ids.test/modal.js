@@ -13,7 +13,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
         }
         IDSModalComponent = __decorate([
             core_1.Component({
-                template: "\n\t\t<div style=\"min-width: 1280px\" id=\"lm-tst-mod\">\n\t\t\t<ids-components\n\t\t\t\t[widgetContext]=\"widgetContext\"\n\t\t\t\t[widgetInstance]=\"widgetInstance\"\n\t\t\t\t[openedAsModal]=\"true\"\n\t\t\t\t[setDefaultValues]=\"setDefaultValues\">\n\t\t\t</ids-components>\n\t\t\t<div class=\"modal-buttonset\">\n\t\t\t\t<button class=\"btn-modal\" (click)=\"modalRef.close()\">Cancel</button>\n\t\t\t\t<button class=\"btn-modal-primary\" (click)=\"modalRef.close()\">OK</button>\n\t\t\t</div>\n\t\t</div>\n\t"
+                template: "\n\t\t<div id=\"lm-tst-mod\">\n\t\t\t<ids-components\n\t\t\t\t[widgetContext]=\"widgetContext\"\n\t\t\t\t[widgetInstance]=\"widgetInstance\"\n\t\t\t\t[openedAsModal]=\"true\"\n\t\t\t\t[setDefaultValues]=\"setDefaultValues\">\n\t\t\t</ids-components>\n\t\t\t<div class=\"modal-buttonset\">\n\t\t\t\t<button class=\"btn-modal\" (click)=\"modalRef.close()\">Cancel</button>\n\t\t\t\t<button class=\"btn-modal-primary\" (click)=\"modalRef.close()\">OK</button>\n\t\t\t</div>\n\t\t</div>\n\t"
             })
         ], IDSModalComponent);
         return IDSModalComponent;

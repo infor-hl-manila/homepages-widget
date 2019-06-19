@@ -681,8 +681,3 @@ html[dir='rtl'] .toolbar-searchfield-wrapper :empty.searchfield {
 	padding-left: 0;
 	padding-right: 34px;
 }
-
-/* Fix IDS Safari Searchfield */
-.lm-admin-container .searchfield.longpress-target {
-	-webkit-user-select: auto;
-}

@@ -35,14 +35,12 @@ define(["require", "exports", "@angular/core", "../data", "./base.component"], f
                 pagesizes: [3, 5, 10, 15]
             };
             _this.lookupSource = function (req, response) {
-                if (_this.isAsync) {
-                    setTimeout(function () {
-                        response(_this.dataset, req);
-                    }, 1000);
-                }
-                else {
-                    response(_this.dataset, req);
-                }
+                var filter = req.filterExpr && req.filterExpr[0] && req.filterExpr[0].value;
+                var result = _this.getData(filter, req.activePage, req.pagesize);
+                req.total = result.total;
+                setTimeout(function () {
+                    response(result.data, req);
+                }, _this.isAsync ? 1000 : 0);
             };
             return _this;
         }
@@ -52,6 +50,20 @@ define(["require", "exports", "@angular/core", "../data", "./base.component"], f
             if (this.isMulti) {
                 this.columns.unshift(data_1.checkboxColumn);
             }
+        };
+        LookupSourceComponent.prototype.getData = function (filter, page, pageSize) {
+            var dataResult = this.dataset;
+            if (filter) {
+                dataResult = this.dataset.filter(function (data) { return data.productId.includes(filter) ||
+                    data.productName.toLowerCase().includes(filter); });
+            }
+            var startIndex = (page - 1) * pageSize;
+            var endIndex = page * pageSize;
+            dataResult = dataResult.slice(startIndex, endIndex);
+            return {
+                total: this.dataset.length,
+                data: dataResult
+            };
         };
         __decorate([
             core_1.Input(),

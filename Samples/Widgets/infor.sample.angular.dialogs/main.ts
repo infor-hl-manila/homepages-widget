@@ -74,8 +74,7 @@ export class CustomDialogComponent {
 	</div>`
 })
 export class DialogsComponent {
-	@ViewChild("dialogWidgetView", { read: ViewContainerRef })
-	dialogWidgetView: ViewContainerRef;
+	@ViewChild("dialogWidgetView", { read: ViewContainerRef, static: true }) dialogWidgetView: ViewContainerRef;
 
 	instanceId: string;
 

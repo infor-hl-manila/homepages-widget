@@ -40,10 +40,8 @@ export class WidgetComponent implements IWidgetComponent, OnInit {
 	@Input()
 	widgetInstance: IWidgetInstance;
 
-	@ViewChild("primaryChart")
-	primaryChart: SohoChartComponent;
-	@ViewChild("secondaryChart")
-	secondaryChart: SohoChartComponent;
+	@ViewChild("primaryChart", { static: true }) primaryChart: SohoChartComponent;
+	@ViewChild("secondaryChart", { static: true }) secondaryChart: SohoChartComponent;
 
 	primaryChartType: ChartTypes;
 	secondaryChartType: ChartTypes;

@@ -178,11 +178,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             __metadata("design:type", Object)
         ], SettingsComponent.prototype, "widgetSettingsInstance", void 0);
         __decorate([
-            core_1.ViewChild(TitleSettingComponent),
+            core_1.ViewChild(TitleSettingComponent, { static: true }),
             __metadata("design:type", TitleSettingComponent)
         ], SettingsComponent.prototype, "titleSettingComponent", void 0);
         __decorate([
-            core_1.ViewChild(sohoxi_angular_1.SohoBusyIndicatorDirective),
+            core_1.ViewChild(sohoxi_angular_1.SohoBusyIndicatorDirective, { static: true }),
             __metadata("design:type", sohoxi_angular_1.SohoBusyIndicatorDirective)
         ], SettingsComponent.prototype, "busyIndicator", void 0);
         SettingsComponent = __decorate([
