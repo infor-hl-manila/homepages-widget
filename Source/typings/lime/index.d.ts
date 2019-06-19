@@ -1,8 +1,8 @@
 declare module 'lime' {
 /// <reference path="../../../../scripts/typings/sohoxi/sohoxi.d.ts" />
-import { Observable } from "rxjs";
 import { InjectionToken, ViewContainerRef } from "@angular/core";
 import { SohoMessageService } from "@infor/sohoxi-angular";
+import { Observable } from "rxjs";
 export interface IApplication {
     isDefault: boolean;
     version: string;
@@ -239,9 +239,7 @@ export interface IWidgetContext {
     getIonApiCustomerContext(): string;
     getIonApiContextAsync(options?: IIonApiOptions): Observable<IIonApiContext>;
     executeIonApiAsync<T>(options: IIonApiRequestOptions): Observable<IIonApiResponse<T>>;
-    getService<T>(serviceType: {
-        new (...args: any[]): T;
-    }): T;
+    getService<T>(serviceType: new (...args: any[]) => T): T;
     launch(launchOptions: ILaunchOptions): void;
     showWidgetMessage(message: IWidgetMessage): void;
     removeWidgetMessage(): void;
@@ -427,9 +425,19 @@ export interface IGetNetworkResult {
 }
 export interface IGetSensorsOptions extends IWatchOption {
 }
+export interface IAccelerationData {
+    x: number;
+    y: number;
+    z: number;
+}
+export interface IGyroscopeData {
+    x: number;
+    y: number;
+    z: number;
+}
 export interface IGetSensorsResult {
-    readonly acceleration: string;
-    readonly gyroscope: string;
+    readonly acceleration: IAccelerationData;
+    readonly gyroscope: IGyroscopeData;
 }
 export interface IReadQRCodeResult {
     readonly text: string;
@@ -448,7 +456,7 @@ export class ArrayUtil {
     static removeByPredicate<T>(array: T[], predicate: (item: T) => boolean): T;
     static indexByPredicate<T>(array: T[], predicate: (item: T) => boolean): number;
     static indexByProperty(array: any[], name: string, value: any): number;
-    static itemByProperty(array: any[], name: string, value: any): any;
+    static itemByProperty<T = any>(array: any[], name: string, value: any): T;
     static itemByPredicate<T>(array: T[], predicate: (item: T) => Object): T;
     static filterByPredicate<T>(array: T[], predicate: (item: T) => Object): T[];
     static containsByProperty(array: any[], name: string, value: any): boolean;
@@ -463,7 +471,6 @@ export class ArrayUtil {
     static rotateLeft<T>(array: T[], clicks: number): T[];
 }
 export class NumUtil {
-    private static getLocaleSeparator;
     private static defaultSeparator;
     private static defaultOptions;
     static getDefaultOptions(): INumberFormatOptions;
@@ -475,12 +482,13 @@ export class NumUtil {
     static hasOnlyIntegers(s: string): boolean;
     static mod(dividend: number, divisor: number): number;
     static randomInt(min: number, max: number): number;
+    private static getLocaleSeparator;
 }
 export class CommonUtil {
+    private static chars;
     static copyJson<T>(value: T): T;
     static getLocaleDateString(dateString: string, options?: any): string;
     static deleteProperty(object: any, property: string): void;
-    private static chars;
     static getBoolean(s: string, defaultValue?: boolean): boolean;
     static getUuid(prefix: string): string;
     static hasValue(anyObject: any): boolean;
@@ -524,9 +532,7 @@ export class Log {
     private static appenders;
     static addAppender(appender: ILogAppender): void;
     static removeAppender(appender: ILogAppender): void;
-    private static getTime;
     static getLogEntry(level: number, text: string, ex?: any): string;
-    private static log;
     static setDefault(): void;
     static fatal(text: string, ex?: any): void;
     static error(text: string, ex?: any): void;
@@ -538,6 +544,8 @@ export class Log {
     static isTrace(): boolean;
     static setTrace(): void;
     static trace(text: string, ex?: any): void;
+    private static getTime;
+    private static log;
 }
 export enum StandardDialogButtons {
     Ok = 1,
@@ -598,12 +606,12 @@ export interface IDialogEvent {
     cancel?: boolean;
 }
 export interface IDialog {
-    close(result?: IDialogResult): void;
     closing: (e: IDialogEvent) => void;
     closed: (e: IDialogEvent) => void;
     opened: (e: IDialogEvent) => void;
     parameter?: any;
     result?: IDialogResult;
+    close(result?: IDialogResult): void;
 }
 export interface ICopyToClipboardOptions {
     copyData: string;

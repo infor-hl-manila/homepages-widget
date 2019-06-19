@@ -29,6 +29,7 @@ export declare class SohoMaskDirective implements AfterViewInit, OnDestroy {
     requireDecimal: boolean;
     suffix: string;
     symbols: SohoMaskPatternSymbols | string;
+    locale: string;
     currencySymbol: string;
     decimalSymbol: string;
     negativeSymbol: string;

@@ -1,12 +1,22 @@
-Version 1.0.36
+Version 2.0.0 (12.0.36)
+- Introduced semantic versioning for the technical Homepages framework version.
+- Added runtime support for the Widget manifest property "frameworkVersion", see Developers guide for more information.
+- Added applicationLogicalIdSuffix that is used to find the default application for a widget when there are multiple instances of an application.
+- Added a sample showing the Workspace concept.
+- Added support for running widgets in Mobile Single mode.
+- Updated to Angular 8.0.
+- Updated to IDS Enterprise 4.18.2.
+- Updated to IDS Enterprise NG 5.3.0.
 
-Version 1.0.34
+
+Version 1.0.34 (12.0.34)
 - Added Widget ZIP validator.
 - Added getMode and getSubMode to IWidgetContext to be able to get the mode the widget is running in (Default, Mobile etc.)
 - Added support for Early Access widgets, including manifest properties isEarlyAccess and EarlyAccessInfo.
 - Added wrapper methods send, receive on IWidgetContext that should be used instead of accessing infor.companyon.client directly.
 
-Version 1.0.32
+
+Version 1.0.32 (12.0.32)
 - Removed support for AngularJS widgets (which was deprecated in version 1.0.17).
 - Remove the following interfaces, properties and functions related to AngularJS: IAngularContext, IAngularScopeValue, IAngularTemplateInfo, IDialogService, IDialogOptions.scope, IDialogOptions.template, IDialogOptions.templateUrl
 - Refactored the X2 interfaces (IWidgetContext2 etc). Widgets no longer need to use X2 interfaces and can revert to the regular interfaces since AngularJS is no longer supported. All X2 interfaces still exists but are now empty, extending the regular interfaces (IWidgetContext2 extends IWidgetContext etc).
@@ -15,28 +25,32 @@ Version 1.0.32
 - Updated to IDS Enterprise 4.14.0 
 - Updated to IDS Enterprise NG 5.0.0. 
 
-Version 1.0.30
+
+Version 1.0.30 (12.0.30)
 - Updated IDS Enterprise to 4.11.0
 
-Version 1.0.29
+
+Version 1.0.29 (12.0.29)
 - Added tenant widget sample, tenant.sample.angular.helloworld.
 - Added technology disclaimer that tenant widgets might require regular code changes due to updates of dependencies.
 
-Version 1.0.28
+
+Version 1.0.28 (12.0.28)
 - Added optional destroy function on IWidgetInstance and IWidgetInstance2.
 
-Version 1.0.27
+
+Version 1.0.27 (12.0.27)
 
 
-Version 1.0.25
+Version 1.0.25 (12.0.25)
 - Added new manifest property "sohoVersion" for AoT that will be automatically added by the homepages pack script.
 
 
-Version 1.0.24
+Version 1.0.24 (12.0.24)
 - Added new optional manifest property called maxSize.
 
 
-Version 1.0.23
+Version 1.0.23 (12.0.23)
 - Updated to Angular version 6.
 - Updated to RxJS version 6.
 - Deprecated RxJS 5. A small subset of RxJS 5 will be supported using rxjs-compat during a transition period.
@@ -50,24 +64,24 @@ Version 1.0.23
 - Added possibility to tell the framework to reevalute the widget's primary action in the widget header, see IWidgetContext2 in the API Documentation for more information.
 
 
-Version 1.0.22
+Version 1.0.22 (12.0.22)
 - Added support for injecting the widget context and widget instance in Angular widget component constructors. See widgetContextInjectionToken and widgetInstanceInjectionToken in the Developers guide.
 
 
-Version 1.0.21
+Version 1.0.21 (12.0.21)
 - Added new optional manifest property called enableRefresh. See the Developers guide for more information.
 
 
-Version 1.0.19
+Version 1.0.19 (12.0.19)
 - Added new optional widget manifest property called enableSettingsWhenPublished. See the Developers guide for more information.
 - Added new optional widget manifest setting property called isEnabledWhenPublished. See the Developers guide for more information.
 - Deprecated sharedWidgetId in widget manifest. Support will be completely removed for Widget variants. See the Developers guide for more information.
 
 
-Version 1.0.18
+Version 1.0.18 (12.0.18)
 
 
-Version 1.0.17
+Version 1.0.17 (12.0.17)
 - Updated to AngularJS version 1.6.6.
 - Updated Xi SoHo controls to 4.3.2.
 - Changed module loader from RequireJS to SystemJS.
@@ -77,66 +91,67 @@ Version 1.0.17
 - Added IWidgetComponent, IAngularWidgetConfig2 for Angular widgets.
 - Added new interfaces to replace previously used interfaces; IWidgetContext2, IWidgetInstance2, IWidgetSettingsContext2, IWidgetSettingsInstance2.
 
-Version 1.0.16
+
+Version 1.0.16 (12.0.16)
 
 
-Version 1.0.15
+Version 1.0.15 (12.0.15)
 
 
-Version 1.0.14
+Version 1.0.14 (12.0.14)
 
 
-Version 1.0.13
+Version 1.0.13 (12.0.13)
 - Added support for submenu actions in the widget menu. Added new sample "infor.sample.angular.submenu".
 - Added isSingleTenantCloud to IWidgetContext as well as a grid property that needs to be set for this method to return true.
 
 
-Version 1.0.12
+Version 1.0.12 (12.0.12)
 - Added restore of published widgets. Added new parameter to the restore event to signal if user settings are restored or the widget default.
 - Added new APIs to retrieve the current background color used for the Banner container area, and instance event when color has changed. Banner implementation only. See IWidgetContext getBannerBackgroundColor and IWidgetInstance bannerBackgroundChanged
 
 
-Version 1.0.11
+Version 1.0.11 (12.0.11)
 - Added new optional widget manifest property called displayVersion. See the Developers guide for more information.
 - Added support for finding widgets on the same page. Added new sample "infor.sample.angular.findwidgets".
 - The term "Hero widget" has been changed to "Banner widget". The manifest target / targets property should be specified as "banner" instead of "hero", but the value "hero" is still supported.
 
 
-Version 1.0.10
+Version 1.0.10 (12.0.10)
 - Added support for setting the default size of a widget in the widget manifest.
 - Changed the Widgets sample solution to use a tsconfig.json file to make it compatible with Visual Studio Code and other tools.
 
 
-Version 1.0.8
+Version 1.0.8 (12.0.8)
 - Added support for testing a Hero widget in the development container. A Hero widget has "target" property set to "hero" in the widget manifest. Added new samples "infor.sample.angular.hero" and "infor.sample.angular.contextviewer".
 
 
-Version 1.0.7
+Version 1.0.7 (12.0.7)
 - Updated sample widgets
 - Samples include a custom.json file which can be used to mock a published state for a widget, to verify that settings are handled correctly if they have been enabled/disabled while publishing the widget. New sample settings.ui.metadata uses this.
 
 
-Version 1.0.6
+Version 1.0.6 (12.0.6)
 - Added functions for getting the tenant ID and user ID to IWidgetContext.
 
 
-Version 1.0.3
+Version 1.0.3 (12.0.3)
 - Added support for "requiresConfig" flag in the Widget manifest, which can be set to true if the widget needs to be configured before using it. Please see the Developers Guide and API Documentation for more information.
 - Added appendix with widget test scenarios to the Developers Guide.
 - Added SoHo Xi Guidelines PDF in the Documentation directory.
 
 
-Version 1.0.2
+Version 1.0.2 (12.0.2)
 - Added functions to the IWidgetContext to allow widgets with a custom settings UI to support title locking in the same way as the standard metadata settings UI (see isTitleLocked, isTitleUnlockable, setTitleLocked and getResolvedTitle).
 - Added support for testing multiple widgets in the development page container. See example in the index.html file in the Sample solution and the Developers Guide.
 
 
-Version 1.0.1
+Version 1.0.1 (12.0.1)
 - Added IWidgetContext.isCloud function for checking if Homepages is running in the cloud or on premise.
 - Added IIonApiContext.getCustomerContext function for getting the ION API customer context.
 
 
-Version 1.0.0
+Version 1.0.0 (12.0.0)
 - Added containerUrl support for widgets to support IFrame security with X-Frame-Options
 
 

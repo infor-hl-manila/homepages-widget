@@ -1,4 +1,5 @@
 /// <reference path="soho-dropdown.d.ts" />
+/// <reference types="jquery" />
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 export declare class SohoDropDownComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
