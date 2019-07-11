@@ -1,0 +1,63 @@
+{
+  "widgetId": "infor.crm.reminders",
+  "type": "inline",
+  "framework": "angular",
+  "aotVersion": "",
+  "name": "Reminders Widget",
+  "defaultSize": "1,1",
+  "version": "1.0",
+  "category": "application",
+  "applicationLogicalId": "lid://infor.crmce",
+  "moduleName": "widget",
+  "settingsUI": "metadata",
+  "isEarlyAccess": true,
+  "enableIonApi": true,
+  "emptyConfig": {
+    "icon": "error-loading",
+    "titleId": "emptyConfigTitle"
+  },
+  "settings": {
+    "name": "Message",
+    "type": "string",
+    "defaultValue": "Reminders Widget",
+    "labelId": "emptyConfigTitle"
+  },
+  "localization": {
+    "en-US": {
+      "widgetTitle": "Reminders",
+      "titleHeaderSingular": "Past Meeting",
+      "titleHeaderPlural": "Past Meetings",
+      "widgetDescription": "Reminders widget for CRM",
+      "participants": "Participants:",
+      "buttonLabel": "Log Meeting Outcome",
+      "launchWebApp": "Launch Web Application",
+      "inforCRMiOS": "View Infor CRM for iOS",
+      "inforCRMAndroid": "View Infor CRM for Android",
+      "today": "Today",
+      "thisWeek": "This Week",
+      "pastReminders": "Past Reminders",
+      "completedStateMessage": "You've logged all your meetings.",
+      "notes": "Notes",
+      "crmLinkText": "Infor CRM for iOS",
+      "availableText": "available",
+      "chooseMeetingOutcome": "Choose Meeting Outcome",
+      "meetingOutcome": "Meeting Outcome",
+      "enterNotes": "Enter notes",
+      "selectOutcome": "Select Outcome",
+      "viewWebApp": "View on Web Application",
+      "dateTimeCompleted": "Date and Time Completed",
+      "startDateTime": "Start Date and Time:",
+      "errorMessageTitle": "Something went wrong",
+      "errorMessage": "Check your connection and try again",
+      "saveBtnText": "Save",
+      "endDateTime": "End Date and Time:",
+      "launchToastTitle": "Meeting outcome successfully logged",
+      "launchToastMessage": "Your reminder has been logged",
+      "workspaceTitle": "Meeting Outcome",
+      "emptyStateTitle": "Something went wrong",
+      "emptyStateInfo": "Check your connection and try again.",
+      "completedStateTitle": "All set",
+      "completedStateInfo": "You've logged all your meetings."
+    }
+  }
+}

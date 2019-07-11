@@ -1,6 +1,6 @@
 ﻿{
-	"ionApiUrl": "http://localhost:8083/ACME_TST",
-	"ionApiToken": "bh6fKuLUu0MnE7Mzir5jNwoQTTmZ",
+	"ionApiUrl": "http://localhost:8083/CRMCEQA10_DEM",
+	"ionApiToken": "DHedIoBsoF14g8Y5jUwDUCodsG0A",
 	"ionApiCustomerContext": "CustomerApi",
 	"applications": {
 		"lid://infor.bi": [
