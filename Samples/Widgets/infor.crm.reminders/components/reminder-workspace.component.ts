@@ -50,9 +50,9 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
         <div class="six columns" *ngIf="activity">
           <div class="field label-left">
             <p>{{lang?.participants}} <span *ngFor="let participant of participants; let i = index;">
-            <span *ngIf="i == 0">{{participant.Name}}</span>
-            <span *ngIf="i == 1">, {{participant.Name}}</span>
-            <span *ngIf="i == 2">...,+ {{participants.length - 2}} more</span>
+            <span *ngIf="i === 0">{{participant.Name}}</span>
+            <span *ngIf="i === 1">, {{participant.Name}}</span>
+            <span *ngIf="i === 2">...,+ {{participants.length - 2}} more</span>
             </span></p>
           </div>
         </div>

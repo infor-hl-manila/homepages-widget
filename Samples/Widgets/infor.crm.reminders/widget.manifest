@@ -12,22 +12,12 @@
   "settingsUI": "metadata",
   "isEarlyAccess": true,
   "enableIonApi": true,
-  "emptyConfig": {
-    "icon": "error-loading",
-    "titleId": "emptyConfigTitle"
-  },
-  "settings": {
-    "name": "Message",
-    "type": "string",
-    "defaultValue": "Reminders Widget",
-    "labelId": "emptyConfigTitle"
-  },
   "localization": {
     "en-US": {
       "widgetTitle": "Reminders",
+      "widgetDescription": "See a list and view details of past activities. Log your meeting and activity outcomes such as Sold, Delayed or Follow-up. Log your meeting outcomes.",
       "titleHeaderSingular": "Past Meeting",
       "titleHeaderPlural": "Past Meetings",
-      "widgetDescription": "Reminders widget for CRM",
       "participants": "Participants:",
       "buttonLabel": "Log Meeting Outcome",
       "launchWebApp": "Launch Web Application",
