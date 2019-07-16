@@ -11,7 +11,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
 @Component({
   providers: [DateTimePipe, DatePipe],
   template: `
-  <div soho-busyindicator>
+  <div class="rmndr-workspace-container" soho-busyindicator>
     <div class="header-section">
       <div class="row top-padding bottom-padding workspace-custom-style">
         <div class="twelve columns m-bottom20">
@@ -143,7 +143,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
 
     @media (min-width: 767px) {
     .reminders-datepicker, .reminders-textarea { width: 100% !important; }
-    .workspace-custom-style { min-width: 700px !important; min-height: 170px; }
+    .rmndr-workspace-container { min-width: 700px; min-height: 400px; }
     }
   `]
 })
@@ -216,7 +216,7 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
       }, (error) => {
         this.showErrorMessage();
         this.busyIndicator.activated = false;
-       },
+      },
       () => {
         this.busyIndicator.activated = false;
         this.toastService.show({

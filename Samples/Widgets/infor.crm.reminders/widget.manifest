@@ -8,7 +8,7 @@
   "category": "application",
   "iconFile": "icon.png",
   "applicationLogicalId": "lid://infor.crmce",
-  "applicationVersion": "10.1",
+  "applicationVersion": "18.1",
   "localization": {
     "en-US": {
       "widgetTitle": "Reminders",
