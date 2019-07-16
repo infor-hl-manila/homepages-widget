@@ -62,8 +62,9 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
     <div class="detail-section">
       <div class="row top-padding reminders-detail workspace-custom-style">
         <div class="five columns" *ngIf="activity">
-          <div class="field">
+          <div class="field rmndr-field">
             <label soho-label
+              class="rmndr-lbl"
               [required]="true">
               {{lang?.dateTimeCompleted}}
             </label>
@@ -86,6 +87,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
           </div>
           <div class="field custom-container">
             <label soho-label
+              class="rmndr-lbl"
               [required]="true"
             >{{lang?.meetingOutcome}}</label>
             <select soho-dropdown
@@ -99,9 +101,8 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
         <div class="seven columns" *ngIf="activity">
           <div class="field">
             <label soho-label
-
-            >{{lang?.notes}}
-            </label>
+              class="rmndr-lbl"
+            >{{lang?.notes}}</label>
             <textarea soho-textarea
               class="reminders-textarea"
               [placeholder]="lang.get('enterNotes')"
@@ -129,13 +130,20 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
     .icon-color.icon, .loc-phone { color: #1a1a1a; }
     p.loc-phone { display: inline-block; }
     .reminders-btn-modal { min-width: 60px !important; }
-    .reminders-textarea { height: 110px; }
+    .reminders-textarea { height: 111px; }
     .right-position { text-align: right; }
     .reminders-detail.row:last-child { margin-bottom: 0; }
+    .rmndr-lbl { margin-bottom: 12px }
+    .modal .field.custom-container:last-child .dropdown.error { margin-bottom: 0 !important; }
+    .rmndr-field { margin-bottom: 16px; }
+    .row.top-padding.workspace-custom-style { padding-top: 20px; }
+    .row.workspace-custom-style:last-child { margin-bottom: 0; }
+    .workspace-custom-style { min-height: 170px }
+    .reminders-datepicker { width: 300px; }
 
     @media (min-width: 767px) {
     .reminders-datepicker, .reminders-textarea { width: 100% !important; }
-    .workspace-custom-style { min-width: 700px !important; min-height: 202px; }
+    .workspace-custom-style { min-width: 700px !important; min-height: 170px; }
     }
   `]
 })

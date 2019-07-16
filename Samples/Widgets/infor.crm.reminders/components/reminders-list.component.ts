@@ -81,7 +81,7 @@ import { SortFilterService } from "../services/sort-filter.service";
               </div>
               <div class="card-container card-container-border-bottom">
                 <div class="reminder-container" *ngFor="let activity of todayActivities">
-                  <div class="col-6 h50">
+                  <div class="col-6 h40">
                     <h1 class="summary">{{ activity.Summary }}</h1>
                   </div>
                   <div class="col-6">
@@ -102,7 +102,7 @@ import { SortFilterService } from "../services/sort-filter.service";
               </div>
               <div class="card-container">
                 <div class="reminder-container" *ngFor="let activity of pastActivities">
-                  <div class="col-6 h50">
+                  <div class="col-6 h40">
                     <h1 class="summary">{{ activity.Summary }}</h1>
                   </div>
                   <div class="col-6">
@@ -123,7 +123,7 @@ import { SortFilterService } from "../services/sort-filter.service";
       .crm-banner-app, .count-reminders { background: #f0f0f0; border-bottom: 1px solid #bdbdbd; width: 100%; display: inline-block; }
       .crm-banner-app p, .count-reminders p { margin: 10px 0; display: inline-block; }
       .crm-banner-app p a { font-weight: 600; text-decoration: underline; color: #1a1a1a; }
-      .h50 { height: 50px; }
+      .h40 { height: 40px; }
       .m-bottom-0 { margin-bottom: 0; }
       .crm-banner-app p span a { color: #1a1a1a; }
       .card-content { display: flex; flex-direction: column; overflow: hidden; }
@@ -139,7 +139,7 @@ import { SortFilterService } from "../services/sort-filter.service";
       .reminder-container { border: 1px solid #d8d8d8; padding: 16px; display: inline-block; margin-right: 16px; margin-bottom: 15px; }
       .reminder-container p.start-datetime, .reminder-container p.end-datetime { line-height: normal; }
       .reminder-container p { color: #5c5c5c; margin-top: 0; margin-bottom: 0; text-align: right;}
-      .reminder-container h1 { display: -webkit-box; font-size: 13pt; width: 150px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+      .reminder-container h1 { display: -webkit-box; font-size: 13pt; line-height: 2rem; width: 150px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
       .reminder-container button { width: 100%; margin-top: 12px; }
       .col-5 { width: 40%; float: left; }
       .col-6 { width: 50%; float: left; }
