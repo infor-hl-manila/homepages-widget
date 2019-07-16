@@ -79,7 +79,7 @@ import { SortFilterService } from "../services/sort-filter.service";
               <div class="card-container-title">
                 <p class="card-header-title">{{ language?.today | uppercase }} ({{todayCount}})</p>
               </div>
-              <div class="card-container card-container-border-bottom">
+              <div class="card-container" [ngClass]="{'card-container-border-bottom': '!hasPastReminders'}">
                 <div class="reminder-container" *ngFor="let activity of todayActivities">
                   <div class="col-6 h40">
                     <h1 class="summary">{{ activity.Summary }}</h1>
