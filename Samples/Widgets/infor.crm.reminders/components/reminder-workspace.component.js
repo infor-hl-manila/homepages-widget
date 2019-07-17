@@ -33,6 +33,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                 var formattedDate = _this.dateTimePipe.transform(_this.activity.EndDate);
                 _this.dataModel.EndDate = _this.datePipe.transform(formattedDate, "dd MMM yyyy hh:mm aaa");
                 _this.dataModel._ItemId = _this.activity._ItemId;
+                // tslint:disable-next-line:no-empty
             }, function () { }, function () {
                 _this.getOutcomeList();
             });

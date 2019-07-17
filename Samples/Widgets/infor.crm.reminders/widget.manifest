@@ -4,7 +4,7 @@
   "framework": "angular",
   "version": "1.1",
   "aotVersion": "",
-  "name": "Reminders",
+  "name": "CRM Reminders",
   "category": "application",
   "iconFile": "icon.png",
   "applicationLogicalId": "lid://infor.crmce",

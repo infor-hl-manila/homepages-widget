@@ -56,7 +56,7 @@ export class RemindersWidgetModule { }
 
 export const getActions = (context: IWidgetContext): IWidgetAction[] => {
   const language = context.getLanguage();
-  return[{
+  return [{
     text: language.get("inforCRMiOS")
   },
   {

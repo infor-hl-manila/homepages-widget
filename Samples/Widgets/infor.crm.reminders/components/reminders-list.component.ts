@@ -189,6 +189,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     @Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext,
     @Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance,
     private dataService: DataService,
+    private dateTimePipe: DateTimePipe,
     private sortFilterService: SortFilterService,
     private reminderWorkspaceService: ReminderWorkspaceService,
     private viewRef: ViewContainerRef,
@@ -205,12 +206,8 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
     this.dataService.getMongooseConfig();
 
-    this.widgetInstance.actions[0].execute = () => {
-      this.inforCRMiOS();
-    };
-    this.widgetInstance.actions[1].execute = () => {
-      this.webAppCRM();
-    };
+    this.widgetInstance.actions[0].execute = () => this.inforCRMiOS();
+    this.widgetInstance.actions[1].execute = () => this.webAppCRM();
   }
 
   showDialogWorkspace(ID: string): void {
@@ -245,13 +242,20 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
 
+      //Sort the activities on descending order
+      this.activities.sort((a: any, b: any) => {
+        const dateA: any = this.dateTimePipe.transform(a.EndDate);
+        const dateB: any = this.dateTimePipe.transform(b.EndDate);
+        return dateA - dateB;
+      });
+
+      //Filter by past reminders
       this.pastActivities = this.sortFilterService
         .filterByDate(response.data, "EndDate", startOfToday, false);
-        // this.sortedArray = this.sortFilterService.sortByDate(this.pastActivities, "EndDate", false);
 
+        //Filter by today
       this.todayActivities = this.sortFilterService
         .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
-      // this.sortedArray2 = this.sortFilterService.sortByDate(this.todayActivities, "EndDate", false);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;
@@ -268,8 +272,9 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   }
 
   private webAppCRM(): void {
+    const logicalID = this.widgetContext.getLogicalId();
     const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))`);
-    const url = `?LogicalId=lid://infor.crmce&form=${form}`;
+    const url = `?LogicalId=${logicalID}&form=${form}`;
 
     this.widgetContext.launch({ url: url, resolve: true });
   }

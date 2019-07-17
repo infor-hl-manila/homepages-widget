@@ -14,10 +14,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var RemindersListComponent = /** @class */ (function () {
-        function RemindersListComponent(widgetContext, widgetInstance, dataService, sortFilterService, reminderWorkspaceService, viewRef) {
+        function RemindersListComponent(widgetContext, widgetInstance, dataService, dateTimePipe, sortFilterService, reminderWorkspaceService, viewRef) {
             this.widgetContext = widgetContext;
             this.widgetInstance = widgetInstance;
             this.dataService = dataService;
+            this.dateTimePipe = dateTimePipe;
             this.sortFilterService = sortFilterService;
             this.reminderWorkspaceService = reminderWorkspaceService;
             this.viewRef = viewRef;
@@ -32,12 +33,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             this.loadActivities();
             this.language = this.widgetContext.getLanguage();
             this.dataService.getMongooseConfig();
-            this.widgetInstance.actions[0].execute = function () {
-                _this.inforCRMiOS();
-            };
-            this.widgetInstance.actions[1].execute = function () {
-                _this.webAppCRM();
-            };
+            this.widgetInstance.actions[0].execute = function () { return _this.inforCRMiOS(); };
+            this.widgetInstance.actions[1].execute = function () { return _this.webAppCRM(); };
         };
         RemindersListComponent.prototype.showDialogWorkspace = function (ID) {
             var _this = this;
@@ -68,12 +65,18 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             var endOfToday = new Date().setHours(23, 59, 59);
             this.dataService.getActivities().subscribe(function (response) {
                 _this.activities = response.data;
+                //Sort the activities on descending order
+                _this.activities.sort(function (a, b) {
+                    var dateA = _this.dateTimePipe.transform(a.EndDate);
+                    var dateB = _this.dateTimePipe.transform(b.EndDate);
+                    return dateA - dateB;
+                });
+                //Filter by past reminders
                 _this.pastActivities = _this.sortFilterService
                     .filterByDate(response.data, "EndDate", startOfToday, false);
-                // this.sortedArray = this.sortFilterService.sortByDate(this.pastActivities, "EndDate", false);
+                //Filter by today
                 _this.todayActivities = _this.sortFilterService
                     .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
-                // this.sortedArray2 = this.sortFilterService.sortByDate(this.todayActivities, "EndDate", false);
                 _this.viewContent = true;
                 _this.countReminders = _this.pastActivities.length + _this.todayActivities.length;
                 _this.setBusy(false);
@@ -88,8 +91,9 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             });
         };
         RemindersListComponent.prototype.webAppCRM = function () {
+            var logicalID = this.widgetContext.getLogicalId();
             var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
-            var url = "?LogicalId=lid://infor.crmce&form=" + form;
+            var url = "?LogicalId=" + logicalID + "&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
         };
         RemindersListComponent.prototype.onRequestError = function (error) {
@@ -120,6 +124,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             __param(0, core_1.Inject(lime_1.widgetContextInjectionToken)),
             __param(1, core_1.Inject(lime_1.widgetInstanceInjectionToken)),
             __metadata("design:paramtypes", [Object, Object, data_service_1.DataService,
+                datetime_pipe_1.DateTimePipe,
                 sort_filter_service_1.SortFilterService,
                 reminder_workspace_service_1.ReminderWorkspaceService,
                 core_1.ViewContainerRef])

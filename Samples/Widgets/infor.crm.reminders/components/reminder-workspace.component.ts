@@ -186,7 +186,8 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
         const formattedDate = this.dateTimePipe.transform(this.activity.EndDate);
         this.dataModel.EndDate = this.datePipe.transform(formattedDate, "dd MMM yyyy hh:mm aaa");
         this.dataModel._ItemId = this.activity._ItemId;
-      }, () => {/**/},
+        // tslint:disable-next-line:no-empty
+      }, () => {},
       () => {
         this.getOutcomeList();
       }
