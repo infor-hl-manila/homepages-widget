@@ -103,11 +103,11 @@ import { SortFilterService } from "../services/sort-filter.service";
               <div class="card-container">
                 <div class="reminder-container" *ngFor="let activity of pastActivities">
                   <div class="col-6 h40">
-                    <h1 class="summary">{{ activity.Summary }}</h1>
+                    <h1 class="summary">{{ activity?.Summary }}</h1>
                   </div>
                   <div class="col-6">
-                      <p class="end-datetime"> {{ activity.EndDate | dateTimeFormat | date: "d MMM" }}</p>
-                      <p class="participants"> {{language?.participants}} {{ activity.AttendeeCount }}</p>
+                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date }}</p>
+                      <p class="participants"> {{language?.participants}} {{ activity?.AttendeeCount }}</p>
                   </div>
                   <div class="m-bottom-0">
                     <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showDialogWorkspace(activity.ID)" style="height: 45px;">{{language?.buttonLabel}}</button>
@@ -261,6 +261,9 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
         const dateA: any = this.dateTimePipe.transform(a.EndDate);
         const dateB: any = this.dateTimePipe.transform(b.EndDate);
         return dateA - dateB;
+      }).filter(x => {
+        // tslint:disable-next-line:no-unused-expression
+        this.dateTimePipe.transform(x.EndDate).getTime() >= startOfToday && this.dateTimePipe.transform(x.EndDate).getTime() <= endOfToday;
       });
 
       //Filter by past reminders

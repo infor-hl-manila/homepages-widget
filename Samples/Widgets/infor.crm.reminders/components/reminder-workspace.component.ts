@@ -16,11 +16,11 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
       <div class="row top-padding bottom-padding workspace-custom-style">
         <div class="twelve columns m-bottom20">
           <h1 class="reminder-title"><strong>{{activity?.Summary}}</strong></h1>
-          <div *ngIf="getType(activity) && activity?.Location">
+          <div *ngIf="isNumber(activity) && activity?.Location">
             <svg soho-icon icon="phone" title="Phone" class="icon-color"></svg>
             <p class="loc-phone">{{activity?.Location}}</p>
           </div>
-          <div *ngIf="!getType(activity) && activity?.Location">
+          <div *ngIf="!isNumber(activity) && activity?.Location">
             <svg soho-icon icon="map-pin" title="MapPin" class="icon-color"></svg>
             <p class="loc-phone">{{activity?.Location}}</p>
           </div>
@@ -238,9 +238,9 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
     });
   }
 
-  getType(activity: IActivity): boolean {
+  isNumber(activity: IActivity): boolean {
     if (activity) {
-      return activity.Type === "vPhoneCall" ? true : false;
+      return ((activity.Location != null) && !isNaN(Number(activity.Location.toString())));
     }
   }
 
