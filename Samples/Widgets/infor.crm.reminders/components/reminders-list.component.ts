@@ -155,9 +155,13 @@ import { SortFilterService } from "../services/sort-filter.service";
         :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(50% - 16px); }
       }
 
-      @media (min-width: 993px) and (max-width: 1120px) {
-        :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(33.3333333% - 16px); }
+      @media (min-width: 993px) and (max-width: 1200px) {
+        :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(50% - 16px); }
         :host-context(.triple-width, .widget:not(.to-single):not(.quad-width):not(.double-width)) .reminder-container { width: calc(50% - 16px); }
+      }
+
+      @media (min-width: 1201px) and (max-width: 1514px) {
+        :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(33.3333333% - 16px); }
       }
 
       @media (max-width: 767px) {
@@ -265,7 +269,8 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
         //Filter by today
       this.todayActivities = this.sortFilterService
-        .filterWithRange(response.data, "EndDate", now, false, endOfToday);
+        .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday) ||
+        this.sortFilterService.filterWithRange(response.data, "EndDate", now, false, endOfToday);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;
