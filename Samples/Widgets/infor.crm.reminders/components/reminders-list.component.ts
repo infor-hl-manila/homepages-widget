@@ -106,7 +106,7 @@ import { SortFilterService } from "../services/sort-filter.service";
                     <h1 class="summary">{{ activity?.Summary }}</h1>
                   </div>
                   <div class="col-6">
-                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date }}</p>
+                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date: "d MM" }}</p>
                       <p class="participants"> {{language?.participants}} {{ activity?.AttendeeCount }}</p>
                   </div>
                   <div class="m-bottom-0">
