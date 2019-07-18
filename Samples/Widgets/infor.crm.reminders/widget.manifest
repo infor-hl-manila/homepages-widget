@@ -4,7 +4,7 @@
   "framework": "angular",
   "version": "1.1",
   "aotVersion": "",
-  "name": "CRM Reminders",
+  "name": "CRM CE Reminders",
   "category": "application",
   "iconFile": "icon.png",
   "applicationLogicalId": "lid://infor.crmce",
@@ -12,7 +12,7 @@
   "localization": {
     "en-US": {
       "widgetTitle": "Reminders",
-      "widgetDescription": "See a list and view details of past activities. Log your meeting and activity outcomes such as Sold, Delayed or Follow-up.",
+      "widgetDescription": "See a list and view details of past activities. Log your meeting and activity outcomes such as Sold, Delayed, or Follow-Up. After you log a meeting outcome in the widget, it will appear in your Completed folder in the desktop tool.",
       "titleHeaderSingular": "Past Meeting",
       "titleHeaderPlural": "Past Meetings",
       "participants": "Participants:",

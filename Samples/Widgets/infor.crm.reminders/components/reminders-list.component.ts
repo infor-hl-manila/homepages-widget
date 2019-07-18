@@ -139,7 +139,7 @@ import { SortFilterService } from "../services/sort-filter.service";
       .reminder-container { border: 1px solid #d8d8d8; padding: 16px; display: inline-block; margin-right: 16px; margin-bottom: 15px; }
       .reminder-container p.start-datetime, .reminder-container p.end-datetime { line-height: normal; }
       .reminder-container p { color: #5c5c5c; margin-top: 0; margin-bottom: 0; text-align: right;}
-      .reminder-container h1 { display: -webkit-box; font-size: 13pt; line-height: 2rem; width: 150px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+      .reminder-container h1 { display: -webkit-box; font-size: 13pt; line-height: 2rem; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
       .reminder-container button { width: 100%; margin-top: 12px; }
       .col-5 { width: 40%; float: left; }
       .col-6 { width: 50%; float: left; }
@@ -149,6 +149,16 @@ import { SortFilterService } from "../services/sort-filter.service";
       :host-context(.triple-width, .widget:not(.to-single):not(.quad-width):not(.double-width)) .reminder-container { width: calc(33.3333333% - 16px); }
       :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(25% - 16px); }
       :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width)) .card-container { padding: 5px 16px; }
+
+      @media (min-width: 741px) and (max-width: 992px) {
+        :host-context(.triple-width, .widget:not(.to-single):not(.quad-width):not(.double-width)) .reminder-container { width: calc(50% - 16px); }
+        :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(50% - 16px); }
+      }
+
+      @media (min-width: 993px) and (max-width: 1120px) {
+        :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width)) .reminder-container { width: calc(33.3333333% - 16px); }
+        :host-context(.triple-width, .widget:not(.to-single):not(.quad-width):not(.double-width)) .reminder-container { width: calc(50% - 16px); }
+      }
 
       @media (max-width: 767px) {
         .notification-close { margin-right: 0; }
@@ -255,7 +265,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
         //Filter by today
       this.todayActivities = this.sortFilterService
-        .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
+        .filterWithRange(response.data, "EndDate", now, false, endOfToday);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;
