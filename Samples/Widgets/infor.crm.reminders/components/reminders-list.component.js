@@ -79,6 +79,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
                     .filterByDate(response.data, "EndDate", startOfToday, false);
                 //Filter by today
                 _this.todayActivities = _this.sortFilterService
+                    .filterWithRange(response.data, "EndDate", now, false, startOfToday) || _this.sortFilterService
                     .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
                 _this.viewContent = true;
                 _this.countReminders = _this.pastActivities.length + _this.todayActivities.length;

@@ -272,6 +272,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
         //Filter by today
       this.todayActivities = this.sortFilterService
+        .filterWithRange(response.data, "EndDate", now, false, startOfToday) || this.sortFilterService
         .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
 
       this.viewContent = true;
