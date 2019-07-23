@@ -10,21 +10,35 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
     var SortFilterService = /** @class */ (function () {
         function SortFilterService() {
         }
+        SortFilterService.prototype.filterAllDay = function (arrayToFilter, dateProp1, dateProp2, dateFilter1, dateFilter2) {
+            if (this.checkIfFilterValid(arrayToFilter, dateProp1, dateFilter1)) {
+                var filteredArr = arrayToFilter.filter(function (x) {
+                    var datePropValue1 = new Date(x[dateProp1].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+                    var datePropValue2 = new Date(x[dateProp2].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+                    if (datePropValue1.getTime() === dateFilter1 && datePropValue2.getTime() === dateFilter2) {
+                        return x;
+                    }
+                });
+                return filteredArr;
+            }
+        };
         SortFilterService.prototype.filterByDate = function (arrayToFilter, dateProp, dateFilter, reverse) {
             if (this.checkIfFilterValid(arrayToFilter, dateProp, dateFilter)) {
                 var filteredArray = arrayToFilter.filter(function (d) {
                     var datePropVal = d[dateProp];
                     if (datePropVal) {
                         var formattedDate = new Date(datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+                        var offset = -240;
+                        var estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
                         switch (reverse) {
                             case true:
-                                if (dateFilter < formattedDate.getTime()) {
+                                if (dateFilter < estDate.getTime()) {
                                     return d;
                                 }
                                 break;
                             case false:
                             default:
-                                if (dateFilter > formattedDate.getTime()) {
+                                if (dateFilter > estDate.getTime()) {
                                     return d;
                                 }
                         }

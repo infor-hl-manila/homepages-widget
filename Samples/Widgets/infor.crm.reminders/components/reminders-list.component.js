@@ -62,24 +62,22 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             var _this = this;
             var now = Date.now();
             var startOfToday = new Date().setHours(0, 0, 0, 0);
-            var endOfToday = new Date().setHours(23, 59, 59);
+            var endOfToday = new Date().setHours(23, 59, 0, 0);
             this.dataService.getActivities().subscribe(function (response) {
                 _this.activities = response.data;
                 //Sort the activities on descending order
                 _this.activities.sort(function (a, b) {
                     var dateA = _this.dateTimePipe.transform(a.EndDate);
                     var dateB = _this.dateTimePipe.transform(b.EndDate);
-                    return dateA - dateB;
-                }).filter(function (x) {
-                    // tslint:disable-next-line:no-unused-expression
-                    _this.dateTimePipe.transform(x.EndDate).getTime() >= startOfToday && _this.dateTimePipe.transform(x.EndDate).getTime() <= endOfToday;
+                    return dateB - dateA;
                 });
                 //Filter by past reminders
                 _this.pastActivities = _this.sortFilterService
                     .filterByDate(response.data, "EndDate", startOfToday, false);
                 //Filter by today
                 _this.todayActivities = _this.sortFilterService
-                    .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
+                    .filterWithRange(response.data, "EndDate", now, false, startOfToday) ||
+                    _this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", startOfToday, endOfToday);
                 _this.viewContent = true;
                 _this.countReminders = _this.pastActivities.length + _this.todayActivities.length;
                 _this.setBusy(false);

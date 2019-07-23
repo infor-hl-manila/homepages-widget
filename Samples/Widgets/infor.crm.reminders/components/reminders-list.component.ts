@@ -179,7 +179,6 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   @Input() widgetSettingsInstance: IWidgetSettingsInstance2;
 
   instanceId: string;
-  reminder: IActivity;
   activities: IActivity[];
   todayActivities: IActivity[];
   thisWeekActivities: IActivity[];
@@ -251,7 +250,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   private loadActivities(): void {
     const now = Date.now();
     const startOfToday = new Date().setHours(0, 0, 0, 0);
-    const endOfToday = new Date().setHours(23, 59, 59);
+    const endOfToday = new Date().setHours(23, 59, 0, 0);
 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
@@ -260,10 +259,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
       this.activities.sort((a: any, b: any) => {
         const dateA: any = this.dateTimePipe.transform(a.EndDate);
         const dateB: any = this.dateTimePipe.transform(b.EndDate);
-        return dateA - dateB;
-      }).filter(x => {
-        // tslint:disable-next-line:no-unused-expression
-        this.dateTimePipe.transform(x.EndDate).getTime() >= startOfToday && this.dateTimePipe.transform(x.EndDate).getTime() <= endOfToday;
+        return dateB - dateA;
       });
 
       //Filter by past reminders
@@ -272,7 +268,8 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
         //Filter by today
       this.todayActivities = this.sortFilterService
-        .filterWithRange(response.data, "EndDate", endOfToday, false, startOfToday);
+        .filterWithRange(response.data, "EndDate", now, false, startOfToday) ||
+        this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", startOfToday, endOfToday);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;

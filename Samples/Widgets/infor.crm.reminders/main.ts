@@ -7,6 +7,7 @@ import {
   IWidgetComponent,
   IWidgetContext,
   IWidgetContext2,
+  IWidgetInstance,
   IWidgetInstance2
 } from "lime";
 import { ReminderWorkspaceComponent } from "./components/reminder-workspace.component";
@@ -21,8 +22,8 @@ import { SortFilterService } from "./services/sort-filter.service";
 })
 
 export class RemindersWidgetComponent implements IWidgetComponent {
-  @Input() widgetContext: IWidgetContext2;
-	@Input() widgetInstance: IWidgetInstance2;
+  @Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
   constructor() {/**/}
 
