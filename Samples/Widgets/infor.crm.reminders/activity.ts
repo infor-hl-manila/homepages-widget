@@ -14,6 +14,7 @@ export interface IActivity {
   RowPointer: string;
   Display: string;
   Value: string;
+  IsScheduler: string;
 }
 
 export interface IPickLists {

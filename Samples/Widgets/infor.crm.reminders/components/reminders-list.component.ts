@@ -80,18 +80,20 @@ import { SortFilterService } from "../services/sort-filter.service";
                 <p class="card-header-title">{{ language?.today | uppercase }} ({{todayCount}})</p>
               </div>
               <div class="card-container" [ngClass]="{'card-container-border-bottom': hasPastReminders != 'hasPastReminders'}">
-                <div class="reminder-container" *ngFor="let activity of todayActivities">
-                  <div class="col-6 h40">
-                    <h1 class="summary">{{ activity.Summary }}</h1>
-                  </div>
-                  <div class="col-6">
-                    <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') == '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" }}</p>
-                    <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') != '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" : "UTC+4" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" : "UTC+4" }}</p>
-                    <p class="participants"> {{language?.participants}} {{ activity.AttendeeCount }}</p>
-                  </div>
-                  <div class="m-bottom-0">
-                    <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showDialogWorkspace(activity.ID)" style="height: 45px;">{{language?.buttonLabel}}</button>
-                  </div>
+                <div class="reminder-container" *ngFor="let activity of todayActivities" [ngClass]="{'reminder-container': activity.IsScheduler != 0}">
+                  <ng-container *ngIf="activity.IsScheduler == 1">
+                    <div class="col-6 h40">
+                      <h1 class="summary">{{ activity.Summary }}</h1>
+                    </div>
+                    <div class="col-6">
+                      <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') == '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" }}</p>
+                      <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') != '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" : "UTC+4" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" : "UTC+4" }}</p>
+                      <p class="participants"> {{language?.participants}} {{ activity.AttendeeCount }}</p>
+                    </div>
+                    <div class="m-bottom-0">
+                      <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showDialogWorkspace(activity.ID)" style="height: 45px;">{{language?.buttonLabel}}</button>
+                    </div>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -101,17 +103,19 @@ import { SortFilterService } from "../services/sort-filter.service";
                 <p class="card-header-title">{{ language?.pastReminders | uppercase }} ({{pastCount}})</p>
               </div>
               <div class="card-container">
-                <div class="reminder-container" *ngFor="let activity of pastActivities">
-                  <div class="col-6 h40">
-                    <h1 class="summary">{{ activity?.Summary }}</h1>
-                  </div>
-                  <div class="col-6">
-                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date: "d MMM" : "UTC+4" }}</p>
-                      <p class="participants"> {{language?.participants}} {{ activity?.AttendeeCount }}</p>
-                  </div>
-                  <div class="m-bottom-0">
-                    <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showDialogWorkspace(activity.ID)" style="height: 45px;">{{language?.buttonLabel}}</button>
-                  </div>
+                <div *ngFor="let activity of pastActivities" [ngClass]="{'reminder-container': activity.IsScheduler != 0}">
+                  <ng-container *ngIf="activity.IsScheduler == 1">
+                    <div class="col-6 h40">
+                      <h1 class="summary">{{ activity?.Summary }}</h1>
+                    </div>
+                    <div class="col-6">
+                        <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date: "d MMM" : "UTC+4" }}</p>
+                        <p class="participants"> {{language?.participants}} {{ activity?.AttendeeCount }}</p>
+                    </div>
+                    <div class="m-bottom-0">
+                      <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showDialogWorkspace(activity.ID)" style="height: 45px;">{{language?.buttonLabel}}</button>
+                    </div>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -255,50 +259,16 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     const dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
     const startOfToday = new Date().setHours(0, 0, 0, 0);
     const endOfToday = new Date().setHours(23, 59, 0, 0);
-    const cd = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
-
-    console.log("now", now);
-    console.log("tDate", dateTimeNow);
-    console.log("endOfToday", endOfToday);
-    console.log("-->", now.getTimezoneOffset());
-    console.log("startOfToday", startOfToday);
 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
 
-      const dd = this.activities.sort((a: any, b: any) => {
+      this.activities.sort((a: any, b: any) => {
         const dateA: any = this.dateTimePipe.transform(a.EndDate);
         const dateB: any = this.dateTimePipe.transform(b.EndDate);
 
-        const db1: any = a.EndDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1$2$3");
-
-        const aa: any = new Date(dateA);
-        const bb: any = new Date(dateB);
-
-        const allday = this.datePipe.transform(dateA, "HH:mm:ss.SSS");
-
-        const sortDateA1: any = aa.setHours(aa.getHours() - 8);
-        const sortDateB1: any = bb.setHours(bb.getHours() - 8);
-
-        console.log("allday", allday);
-
-        console.log("db1", db1);
-        console.log("aa", aa);
-
-        console.log("a.EndDate", a.EndDate);
-        console.log("b.EndDate", b.EndDate);
-
-        console.log("sortDateA1", sortDateA1);
-        console.log("sortDateB1", sortDateB1);
-        console.log("dateA", dateA);
-        console.log("dateB", dateB);
-
-        return sortDateB1 - sortDateA1;
+        return dateB - dateA;
       });
-
-      console.log("dd", dd);
-
-      console.log("this.activities", this.activities);
 
       //Filter by past reminders
       this.pastActivities = this.sortFilterService
