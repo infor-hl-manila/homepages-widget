@@ -79,7 +79,7 @@ import { SortFilterService } from "../services/sort-filter.service";
               <div class="card-container-title">
                 <p class="card-header-title">{{ language?.today | uppercase }} ({{todayCount}})</p>
               </div>
-              <div class="card-container" [ngClass]="{'card-container-border-bottom': '!hasPastReminders'}">
+              <div class="card-container" [ngClass]="{'card-container-border-bottom': hasPastReminders != 'hasPastReminders'}">
                 <div class="reminder-container" *ngFor="let activity of todayActivities">
                   <div class="col-6 h40">
                     <h1 class="summary">{{ activity.Summary }}</h1>
@@ -202,6 +202,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     @Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext,
     @Inject(widgetInstanceInjectionToken) private readonly widgetInstance: IWidgetInstance,
     private dataService: DataService,
+    private datePipe: DatePipe,
     private dateTimePipe: DateTimePipe,
     private sortFilterService: SortFilterService,
     private reminderWorkspaceService: ReminderWorkspaceService,
@@ -248,19 +249,56 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   }
 
   private loadActivities(): void {
-    const now = Date.now();
+    //current date and time
+    const now = new Date();
+    //convert current date and time to EST
+    const dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
     const startOfToday = new Date().setHours(0, 0, 0, 0);
     const endOfToday = new Date().setHours(23, 59, 0, 0);
+    const cd = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
+
+    console.log("now", now);
+    console.log("tDate", dateTimeNow);
+    console.log("endOfToday", endOfToday);
+    console.log("-->", now.getTimezoneOffset());
+    console.log("startOfToday", startOfToday);
 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
 
-      //Sort the activities on descending order
-      this.activities.sort((a: any, b: any) => {
+      const dd = this.activities.sort((a: any, b: any) => {
         const dateA: any = this.dateTimePipe.transform(a.EndDate);
         const dateB: any = this.dateTimePipe.transform(b.EndDate);
-        return dateB - dateA;
+
+        const db1: any = a.EndDate.replace(/(\d{4})(\d{2})(\d{2})/, "$1$2$3");
+
+        const aa: any = new Date(dateA);
+        const bb: any = new Date(dateB);
+
+        const allday = this.datePipe.transform(dateA, "HH:mm:ss.SSS");
+
+        const sortDateA1: any = aa.setHours(aa.getHours() - 8);
+        const sortDateB1: any = bb.setHours(bb.getHours() - 8);
+
+        console.log("allday", allday);
+
+        console.log("db1", db1);
+        console.log("aa", aa);
+
+        console.log("a.EndDate", a.EndDate);
+        console.log("b.EndDate", b.EndDate);
+
+        console.log("sortDateA1", sortDateA1);
+        console.log("sortDateB1", sortDateB1);
+        console.log("dateA", dateA);
+        console.log("dateB", dateB);
+
+        return sortDateA1 - sortDateB1;
       });
+
+      console.log("dd", dd);
+
+      console.log("this.activities", this.activities);
 
       //Filter by past reminders
       this.pastActivities = this.sortFilterService
@@ -268,8 +306,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
 
         //Filter by today
       this.todayActivities = this.sortFilterService
-        .filterWithRange(response.data, "EndDate", now, false, startOfToday) ||
-        this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", startOfToday, endOfToday);
+        .filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;

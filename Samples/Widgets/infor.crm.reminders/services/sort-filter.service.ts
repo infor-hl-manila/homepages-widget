@@ -5,22 +5,6 @@ import { Injectable } from "@angular/core";
 })
 export class SortFilterService {
 
-  filterAllDay(arrayToFilter: any[], dateProp1: string, dateProp2: string, dateFilter1: any, dateFilter2: any) {
-    if (this.checkIfFilterValid(arrayToFilter, dateProp1, dateFilter1)) {
-      const filteredArr = arrayToFilter.filter(x => {
-        const datePropValue1 = new Date (x[dateProp1].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-        const datePropValue2 = new Date (x[dateProp2].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-
-        if (datePropValue1.getTime() === dateFilter1 && datePropValue2.getTime() === dateFilter2) {
-
-          return x;
-        }
-
-      });
-      return filteredArr;
-    }
-  }
-
   filterByDate(arrayToFilter: any[], dateProp: string, dateFilter: any, reverse?: boolean) {
     if (this.checkIfFilterValid(arrayToFilter, dateProp, dateFilter)) {
       const filteredArray = arrayToFilter.filter(d => {
@@ -29,6 +13,8 @@ export class SortFilterService {
         if (datePropVal) {
           const formattedDate = new Date (datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
           const offset = -240;
+          const convertedDate = new Date(formattedDate);
+          // const estDate2 = new Date (convertedDate.setHours(convertedDate.getHours() - 8));
           const estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
 
           switch (reverse) {
