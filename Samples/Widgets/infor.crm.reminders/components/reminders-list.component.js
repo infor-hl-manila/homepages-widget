@@ -93,7 +93,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
                     console.log("sortDateB1", sortDateB1);
                     console.log("dateA", dateA);
                     console.log("dateB", dateB);
-                    return sortDateA1 - sortDateB1;
+                    return sortDateB1 - sortDateA1;
                 });
                 console.log("dd", dd);
                 console.log("this.activities", _this.activities);

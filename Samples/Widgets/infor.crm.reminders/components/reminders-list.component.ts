@@ -293,7 +293,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
         console.log("dateA", dateA);
         console.log("dateB", dateB);
 
-        return sortDateA1 - sortDateB1;
+        return sortDateB1 - sortDateA1;
       });
 
       console.log("dd", dd);
