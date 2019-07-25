@@ -19,7 +19,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
             this.widgetContext = widgetContext;
         };
         DataService.prototype.getActivities = function () {
-            var request = this.createRequest(this.endpointUrl + "?filter=Result=null");
+            var request = this.createRequest(this.endpointUrl + "?filter=Result=null and IsScheduler=1");
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getActivity = function (ID, resource) {

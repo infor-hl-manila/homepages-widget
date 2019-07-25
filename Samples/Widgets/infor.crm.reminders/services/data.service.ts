@@ -25,7 +25,7 @@ export class DataService {
   }
 
   getActivities(): Observable<IIonApiResponse<IActivity[]>> {
-    const request = this.createRequest(`${this.endpointUrl}?filter=Result=null`);
+    const request = this.createRequest(`${this.endpointUrl}?filter=Result=null and IsScheduler=1`);
     return this.widgetContext.executeIonApiAsync<IActivity[]>(request);
   }
 
