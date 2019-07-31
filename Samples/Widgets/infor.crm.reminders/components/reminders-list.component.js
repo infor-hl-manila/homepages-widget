@@ -66,8 +66,6 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             //convert current date and time to EST
             var dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
             var startOfToday = new Date().setHours(0, 0, 0, 0);
-            var endOfToday = new Date().setHours(23, 59, 0, 0);
-            var startOfToday2 = new Date(startOfToday);
             this.dataService.getActivities().subscribe(function (response) {
                 _this.activities = response.data;
                 _this.activities.sort(function (a, b) {
@@ -79,7 +77,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
                 _this.pastActivities = _this.sortFilterService
                     .filterByDate(response.data, "EndDate", startOfToday, false);
                 //Filter by today
-                _this.todayActivities = _this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", now, startOfToday2).concat(_this.sortFilterService.filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday));
+                _this.todayActivities = _this.sortFilterService.filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday);
                 _this.viewContent = true;
                 _this.countReminders = _this.pastActivities.length + _this.todayActivities.length;
                 _this.setBusy(false);

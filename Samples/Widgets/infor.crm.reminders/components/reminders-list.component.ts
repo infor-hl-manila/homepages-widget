@@ -254,8 +254,6 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     //convert current date and time to EST
     const dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
     const startOfToday = new Date().setHours(0, 0, 0, 0);
-    const endOfToday = new Date().setHours(23, 59, 0, 0);
-    const startOfToday2 = new Date(startOfToday);
 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
@@ -272,7 +270,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
         .filterByDate(response.data, "EndDate", startOfToday, false);
 
         //Filter by today
-      this.todayActivities = this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", now, startOfToday2).concat(this.sortFilterService.filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday));
+      this.todayActivities = this.sortFilterService.filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday);
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;
