@@ -29,10 +29,13 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             this.instanceId = widgetContext.getWidgetInstanceId();
         }
         RemindersListComponent.prototype.ngOnInit = function () {
+            var _this = this;
             this.setBusy(true);
             this.loadActivities();
             this.language = this.widgetContext.getLanguage();
             this.dataService.getMongooseConfig();
+            this.widgetInstance.actions[0].execute = function () { return _this.inforCRMiOS(); };
+            this.widgetInstance.actions[1].execute = function () { return _this.webAppCRM(); };
         };
         RemindersListComponent.prototype.showDialogWorkspace = function (ID) {
             var _this = this;
@@ -52,6 +55,9 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
         //Remove banner section
         RemindersListComponent.prototype.dismissBanner = function () {
             this.showAppBanner = false;
+        };
+        RemindersListComponent.prototype.inforCRMiOS = function () {
+            this.widgetContext.launch({ url: "https://itunes.apple.com/us/app/infor-cloudsuite-crm-mobile/id1401846395?ls=1&mt=8" });
         };
         RemindersListComponent.prototype.loadActivities = function () {
             var _this = this;
@@ -84,6 +90,12 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             }, function (error) {
                 _this.onRequestError(error);
             });
+        };
+        RemindersListComponent.prototype.webAppCRM = function () {
+            var logicalID = this.widgetContext.getLogicalId();
+            var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
+            var url = "?LogicalId=" + logicalID + "&form=" + form;
+            this.widgetContext.launch({ url: url, resolve: true });
         };
         RemindersListComponent.prototype.onRequestError = function (error) {
             this.isErrorState = true;

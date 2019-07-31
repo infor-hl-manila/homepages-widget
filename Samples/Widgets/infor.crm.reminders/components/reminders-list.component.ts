@@ -219,6 +219,9 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     this.language = this.widgetContext.getLanguage();
 
     this.dataService.getMongooseConfig();
+
+    this.widgetInstance.actions[0].execute = () => this.inforCRMiOS();
+    this.widgetInstance.actions[1].execute = () => this.webAppCRM();
   }
 
   showDialogWorkspace(ID: string): void {
@@ -239,6 +242,10 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   //Remove banner section
   dismissBanner(): void {
     this.showAppBanner = false;
+  }
+
+  inforCRMiOS(): void {
+    this.widgetContext.launch( {url: "https://itunes.apple.com/us/app/infor-cloudsuite-crm-mobile/id1401846395?ls=1&mt=8"} );
   }
 
   private loadActivities(): void {
@@ -277,6 +284,14 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     }, (error: HttpErrorResponse) => {
       this.onRequestError(error);
     });
+  }
+
+  private webAppCRM(): void {
+    const logicalID = this.widgetContext.getLogicalId();
+    const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))`);
+    const url = `?LogicalId=${logicalID}&form=${form}`;
+
+    this.widgetContext.launch({ url: url, resolve: true });
   }
 
   private onRequestError(error: HttpErrorResponse): void {
