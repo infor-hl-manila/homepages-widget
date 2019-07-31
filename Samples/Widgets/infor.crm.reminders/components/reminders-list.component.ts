@@ -86,7 +86,7 @@ import { SortFilterService } from "../services/sort-filter.service";
                   </div>
                   <div class="col-6">
                     <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') == '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" }}</p>
-                    <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') != '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" : "UTC+4" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" : "UTC+4" }}</p>
+                    <p class="end-datetime" *ngIf="(activity.EndDate | dateTimeFormat | date: 'HH:mm:ss.SSS') != '23:59:00.000'">{{activity.StartDate | dateTimeFormat | date: "shortTime" : "UTC-8" }} - {{ activity.EndDate | dateTimeFormat | date: "shortTime" : "UTC-8" }}</p>
                     <p class="participants"> {{language?.participants}} {{ activity.AttendeeCount }}</p>
                   </div>
                   <div class="m-bottom-0">
@@ -106,7 +106,7 @@ import { SortFilterService } from "../services/sort-filter.service";
                     <h1 class="summary">{{ activity?.Summary }}</h1>
                   </div>
                   <div class="col-6">
-                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date: "d MMM" : "UTC+4" }}</p>
+                      <p class="end-datetime"> {{ activity?.EndDate | dateTimeFormat | date: "d MMM" : "UTC-8" }}</p>
                       <p class="participants"> {{language?.participants}} {{ activity?.AttendeeCount }}</p>
                   </div>
                   <div class="m-bottom-0">
@@ -255,6 +255,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
     const dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
     const startOfToday = new Date().setHours(0, 0, 0, 0);
     const endOfToday = new Date().setHours(23, 59, 0, 0);
+    const startOfToday2 = new Date(startOfToday);
 
     this.dataService.getActivities().subscribe(response => {
       this.activities = response.data;
@@ -271,8 +272,7 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
         .filterByDate(response.data, "EndDate", startOfToday, false);
 
         //Filter by today
-      this.todayActivities = this.sortFilterService
-        .filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday);
+      this.todayActivities = this.sortFilterService.filterAllDay(response.data, "StartDate", "EndDate", now, startOfToday2).concat(this.sortFilterService.filterWithRange(response.data, "EndDate", dateTimeNow, false, startOfToday));
 
       this.viewContent = true;
       this.countReminders = this.pastActivities.length + this.todayActivities.length;

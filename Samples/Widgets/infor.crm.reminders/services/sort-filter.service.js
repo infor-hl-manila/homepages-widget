@@ -10,6 +10,20 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
     var SortFilterService = /** @class */ (function () {
         function SortFilterService() {
         }
+        SortFilterService.prototype.filterAllDay = function (arrayToFilter, dateProp1, dateProp2, dateFilter1, dateFilter2) {
+            if (this.checkIfFilterValid(arrayToFilter, dateProp1, dateFilter1)) {
+                var filteredArr = arrayToFilter.filter(function (x) {
+                    var datePropValue1 = new Date(x[dateProp1].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+                    var datePropValue2 = new Date(x[dateProp2].replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
+                    var startOfDay = new Date(new Date().setHours(0, 0, 0, 0));
+                    var endOfDay = new Date(new Date().setHours(23, 59, 0, 0));
+                    if (datePropValue1.getTime() === startOfDay.getTime() && datePropValue2.getTime() === endOfDay.getTime()) {
+                        return x;
+                    }
+                });
+                return filteredArr;
+            }
+        };
         SortFilterService.prototype.filterByDate = function (arrayToFilter, dateProp, dateFilter, reverse) {
             if (this.checkIfFilterValid(arrayToFilter, dateProp, dateFilter)) {
                 var filteredArray = arrayToFilter.filter(function (d) {
@@ -17,8 +31,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
                     if (datePropVal) {
                         var formattedDate = new Date(datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
                         var offset = -240;
-                        var convertedDate = new Date(formattedDate);
-                        // const estDate2 = new Date (convertedDate.setHours(convertedDate.getHours() - 8));
+                        var timezoneOffset = new Date().getTimezoneOffset();
                         var estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
                         switch (reverse) {
                             case true:

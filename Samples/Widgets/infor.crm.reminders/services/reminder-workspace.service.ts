@@ -25,7 +25,7 @@ export class ReminderWorkspaceService {
       {
         icon: "#icon-launch",
         text: "View on Web Application",
-        cssClass: "btn",
+        cssClass: document.getElementsByTagName("body")[0].offsetWidth <= 500 ? "btn-icon" : "btn",
         align: "right",
         click: () => {
           this.capDialog.componentPanel.launchWebAppClicked();

@@ -29,7 +29,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                 {
                     icon: "#icon-launch",
                     text: "View on Web Application",
-                    cssClass: "btn",
+                    cssClass: document.getElementsByTagName("body")[0].offsetWidth <= 500 ? "btn-icon" : "btn",
                     align: "right",
                     click: function () {
                         _this.capDialog.componentPanel.launchWebAppClicked();
