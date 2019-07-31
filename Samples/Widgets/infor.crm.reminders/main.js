@@ -13,6 +13,20 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
     var RemindersWidgetComponent = /** @class */ (function () {
         function RemindersWidgetComponent() {
         }
+        RemindersWidgetComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            this.widgetInstance.actions[0].execute = function () { return _this.inforCRMiOS(); };
+            this.widgetInstance.actions[1].execute = function () { return _this.webAppCRM(); };
+        };
+        RemindersWidgetComponent.prototype.inforCRMiOS = function () {
+            this.widgetContext.launch({ url: "https://itunes.apple.com/us/app/infor-cloudsuite-crm-mobile/id1401846395?ls=1&mt=8" });
+        };
+        RemindersWidgetComponent.prototype.webAppCRM = function () {
+            var logicalID = this.widgetContext.getLogicalId();
+            var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
+            var url = "?LogicalId=" + logicalID + "&form=" + form;
+            this.widgetContext.launch({ url: url, resolve: true });
+        };
         __decorate([
             core_1.Input(),
             __metadata("design:type", Object)
