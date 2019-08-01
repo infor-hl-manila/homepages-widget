@@ -39,10 +39,10 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
         <ng-template #convertdateTime>
           <div class="six columns" *ngIf="activity">
             <div class="field label-left">
-              <p>{{lang?.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC-8" }}</span></p>
+              <p>{{lang?.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
             </div>
             <div class="field label-left">
-              <p>{{lang?.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC-8" }}</span></p>
+              <p>{{lang?.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
             </div>
           </div>
         </ng-template>
@@ -80,7 +80,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
                 data-validate="required"
                 placeholder="MM/dd/yyyy"
                 [options]="options"
-                [ngModel]="dataModel.EndDate | date: 'dd MMM yyyy hh:mm aaa' : 'UTC-8'"
+                [ngModel]="dataModel.EndDate | date: 'dd MMM yyyy hh:mm aaa' : 'UTC+4'"
                 (ngModelChange)="formatDate($event)"/>
             </ng-template>
 
