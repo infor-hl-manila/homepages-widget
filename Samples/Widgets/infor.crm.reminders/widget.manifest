@@ -9,6 +9,8 @@
   "iconFile": "icon.png",
   "applicationLogicalId": "lid://infor.crmce",
   "applicationVersion": "18.1",
+  "enableTitleEdit": false,
+  "isNativeInline": true,
   "targets": ["default", "mobile"],
   "localization": {
     "en-US": {

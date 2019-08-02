@@ -29,27 +29,27 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
 
         <div class="six columns" *ngIf="activity && getAllDay(activity); else convertdateTime">
           <div class="field label-left">
-            <p>{{lang?.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" }}</span></p>
+            <p>{{lang.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" }}</span></p>
           </div>
           <div class="field label-left">
-            <p>{{lang?.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" }}</span></p>
+            <p>{{lang.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" }}</span></p>
           </div>
         </div>
 
         <ng-template #convertdateTime>
           <div class="six columns" *ngIf="activity">
             <div class="field label-left">
-              <p>{{lang?.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
+              <p>{{lang.startDateTime}} <span>{{ activity?.StartDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
             </div>
             <div class="field label-left">
-              <p>{{lang?.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
+              <p>{{lang.endDateTime}} <span>{{ activity?.EndDate | dateTimeFormat | date: "dd MMM yyyy hh:mm aaa" : "UTC+4" }}</span></p>
             </div>
           </div>
         </ng-template>
 
         <div class="six columns" *ngIf="activity">
           <div class="field label-left">
-            <p>{{lang?.participants}} <span *ngFor="let participant of participants; let i = index;">
+            <p>{{lang.participants}} <span *ngFor="let participant of participants; let i = index;">
             <span *ngIf="i === 0">{{participant.Name}}</span>
             <span *ngIf="i === 1">, {{participant.Name}}</span>
             <span *ngIf="i === 2">...,+ {{participants.length - 2}} more</span>
@@ -66,7 +66,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
             <label soho-label
               class="rmndr-lbl"
               [required]="true">
-              {{lang?.dateTimeCompleted}}
+              {{lang.dateTimeCompleted}}
             </label>
             <input *ngIf="getAllDay(activity); else dpconvert" class="reminders-datepicker" soho-datepicker
               data-validate="required"
@@ -89,7 +89,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
             <label soho-label
               class="rmndr-lbl"
               [required]="true"
-            >{{lang?.meetingOutcome}}</label>
+            >{{lang.meetingOutcome}}</label>
             <select soho-dropdown
               data-validate="required"
               placeholder="Choose Meeting Outcome"
@@ -102,7 +102,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
           <div class="field">
             <label soho-label
               class="rmndr-lbl"
-            >{{lang?.notes}}</label>
+            >{{lang.notes}}</label>
             <textarea soho-textarea
               class="reminders-textarea"
               [placeholder]="lang.get('enterNotes')"
@@ -116,7 +116,7 @@ import { IRWorkspaceComponent, ReminderWorkspaceService } from "../services/remi
             <button soho-button
             (click)="submitData(dataModel)"
             [disabled]="!dataModel.Result || !dataModel.EndDate"
-            soho-button="primary">{{lang?.saveBtnText}}</button>
+            soho-button="primary">{{lang.saveBtnText}}</button>
           </div>
         </div>
       </div>
@@ -186,12 +186,11 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
         const formattedDate = this.dateTimePipe.transform(this.activity.EndDate);
         this.dataModel.EndDate = this.datePipe.transform(formattedDate, "dd MMM yyyy hh:mm aaa");
         this.dataModel._ItemId = this.activity._ItemId;
-        // tslint:disable-next-line:no-empty
-      }, () => {},
-      () => {
         this.getOutcomeList();
-      }
-    );
+      }, (error) => {
+        this.showErrorMessage();
+        this.getOutcomeList();
+      });
 
     //Get attendees
     this.dataService.getActivity(this.activityID, "attendees").subscribe(

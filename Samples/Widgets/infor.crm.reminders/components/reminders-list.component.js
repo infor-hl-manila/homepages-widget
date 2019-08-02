@@ -47,9 +47,12 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
                     activityID: ID
                 }
             });
-            this.reminderWorkspaceService.capDialog.closed(function (d) {
-                _this.loadActivities();
-                _this.setBusy(false);
+            this.reminderWorkspaceService.capDialog.closed(function (refresh) {
+                refresh = true;
+                if (refresh) {
+                    _this.setBusy(false);
+                    _this.loadActivities();
+                }
             });
         };
         //Remove banner section
@@ -92,7 +95,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             });
         };
         RemindersListComponent.prototype.webAppCRM = function () {
-            var logicalID = this.widgetContext.getLogicalId();
+            var logicalID = "lid://infor.crmce";
             var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
             var url = "?LogicalId=" + logicalID + "&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
