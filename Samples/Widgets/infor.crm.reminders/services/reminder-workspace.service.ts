@@ -20,7 +20,7 @@ export class ReminderWorkspaceService {
       {
         text: "Cancel",
         align: "left",
-        click: () => this.capDialog.close(false),
+        click: () => this.capDialog.close(),
       } as SohoContextualActionPanelButton,
       {
         icon: "#icon-launch",
@@ -47,7 +47,7 @@ export class ReminderWorkspaceService {
   }
 
   close(refresh?: boolean): void {
-    this.capDialog.close(refresh);
+    this.capDialog.close(true);
   }
 }
 

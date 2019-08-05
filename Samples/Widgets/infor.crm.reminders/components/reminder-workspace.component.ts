@@ -225,7 +225,6 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
           timeout: 4000
         });
         this.reminderWorkSpaceService.close();
-        this.setBusy(true);
       }
     );
   }
@@ -256,7 +255,7 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
 
   launchWebAppClicked(): void {
     const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Completed Activities,InitialCommand=Refresh))`);
-    const url = `?LogicalId=lid://infor.crmce&form=${form}`;
+    const url = `?LogicalId={logicalId}=${form}`;
 
     this.widgetContext.launch({ url: url, resolve: true });
   }
@@ -265,8 +264,9 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
     this.dataService.getPickLists(this.activity.Type).subscribe(
       response => {
         this.picklists = response.data;
-      }, () => {/**/},
-      () => {
+        this.busyIndicator.activated = false;
+      }, (error) => {
+        this.showErrorMessage();
         this.busyIndicator.activated = false;
       }
     );

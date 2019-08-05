@@ -65,7 +65,6 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                     timeout: 4000
                 });
                 _this.reminderWorkSpaceService.close();
-                _this.setBusy(true);
             });
         };
         ReminderWorkspaceComponent.prototype.showErrorMessage = function () {
@@ -90,14 +89,16 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         };
         ReminderWorkspaceComponent.prototype.launchWebAppClicked = function () {
             var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Completed Activities,InitialCommand=Refresh))");
-            var url = "?LogicalId=lid://infor.crmce&form=" + form;
+            var url = "?LogicalId={logicalId}=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
         };
         ReminderWorkspaceComponent.prototype.getOutcomeList = function () {
             var _this = this;
             this.dataService.getPickLists(this.activity.Type).subscribe(function (response) {
                 _this.picklists = response.data;
-            }, function () { }, function () {
+                _this.busyIndicator.activated = false;
+            }, function (error) {
+                _this.showErrorMessage();
                 _this.busyIndicator.activated = false;
             });
         };

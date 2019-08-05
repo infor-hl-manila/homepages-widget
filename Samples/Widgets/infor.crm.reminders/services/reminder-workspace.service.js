@@ -24,7 +24,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                 {
                     text: "Cancel",
                     align: "left",
-                    click: function () { return _this.capDialog.close(false); },
+                    click: function () { return _this.capDialog.close(); },
                 },
                 {
                     icon: "#icon-launch",
@@ -50,7 +50,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
             this.capDialog.open();
         };
         ReminderWorkspaceService.prototype.close = function (refresh) {
-            this.capDialog.close(refresh);
+            this.capDialog.close(true);
         };
         ReminderWorkspaceService = __decorate([
             core_1.Injectable({

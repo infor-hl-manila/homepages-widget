@@ -47,10 +47,9 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
                     activityID: ID
                 }
             });
-            this.reminderWorkspaceService.capDialog.closed(function (refresh) {
-                refresh = true;
+            this.reminderWorkspaceService.capDialog.afterClose(function (refresh) {
                 if (refresh) {
-                    _this.setBusy(false);
+                    _this.setBusy(true);
                     _this.loadActivities();
                 }
             });
@@ -95,9 +94,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             });
         };
         RemindersListComponent.prototype.webAppCRM = function () {
-            var logicalID = "lid://infor.crmce";
             var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
-            var url = "?LogicalId=" + logicalID + "&form=" + form;
+            var url = "?LogicalId={logicalId}&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
         };
         RemindersListComponent.prototype.onRequestError = function (error) {

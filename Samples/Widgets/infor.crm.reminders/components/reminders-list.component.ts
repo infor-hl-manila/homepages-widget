@@ -233,10 +233,9 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
         activityID: ID
       }
     });
-    this.reminderWorkspaceService.capDialog.closed((refresh?: boolean) => {
-      refresh = true;
+    this.reminderWorkspaceService.capDialog.afterClose((refresh?: boolean) => {
       if (refresh) {
-        this.setBusy(false);
+        this.setBusy(true);
         this.loadActivities();
       }
     });
@@ -290,9 +289,8 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   }
 
   private webAppCRM(): void {
-    const logicalID = "lid://infor.crmce";
     const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))`);
-    const url = `?LogicalId=${logicalID}&form=${form}`;
+    const url = `?LogicalId={logicalId}&form=${form}`;
 
     this.widgetContext.launch({ url: url, resolve: true });
   }

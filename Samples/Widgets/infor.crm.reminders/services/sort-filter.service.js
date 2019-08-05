@@ -30,7 +30,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
                     var datePropVal = d[dateProp];
                     if (datePropVal) {
                         var formattedDate = new Date(datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
-                        var offset = -240;
+                        var offset = 480;
                         var estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
                         switch (reverse) {
                             case true:
