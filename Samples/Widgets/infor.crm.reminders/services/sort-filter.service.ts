@@ -30,8 +30,10 @@ export class SortFilterService {
         if (datePropVal) {
           const formattedDate = new Date (datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
           const offset = 480;
+          const now = new Date();
+          const newOffset = now.getTimezoneOffset();
 
-          const estDate = new Date(formattedDate.getTime() + offset / 60 * 1000);
+          const estDate = new Date(formattedDate.getTime() + newOffset / 60 * 1000);
 
           switch (reverse) {
             case true:
