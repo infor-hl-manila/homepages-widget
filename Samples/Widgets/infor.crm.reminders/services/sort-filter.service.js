@@ -31,7 +31,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
                     if (datePropVal) {
                         var formattedDate = new Date(datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
                         var offset = 480;
-                        var estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
+                        var estDate = new Date(formattedDate.getTime() + offset / 60 * 1000);
                         switch (reverse) {
                             case true:
                                 if (dateFilter < estDate.getTime()) {

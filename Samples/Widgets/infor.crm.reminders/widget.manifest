@@ -14,7 +14,7 @@
   "targets": ["default", "mobile"],
   "localization": {
     "en-US": {
-      "widgetTitle": "Reminders",
+      "widgetTitle": "CRM CE Reminders",
       "widgetDescription": "See a list and view details of past activities. Log your meeting and activity outcomes such as Sold, Delayed, or Follow-Up. After you log a meeting outcome in the widget, it will appear in your Completed folder in the desktop tool.",
       "titleHeaderSingular": "Past Meeting",
       "titleHeaderPlural": "Past Meetings",

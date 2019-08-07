@@ -31,7 +31,7 @@ export class SortFilterService {
           const formattedDate = new Date (datePropVal.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"));
           const offset = 480;
 
-          const estDate = new Date(formattedDate.getTime() + offset * 60 * 1000);
+          const estDate = new Date(formattedDate.getTime() + offset / 60 * 1000);
 
           switch (reverse) {
             case true:

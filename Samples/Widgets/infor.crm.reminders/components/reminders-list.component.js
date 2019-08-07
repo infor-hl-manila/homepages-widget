@@ -65,8 +65,9 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             var _this = this;
             //current date and time
             var now = new Date();
+            var offset = 480;
             //convert current date and time to EST
-            var dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
+            var dateTimeNow = now.setTime(now.getTime() + offset / 60 * 1000);
             var startOfToday = new Date().setHours(0, 0, 0, 0);
             this.dataService.getActivities().subscribe(function (response) {
                 _this.activities = response.data;

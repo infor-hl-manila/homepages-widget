@@ -253,8 +253,9 @@ export class RemindersListComponent implements OnInit, IWidgetSettingsComponent 
   private loadActivities(): void {
     //current date and time
     const now = new Date();
+    const offset = 480;
     //convert current date and time to EST
-    const dateTimeNow = now.setTime(now.getTime() + now.getTimezoneOffset() / 60 * 1000);
+    const dateTimeNow = now.setTime(now.getTime() + offset / 60 * 1000);
     const startOfToday = new Date().setHours(0, 0, 0, 0);
 
     this.dataService.getActivities().subscribe(response => {
