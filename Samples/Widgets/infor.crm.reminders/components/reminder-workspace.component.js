@@ -88,8 +88,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             this.dataModel.EndDate = this.datePipe.transform(event, "dd MMM yyyy hh:mm aaa");
         };
         ReminderWorkspaceComponent.prototype.launchWebAppClicked = function () {
-            var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Completed Activities,InitialCommand=Refresh))");
-            var url = "?LogicalId={logicalId}=" + form;
+            var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
+            var url = "?LogicalId={logicalId}&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
         };
         ReminderWorkspaceComponent.prototype.getOutcomeList = function () {

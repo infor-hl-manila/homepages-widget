@@ -68,7 +68,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "../co
             var offset = 480;
             var newOffset = now.getTimezoneOffset();
             //convert current date and time to EST
-            var dateTimeNow = now.setTime(now.getTime() + newOffset / 60 * 1000);
+            var dateTimeNow = now.setTime(now.getTime() + newOffset * 60 * 1000);
             var startOfToday = new Date().setHours(0, 0, 0, 0);
             this.dataService.getActivities().subscribe(function (response) {
                 _this.activities = response.data;

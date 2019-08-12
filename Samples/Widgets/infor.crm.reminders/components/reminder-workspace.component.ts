@@ -254,8 +254,8 @@ export class ReminderWorkspaceComponent implements IRWorkspaceComponent, OnInit 
   }
 
   launchWebAppClicked(): void {
-    const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Completed Activities,InitialCommand=Refresh))`);
-    const url = `?LogicalId={logicalId}=${form}`;
+    const form = encodeURIComponent(`CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))`);
+    const url = `?LogicalId={logicalId}&form=${form}`;
 
     this.widgetContext.launch({ url: url, resolve: true });
   }
