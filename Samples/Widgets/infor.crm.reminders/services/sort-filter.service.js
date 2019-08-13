@@ -33,7 +33,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
                         var offset = 480;
                         var now = new Date();
                         var newOffset = now.getTimezoneOffset();
-                        var estDate = new Date(formattedDate.getTime() + newOffset * 60 * 1000);
+                        var estDate = new Date(formattedDate.getTime() + newOffset / 60 * 1000);
                         switch (reverse) {
                             case true:
                                 if (dateFilter < estDate.getTime()) {

@@ -87,7 +87,7 @@ export class DataService {
       headers = {
         Accept: "application/json",
         "Content-Type": "application/json",
-        "X-Infor-MongooseConfig": "CRMCEQA10_CRM_DEM_DEFAULT"
+        "X-Infor-MongooseConfig": this.mongooseConfig[0]
       };
     }
 

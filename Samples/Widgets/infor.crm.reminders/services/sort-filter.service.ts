@@ -33,7 +33,7 @@ export class SortFilterService {
           const now = new Date();
           const newOffset = now.getTimezoneOffset();
 
-          const estDate = new Date(formattedDate.getTime() + newOffset * 60 * 1000);
+          const estDate = new Date(formattedDate.getTime() + newOffset / 60 * 1000);
 
           switch (reverse) {
             case true:

@@ -69,7 +69,7 @@ define(["require", "exports", "@angular/core"], function (require, exports, core
                 headers = {
                     Accept: "application/json",
                     "Content-Type": "application/json",
-                    "X-Infor-MongooseConfig": "CRMCEQA10_CRM_DEM_DEFAULT"
+                    "X-Infor-MongooseConfig": this.mongooseConfig[0]
                 };
             }
             var url = this.tenant + "/" + relativeUrl;
