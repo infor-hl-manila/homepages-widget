@@ -1,0 +1,20 @@
+{
+  "widgetId": "infor.crm.campaigns",
+  "type": "inline",
+  "framework": "angular",
+  "version": "1.1",
+  "aotVersion": "",
+  "name": "CRM CE Campaigns",
+  "category": "application",
+  "applicationLogicalId": "lid://infor.crmce",
+  "applicationVersion": "18.1",
+  "enableTitleEdit": false,
+  "isNativeInline": true,
+  "targets": ["default", "mobile"],
+  "localization": {
+    "en-US": {
+      "widgetTitle": "CRM CE Campaigns",
+      "widgetDescription": "CRM CE Campaigns"
+    }
+  }
+}
