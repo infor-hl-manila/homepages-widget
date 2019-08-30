@@ -1,6 +1,6 @@
 ﻿{
-	"ionApiUrl": "http://localhost:8083/ACME_TST",
-	"ionApiToken": "bh6fKuLUu0MnE7Mzir5jNwoQTTmZ",
+	"ionApiUrl": "http://localhost:8083/CRMCEFEAT01_AX2",
+	"ionApiToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkluZm9yQWNjZXNzVG9rZW5TaWduaW5nQ2VydGlmaWNhdGUtMTU2NjgwNDQzOSJ9.eyJzY29wZSI6IiIsImp0aSI6IkFRd2Q3czdZYkFPdDg2NmgwenNXMUcxMVZlVWZWSkJHMmFlMCIsIklkZW50aXR5MiI6IjU2Mjg4MjViLWJjNTAtNDk3Mi1hMWFmLTI4ZjY3NmY1MmRhYSIsIlRlbmFudCI6IkNSTUNFRkVBVDAxX0FYMiIsIkVuZm9yY2VTY29wZXNGb3JDbGllbnQiOiJmYWxzZSIsImV4cCI6MTU2NzA5NzU0NX0.T6SJztio-KmJnLkUT9muVScjnK_BqAwH5fockMr1NesBPth4R_AMKAj1NtLP9qUZS1prNBhrsmkWZk9ApinINqIliE8Prr1B-09UJojtP5dBUsDTWL66Kz2HqAEKZnkRsnl45g8nfJ7z1DX1JDqpHss2Y4og0fLQRG5Vav0CM2c43Fr8CLDyqaAAeLsEi2t78rawCgmemMX5wsPWIg0vPmr3vy8DPBY0ZH9HTyvDCQt8wS0nnxvJpcf5lwFQpa5qmN9qiKjr9Bpb1u7TOGlWMXkQonBjxbLsOYrK7totNng8W2m29ITJmlqJbbQtYGhxzzdH9y4bIvTfV6WU02dvYQ",
 	"ionApiCustomerContext": "CustomerApi",
 	"applications": {
 		"lid://infor.bi": [

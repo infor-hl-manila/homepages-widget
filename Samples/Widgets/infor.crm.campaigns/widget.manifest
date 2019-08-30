@@ -2,7 +2,7 @@
   "widgetId": "infor.crm.campaigns",
   "type": "inline",
   "framework": "angular",
-  "version": "1.1",
+  "version": "1.0",
   "aotVersion": "",
   "name": "CRM CE Campaigns",
   "category": "application",
@@ -14,7 +14,7 @@
   "localization": {
     "en-US": {
       "widgetTitle": "CRM CE Campaigns",
-      "widgetDescription": "CRM CE Campaigns"
+      "widgetDescription": "See an overview of your launched and unlaunched campaigns with stages and next steps."
     }
   }
 }

@@ -8,36 +8,63 @@ import {
   OnInit
 } from "@angular/core";
 import {
+  SohoBusyIndicatorModule,
+  SohoButtonModule,
+  SohoComponentsModule
+} from "@infor/sohoxi-angular";
+import {
   IWidgetAction,
   IWidgetComponent,
   IWidgetContext,
   IWidgetInstance
 } from "lime";
 import {
-  DataService
-} from "./services/data.service";
+  CampaignWorkspaceComponent
+} from "./components/campaign-workspace.component";
+import {
+  CampaignsListComponent
+} from "./components/campaigns-list.component";
+import { DateTimePipe } from "./date.pipe";
 
 @Component({
-  template: `<p>Hello World</p>`
+  template: `
+    <campaigns-list></campaigns-list>
+  `
 })
 
-export class CampaignsWidgetComponent implements OnInit {
+export class CampaignsWidgetComponent {
 
   // tslint:disable-next-line:no-empty
-  constructor(private dataService: DataService) {}
-  ngOnInit(): void {/**/}
+  constructor() {}
 }
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    SohoButtonModule,
+    SohoBusyIndicatorModule,
+    SohoComponentsModule
   ],
   declarations: [
-    CampaignsWidgetComponent
+    DateTimePipe,
+    CampaignsListComponent,
+    CampaignsWidgetComponent,
+    CampaignWorkspaceComponent
   ],
   entryComponents: [
-    CampaignsWidgetComponent
+    CampaignsWidgetComponent,
+    CampaignWorkspaceComponent
   ]
 })
 
 export class CampaignsWidgetModule { }
+
+export const getActions = (): IWidgetAction[] => {
+  return [
+    {
+      isPrimary: true,
+      standardIconName: "#icon-launch",
+      text: "Launch Web Application"
+    }
+  ];
+};

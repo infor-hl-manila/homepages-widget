@@ -7,20 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "@angular/common", "@angular/core", "./services/data.service"], function (require, exports, common_1, core_1, data_service_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi-angular", "./components/campaign-workspace.component", "./components/campaigns-list.component", "./date.pipe"], function (require, exports, common_1, core_1, sohoxi_angular_1, campaign_workspace_component_1, campaigns_list_component_1, date_pipe_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var CampaignsWidgetComponent = /** @class */ (function () {
         // tslint:disable-next-line:no-empty
-        function CampaignsWidgetComponent(dataService) {
-            this.dataService = dataService;
+        function CampaignsWidgetComponent() {
         }
-        CampaignsWidgetComponent.prototype.ngOnInit = function () { };
         CampaignsWidgetComponent = __decorate([
             core_1.Component({
-                template: "<p>Hello World</p>"
+                template: "\n    <campaigns-list></campaigns-list>\n  "
             }),
-            __metadata("design:paramtypes", [data_service_1.DataService])
+            __metadata("design:paramtypes", [])
         ], CampaignsWidgetComponent);
         return CampaignsWidgetComponent;
     }());
@@ -31,18 +29,34 @@ define(["require", "exports", "@angular/common", "@angular/core", "./services/da
         CampaignsWidgetModule = __decorate([
             core_1.NgModule({
                 imports: [
-                    common_1.CommonModule
+                    common_1.CommonModule,
+                    sohoxi_angular_1.SohoButtonModule,
+                    sohoxi_angular_1.SohoBusyIndicatorModule,
+                    sohoxi_angular_1.SohoComponentsModule
                 ],
                 declarations: [
-                    CampaignsWidgetComponent
+                    date_pipe_1.DateTimePipe,
+                    campaigns_list_component_1.CampaignsListComponent,
+                    CampaignsWidgetComponent,
+                    campaign_workspace_component_1.CampaignWorkspaceComponent
                 ],
                 entryComponents: [
-                    CampaignsWidgetComponent
+                    CampaignsWidgetComponent,
+                    campaign_workspace_component_1.CampaignWorkspaceComponent
                 ]
             })
         ], CampaignsWidgetModule);
         return CampaignsWidgetModule;
     }());
     exports.CampaignsWidgetModule = CampaignsWidgetModule;
+    exports.getActions = function () {
+        return [
+            {
+                isPrimary: true,
+                standardIconName: "#icon-launch",
+                text: "Launch Web Application"
+            }
+        ];
+    };
 });
 //# sourceMappingURL=main.js.map
