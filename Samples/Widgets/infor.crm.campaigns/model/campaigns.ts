@@ -27,6 +27,7 @@ export interface ICampaignStage {
   DerCampaignTaskCount: string;
   StartDate: Date;
   EndDate: Date;
+  Type: string;
   [key: string]: any;
 }
 

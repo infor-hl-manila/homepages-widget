@@ -50,7 +50,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getCampaignStages = function () {
-            var request = this.createRequest(encodeURI(this.dataCampaignStageReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DerCampaignTaskCount,StartDate,EndDate");
+            var request = this.createRequest(encodeURI(this.dataCampaignStageReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DerCampaignTaskCount,StartDate,EndDate,Type");
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getCampaignSteps = function () {

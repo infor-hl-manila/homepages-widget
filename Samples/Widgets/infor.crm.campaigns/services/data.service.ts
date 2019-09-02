@@ -77,7 +77,7 @@ export class DataService {
   }
 
   getCampaignStages(): Observable<IIonApiResponse<ICampaignStage[]>> {
-    const request = this.createRequest(`${encodeURI(this.dataCampaignStageReqUrl)}/adv?props=ID,CampaignID,Description,Status,DerCampaignTaskCount,StartDate,EndDate`);
+    const request = this.createRequest(`${encodeURI(this.dataCampaignStageReqUrl)}/adv?props=ID,CampaignID,Description,Status,DerCampaignTaskCount,StartDate,EndDate,Type`);
     return this.widgetContext.executeIonApiAsync<ICampaignStage[]>(request);
   }
 
