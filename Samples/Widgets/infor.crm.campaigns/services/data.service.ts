@@ -29,7 +29,7 @@ export class DataService {
   private mongooseConfig: any;
   private widgetContext: IWidgetContext;
   private tenant = "CRMCE";
-  private dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type";
+  private dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
   private dataCampaignStageReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStage";
   private dataCampaignStepReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStep";
 
@@ -54,11 +54,8 @@ export class DataService {
 
     const request = this.createRequest(encodeURI(mongooseConfigUrl));
 
-    console.log("request", request);
-
     this.widgetContext.executeIonApiAsync(request).subscribe(
       (response: any) => {
-        console.log("response", response);
         this.mongooseConfig = response.data[0];
       }, (error: HttpErrorResponse) => {
         // this.showErrorResponse(error);
@@ -82,7 +79,7 @@ export class DataService {
   }
 
   getCampaignSteps(): Observable<IIonApiResponse<ICampaignStep[]>> {
-    const request = this.createRequest(`${encodeURI(this.dataCampaignStepReqUrl)}/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned`);
+    const request = this.createRequest(`${encodeURI(this.dataCampaignStepReqUrl)}/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID`);
     return this.widgetContext.executeIonApiAsync<ICampaignStep[]>(request);
   }
 
@@ -100,7 +97,6 @@ export class DataService {
 
   private createRequest(relativeUrl: string, headers?: object): IIonApiRequestOptions {
     if (!headers) {
-      console.log("===>", this);
       headers = {
         Accept: "application/json",
         "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",

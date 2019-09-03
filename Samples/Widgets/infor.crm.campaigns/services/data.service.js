@@ -14,7 +14,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
         function DataService(messageService) {
             this.messageService = messageService;
             this.tenant = "CRMCE";
-            this.dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type";
+            this.dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
             this.dataCampaignStageReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStage";
             this.dataCampaignStepReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStep";
         }
@@ -33,9 +33,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             }
             var mongooseConfigUrl = "IDORequestService/MGRestService.svc/json/configurations?configgroup=" + configGroup;
             var request = this.createRequest(encodeURI(mongooseConfigUrl));
-            console.log("request", request);
             this.widgetContext.executeIonApiAsync(request).subscribe(function (response) {
-                console.log("response", response);
                 _this.mongooseConfig = response.data[0];
             }, function (error) {
                 // this.showErrorResponse(error);
@@ -54,7 +52,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getCampaignSteps = function () {
-            var request = this.createRequest(encodeURI(this.dataCampaignStepReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned");
+            var request = this.createRequest(encodeURI(this.dataCampaignStepReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID");
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.showErrorResponse = function (error) {
@@ -70,7 +68,6 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
         };
         DataService.prototype.createRequest = function (relativeUrl, headers) {
             if (!headers) {
-                console.log("===>", this);
                 headers = {
                     Accept: "application/json",
                     "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",

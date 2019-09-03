@@ -32,8 +32,11 @@ import { DateTimePipe } from "./date.pipe";
   `
 })
 
-export class CampaignsWidgetComponent {
-
+export class CampaignsWidgetComponent implements IWidgetComponent {
+@Input()
+widgetContext: IWidgetContext;
+@Input()
+widgetInstance: IWidgetInstance;
   // tslint:disable-next-line:no-empty
   constructor() {}
 }

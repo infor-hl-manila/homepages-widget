@@ -31,7 +31,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                     icon: "#icon-launch",
                     align: "right",
                     cssClass: "btn-icon",
-                    click: function () { return _this.capDialog.close(); },
+                    click: function () { return _this.capDialog.componentPanel.campaignWebAppClicked(); },
                 }
             ]);
             this.capDialog.apply(function (component) {

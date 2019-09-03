@@ -14,6 +14,14 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         // tslint:disable-next-line:no-empty
         function CampaignsWidgetComponent() {
         }
+        __decorate([
+            core_1.Input(),
+            __metadata("design:type", Object)
+        ], CampaignsWidgetComponent.prototype, "widgetContext", void 0);
+        __decorate([
+            core_1.Input(),
+            __metadata("design:type", Object)
+        ], CampaignsWidgetComponent.prototype, "widgetInstance", void 0);
         CampaignsWidgetComponent = __decorate([
             core_1.Component({
                 template: "\n    <campaigns-list></campaigns-list>\n  "

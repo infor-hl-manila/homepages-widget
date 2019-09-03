@@ -38,7 +38,7 @@ export class CampaignWorkspaceService {
         icon: "#icon-launch",
         align: "right",
         cssClass: "btn-icon",
-        click: () => this.capDialog.close(),
+        click: () => this.capDialog.componentPanel.campaignWebAppClicked(),
       } as SohoContextualActionPanelButton
     ]);
     this.capDialog.apply(component => {
@@ -61,7 +61,7 @@ export class CampaignWorkspaceService {
 }
 
 export interface ICWorkspaceComponent {
-  launchWebAppClicked: () => void;
+  campaignWebAppClicked: () => void;
 }
 
 export interface IWorkspaceOptions<T> {

@@ -16,6 +16,7 @@ export interface ICampaign {
   CallToAction: string;
   LeadSource: string;
   Type: string;
+  SecCodeID: string;
   [key: string]: any;
 }
 
@@ -38,5 +39,6 @@ export interface ICampaignStep {
   Status: string;
   DueDate: Date;
   DateAssigned: Date;
+  CampaignStageID: string;
   [key: string]: any;
 }

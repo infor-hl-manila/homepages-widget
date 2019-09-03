@@ -2,6 +2,7 @@
   "widgetId": "infor.crm.campaigns",
   "type": "inline",
   "framework": "angular",
+  "defaultSize": "1, 2",
   "version": "1.0",
   "aotVersion": "",
   "name": "CRM CE Campaigns",

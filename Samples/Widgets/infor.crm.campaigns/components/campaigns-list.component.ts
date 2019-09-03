@@ -66,7 +66,7 @@ import {
 
           <soho-accordion [rerouteOnLinkClick]="false" class="accordion">
             <soho-accordion-header class="accordion-header cmpgn-accordion-header" style="height: 50%;">
-            <a (click)="showDialogWorkspace(campaign.ID, campaign.Name)" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
+            <a (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle)" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
 
               <div class="three columns col-mb-style-left col-cmpgns">
                 <h1 class="cmpgn-name">{{ campaign.Name }}</h1>
@@ -726,12 +726,14 @@ export class CampaignsListComponent implements OnInit {
   campaignStages: ICampaignStage[];
   campaignSteps: ICampaignStep[];
   container: any;
+  container2: any;
   itemName: string = "Items"; // Object name of item list
   isErrorState: boolean;
   viewContent: boolean = false;
   private totalResults: number;
   private dataSet: any;
   private dataSetChildStage: any;
+  private dataSetChildStage2: any;
   private dataSetChildStep: any;
 
   constructor(
@@ -776,19 +778,16 @@ export class CampaignsListComponent implements OnInit {
     const parent = this.dataSet;
     const childStage = this.dataSetChildStage;
     const childStep = this.dataSetChildStep;
-    // console.log("parent", parent);
 
     if (parent && childStage && childStep) {
       parent.map((p: any) => {
-        const child1 = childStage.filter((f: any) => f.StageCampaignID === p.ID);
-        const child2 = childStep.filter((f: any) => f.StepCampaignID === p.ID);
-        // console.log("child", child1);
-        this.container.push({...p, Stages: [...child1], Steps: [...child2]});
-        // console.log("container", container);
-        console.log("this 2", this);
+        const stages = childStage.filter((a: any) =>
+        a.StageCampaignID === p.ID);
+
+        this.container.push({...p, Stages: [...stages]});
       });
-      this.setBusy(false);
     }
+    this.setBusy(false);
   }
 
   private loadCampaigns(): void {
@@ -821,15 +820,18 @@ export class CampaignsListComponent implements OnInit {
             Objectives: campaign[13].Value,
             CallToAction: campaign[14].Value,
             LeadSource: campaign[15].Value,
-            Type: campaign[16].Value
+            Type: campaign[16].Value,
+            Code: campaign[17].Value,
+            workspaceTitle: `${campaign[17].Value}: ${campaign[1].Value}`
           };
           this.dataSet.push(item);
         }
       }
       this.dataCollection();
-      this.setBusy(false);
     }, (error: HttpErrorResponse) => {
         this.onRequestError(error);
+    }, () => {
+      this.setBusy(false);
     });
 
     //Request for Campaign stage
@@ -857,9 +859,10 @@ export class CampaignsListComponent implements OnInit {
         }
       }
       this.dataCollection();
-      this.setBusy(false);
     }, (error: HttpErrorResponse) => {
       this.onRequestError(error);
+    }, () => {
+      this.setBusy(false);
     });
 
     this.dataService.getCampaignSteps().subscribe((response: any) => {
@@ -875,15 +878,17 @@ export class CampaignsListComponent implements OnInit {
             StepDescription: campaignStep[2].Value,
             StepStatus: campaignStep[3].Value,
             StepsDueDate: campaignStep[4].Value,
-            StepDateAssigned: campaignStep[5].Value
+            StepDateAssigned: campaignStep[5].Value,
+            StepCampaignStageID: campaignStep[6].Value
           };
           this.dataSetChildStep.push(item);
         }
       }
       this.dataCollection();
-      this.setBusy(false);
     }, (error: HttpErrorResponse) => {
       this.onRequestError(error);
+    }, () => {
+      this.setBusy(false);
     });
   }
 

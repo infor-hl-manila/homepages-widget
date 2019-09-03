@@ -31,30 +31,11 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
         CampaignWorkspaceComponent.prototype.ngOnInit = function () {
             this.busyIndicator.activated = true;
             this.loadCampaign();
-            console.log("this ->", this);
         };
-        CampaignWorkspaceComponent.prototype.launchWebAppClicked = function () {
-            var form = encodeURIComponent("CRMActivities(SETVARVALUES(VarAppliedNamedFilter=My Activities,InitialCommand=Refresh))");
+        CampaignWorkspaceComponent.prototype.campaignWebAppClicked = function () {
+            var form = encodeURIComponent("CRMCampaign(FILTER(ID=" + this.campaignID + ")SETVARVALUES(VarAppliedNamedFilter=My Campaigns,InitialCommand=Refresh))");
             var url = "?LogicalId={logicalId}&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
-        };
-        CampaignWorkspaceComponent.prototype.dataCollection = function () {
-            var _this = this;
-            this.container = [];
-            var container = [];
-            var parent = this.dataSet;
-            var childStage = this.dataSetChildStage;
-            var childStep = this.dataSetChildStep;
-            // console.log("parent", parent);
-            if (parent && childStage && childStep) {
-                parent.map(function (p) {
-                    var child1 = childStage.filter(function (f) { return f.StageCampaignID === p.ID; });
-                    var child2 = childStep.filter(function (f) { return f.StepCampaignID === p.ID; });
-                    _this.container.push(__assign({}, p, { Stages: child1.slice(), Steps: child2.slice() }));
-                    _this.campaign = _this.container[0];
-                    _this.stageCount = _this.container[0].Stages.length;
-                });
-            }
         };
         CampaignWorkspaceComponent.prototype.loadCampaign = function () {
             var _this = this;
@@ -82,14 +63,18 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
                             Objectives: campaign[13].Value,
                             CallToAction: campaign[14].Value,
                             LeadSource: campaign[15].Value,
-                            Type: campaign[16].Value
+                            Type: campaign[16].Value,
+                            Code: campaign[17].Value
                         };
-                        _this.title = campaign[1].Value;
+                        var workspaceTitle = campaign[17].Value + ": " + campaign[1].Value;
+                        _this.title = workspaceTitle;
                         _this.dataSet.push(item);
                     }
                 }
-                console.log({ ea: response, this: _this });
                 _this.dataCollection();
+            }, function (error) {
+                console.log(error);
+            }, function () {
                 _this.busyIndicator.activated = false;
             });
             this.dataService.getCampaignStages().subscribe(function (response) {
@@ -114,10 +99,11 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
                         _this.dataSetChildStage.push(item);
                     }
                 }
-                console.log({ ea: response, this: _this });
                 _this.dataCollection();
             }, function (error) {
-                console.log("Error", error);
+                _this.busyIndicator.activated = false;
+            }, function () {
+                _this.busyIndicator.activated = false;
             });
             this.dataService.getCampaignSteps().subscribe(function (response) {
                 _this.dataSetChildStep = [];
@@ -132,13 +118,44 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
                             StepDescription: campaignStep[2].Value,
                             StepStatus: campaignStep[3].Value,
                             StepsDueDate: campaignStep[4].Value,
-                            StepDateAssigned: campaignStep[5].Value
+                            StepDateAssigned: campaignStep[5].Value,
+                            StepCampaignStageID: campaignStep[6].Value
                         };
                         _this.dataSetChildStep.push(item);
                     }
                 }
                 _this.dataCollection();
+            }, function (error) {
+                console.log(error);
+                _this.busyIndicator.activated = false;
+            }, function () {
+                _this.busyIndicator.activated = false;
             });
+        };
+        CampaignWorkspaceComponent.prototype.dataCollection = function () {
+            var _this = this;
+            this.container = [];
+            this.dataJoin = [];
+            var container = [];
+            var parent = this.dataSet;
+            var childStage = this.dataSetChildStage;
+            var childStep = this.dataSetChildStep;
+            // console.log("parent", parent);
+            this.busyIndicator.activated = true;
+            if (parent && childStage && childStep) {
+                this.busyIndicator.activated = true;
+                childStage.map(function (c) {
+                    var steps = childStep.filter(function (f) { return f.StepCampaignStageID === c.StageID; });
+                    _this.dataJoin.push(__assign({}, c, { Steps: steps.slice() }));
+                });
+                parent.map(function (p) {
+                    var stages = _this.dataJoin.filter(function (f) { return f.StageCampaignID === p.ID; });
+                    _this.container.push(__assign({}, p, { Stages: stages.slice() }));
+                    _this.campaign = _this.container[0];
+                    _this.stageCount = _this.container[0].Stages.length;
+                });
+            }
+            console.log("this", this);
         };
         __decorate([
             core_1.ViewChild(sohoxi_angular_1.SohoBusyIndicatorDirective, { static: true }),
@@ -146,8 +163,8 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
         ], CampaignWorkspaceComponent.prototype, "busyIndicator", void 0);
         CampaignWorkspaceComponent = __decorate([
             core_1.Component({
-                template: "\n    <div class=\"cmpgn-workspace-container\" soho-busyindicator>\n      <ng-container *ngIf=\"campaign\">\n      <div class=\"header-section\">\n        <div class=\"row top-padding bottom-padding workspace-custom-style\">\n\n          <div class=\"twelve columns\">\n            <h1 class=\"cmpgn-name\">{{ campaign.Name }}</h1>\n          </div>\n\n          <div class=\"workspace-info\">\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">Start</span>\n              <p>{{ campaign.StartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">End</span>\n              <p>{{ campaign.EndDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">Launched</span>\n              <p>{{ campaign.LaunchedOn | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">Type</span>\n              <p>{{ campaign.Type }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">Status</span>\n              <p>{{ campaign.Status }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"info-title text-small\">Owner</span>\n              <p>  {{ campaign.Owner }} </p>\n            </div>\n          </div><!-- .workspace-info -->\n\n        </div><!-- .workspace-custom-style -->\n      </div><!-- .header-section -->\n\n      <div class=\"detail-section\">\n        <div class=\"row top-padding\">\n          <div class=\"stage-count\">\n            <div class=\"twelve columns\">\n              <p>Stages ({{ stageCount }})</p>\n            </div>\n          </div>\n          <ng-container *ngFor=\"let stage of campaign.Stages\">\n          <div class=\"stage-info\">\n            <div class=\"twelve columns\">\n              <p class=\"stage-desc\"><strong>{{ stage.StageDescription }}</strong></p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"stage-label\">Start</span>\n              <p class=\"ws-stage-startdate\">{{ stage.StageStartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns\">\n              <span class=\"stage-label\">End</span>\n              <p class=\"ws-stage-enddate\">{{ stage.StageStartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns\">\n              <p>&nbsp;</p>\n            </div>\n            <div class=\"two columns\">\n            <span class=\"stage-label\">Type</span>\n            <p class=\"ws-stage-type\">{{ stage.StageType }}</p>\n            </div>\n            <div class=\"two columns\">\n            <span class=\"stage-label\">Status</span>\n            <p class=\"ws-stage-status\">{{ stage.StageStatus }}</p>\n            </div>\n            <div class=\"one columns\">\n            <span class=\"stage-label\">Steps</span>\n            <p class=\"ws-stage-status\">{{ stage.StageDerCampaignTaskCount }}</p>\n            </div>\n            <div class=\"one columns\">\n              <button type=\"button\" class=\"btn-icon\" title=\"drilldown\">\n                <svg class=\"icon\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\">\n                    <use xlink:href=\"#icon-drilldown\"></use>\n                </svg>\n              </button>\n            </div>\n          </div>\n          </ng-container>\n        </div>\n      </div><!-- .detail-section -->\n      </ng-container><!-- ng-container -->\n    </div><!-- .cmpgn-workspace-container -->\n  ",
-                styles: ["\n  :host ::ng-deep .modal-content .title > h2 {\n    font-weight: 600;\n  }\n  .cmpgn-workspace-container .row {\n    padding-right: 0;\n  }\n  .cmpgn-workspace-container .detail-section .row.top-padding {\n    padding-top: 10px;\n  }\n  .cmpgn-workspace-container .cmpgn-name {\n    font-weight: 600;\n    margin-bottom: 15px;\n    white-space: normal;\n  }\n  .cmpgn-workspace-container .workspace-custom-style.row:last-child {\n    margin-bottom: 0;\n  }\n  .cmpgn-workspace-container .workspace-custom-style.row.top-padding {\n    padding-top: 20px;\n  }\n  .cmpgn-workspace-container .header-section {\n    border-bottom: none;\n  }\n  .cmpgn-workspace-container .info-title,\n  .cmpgn-workspace-container .stage-label {\n    margin-bottom: 5px;\n    display: inline-block;\n    color: #999;\n  }\n  .cmpgn-workspace-container .workspace-custom-style {\n    min-height: 120px;\n  }\n  .cmpgn-workspace-container .stage-count {\n    border-bottom: 1px solid #999;\n    display: inline-block;\n    padding-bottom: 10px;\n    width: 100%;\n  }\n  .cmpgn-workspace-container .stage-info {\n    border-bottom: 1px solid #999;\n    display: inline-block;\n    padding-bottom: 20px;\n    padding-top: 20px;\n    width: 100%;\n  }\n  .cmpgn-workspace-container .stage-desc {\n    margin-bottom: 10px;\n  }\n\n  /************ Media Queries *************/\n  @media (min-width: 767px) {\n    .cmpgn-workspace-container {\n      min-width: 700px;\n      min-height: 300px;\n    }\n    .cmpgn-workspace-container .columns {\n      padding-right: 20px;\n    }\n  }\n  "]
+                template: "\n    <div class=\"cmpgn-workspace-container\"\n      soho-busyindicator\n      text=\"Loading...\"\n      blockUI=\"true\"\n      displayDelay=\"0\">\n      <ng-container *ngIf=\"campaign\">\n      <div class=\"header-section\">\n        <div class=\"row top-padding bottom-padding workspace-custom-style\">\n\n          <div class=\"twelve columns\">\n            <h1 class=\"cmpgn-name\">{{ campaign.Name }}</h1>\n          </div>\n\n          <div class=\"workspace-info\">\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">Start</span>\n              <p>{{ campaign.StartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">End</span>\n              <p>{{ campaign.EndDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">Launched On</span>\n              <ng-container *ngIf=\"campaign.LaunchedOn; else noLaunchDate\">\n                <p>{{ campaign.LaunchedOn | dateTimeFormat | date }}</p>\n              </ng-container>\n              <ng-template #noLaunchDate>\n                <p>N/A</p>\n              </ng-template>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">Type</span>\n              <p>{{ campaign.Type || \"N/A\" }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">Status</span>\n              <p>{{ campaign.Status }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"info-title text-small\">Owner</span>\n              <p>  {{ campaign.Owner }} </p>\n            </div>\n          </div><!-- .workspace-info -->\n\n        </div><!-- .workspace-custom-style -->\n      </div><!-- .header-section -->\n\n      <div class=\"detail-section\">\n        <div class=\"row top-padding\">\n          <div class=\"stage-count\">\n            <div class=\"twelve columns\">\n              <p>Stages ({{ stageCount }})</p>\n            </div>\n          </div>\n          <ng-container *ngFor=\"let stage of campaign.Stages\">\n          <div class=\"stage-info\">\n            <div class=\"twelve columns\">\n              <p class=\"stage-desc\"><strong>{{ stage.StageDescription }}</strong></p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"stage-label\">Start</span>\n              <p class=\"ws-stage-startdate\">{{ stage.StageStartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n              <span class=\"stage-label\">End</span>\n              <p class=\"ws-stage-enddate\">{{ stage.StageStartDate | dateTimeFormat | date }}</p>\n            </div>\n            <div class=\"two columns non-mobile\">\n              <p>&nbsp;</p>\n            </div>\n            <div class=\"two columns col-2\">\n            <span class=\"stage-label\">Type</span>\n            <p class=\"ws-stage-type\">{{ stage.StageType || \"N/A\" }}</p>\n            </div>\n            <div class=\"two columns col-2\">\n            <span class=\"stage-label\">Status</span>\n            <p class=\"ws-stage-status\">{{ stage.StageStatus }}</p>\n            </div>\n            <div class=\"one columns col-2\">\n            <span class=\"stage-label\">Steps</span>\n            <p class=\"ws-stage-status\">{{ stage.StageDerCampaignTaskCount || \"N/A\" }}</p>\n            </div>\n            <div class=\"one columns col-2\">\n              <button type=\"button\" class=\"btn-icon\" title=\"{{ stage.StageDescription }}\">\n                <svg class=\"icon\" focusable=\"false\" aria-hidden=\"true\" role=\"presentation\">\n                    <use xlink:href=\"#icon-drilldown\"></use>\n                </svg>\n              </button>\n            </div>\n          </div>\n          </ng-container>\n        </div>\n      </div><!-- .detail-section -->\n      </ng-container><!-- ng-container -->\n    </div><!-- .cmpgn-workspace-container -->\n  ",
+                styles: ["\n  :host ::ng-deep .modal-content .title > h2 {\n    font-weight: 600;\n  }\n  .cmpgn-workspace-container .row {\n    padding-right: 0;\n  }\n  .cmpgn-workspace-container .detail-section .row.top-padding {\n    padding-top: 10px;\n  }\n  .cmpgn-workspace-container .cmpgn-name {\n    font-weight: 600;\n    margin-bottom: 15px;\n    white-space: normal;\n  }\n  .cmpgn-workspace-container .workspace-custom-style.row:last-child {\n    margin-bottom: 0;\n  }\n  .cmpgn-workspace-container .workspace-custom-style.row.top-padding {\n    padding-top: 20px;\n  }\n  .cmpgn-workspace-container .header-section {\n    border-bottom: none;\n  }\n  .cmpgn-workspace-container .info-title,\n  .cmpgn-workspace-container .stage-label {\n    margin-bottom: 5px;\n    display: inline-block;\n    color: #999;\n  }\n  .cmpgn-workspace-container .workspace-custom-style {\n    min-height: 120px;\n  }\n  .cmpgn-workspace-container .stage-count {\n    border-bottom: 1px solid #999;\n    display: inline-block;\n    padding-bottom: 10px;\n    width: 100%;\n  }\n  .cmpgn-workspace-container .stage-info {\n    border-bottom: 1px solid #999;\n    display: inline-block;\n    padding-bottom: 20px;\n    padding-top: 20px;\n    width: 100%;\n  }\n  .cmpgn-workspace-container .stage-desc {\n    margin-bottom: 10px;\n  }\n\n  /************ Media Queries *************/\n  @media (min-width: 767px) {\n    .cmpgn-workspace-container {\n      min-width: 700px;\n      min-height: 300px;\n    }\n    .cmpgn-workspace-container .columns {\n      padding-right: 20px;\n    }\n  }\n  @media (max-width: 766px) {\n    .col-2 {\n      width: 50%;\n      margin-bottom: 10px;\n    }\n    .non-mobile {\n      display: none;\n    }\n    .cmpgn-workspace-container {\n      min-height: 340px;\n    }\n  }\n  "]
             }),
             __metadata("design:paramtypes", [data_service_1.DataService,
                 lime_1.DialogService,
