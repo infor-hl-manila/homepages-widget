@@ -2,6 +2,7 @@ import {
   HttpErrorResponse
 } from "@angular/common/http";
 import {
+  AfterViewInit,
   Component,
   Inject,
   Input,
@@ -45,16 +46,65 @@ import {
   selector: "campaigns-list",
   template: `
   <div class="card-content">
-    <div class="card-group-action" [hidden]="!viewContent">
-      <button soho-button="icon" icon="filter">
-      </button>
-      <button soho-button="icon" icon="dropdown"></button>
+    <div class="card-group-action cmpgn-sort-filter-container" [hidden]="!viewContent">
+      <soho-toolbar-flex>
+        <soho-toolbar-flex-section [isButtonSet]="true" style="text-align: right; padding: 2px 4px;">
+          <div class="cmpgn-filterby-container">
+            <span>Filtered By</span>
+            <button soho-menu-button class="cmpgn-icon-filter">
+              <svg role="presentation" soho-icon="" aria-hidden="true" focusable="false" class="icon cmpgn-icon">
+                <use xlink:href="#icon-filter"></use>
+              </svg>
+            </button>
+            <ul class="popupmenu">
+              <li soho-popupmenu-item class="heading">Category</li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">My Campaigns</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Open Campaigns</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">All Campaigns</a></li>
+              <li soho-popupmenu-separator></li>
+              <li soho-popupmenu-item class="heading">Status</li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">All</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Active</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Setup</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Inactive</a></li>
+            </ul>
+          </div>
+          <div class="cmpgn-sortby-container">
+            <span>Sort By</span>
+            <button soho-button="icon" icon="sort-down"> Sort Down </button>
+          </div>
+          <div class="cmpgn-dropdownmenu-container">
+            <button soho-menu-button class="cmpgn-icon-dropdown">
+            </button>
+            <ul class="popupmenu">
+              <li soho-popupmenu-item class="heading">Organize By</li>
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked] = "selectedSort === 'StartDate'"
+                (click)="onSelectSort('startDate')"><a href="#">Start Date</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">End Date</a></li>
+              <li soho-popupmenu-separator></li>
+              <li soho-popupmenu-item class="heading">Sort By</li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Latest to Oldest</a></li>
+              <li soho-popupmenu-item isSelectable="true"><a href="#">Oldest to Latest</a></li>
+            </ul>
+          </div>
+        </soho-toolbar-flex-section>
+      </soho-toolbar-flex>
     </div>
     <div class="emptystatemessage-container" [hidden]="!isErrorState">
       <div soho-emptymessage
         [title]="'Something went wrong'"
         [info]="'Check your connection and try again.'"
         [icon]="'icon-empty-error-loading'"
+        [color]="'azure'"
+      >
+      </div>
+    </div>
+    <div class="completedstatemessage-container" [hidden]="!completedState">
+      <div soho-emptymessage
+        [title]="'No campaigns yet'"
+        [info]="'Once you add some, you will see them here.'"
+        [icon]="'icon-empty-no-events'"
         [color]="'azure'"
       >
       </div>
@@ -66,7 +116,8 @@ import {
 
           <soho-accordion [rerouteOnLinkClick]="false" class="accordion">
             <soho-accordion-header class="accordion-header cmpgn-accordion-header" style="height: 50%;">
-            <a (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle)" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
+
+            <a (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle, true, false, '')" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
 
               <div class="three columns col-mb-style-left col-cmpgns">
                 <h1 class="cmpgn-name">{{ campaign.Name }}</h1>
@@ -130,6 +181,7 @@ import {
             <div class="accordion-content cmpgn-accordion-content padding-right padding-bottom">
               <ng-container class="test2" *ngFor="let stage of campaign.Stages">
                 <div class="row cmpgns stage">
+                  <a href="#" (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle, false, true, stage.StageID)">
                   <div class="three columns col-left">
                     <h1>{{ stage.StageDescription }}</h1>
                   </div>
@@ -163,7 +215,7 @@ import {
                       <p class="stage-stepscount">{{ stage.StageDerCampaignTaskCount }} <span>Steps</span></p>
                     </div>
                   </div><!-- .md-view -->
-
+                </a>
                 </div>
               </ng-container><!-- stage -->
             </div>
@@ -176,7 +228,7 @@ import {
     </div>
   </div>`,
   styles: [`
-    :host ::ng-deep .accordion-header.has-chevron > [class^='btn'] {
+    :host ::ng-deep .cmpgn-accordion-header.accordion-header.has-chevron > [class^='btn'] {
       width: 40px;
       right: 0;
       position: relative;
@@ -216,7 +268,8 @@ import {
       max-width: 100%;
       padding-right: 0;
     }
-    .emptystatemessage-container {
+    .emptystatemessage-container,
+    .completedStateMessage-container {
       margin: auto;
     }
     .emptystatemessage-btn-container {
@@ -280,6 +333,44 @@ import {
     .two-col-wdgt-view {
       display: none;
     }
+    .cmpgn-sort-filter-container .heading {
+      font-weight: 200;
+    }
+    .cmpgn-sort-filter-container .cmpgn-icon-dropdown {
+      padding: 0;
+      margin-right: 0;
+      position: relative;
+      top: 2px;
+    }
+    .cmpgn-sortby-container,
+    .cmpgn-dropdownmenu-container,
+    .cmpgn-filterby-container {
+      display: inline-block;
+    }
+    .cmpgn-dropdownmenu-container {
+      border-left: 1px solid #5c5c5c;
+      position: relative;
+      top: 3px;
+      padding-left: 5px;
+      margin-left: 5px;
+    }
+    .cmpgn-icon-filter {
+      position: relative;
+      top: 4px;
+      padding-left: 5px;
+    }
+    .cmpgn-sortby-container span,
+    .cmpgn-filterby-container span {
+      font-size: 12px;
+      color: #5c5c5c;
+      font-weight: 200;
+    }
+    :host ::ng-deep .cmpgn-icon-filter svg.icon:not(.cmpgn-icon) {
+      display: none;
+    }
+    .cmpgn-accordion-content .row.cmpgns.stage:last-child {
+      margin-bottom: 0;
+    }
 
     /** One Column Widget */
     :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width)) .mb-view .col-1 .stage-startdate {
@@ -319,7 +410,7 @@ import {
       margin-top: -14px;
     }
 
-    :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width)) ::ng-deep .accordion-header.has-chevron > [class^='btn'] {
+    :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width)) ::ng-deep .cmpgn-accordion-header.accordion-header.has-chevron > [class^='btn'] {
       position: relative;
       top: 42px !important;
     }
@@ -452,7 +543,7 @@ import {
       padding-bottom: 6px;
     }
     :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
-    ::ng-deep .accordion-header.has-chevron > [class^='btn'] {
+    ::ng-deep .cmpgn-accordion-header.accordion-header.has-chevron > [class^='btn'] {
       position: relative;
       top: 18px;
     }
@@ -647,11 +738,11 @@ import {
         display: block;
         padding-bottom: 6px;
       }
-      :host ::ng-deep .accordion-header.has-chevron > [class^='btn'] {
+      :host ::ng-deep .cmpgn-accordion-header.accordion-header.has-chevron > [class^='btn'] {
         position: relative;
         top: 7px;
       }
-      :host ::ng-deep .is-safari .accordion-header.has-chevron > [class^='btn'] {
+      :host ::ng-deep .is-safari .cmpgn-accordion-header.accordion-header.has-chevron > [class^='btn'] {
         position: relative !important;
         top: 20px !important;
         width: 40px !important;
@@ -725,11 +816,14 @@ export class CampaignsListComponent implements OnInit {
   campaigns: ICampaign[];
   campaignStages: ICampaignStage[];
   campaignSteps: ICampaignStep[];
-  container: any;
+  container: ICampaign[] = [];
+  dataJoin: any;
   container2: any;
   itemName: string = "Items"; // Object name of item list
   isErrorState: boolean;
+  completedState: boolean;
   viewContent: boolean = false;
+  selectedSort: string;
   private totalResults: number;
   private dataSet: any;
   private dataSetChildStage: any;
@@ -749,13 +843,14 @@ export class CampaignsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selectedSort = "StartDate";
     this.setBusy(true);
     this.loadCampaigns();
-
-    this.widgetInstance.actions[0].execute = () => this.test();
+    this.widgetInstance.actions[0].execute = () => this.webbAppLink();
+    console.log("-->", this);
   }
 
-  showDialogWorkspace(ID: string, title: string): void {
+  showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string): void {
     this.campaignWorkspaceService.open({
       component: CampaignWorkspaceComponent,
       viewRef: this.viewRef,
@@ -763,37 +858,74 @@ export class CampaignsListComponent implements OnInit {
       props: {
         widgetContext: this.widgetContext,
         campaignID: ID,
+        showCampaign: showCampaign,
+        showStage: showStage,
+        stageID: StageID
       }
     });
+
+    console.log("this.viewRef", this.viewRef);
   }
 
-  test(): void {
-    const url = "https://www.google.com";
+  webbAppLink(): void {
+    const form = encodeURIComponent(`CRMCampaign(SETVARVALUES(VarAppliedNamedFilter=My Campaigns,InitialCommand=Refresh))`);
+    const url = `?LogicalId={logicalId}&form=${form}`;
     this.widgetContext.launch( {url: url});
+  }
+
+  onSelectSort(sort: string): void {
+    if (this.selectedSort === sort) {
+      console.log("if this.selectedSort", sort);
+      console.log("if this", this);
+      return;
+    }
+    this.selectedSort = sort;
+
+    this.container.sort((a: any, b: any) => {
+      const dateA: Date = new Date(this.dateTimePipe.transform(a.EndDate));
+      const dateB: Date = new Date(this.dateTimePipe.transform(b.EndDate));
+      const date1 = dateA.getTime();
+      const date2 = dateB.getTime();
+      console.log("THIS", this);
+      return date2 - date1;
+    });
   }
 
   private dataCollection(): void {
     this.container = [];
+    this.dataJoin = [];
     const container: any[] = [];
     const parent = this.dataSet;
     const childStage = this.dataSetChildStage;
     const childStep = this.dataSetChildStep;
 
     if (parent && childStage && childStep) {
+
+      childStage.map((c: any) => {
+        const steps = childStep.filter((f: any) => f.StepCampaignStageID === c.StageID);
+
+        this.dataJoin.push({...c, Steps: [...steps]});
+      });
+
       parent.map((p: any) => {
-        const stages = childStage.filter((a: any) =>
-        a.StageCampaignID === p.ID);
+        // const stages = childStage.filter((a: any) =>
+        // a.StageCampaignID === p.ID);
+
+        // this.container.push({...p, Stages: [...stages]});
+
+        const stages = this.dataJoin.filter((f: any) => f.StageCampaignID === p.ID);
 
         this.container.push({...p, Stages: [...stages]});
       });
     }
     this.setBusy(false);
+    console.log("---->", this);
   }
 
   private loadCampaigns(): void {
     this.dataSet = [];
     this.dataService.getCampaigns().subscribe((response: any) => {
-      this.totalResults = 0;
+      // this.totalResults = 0;
       this.campaigns = response.data[this.itemName];
 
       this.viewContent = true;
@@ -879,7 +1011,10 @@ export class CampaignsListComponent implements OnInit {
             StepStatus: campaignStep[3].Value,
             StepsDueDate: campaignStep[4].Value,
             StepDateAssigned: campaignStep[5].Value,
-            StepCampaignStageID: campaignStep[6].Value
+            StepCampaignStageID: campaignStep[6].Value,
+            StepPercentComplete: campaignStep[7].Value,
+            StepPriority: campaignStep[8].Value,
+            StepType: campaignStep[9].Value
           };
           this.dataSetChildStep.push(item);
         }
@@ -895,6 +1030,10 @@ export class CampaignsListComponent implements OnInit {
   private onRequestError(error: HttpErrorResponse): void {
     this.isErrorState = true;
     this.setBusy(false);
+  }
+
+  private completedStateMessage(): void {
+    (!this.totalResults) ? (this.completedState = true, this.viewContent = false) : this.completedState = false;
   }
 
   private setBusy(isBusy: boolean): void {

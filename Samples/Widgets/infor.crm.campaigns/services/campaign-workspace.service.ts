@@ -25,7 +25,7 @@ export class CampaignWorkspaceService {
     this.capDialog = this.capService.contextualactionpanel(options.component, options.viewRef);
 
     this.capDialog.options({
-      centerTitle: true
+      centerTitle: true,
     });
     this.capDialog.buttons([
       {

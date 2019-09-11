@@ -57,7 +57,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         return CampaignsWidgetModule;
     }());
     exports.CampaignsWidgetModule = CampaignsWidgetModule;
-    exports.getActions = function () {
+    exports.getActions = function (context) {
         return [
             {
                 isPrimary: true,

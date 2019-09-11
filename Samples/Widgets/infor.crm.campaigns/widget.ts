@@ -3,7 +3,7 @@ import { CampaignsWidgetComponent, CampaignsWidgetModule, getActions } from "./m
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
   return {
-    actions: getActions(),
+    actions: getActions(context),
     angularConfig: {
       moduleType: CampaignsWidgetModule,
       componentType: CampaignsWidgetComponent

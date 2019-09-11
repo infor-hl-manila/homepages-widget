@@ -4,8 +4,7 @@ import {
 import {
   Component,
   Input,
-  NgModule,
-  OnInit
+  NgModule
 } from "@angular/core";
 import {
   SohoBusyIndicatorModule,
@@ -62,7 +61,7 @@ widgetInstance: IWidgetInstance;
 
 export class CampaignsWidgetModule { }
 
-export const getActions = (): IWidgetAction[] => {
+export const getActions = (context: IWidgetContext): IWidgetAction[] => {
   return [
     {
       isPrimary: true,

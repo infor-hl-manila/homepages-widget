@@ -1,12 +1,12 @@
 import { IWidgetContext, IWidgetInstance } from "lime";
 import { CampaignsWidgetComponent, getActions } from "./main";
-import { CampaignsWidgetModuleFactory } from "./main.ngFactory";
+import { CampaignsWidgetModuleNgFactory } from "./main.ngfactory";
 
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
   return {
-    actions: getActions(),
+    actions: getActions(context),
     angularConfig: {
-      moduleFactory: CampaignsWidgetModuleFactory,
+      moduleFactory: CampaignsWidgetModuleNgFactory,
       componentType: CampaignsWidgetComponent
     }
   };

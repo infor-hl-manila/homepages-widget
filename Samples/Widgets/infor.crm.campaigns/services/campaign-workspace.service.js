@@ -18,7 +18,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
             var _this = this;
             this.capDialog = this.capService.contextualactionpanel(options.component, options.viewRef);
             this.capDialog.options({
-                centerTitle: true
+                centerTitle: true,
             });
             this.capDialog.buttons([
                 {

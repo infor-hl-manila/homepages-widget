@@ -40,5 +40,8 @@ export interface ICampaignStep {
   DueDate: Date;
   DateAssigned: Date;
   CampaignStageID: string;
+  PercentComplete: number;
+  Priority: string;
+  StepType: string;
   [key: string]: any;
 }

@@ -3,7 +3,7 @@ define(["require", "exports", "./main"], function (require, exports, main_1) {
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.widgetFactory = function (context) {
         return {
-            actions: main_1.getActions(),
+            actions: main_1.getActions(context),
             angularConfig: {
                 moduleType: main_1.CampaignsWidgetModule,
                 componentType: main_1.CampaignsWidgetComponent

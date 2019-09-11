@@ -23,15 +23,16 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
         };
         DataService.prototype.getMongooseConfig = function () {
             var _this = this;
-            var configGroup = null;
+            // let configGroup: string = null;
             var tenantId = "CRMCEFEAT01_AX2"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
+            // const tenantID = this.widgetContext.getTenantId();
             if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
                 var split = tenantId.split("_");
                 var customerId = split[0];
                 var env = split[1];
-                configGroup = customerId + "_CRM_" + env + "_DEFAULT";
+                this.configGroup = customerId + "_CRM_" + env + "_DEFAULT";
             }
-            var mongooseConfigUrl = "IDORequestService/MGRestService.svc/json/configurations?configgroup=" + configGroup;
+            var mongooseConfigUrl = "IDORequestService/MGRestService.svc/json/configurations?configgroup=" + tenantId;
             var request = this.createRequest(encodeURI(mongooseConfigUrl));
             this.widgetContext.executeIonApiAsync(request).subscribe(function (response) {
                 _this.mongooseConfig = response.data[0];
@@ -40,7 +41,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             });
         };
         DataService.prototype.getCampaigns = function () {
-            var request = this.createRequest("" + encodeURI(this.dataCampaignReqUrl));
+            var request = this.createRequest(encodeURI(this.dataCampaignReqUrl) + "&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC");
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getCampaign = function (ID) {
@@ -52,7 +53,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.getCampaignSteps = function () {
-            var request = this.createRequest(encodeURI(this.dataCampaignStepReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID");
+            var request = this.createRequest(encodeURI(this.dataCampaignStepReqUrl) + "/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID,PercentComplete,Priority,StepType");
             return this.widgetContext.executeIonApiAsync(request);
         };
         DataService.prototype.showErrorResponse = function (error) {
@@ -70,24 +71,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             if (!headers) {
                 headers = {
                     Accept: "application/json",
-                    "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",
-                    "X-Infor-MongooseSessionType": "CustomUser"
-                };
-            }
-            var url = this.tenant + "/" + relativeUrl;
-            var request = {
-                method: "GET",
-                url: url,
-                cache: false,
-                headers: headers
-            };
-            return request;
-        };
-        DataService.prototype.createMongooseConfigRequest = function (relativeUrl, headers) {
-            if (!headers) {
-                headers = {
-                    Accept: "application/json",
-                    "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",
+                    "X-Infor-MongooseConfig": this.configGroup,
                     "X-Infor-MongooseSessionType": "CustomUser"
                 };
             }

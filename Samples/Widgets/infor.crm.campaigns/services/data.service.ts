@@ -26,6 +26,7 @@ import {
   providedIn: "root"
 })
 export class DataService {
+  configGroup: string;
   private mongooseConfig: any;
   private widgetContext: IWidgetContext;
   private tenant = "CRMCE";
@@ -40,17 +41,17 @@ export class DataService {
   }
 
   getMongooseConfig(): void {
-    let configGroup: string = null;
+    // let configGroup: string = null;
     const tenantId = "CRMCEFEAT01_AX2"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
-
+    // const tenantID = this.widgetContext.getTenantId();
     if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
       const split = tenantId.split("_");
       const customerId = split[0];
       const env = split[1];
-      configGroup = `${customerId}_CRM_${env}_DEFAULT`;
+      this.configGroup = `${customerId}_CRM_${env}_DEFAULT`;
     }
 
-    const mongooseConfigUrl = `IDORequestService/MGRestService.svc/json/configurations?configgroup=${configGroup}`;
+    const mongooseConfigUrl = `IDORequestService/MGRestService.svc/json/configurations?configgroup=${tenantId}`;
 
     const request = this.createRequest(encodeURI(mongooseConfigUrl));
 
@@ -64,7 +65,7 @@ export class DataService {
   }
 
   getCampaigns(): Observable<IIonApiResponse<ICampaign[]>> {
-    const request = this.createRequest(`${encodeURI(this.dataCampaignReqUrl)}`);
+    const request = this.createRequest(`${encodeURI(this.dataCampaignReqUrl)}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`);
     return this.widgetContext.executeIonApiAsync<ICampaign[]>(request);
   }
 
@@ -79,7 +80,7 @@ export class DataService {
   }
 
   getCampaignSteps(): Observable<IIonApiResponse<ICampaignStep[]>> {
-    const request = this.createRequest(`${encodeURI(this.dataCampaignStepReqUrl)}/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID`);
+    const request = this.createRequest(`${encodeURI(this.dataCampaignStepReqUrl)}/adv?props=ID,CampaignID,Description,Status,DueDate,DateAssigned,CampaignStageID,PercentComplete,Priority,StepType`);
     return this.widgetContext.executeIonApiAsync<ICampaignStep[]>(request);
   }
 
@@ -99,28 +100,7 @@ export class DataService {
     if (!headers) {
       headers = {
         Accept: "application/json",
-        "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",
-        "X-Infor-MongooseSessionType": "CustomUser"
-      };
-    }
-
-    const url = this.tenant + "/" + relativeUrl;
-
-    const request: IIonApiRequestOptions = {
-      method: "GET",
-      url: url,
-      cache: false,
-      headers: headers
-    };
-
-    return request;
-  }
-
-  private createMongooseConfigRequest(relativeUrl: string, headers?: object): IIonApiRequestOptions {
-    if (!headers) {
-      headers = {
-        Accept: "application/json",
-        "X-Infor-MongooseConfig": "CRMCEFEAT01_CRM_AX2_DEFAULT",
+        "X-Infor-MongooseConfig": this.configGroup,
         "X-Infor-MongooseSessionType": "CustomUser"
       };
     }
