@@ -38,10 +38,7 @@ import {
 @Component({
   template: `
   <div class="cmpgn-workspace-container"
-      soho-busyindicator
-      text="Loading..."
-      blockUI="true"
-      displayDelay="0">
+      soho-busyindicator>
 
     <div *ngIf="showCampaign">
       <ng-container *ngIf="campaign">
@@ -90,13 +87,18 @@ import {
           <div class="row top-padding">
             <div class="stage-count">
               <div class="twelve columns">
-                <p>Stages ({{ stageCount }})</p>
+                <ng-container *ngIf="stageCount > 1; else StageLabel">
+                  <p class="text-default">Stages ({{ stageCount }})</p>
+                </ng-container>
+                <ng-template #StageLabel>
+                  <p class="text-default">Stage ({{ stageCount }})</p>
+                </ng-template>
               </div>
             </div>
             <ng-container *ngFor="let stage of campaign.Stages">
               <div class="stage-info">
                 <div class="twelve columns">
-                  <p class="stage-desc"><strong>{{ campaign.StageDescription }}</strong></p>
+                  <p class="stage-desc text-primary"><strong>{{ stage.StageDescription }}</strong></p>
                 </div>
                 <div class="two columns col-2">
                   <span class="stage-label">Start</span>
@@ -118,7 +120,12 @@ import {
                 <p class="ws-stage-status">{{ stage.StageStatus }}</p>
                 </div>
                 <div class="one columns col-2">
+                  <ng-container *ngIf="stage.StageDerCampaignTaskCount > 1; else wrkspceStepLabel">
                 <span class="stage-label">Steps</span>
+                  </ng-container>
+                  <ng-template #wrkspceStepLabel>
+                    <span class="stage-label">Step</span>
+                  </ng-template>
                 <p class="ws-stage-status">{{ stage.StageDerCampaignTaskCount }}</p>
                 </div>
                 <div class="one columns col-2">
@@ -136,8 +143,8 @@ import {
     </div><!-- showCampaign -->
 
     <div *ngIf="showStage" class="stage-section">
-      <ng-container *ngIf="campaign">
         <ng-container>
+        <ng-container *ngIf="stage">
           <div class="header-section">
               <div class="row top-padding bottom-padding workspace-custom-style">
                 <div class="twelve columns cmpgn-border-bottom-style">
@@ -170,11 +177,58 @@ import {
             <div class="row top-padding">
               <div class="steps-count">
                 <div class="twelve columns">
-                  <p>Steps {{stepsCount}}</p>
+                  <ng-container *ngIf="stepsCount > 1; else StepLabelText">
+                    <p>Steps ({{stepsCount}})</p>
+                  </ng-container>
+                  <ng-template #StepLabelText>
+                    <p>Step ({{stepsCount}})</p>
+                  </ng-template>
                 </div>
+              </div><!-- .steps-count -->
+              <ng-container *ngFor="let step of stage.Steps">
+                <div class="steps-info">
+                  <div class="twelve columns step-header-title">
+                    <ng-container *ngIf="step.StepPriority === 'Low'; else prioNormal">
+                      <p class="text-primary"><strong><span class="round cmpgn-low badge cmpgn-badge">{{ step.StepPriority }}</span>{{ step.StepDescription }}</strong></p>
+                    </ng-container>
+                    <ng-template #prioNormal>
+                      <ng-container *ngIf="step.StepPriority === 'Normal'; else prioHigh">
+                        <p class="text-primary"><span class="round cmpgn-normal badge cmpgn-badge">{{ step.StepPriority }}</span><strong>{{ step.StepDescription }}</strong></p>
+                      </ng-container>
+                    </ng-template>
+                    <ng-template #prioHigh>
+                      <ng-container *ngIf="step.StepPriority === 'High'">
+                        <p class="text-primary"><span class="round cmpgn-high badge cmpgn-badge">{{ step.StepPriority }}</span><strong>{{ step.StepDescription }}</strong></p>
+                      </ng-container>
+                    </ng-template>
+                    <ng-template #noPrioVal>
+                      <p><strong>{{ step.StepDescription }}</strong></p>
+                    </ng-template>
+                  </div>
+                  <div class="three columns">
+                    <span class="step-label">Needed Date</span>
+                    <p class="step-neededdate">{{ step.StepsDueDate | dateTimeFormat | date }}</p>
+                  </div>
+                  <div class="three columns">
+                    <span class="step-label">% Complete</span>
+                    <soho-progress class="cmpgn-progress" [progressValue]="step.StepPercentComplete"></soho-progress>
+                    <span class="step-complete">{{ step.StepPercentComplete }}%</span>
+                  </div>
+                  <div class="one columns">
+                    <p>&nbsp;</p>
+                </div>
+                  <div class="two columns">
+                    <span class="step-label">Type</span>
+                    <p class="step-type">{{ step.StepType }}</p>
               </div>
+                  <div class="three columns">
+                    <span class="step-label">Status</span>
+                    <p class="step-status">{{ step.StepStatus }}</p>
             </div>
           </div>
+        </ng-container>
+            </div><!-- .row -->
+          </div><!-- showStage .detail-section -->
         </ng-container>
       </ng-container>
     </div><!-- showStage -->
@@ -208,7 +262,8 @@ import {
     border-bottom: none;
   }
   .cmpgn-workspace-container .info-title,
-  .cmpgn-workspace-container .stage-label {
+  .cmpgn-workspace-container .stage-label,
+  .cmpgn-workspace-container .step-label {
     margin-bottom: 5px;
     display: inline-block;
     color: #999;
@@ -216,13 +271,14 @@ import {
   .cmpgn-workspace-container .workspace-custom-style {
     min-height: 120px;
   }
-  .cmpgn-workspace-container .stage-count {
+  .cmpgn-workspace-container .stage-count, .cmpgn-workspace-container .steps-count  {
     border-bottom: 1px solid #999;
     display: inline-block;
     padding-bottom: 10px;
     width: 100%;
   }
-  .cmpgn-workspace-container .stage-info {
+  .cmpgn-workspace-container .stage-info,
+  .cmpgn-workspace-container .steps-info {
     border-bottom: 1px solid #999;
     display: inline-block;
     padding-bottom: 20px;
@@ -245,6 +301,46 @@ import {
   .cmpgn-workspace-container .stage-section h1 {
     display: inline-block;
   }
+  .cmpgn-badge {
+    display: inline-block;
+    margin-bottom: 1px;
+    margin-right: 15px;
+    width: 65px !important;
+  }
+  .step-header-title {
+    margin-bottom: 10px;
+  }
+  .cmpgn-progress {
+    display: inline-block !important;
+    margin-top: 5px;
+    height: 20px;
+    border-radius: 0;
+    width: 85%;
+  }
+  :host ::ng-deep .cmpgn-progress.progress .progress-bar {
+    height: 20px !important;
+    border-radius: 0;
+  }
+  .step-complete {
+    display: inline;
+    float: right;
+    margin-top: 10px;
+    padding-left: 5px;
+    text-align: left;
+    width: 15%;
+  }
+  .cmpgn-low {
+    background-color: #54a1d3;
+    color: #fff;
+  }
+  .cmpgn-normal {
+    background-color: #f6d67b;
+  }
+  .cmpgn-high {
+    background-color: #d26d6d;
+    color: #fff;
+  }
+
 
   /************ Media Queries *************/
   @media (min-width: 767px) {
@@ -280,8 +376,10 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
   campaign: ICampaign;
   stages: ICampaignStage;
   campaignID: string;
+  campaignID2: string;
   stageCount: number;
   stepsCount: number;
+  stage: any;
   stageID: string;
   title: IWorkspaceOptions<string>;
   campaigns: ICampaign[];
@@ -319,22 +417,46 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
   }
 
   backBtn(): void {
-    (!this.showCampaign) ? (this.showCampaign = true , this.showStage = false) : this.showStage = false;
+    (!this.showCampaign) ? (this.showCampaign = true, this.showStage = false) : this.showStage = false;
   }
 
   showCampaignStage(stageID: string): void {
-    (!this.showStage) ? (this.showStage = true, this.showCampaign = false) : this.showCampaign = false;
+    //getStage fn
+    const campaignContainer = this.container[0].Stages;
+
+    campaignContainer.forEach((e: any) => {
+      if (e.StageID === stageID) {
+        this.stage = e;
+        this.stepsCount = e.Steps.length;
+      }
+    });
+
+    (!this.showStage) ? (this.showStage = true, this.showCampaign = false) : (this.showCampaign = false, this.showStage = true);
+
+    console.log("->", this.stage);
+    console.log("this stage", this);
+  }
+
+  campaignStageDetail(stageID: string): void {
+    const stageDetails = this.dataJoin;
+    if (stageDetails) {
+      stageDetails.forEach((e: any) => {
+        if (e.StageID === stageID) {
+          this.stage = e;
+          this.stepsCount = e.Steps.length;
+        }
+      });
+    }
   }
 
   private loadCampaign(): void {
+    this.busyIndicator.activated = true;
     this.dataSet = [];
-    this.dataService.getCampaign(this.campaignID).subscribe(
+    this.dataService.getCampaign(this.campaignID || this.campaignID2).subscribe(
       (response: any) => {
+        this.busyIndicator.activated = true;
         this.campaigns = response.data[this.itemName];
 
-        const dataCampaign = this.campaigns;
-
-        if (dataCampaign) {
           for (const campaign of this.campaigns) {
             const item = {
               ID: campaign[0].Value,
@@ -360,15 +482,12 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
             this.title = workspaceTitle as any;
             this.dataSet.push(item);
           }
-        }
-        this.dataCollection();
-      }, (error) => {
-        console.log(error);
-      }, () => {
-        this.busyIndicator.activated = false;
-      }
+        this.getCampaignStage();
+      }, (error) => {/** */}
     );
+  }
 
+  private getCampaignStage(): void {
     this.dataService.getCampaignStages().subscribe((response: any) => {
       this.dataSetChildStage = [];
       this.campaignStages = response.data[this.itemName];
@@ -378,7 +497,11 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
         for (const campaignStage of dataCampaignStage) {
 
           // Get the task count
-          const taskCount = campaignStage[4].Value.replace(/[^0-9]/g, "");
+          let taskCount = campaignStage[4].Value.replace(/[^0-9]/g, "");
+
+          if (campaignStage[4].Value === "STRINGS(sCRMItemCount)") {
+            taskCount = "1";
+          }
 
           const item = {
             StageID: campaignStage[0].Value,
@@ -393,13 +516,11 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
           this.dataSetChildStage.push(item);
         }
       }
-      this.dataCollection();
-    }, (error) => {
-        this.busyIndicator.activated = false;
-    }, () => {
-      this.busyIndicator.activated = false;
-    });
+      this.getCampaignStep();
+    }, (error) => {/**/});
+  }
 
+  private getCampaignStep(): void {
     this.dataService.getCampaignSteps().subscribe((response: any) => {
       this.dataSetChildStep = [];
       this.campaignSteps = response.data[this.itemName];
@@ -415,19 +536,17 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
             StepsDueDate: campaignStep[4].Value,
             StepDateAssigned: campaignStep[5].Value,
             StepCampaignStageID: campaignStep[6].Value,
-            StepPercentComplete: campaignStep[7].Value,
+            StepPercentComplete: Math.trunc(campaignStep[7].Value),
             StepPriority: campaignStep[8].Value,
             StepType: campaignStep[9].Value
           };
           this.dataSetChildStep.push(item);
         }
       }
-      this.dataCollection();
     }, error => {
       console.log(error);
-      this.busyIndicator.activated = false;
     }, () => {
-      this.busyIndicator.activated = false;
+      this.dataCollection();
     });
   }
 
@@ -439,9 +558,7 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
     const childStage = this.dataSetChildStage;
     const childStep = this.dataSetChildStep;
     // console.log("parent", parent);
-    this.busyIndicator.activated = true;
-    if (parent && childStage && childStep) {
-      this.busyIndicator.activated = true;
+    if (parent) {
 
       childStage.map((c: any) => {
         const steps = childStep.filter((f: any) => f.StepCampaignStageID === c.StageID);
@@ -458,6 +575,8 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
         this.stages = this.container[0].Stages;
       });
     }
+    this.campaignStageDetail(this.stageID);
+    this.busyIndicator.activated = false;
     console.log("this", this);
   }
 }

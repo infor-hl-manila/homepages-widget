@@ -43,7 +43,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                     }
                 }
             });
-            this.capDialog.title(options.title);
+            this.capDialog.title("Campaign Details");
             this.capDialog.trigger("immediate");
             this.capDialog.open();
         };

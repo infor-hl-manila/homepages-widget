@@ -48,18 +48,22 @@ import {
   <div class="card-content">
     <div class="card-group-action cmpgn-sort-filter-container" [hidden]="!viewContent">
       <soho-toolbar-flex>
-        <soho-toolbar-flex-section [isButtonSet]="true" style="text-align: right; padding: 2px 4px;">
+        <soho-toolbar-flex-section [isButtonSet]="true" style="text-align: right; padding: 0 4px;">
           <div class="cmpgn-filterby-container">
             <span>Filtered By</span>
             <button soho-menu-button class="cmpgn-icon-filter">
-              <svg role="presentation" soho-icon="" aria-hidden="true" focusable="false" class="icon cmpgn-icon">
+              <svg role="presentation" aria-hidden="true" focusable="false" class="icon cmpgn-icon">
                 <use xlink:href="#icon-filter"></use>
               </svg>
             </button>
             <ul class="popupmenu">
               <li soho-popupmenu-item class="heading">Category</li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">My Campaigns</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Open Campaigns</a></li>
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked]="selectedFilter === 'My Campaigns'"
+                (click)="onSelectFilter('My Campaigns')"><a href="#">My Campaigns</a></li>
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked]="selectedFilter === 'Open Campaigns'"
+                (click)="onSelectFilter('Open Campaigns')"><a href="#">Open Campaigns</a></li>
               <li soho-popupmenu-item isSelectable="true"><a href="#">All Campaigns</a></li>
               <li soho-popupmenu-separator></li>
               <li soho-popupmenu-item class="heading">Status</li>
@@ -71,7 +75,7 @@ import {
           </div>
           <div class="cmpgn-sortby-container">
             <span>Sort By</span>
-            <button soho-button="icon" icon="sort-down"> Sort Down </button>
+            <button soho-button="icon" icon="sort-down" (click)="toggleSort()"> Sort Down </button>
           </div>
           <div class="cmpgn-dropdownmenu-container">
             <button soho-menu-button class="cmpgn-icon-dropdown">
@@ -79,13 +83,23 @@ import {
             <ul class="popupmenu">
               <li soho-popupmenu-item class="heading">Organize By</li>
               <li soho-popupmenu-item isSelectable="true"
-                [isChecked] = "selectedSort === 'StartDate'"
-                (click)="onSelectSort('startDate')"><a href="#">Start Date</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">End Date</a></li>
+                [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'startDateOldest'"
+                (click)="onSelectSort('startDateLatest' || 'startDateOldest')"><a href="#">Start Date</a></li>
+
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked] = "selectedSort === 'endDateLatest' || selectedSort === 'endDateOldest'"
+                (click)="onSelectSort('endDateLatest' || 'endDateOldest')"><a href="#">End Date</a></li>
+
               <li soho-popupmenu-separator></li>
               <li soho-popupmenu-item class="heading">Sort By</li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Latest to Oldest</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Oldest to Latest</a></li>
+
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'endDateLatest'"
+                (click)="onSelectSort('startDateLatest' || 'endDateLatest')"><a href="#">Latest to Oldest</a></li>
+
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked] = "selectedSort === 'startDateOldest' || selectedSort === 'endDateOldest'"
+                (click)="onSelectSort('startDateOldest' || 'endDateOldest')"><a href="#">Oldest to Latest</a></li>
             </ul>
           </div>
         </soho-toolbar-flex-section>
@@ -156,21 +170,36 @@ import {
                 <div class="one columns text-position col-4-mb-styles">
                   <p class="cmpgn-stages">{{ campaign.DerStageCount }}</p>
                   <div class="cmpgn-lbl-container">
-                    <p class="cmpgn-lbl-stages text-small">Stages</p>
+                    <ng-container *ngIf="campaign.DerStageCount > 1; else StageText">
+                      <p class="cmpgn-lbl-stages text-small">Stages</p>
+                    </ng-container>
+                    <ng-template #StageText>
+                    <p class="cmpgn-lbl-stages text-small">Stage</p>
+                    </ng-template>
                   </div>
                 </div>
 
                 <div class="one columns text-position col-4-mb-styles">
                   <p class="cmpgn-steps">{{ campaign.DerStepCount }}</p>
                   <div class="cmpgn-lbl-container">
-                    <p class="cmpgn-lbl-steps text-small">Steps</p>
+                    <ng-container *ngIf="campaign.DerStepCount > 1; else StepLabel">
+                      <p class="cmpgn-lbl-steps text-small">Steps</p>
+                    </ng-container>
+                    <ng-template #StepLabel>
+                      <p class="cmpgn-lbl-steps text-small">Step</p>
+                    </ng-template>
                   </div>
                 </div>
 
                 <div class="one columns text-position col-4-mb-styles">
                   <p class="cmpgn-targets">{{ campaign.DerTargetCount }}</p>
                   <div class="cmpgn-lbl-container">
-                    <p class="cmpgn-lbl-targets text-small">Targets</p>
+                    <ng-container *ngIf="campaign.DerTargetCount > 1; else TargetText">
+                      <p class="cmpgn-lbl-targets text-small">Targets</p>
+                    </ng-container>
+                    <ng-template #TargetText>
+                      <p class="cmpgn-lbl-targets text-small">Target</p>
+                    </ng-template>
                   </div>
                 </div>
               </div>
@@ -178,44 +207,66 @@ import {
             </a>
             </soho-accordion-header>
             <soho-accordion-pane>
-            <div class="accordion-content cmpgn-accordion-content padding-right padding-bottom">
-              <ng-container class="test2" *ngFor="let stage of campaign.Stages">
+            <div class="accordion-content cmpgn-accordion-content padding-right padding-bottom padding-top">
+              <ng-container *ngFor="let stage of campaign.Stages">
                 <div class="row cmpgns stage">
-                  <a href="#" (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle, false, true, stage.StageID)">
-                  <div class="three columns col-left">
-                    <h1>{{ stage.StageDescription }}</h1>
-                  </div>
-                  <div class="two columns col-right">
-                    <p class="stage-status text-small">{{ stage.StageStatus }}</p>
-                  </div>
+                  <a href="#" (click)="showDialogWorkspace(campaignID, campaign.workspaceTitle, false, true, stage.StageID, stage.StageCampaignID)">
+                    <div class="three columns col-left cmpgn-custom-style">
+                      <h1>{{ stage.StageDescription }}</h1>
+                    </div>
+                    <div class="two columns col-right cmpgn-margin">
+                      <p class="stage-status text-small">{{ stage.StageStatus }}</p>
+                    </div>
 
-                  <div class="mb-view">
-                    <div class="four columns col-1">
-                      <p class="stage-startdate text-small">{{ stage.StageStartDate | dateTimeFormat | date }} <span class="dash">-</span> {{ stage.StageEndDate | dateTimeFormat | date }}</p>
-                      <p class="stage-stepscount text-small"><span class="divider">|</span> {{ stage.StageDerCampaignTaskCount }} <span>Steps</span></p>
-                    </div>
-                  </div><!-- .mb-view for mobile view only -->
+                    <div class="mb-view">
+                      <div class="four columns col-1">
+                        <p class="stage-startdate text-small">{{ stage.StageStartDate | dateTimeFormat | date }} <span class="dash">-</span> {{ stage.StageEndDate | dateTimeFormat | date }}</p>
+                        <p class="stage-stepscount text-small">
+                          <span class="divider">|</span> {{ stage.StageDerCampaignTaskCount }}
+                          <ng-container *ngIf="stage.StageDerCampaignTaskCount > 1; else StepText">
+                            <span>Steps</span>
+                          </ng-container>
+                          <ng-template #StepText>
+                            <span>Step</span>
+                          </ng-template>
+                        </p>
+                      </div>
+                    </div><!-- .mb-view for mobile view only -->
 
-                  <div class="two-col-wdgt-view">
-                    <div class="four columns col-1">
-                      <p class="stage-startdate text-small"><span>Start</span>{{ stage.StageStartDate | dateTimeFormat | date }}</p>
-                      <p class="stage-enddate"><span>End</span>{{ stage.StageEndDate | dateTimeFormat | date }}</p>
-                    <p class="stage-stepscount text-small"><span class="divider">|</span> {{ stage.StageDerCampaignTaskCount }} <span>Steps</span></p>
-                    </div>
-                  </div><!-- .two-col-wdgt-view -->
+                    <div class="two-col-wdgt-view">
+                      <div class="four columns col-1">
+                        <p class="stage-startdate text-small"><span>Start</span>{{ stage.StageStartDate | dateTimeFormat | date }}</p>
+                        <p class="stage-enddate"><span>End</span>{{ stage.StageEndDate | dateTimeFormat | date }}</p>
+                        <p class="stage-stepscount text-small"><span class="divider">|</span> {{ stage.StageDerCampaignTaskCount }}
+                          <ng-container *ngIf="stage.StageDerCampaignTaskCount > 1; else StepTextWdgt">
+                            <span> Steps</span>
+                          </ng-container>
+                          <ng-template #StepTextWdgt>
+                            <span> Step</span>
+                          </ng-template>
+                        </p>
+                      </div>
+                    </div><!-- .two-col-wdgt-view -->
 
-                  <div class="md-view">
-                  <div class="two columns col">
-                    <p class="stage-startdate"><span>Start</span>{{ stage.StageStartDate | dateTimeFormat | date }}</p>
-                  </div>
-                    <div class="two columns col">
-                      <p class="stage-enddate"><span>End</span>{{ stage.StageEndDate | dateTimeFormat | date }}</p>
-                    </div>
-                    <div class="three columns text-position col">
-                      <p class="stage-stepscount">{{ stage.StageDerCampaignTaskCount }} <span>Steps</span></p>
-                    </div>
-                  </div><!-- .md-view -->
-                </a>
+                    <div class="md-view">
+                      <div class="two columns col">
+                        <p class="stage-startdate"><span>Start</span>{{ stage.StageStartDate | dateTimeFormat | date }}</p>
+                      </div>
+                      <div class="two columns col cmpgn-cstm-mrgn">
+                        <p class="stage-enddate"><span>End</span>{{ stage.StageEndDate | dateTimeFormat | date }}</p>
+                      </div>
+                      <div class="three columns text-position col">
+                        <p class="stage-stepscount">{{ stage.StageDerCampaignTaskCount }}
+                          <ng-container *ngIf="stage.StageDerCampaignTaskCount > 1; else StepTextMd">
+                            <span> Steps</span>
+                          </ng-container>
+                          <ng-template #StepTextMd>
+                            <span> Step</span>
+                          </ng-template>
+                        </p>
+                      </div>
+                    </div><!-- .md-view -->
+                  </a>
                 </div>
               </ng-container><!-- stage -->
             </div>
@@ -249,7 +300,10 @@ import {
       margin-bottom: 5px;
       white-space: normal;
     }
-    .cmpgn-status, .cmpgn-lbl-stages, .cmpgn-lbl-steps, .cmpgn-lbl-targets, .cmpgn-end-date span, .cmpgn-start-date span, .stage-status, .stage-startdate span, .stage-enddate span, .stage-stepscount span, .cmpgn-unlaunched, .mb-view .stage-stepscount, .mb-view .stage-startdate {
+    .cmpgn-status, .cmpgn-lbl-stages, .cmpgn-lbl-steps, .cmpgn-lbl-targets, .cmpgn-end-date span,
+    .cmpgn-start-date span, .stage-status, .stage-startdate span, .stage-enddate span,
+    .stage-stepscount span, .cmpgn-unlaunched, .mb-view .stage-stepscount,
+    .mb-view .stage-startdate {
       color: #999;
       font-weight: 200;
     }
@@ -269,7 +323,7 @@ import {
       padding-right: 0;
     }
     .emptystatemessage-container,
-    .completedStateMessage-container {
+    .completedstatemessage-container {
       margin: auto;
     }
     .emptystatemessage-btn-container {
@@ -307,7 +361,7 @@ import {
       margin-top: 10px;
     }
     .padding-right {
-      padding-right: 50px;
+      padding-right: 20px;
     }
     .padding-bottom {
       padding-bottom: 0;
@@ -370,6 +424,14 @@ import {
     }
     .cmpgn-accordion-content .row.cmpgns.stage:last-child {
       margin-bottom: 0;
+    }
+    :host ::ng-deep .accordion-header.is-focused:not(.hide-focus),
+    :host ::ng-deep .accordion-header > [class^="btn"]:focus:not(.hide-focus) {
+      border-color: transparent;
+      box-shadow: none;
+    }
+    :host-context ::ng-deep .modal-content .modal-body-wrapper {
+      overflow-x: hidden !important;
     }
 
     /** One Column Widget */
@@ -484,6 +546,12 @@ import {
     .cmpgn-start-date {
       display: block !important;
     }
+    :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
+    .cmpgn-custom-style,
+    :host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
+    .cmpgn-margin {
+      margin-right: 0 !important;
+    }
 
     /**************** Two Column Widget ****************/
     :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
@@ -538,7 +606,10 @@ import {
     .cmpgn-end-date {
       display: inline-block;
     }
-    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width)) .cmpgn-end-date span, :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width)) .cmpgn-start-date span  {
+    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
+    .cmpgn-end-date span,
+    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
+    .cmpgn-start-date span  {
       display: block;
       padding-bottom: 6px;
     }
@@ -609,6 +680,16 @@ import {
     .two-col-wdgt-view .divider {
       display: none;
     }
+    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
+    .col-cmpgns.columns {
+      margin-right: 0 !important;
+    }
+    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
+    .cmpgn-style,
+    :host-context(.double-width, .widget:not(.to-single):not(.quad-width):not(.triple-width))
+    .cmpgn-margin {
+      margin-right: 0 !important;
+    }
 
     /**************** Three Column Widget *****************/
     :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
@@ -616,10 +697,57 @@ import {
       display: none;
     }
 
+    :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
+    .col-cmpgns.columns {
+      margin-left: 0;
+      margin-right: 20px;
+    }
+    :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
+    .cmpgn-custom-style {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+    :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
+    .cmpgn-margin {
+      margin-right: 15px;
+      margin-left: 0;
+    }
+    :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
+    .cmpgn-cstm-mrgn {
+      margin-left: 15px;
+    }
+    :host-context(.triple-width, .widget:not(.to-single):not(.double-width):not(.quad-width))
+    .cmpgn-accordion-content.padding-top {
+      padding-top: 0;
+    }
+
     /**************** Four Column Widget *****************/
     :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
     .one-col-wdgt {
       display: none;
+    }
+    :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+    .col-cmpgns.columns {
+      margin-left: 0;
+      margin-right: 20px;
+    }
+    :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+    .cmpgn-custom-style {
+      margin-right: 10px;
+      margin-left: 0;
+    }
+    :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+    .cmpgn-margin {
+      margin-right: 15px;
+      margin-left: 0;
+    }
+    :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+    .cmpgn-cstm-mrgn {
+      margin-left: 15px;
+    }
+    :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+    .cmpgn-accordion-content.padding-top {
+      padding-top: 0;
     }
 
     /** Media Queries */
@@ -807,7 +935,10 @@ import {
 
     }
     @media(min-width: 1121px) and (max-width: 1500px) {
-
+      .col-cmpgns.columns {
+        margin-left: 0;
+        margin-right: 20px;
+      }
     }
   `]
 })
@@ -818,12 +949,15 @@ export class CampaignsListComponent implements OnInit {
   campaignSteps: ICampaignStep[];
   container: ICampaign[] = [];
   dataJoin: any;
-  container2: any;
   itemName: string = "Items"; // Object name of item list
   isErrorState: boolean;
   completedState: boolean;
   viewContent: boolean = false;
   selectedSort: string;
+  selectedDateSort: string;
+  selectedFilter: string;
+  dataUrl: string;
+  private isAscendingSort: boolean = true;
   private totalResults: number;
   private dataSet: any;
   private dataSetChildStage: any;
@@ -843,14 +977,15 @@ export class CampaignsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.selectedSort = "StartDate";
+    this.onSelectSort("startDateLatest");
     this.setBusy(true);
-    this.loadCampaigns();
+    this.loadCampaigns(this.dataUrl);
     this.widgetInstance.actions[0].execute = () => this.webbAppLink();
+    // this.onSelectFilter("My Campaigns");
     console.log("-->", this);
   }
 
-  showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string): void {
+  showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string, StageCampaignID: string): void {
     this.campaignWorkspaceService.open({
       component: CampaignWorkspaceComponent,
       viewRef: this.viewRef,
@@ -860,7 +995,8 @@ export class CampaignsListComponent implements OnInit {
         campaignID: ID,
         showCampaign: showCampaign,
         showStage: showStage,
-        stageID: StageID
+        stageID: StageID,
+        campaignID2: StageCampaignID
       }
     });
 
@@ -873,22 +1009,119 @@ export class CampaignsListComponent implements OnInit {
     this.widgetContext.launch( {url: url});
   }
 
+  onSelectDateSort(sort: string): void {
+    // if (this.selectedDateSort === sort) {
+    //   return;
+    // }
+
+    this.selectedDateSort = sort;
+    this.container.sort((a: any, b: any) => {
+      const dateA: Date = new Date(this.dateTimePipe.transform(a.StartDate));
+      const dateB: Date = new Date(this.dateTimePipe.transform(b.StartDate));
+      const date1 = dateA.getTime();
+      const date2 = dateB.getTime();
+      if (sort === "startDateLatest") {
+        return date2 - date1;
+      } else if (sort === "startDateOldest") {
+        return date1 - date2;
+      } else if (sort === "endDateLatest") {
+        return date1 - date2;
+      } else if (sort === "endDateOldest") {
+        return date2 - date1;
+      }
+    });
+
+  }
+
   onSelectSort(sort: string): void {
     if (this.selectedSort === sort) {
-      console.log("if this.selectedSort", sort);
-      console.log("if this", this);
       return;
     }
     this.selectedSort = sort;
 
     this.container.sort((a: any, b: any) => {
-      const dateA: Date = new Date(this.dateTimePipe.transform(a.EndDate));
-      const dateB: Date = new Date(this.dateTimePipe.transform(b.EndDate));
+      const dateA: Date = new Date(this.dateTimePipe.transform(a.StartDate));
+      const dateB: Date = new Date(this.dateTimePipe.transform(b.StartDate));
+      const endDateA: Date = new Date(this.dateTimePipe.transform(a.EndDate));
+      const endDateB: Date = new Date(this.dateTimePipe.transform(b.EndDate));
       const date1 = dateA.getTime();
       const date2 = dateB.getTime();
-      console.log("THIS", this);
-      return date2 - date1;
+      const endDate1 = endDateA.getTime();
+      const endDate2 = endDateB.getTime();
+
+      if (sort === "startDateLatest") {
+        return date2 - date1;
+      } else if (sort === "startDateOldest") {
+        return date1 - date2;
+      } else if (sort === "endDateLatest") {
+        return endDate2 - endDate1;
+      } else if (sort === "endDateOldest") {
+        return endDate1 - endDate2;
+      }
     });
+  }
+
+  toggleSort(): void {
+    this.isAscendingSort ? this.sortAsc() : this.sortDesc();
+  }
+
+  sortAsc(): void {
+    this.isAscendingSort = false;
+    this.container.sort((c1: any, c2: any) => {
+      const dateA: Date = new Date(this.dateTimePipe.transform(c1.StartDate));
+      const dateB: Date = new Date(this.dateTimePipe.transform(c2.StartDate));
+      const endDateA: Date = new Date(this.dateTimePipe.transform(c1.EndDate));
+      const endDateB: Date = new Date(this.dateTimePipe.transform(c2.EndDate));
+      const date1 = dateA.getTime();
+      const date2 = dateB.getTime();
+      const endDate1 = endDateA.getTime();
+      const endDate2 = endDateB.getTime();
+
+      if (+date1 < +date2) {
+        return 1;
+      }
+      if (+date1 > +date2) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  sortDesc(): void {
+    this.isAscendingSort = true;
+    this.container.sort((c1: any, c2: any) => {
+      const dateA: Date = new Date(this.dateTimePipe.transform(c1.StartDate));
+      const dateB: Date = new Date(this.dateTimePipe.transform(c2.StartDate));
+      const endDateA: Date = new Date(this.dateTimePipe.transform(c1.EndDate));
+      const endDateB: Date = new Date(this.dateTimePipe.transform(c2.EndDate));
+      const date1 = dateA.getTime();
+      const date2 = dateB.getTime();
+      const endDate1 = endDateA.getTime();
+      const endDate2 = endDateB.getTime();
+
+      if (+date1 > +date2) {
+        return 1;
+      }
+      if (+date1 < +date2) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  onSelectFilter(filter: string): void {
+    this.selectedFilter = filter;
+    const campaignUrl = "CRMCE/IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
+    let dataUrl = this.dataUrl;
+
+    if (filter === "My Campaigns") {
+      this.dataUrl = `${campaignUrl}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`;
+    } else if (filter === "Open Campaigns") {
+      this.dataUrl = `${campaignUrl}&filter=Status <> N'Inactive'`;
+    } else {
+      this.dataUrl = campaignUrl;
+    }
+    this.loadCampaigns(this.dataUrl);
   }
 
   private dataCollection(): void {
@@ -908,24 +1141,20 @@ export class CampaignsListComponent implements OnInit {
       });
 
       parent.map((p: any) => {
-        // const stages = childStage.filter((a: any) =>
-        // a.StageCampaignID === p.ID);
-
-        // this.container.push({...p, Stages: [...stages]});
-
         const stages = this.dataJoin.filter((f: any) => f.StageCampaignID === p.ID);
 
         this.container.push({...p, Stages: [...stages]});
       });
     }
     this.setBusy(false);
+    this.completedStateMessage();
     console.log("---->", this);
   }
 
-  private loadCampaigns(): void {
+  private loadCampaigns(dataUrl: string): void {
     this.dataSet = [];
-    this.dataService.getCampaigns().subscribe((response: any) => {
-      // this.totalResults = 0;
+    this.dataService.getCampaigns(`${encodeURI(dataUrl)}`).subscribe((response: any) => {
+
       this.campaigns = response.data[this.itemName];
 
       this.viewContent = true;
@@ -959,73 +1188,77 @@ export class CampaignsListComponent implements OnInit {
           this.dataSet.push(item);
         }
       }
-      this.dataCollection();
+
+      this.getCampaignStages();
     }, (error: HttpErrorResponse) => {
         this.onRequestError(error);
-    }, () => {
-      this.setBusy(false);
-    });
-
-    //Request for Campaign stage
-    this.dataService.getCampaignStages().subscribe((response: any) => {
-      this.dataSetChildStage = [];
-      this.campaignStages = response.data[this.itemName];
-
-      const dataCampaignStage = this.campaignStages;
-      if (dataCampaignStage) {
-        for (const campaignStage of dataCampaignStage) {
-
-          // Get the task count
-          const taskCount = campaignStage[4].Value.replace(/[^0-9]/g, "");
-
-          const item = {
-            StageID: campaignStage[0].Value,
-            StageCampaignID: campaignStage[1].Value,
-            StageDescription: campaignStage[2].Value,
-            StageStatus: campaignStage[3].Value,
-            StageDerCampaignTaskCount: taskCount,
-            StageStartDate: campaignStage[5].Value,
-            StageEndDate: campaignStage[6].Value
-          };
-          this.dataSetChildStage.push(item);
-        }
-      }
-      this.dataCollection();
-    }, (error: HttpErrorResponse) => {
-      this.onRequestError(error);
-    }, () => {
-      this.setBusy(false);
-    });
-
-    this.dataService.getCampaignSteps().subscribe((response: any) => {
-      this.dataSetChildStep = [];
-      this.campaignSteps = response.data[this.itemName];
-
-      const dataCampaignStep = this.campaignSteps;
-      if (dataCampaignStep) {
-        for (const campaignStep of dataCampaignStep) {
-          const item = {
-            StepID: campaignStep[0].Value,
-            StepCampaignID: campaignStep[1].Value,
-            StepDescription: campaignStep[2].Value,
-            StepStatus: campaignStep[3].Value,
-            StepsDueDate: campaignStep[4].Value,
-            StepDateAssigned: campaignStep[5].Value,
-            StepCampaignStageID: campaignStep[6].Value,
-            StepPercentComplete: campaignStep[7].Value,
-            StepPriority: campaignStep[8].Value,
-            StepType: campaignStep[9].Value
-          };
-          this.dataSetChildStep.push(item);
-        }
-      }
-      this.dataCollection();
-    }, (error: HttpErrorResponse) => {
-      this.onRequestError(error);
-    }, () => {
-      this.setBusy(false);
     });
   }
+
+private getCampaignStages(): void {
+  //Request for Campaign stage
+  this.dataService.getCampaignStages().subscribe((response: any) => {
+    this.dataSetChildStage = [];
+    this.campaignStages = response.data[this.itemName];
+
+    const dataCampaignStage = this.campaignStages;
+    if (dataCampaignStage) {
+      for (const campaignStage of dataCampaignStage) {
+
+        // Get the task count
+        let taskCount = campaignStage[4].Value.replace(/[^0-9]/g, "");
+
+        if (campaignStage[4].Value === "STRINGS(sCRMItemCount)") {
+          taskCount = "1";
+        }
+
+        const item = {
+          StageID: campaignStage[0].Value,
+          StageCampaignID: campaignStage[1].Value,
+          StageDescription: campaignStage[2].Value,
+          StageStatus: campaignStage[3].Value,
+          StageDerCampaignTaskCount: taskCount,
+          StageStartDate: campaignStage[5].Value,
+          StageEndDate: campaignStage[6].Value
+        };
+        this.dataSetChildStage.push(item);
+      }
+    }
+
+    this.getCampaignSteps();
+  }, (error: HttpErrorResponse) => {
+    this.onRequestError(error);
+  });
+}
+
+private getCampaignSteps(): void {
+  this.dataService.getCampaignSteps().subscribe((response: any) => {
+    this.dataSetChildStep = [];
+    this.campaignSteps = response.data[this.itemName];
+
+    const dataCampaignStep = this.campaignSteps;
+    if (dataCampaignStep) {
+      for (const campaignStep of dataCampaignStep) {
+        const item = {
+          StepID: campaignStep[0].Value,
+          StepCampaignID: campaignStep[1].Value,
+          StepDescription: campaignStep[2].Value,
+          StepStatus: campaignStep[3].Value,
+          StepsDueDate: campaignStep[4].Value,
+          StepDateAssigned: campaignStep[5].Value,
+          StepCampaignStageID: campaignStep[6].Value,
+          StepPercentComplete: campaignStep[7].Value,
+          StepPriority: campaignStep[8].Value,
+          StepType: campaignStep[9].Value
+        };
+        this.dataSetChildStep.push(item);
+      }
+    }
+    this.dataCollection();
+  }, (error: HttpErrorResponse) => {
+    this.onRequestError(error);
+  });
+}
 
   private onRequestError(error: HttpErrorResponse): void {
     this.isErrorState = true;
@@ -1033,7 +1266,9 @@ export class CampaignsListComponent implements OnInit {
   }
 
   private completedStateMessage(): void {
-    (!this.totalResults) ? (this.completedState = true, this.viewContent = false) : this.completedState = false;
+    (this.container === undefined || this.container.length === 0) ?
+      (this.completedState = true, this.viewContent = false, this.setBusy(false))
+      : this.completedState = false;
   }
 
   private setBusy(isBusy: boolean): void {

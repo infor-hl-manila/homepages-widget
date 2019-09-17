@@ -50,7 +50,7 @@ export class CampaignWorkspaceService {
         }
       }
     });
-    this.capDialog.title(options.title);
+    this.capDialog.title("Campaign Details");
     this.capDialog.trigger("immediate");
     this.capDialog.open();
   }

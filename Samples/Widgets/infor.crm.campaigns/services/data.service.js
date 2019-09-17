@@ -24,7 +24,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
         DataService.prototype.getMongooseConfig = function () {
             var _this = this;
             // let configGroup: string = null;
-            var tenantId = "CRMCEFEAT01_AX2"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
+            var tenantId = "CRMCEQA30_AX1"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
             // const tenantID = this.widgetContext.getTenantId();
             if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
                 var split = tenantId.split("_");
@@ -40,7 +40,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
                 // this.showErrorResponse(error);
             });
         };
-        DataService.prototype.getCampaigns = function () {
+        DataService.prototype.getCampaigns = function (dataUrl) {
             var request = this.createRequest(encodeURI(this.dataCampaignReqUrl) + "&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC");
             return this.widgetContext.executeIonApiAsync(request);
         };

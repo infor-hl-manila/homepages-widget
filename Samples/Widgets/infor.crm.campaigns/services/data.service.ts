@@ -42,7 +42,7 @@ export class DataService {
 
   getMongooseConfig(): void {
     // let configGroup: string = null;
-    const tenantId = "CRMCEFEAT01_AX2"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
+    const tenantId = "CRMCEQA30_AX1"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
     // const tenantID = this.widgetContext.getTenantId();
     if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
       const split = tenantId.split("_");
@@ -64,7 +64,7 @@ export class DataService {
     );
   }
 
-  getCampaigns(): Observable<IIonApiResponse<ICampaign[]>> {
+  getCampaigns(dataUrl: string): Observable<IIonApiResponse<ICampaign[]>> {
     const request = this.createRequest(`${encodeURI(this.dataCampaignReqUrl)}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`);
     return this.widgetContext.executeIonApiAsync<ICampaign[]>(request);
   }
