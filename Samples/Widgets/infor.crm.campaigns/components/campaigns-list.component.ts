@@ -67,32 +67,17 @@ import {
           </div>
           <div class="cmpgn-sortby-container">
             <span>Sort By</span>
-            <button soho-button="icon" icon="sort-down" (click)="toggleSort()"> Sort Down </button>
+            <button soho-button="icon" icon="sort-down" (click)="toggleSort($event.target.value)"> Sort Down </button>
           </div>
           <div class="cmpgn-dropdownmenu-container">
-            <button soho-menu-button class="cmpgn-icon-dropdown">
-            </button>
-            <ul class="popupmenu">
-              <li soho-popupmenu-item class="heading">Organize By</li>
-              <li soho-popupmenu-item isSelectable="true"
-                [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'startDateOldest'"
-                (click)="toggleSort()"><a href="#">Start Date</a></li>
-
-              <li soho-popupmenu-item isSelectable="true"
-                [isChecked] = "selectedSort === 'endDateLatest' || selectedSort === 'endDateOldest'"
-                (click)="toggleSort()"><a href="#">End Date</a></li>
-
-              <li soho-popupmenu-separator></li>
-              <li soho-popupmenu-item class="heading">Sort By</li>
-
-              <li soho-popupmenu-item isSelectable="true"
-                [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'endDateLatest'"
-                (click)="toggleSort()"><a href="#">Latest to Oldest</a></li>
-
-              <li soho-popupmenu-item isSelectable="true"
-                [isChecked] = "selectedSort === 'startDateOldest' || selectedSort === 'endDateOldest'"
-                (click)="toggleSort()"><a href="#">Oldest to Latest</a></li>
-            </ul>
+          <button soho-menu-button class="btn-menu cmpgn-btn-style"></button>
+          <ul class="popupmenu is-selectable">
+            <li class="heading">Organize By</li>
+            <li *ngFor="let op of opts" [ngClass]="{'is-checked': op==='Start Date'}" ><a (click)="toggle(op)">{{op}}</a></li>
+            <li class="separator"></li>
+            <li class="heading">Sort By</li>
+            <li *ngFor="let sortBy of sortByOpts" [ngClass]="{'is-checked': sortBy==='Latest to Oldest'}" ><a (click)="toggleSort(sortBy)">{{sortBy}}</a></li>
+          </ul>
           </div>
         </soho-toolbar-flex-section>
       </soho-toolbar-flex>
@@ -968,6 +953,10 @@ export class CampaignsListComponent implements OnInit {
   selectedFilter: string;
   dataUrl: string;
   sortByDesc: boolean = true;
+  op: string = "Start Date";
+  opts: string[] = ["Start Date", "End Date"];
+  sortBy: string = "Latest to Oldest";
+  sortByOpts: string[] = ["Latest to Oldest", "Oldest to Latest"];
   private isAscendingSort: boolean = false;
   private totalResults: number;
   private dataSet: any;
@@ -1055,9 +1044,43 @@ export class CampaignsListComponent implements OnInit {
     });
   }
 
-  toggleSort(): void {
+  toggle(ob: any) {
+    console.log(ob);
+    this.sort(ob, this.sortBy);
+  }
 
-    this.isAscendingSort ? this.sortAsc() : this.sortDesc();
+  sort(ob: any, sortBy: any) {
+    console.log({ob: ob, sortBy: sortBy});
+    this.container.sort((c1: any, c2: any) => {
+      let dateA: Date;
+      let dateB: Date;
+
+      switch (ob) {
+        case 'Start Date': {
+          dateA = new Date(this.dateTimePipe.transform(c1.StartDate));
+          dateB = new Date(this.dateTimePipe.transform(c2.StartDate));
+        }
+        case 'End Date': {
+          dateA = new Date(this.dateTimePipe.transform(c1.EndDate));
+          dateB = new Date(this.dateTimePipe.transform(c2.EndDate));
+        }
+      }
+
+      switch (sortBy) {
+        case "Oldest to Latest": {
+          return dateA.getTime() - dateB.getTime();
+        }
+        case "Latest to Oldest": {
+          return dateB.getTime() - dateA.getTime();
+        }
+      }
+
+    });
+  }
+
+  toggleSort(sortBy: any): void {
+    console.log(sortBy);
+    this.sort(this.op, sortBy);
   }
 
   setContent(): void {
