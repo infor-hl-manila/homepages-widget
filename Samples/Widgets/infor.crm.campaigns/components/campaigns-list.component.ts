@@ -51,26 +51,18 @@ import {
         <soho-toolbar-flex-section [isButtonSet]="true" style="text-align: right; padding: 0 4px;">
           <div class="cmpgn-filterby-container">
             <span>Filtered By</span>
-            <button soho-menu-button class="cmpgn-icon-filter">
-              <svg role="presentation" aria-hidden="true" focusable="false" class="icon cmpgn-icon">
-                <use xlink:href="#icon-filter"></use>
-              </svg>
-            </button>
+            <button soho-menu-button class="btn-menu custom-cmpgn-icon" icon="filter"></button>
             <ul class="popupmenu">
               <li soho-popupmenu-item class="heading">Category</li>
               <li soho-popupmenu-item isSelectable="true"
-                [isChecked]="selectedFilter === 'My Campaigns'"
+                [isChecked] = "selectedFilter === 'My Campaigns'"
                 (click)="onSelectFilter('My Campaigns')"><a href="#">My Campaigns</a></li>
               <li soho-popupmenu-item isSelectable="true"
-                [isChecked]="selectedFilter === 'Open Campaigns'"
+                [isChecked] = "selectedFilter === 'Open Campaigns'"
                 (click)="onSelectFilter('Open Campaigns')"><a href="#">Open Campaigns</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">All Campaigns</a></li>
-              <li soho-popupmenu-separator></li>
-              <li soho-popupmenu-item class="heading">Status</li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">All</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Active</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Setup</a></li>
-              <li soho-popupmenu-item isSelectable="true"><a href="#">Inactive</a></li>
+              <li soho-popupmenu-item isSelectable="true"
+                [isChecked] = "selectedFilter === 'All Campaigns'"
+                (click)="onSelectFilter('All Campaigns')"><a href="#">All Campaigns</a></li>
             </ul>
           </div>
           <div class="cmpgn-sortby-container">
@@ -84,22 +76,22 @@ import {
               <li soho-popupmenu-item class="heading">Organize By</li>
               <li soho-popupmenu-item isSelectable="true"
                 [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'startDateOldest'"
-                (click)="onSelectSort('startDateLatest' || 'startDateOldest')"><a href="#">Start Date</a></li>
+                (click)="toggleSort()"><a href="#">Start Date</a></li>
 
               <li soho-popupmenu-item isSelectable="true"
                 [isChecked] = "selectedSort === 'endDateLatest' || selectedSort === 'endDateOldest'"
-                (click)="onSelectSort('endDateLatest' || 'endDateOldest')"><a href="#">End Date</a></li>
+                (click)="toggleSort()"><a href="#">End Date</a></li>
 
               <li soho-popupmenu-separator></li>
               <li soho-popupmenu-item class="heading">Sort By</li>
 
               <li soho-popupmenu-item isSelectable="true"
                 [isChecked] = "selectedSort === 'startDateLatest' || selectedSort === 'endDateLatest'"
-                (click)="onSelectSort('startDateLatest' || 'endDateLatest')"><a href="#">Latest to Oldest</a></li>
+                (click)="toggleSort()"><a href="#">Latest to Oldest</a></li>
 
               <li soho-popupmenu-item isSelectable="true"
                 [isChecked] = "selectedSort === 'startDateOldest' || selectedSort === 'endDateOldest'"
-                (click)="onSelectSort('startDateOldest' || 'endDateOldest')"><a href="#">Oldest to Latest</a></li>
+                (click)="toggleSort()"><a href="#">Oldest to Latest</a></li>
             </ul>
           </div>
         </soho-toolbar-flex-section>
@@ -343,6 +335,9 @@ import {
     .text-position {
       text-align: center;
     }
+    .cmpgn-sort-filter-container button.btn-menu {
+      min-width: auto;
+    }
     .cmpgn-start-date span, .stage-startdate span {
       margin-right: 10px;
     }
@@ -389,6 +384,9 @@ import {
     }
     .cmpgn-sort-filter-container .heading {
       font-weight: 200;
+    }
+    :host ::ng-deep .cmpgn-sort-filter-container .btn-menu:focus:not(.hide-focus) {
+      box-shadow: none;
     }
     .cmpgn-sort-filter-container .cmpgn-icon-dropdown {
       padding: 0;
@@ -804,6 +802,10 @@ import {
         padding-left: 0;
         width: 23.33333%;
       }
+      :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+      .col-cmpgns.columns {
+        margin-right: 0;
+      }
     }
     @media (min-width: 741px) and (max-width: 766px) {
       .btm-container .col-4-mb-styles {
@@ -929,6 +931,14 @@ import {
       .two-col-wdgt-view .divider {
         display: none;
       }
+      :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+      .col-cmpgns.columns,
+      :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+      .cmpgn-margin,
+      :host-context(.quad-width, .widget:not(.to-single):not(.double-width):not(.triple-width))
+      .cmpgn-custom-style {
+        margin-right: 0;
+      }
 
     }
     @media (min-width: 993px) and (max-width: 1120px) {
@@ -957,11 +967,11 @@ export class CampaignsListComponent implements OnInit {
   selectedDateSort: string;
   selectedFilter: string;
   dataUrl: string;
-  private isAscendingSort: boolean = true;
+  sortByDesc: boolean = true;
+  private isAscendingSort: boolean = false;
   private totalResults: number;
   private dataSet: any;
   private dataSetChildStage: any;
-  private dataSetChildStage2: any;
   private dataSetChildStep: any;
 
   constructor(
@@ -978,11 +988,19 @@ export class CampaignsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.onSelectSort("startDateLatest");
+    this.removeDropdownIcon();
     this.setBusy(true);
-    this.loadCampaigns(this.dataUrl);
+    this.setContent();
     this.widgetInstance.actions[0].execute = () => this.webbAppLink();
-    // this.onSelectFilter("My Campaigns");
-    console.log("-->", this);
+  }
+
+  removeDropdownIcon(): void {
+    const el = this.widgetContext.getElement();
+    const dropdownEl: any = el[0].getElementsByClassName("custom-cmpgn-icon");
+
+    for (const i of dropdownEl) {
+      i.innerHTML = `<svg _ngcontent-lda-c9="" soho-icon="" class="icon" aria-hidden="true" focusable="false" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-filter"></use></svg>`;
+    }
   }
 
   showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string, StageCampaignID: string): void {
@@ -999,8 +1017,6 @@ export class CampaignsListComponent implements OnInit {
         campaignID2: StageCampaignID
       }
     });
-
-    console.log("this.viewRef", this.viewRef);
   }
 
   webbAppLink(): void {
@@ -1009,31 +1025,9 @@ export class CampaignsListComponent implements OnInit {
     this.widgetContext.launch( {url: url});
   }
 
-  onSelectDateSort(sort: string): void {
-    // if (this.selectedDateSort === sort) {
-    //   return;
-    // }
-
-    this.selectedDateSort = sort;
-    this.container.sort((a: any, b: any) => {
-      const dateA: Date = new Date(this.dateTimePipe.transform(a.StartDate));
-      const dateB: Date = new Date(this.dateTimePipe.transform(b.StartDate));
-      const date1 = dateA.getTime();
-      const date2 = dateB.getTime();
-      if (sort === "startDateLatest") {
-        return date2 - date1;
-      } else if (sort === "startDateOldest") {
-        return date1 - date2;
-      } else if (sort === "endDateLatest") {
-        return date1 - date2;
-      } else if (sort === "endDateOldest") {
-        return date2 - date1;
-      }
-    });
-
-  }
-
   onSelectSort(sort: string): void {
+
+    console.log('sort :::: ' + sort);
     if (this.selectedSort === sort) {
       return;
     }
@@ -1062,7 +1056,12 @@ export class CampaignsListComponent implements OnInit {
   }
 
   toggleSort(): void {
+
     this.isAscendingSort ? this.sortAsc() : this.sortDesc();
+  }
+
+  setContent(): void {
+    this.onSelectFilter("My Campaigns");
   }
 
   sortAsc(): void {
@@ -1078,9 +1077,20 @@ export class CampaignsListComponent implements OnInit {
       const endDate2 = endDateB.getTime();
 
       if (+date1 < +date2) {
+        this.selectedSort = "startDateLatest";
         return 1;
       }
       if (+date1 > +date2) {
+        this.selectedSort = "startDateLatest";
+        return -1;
+      }
+
+      if (+endDate1 < +endDate2) {
+        this.selectedSort = "endDateLatest";
+        return 1;
+      }
+      if (+endDate1 > +endDate2) {
+        this.selectedSort = "endDateLatest";
         return -1;
       }
       return 0;
@@ -1100,9 +1110,19 @@ export class CampaignsListComponent implements OnInit {
       const endDate2 = endDateB.getTime();
 
       if (+date1 > +date2) {
+        this.selectedSort = "startDateOldest";
         return 1;
       }
       if (+date1 < +date2) {
+        this.selectedSort = "startDateOldest";
+        return -1;
+      }
+      if (+endDate1 > +endDate2) {
+        this.selectedSort = "endDateOldest";
+        return 1;
+      }
+      if (+endDate1 < +endDate2) {
+        this.selectedSort = "endDateOldest";
         return -1;
       }
       return 0;
@@ -1111,17 +1131,18 @@ export class CampaignsListComponent implements OnInit {
 
   onSelectFilter(filter: string): void {
     this.selectedFilter = filter;
-    const campaignUrl = "CRMCE/IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
-    let dataUrl = this.dataUrl;
+    let dataUrl = "";
 
     if (filter === "My Campaigns") {
-      this.dataUrl = `${campaignUrl}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`;
+      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC";
+    } else if (filter === "All Campaigns") {
+      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
     } else if (filter === "Open Campaigns") {
-      this.dataUrl = `${campaignUrl}&filter=Status <> N'Inactive'`;
-    } else {
-      this.dataUrl = campaignUrl;
+      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&filter=Status <> N'Inactive'";
     }
-    this.loadCampaigns(this.dataUrl);
+    this.setBusy(true);
+    this.dataService.selectCampaigns(dataUrl);
+    this.loadCampaigns(dataUrl);
   }
 
   private dataCollection(): void {
@@ -1148,12 +1169,11 @@ export class CampaignsListComponent implements OnInit {
     }
     this.setBusy(false);
     this.completedStateMessage();
-    console.log("---->", this);
   }
 
-  private loadCampaigns(dataUrl: string): void {
+  private loadCampaigns(campaignUrl: string): void {
     this.dataSet = [];
-    this.dataService.getCampaigns(`${encodeURI(dataUrl)}`).subscribe((response: any) => {
+    this.dataService.selectCampaigns(campaignUrl).subscribe((response: any) => {
 
       this.campaigns = response.data[this.itemName];
 

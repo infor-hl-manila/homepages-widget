@@ -15,6 +15,7 @@ import {
   IWidgetInstance,
   IWidgetSettingsContext2,
   IWidgetSettingsInstance2,
+  Log,
   widgetContextInjectionToken,
   WidgetState
 } from "lime";
@@ -432,9 +433,6 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
     });
 
     (!this.showStage) ? (this.showStage = true, this.showCampaign = false) : (this.showCampaign = false, this.showStage = true);
-
-    console.log("->", this.stage);
-    console.log("this stage", this);
   }
 
   campaignStageDetail(stageID: string): void {
@@ -457,7 +455,7 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
         this.busyIndicator.activated = true;
         this.campaigns = response.data[this.itemName];
 
-          for (const campaign of this.campaigns) {
+        for (const campaign of this.campaigns) {
             const item = {
               ID: campaign[0].Value,
               Name: campaign[1].Value,
@@ -544,7 +542,7 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
         }
       }
     }, error => {
-      console.log(error);
+      this.logInfo(error);
     }, () => {
       this.dataCollection();
     });
@@ -577,6 +575,9 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
     }
     this.campaignStageDetail(this.stageID);
     this.busyIndicator.activated = false;
-    console.log("this", this);
   }
+
+  private logInfo(message: string, ex?: {}): void {
+		Log.info(message, ex);
+	}
 }

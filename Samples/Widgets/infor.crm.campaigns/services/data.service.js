@@ -17,6 +17,9 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
             this.dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
             this.dataCampaignStageReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStage";
             this.dataCampaignStepReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStep";
+            this.allCampaigns = "/IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
+            this.myCampaigns = this.allCampaigns + "&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC";
+            this.openCampaigns = this.allCampaigns + "&filter=Status <> N'Inactive'";
         }
         DataService.prototype.init = function (widgetContext) {
             this.widgetContext = widgetContext;
@@ -40,7 +43,11 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
                 // this.showErrorResponse(error);
             });
         };
-        DataService.prototype.getCampaigns = function (dataUrl) {
+        DataService.prototype.selectCampaigns = function (dataUrl) {
+            var request = this.createRequest("" + encodeURI(dataUrl));
+            return this.widgetContext.executeIonApiAsync(request);
+        };
+        DataService.prototype.getCampaigns = function () {
             var request = this.createRequest(encodeURI(this.dataCampaignReqUrl) + "&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC");
             return this.widgetContext.executeIonApiAsync(request);
         };

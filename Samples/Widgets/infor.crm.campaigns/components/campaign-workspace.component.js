@@ -55,8 +55,6 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
                 }
             });
             (!this.showStage) ? (this.showStage = true, this.showCampaign = false) : (this.showCampaign = false, this.showStage = true);
-            console.log("->", this.stage);
-            console.log("this stage", this);
         };
         CampaignWorkspaceComponent.prototype.campaignStageDetail = function (stageID) {
             var _this = this;
@@ -161,7 +159,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
                     }
                 }
             }, function (error) {
-                console.log(error);
+                _this.logInfo(error);
             }, function () {
                 _this.dataCollection();
             });
@@ -190,7 +188,9 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
             }
             this.campaignStageDetail(this.stageID);
             this.busyIndicator.activated = false;
-            console.log("this", this);
+        };
+        CampaignWorkspaceComponent.prototype.logInfo = function (message, ex) {
+            lime_1.Log.info(message, ex);
         };
         __decorate([
             core_1.Input(),

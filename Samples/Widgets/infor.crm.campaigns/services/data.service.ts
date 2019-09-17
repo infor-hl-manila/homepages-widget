@@ -33,7 +33,9 @@ export class DataService {
   private dataCampaignReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
   private dataCampaignStageReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStage";
   private dataCampaignStepReqUrl = "IDORequestService/MGRestService.svc/json/CRMCampaignStep";
-
+  private allCampaigns = "/IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
+  private myCampaigns = `${this.allCampaigns}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`;
+  private openCampaigns = `${this.allCampaigns}&filter=Status <> N'Inactive'`;
   constructor(private messageService: SohoMessageService) {}
 
   init(widgetContext: IWidgetContext): void {
@@ -63,8 +65,12 @@ export class DataService {
       }
     );
   }
+  selectCampaigns(dataUrl: string): Observable<IIonApiResponse<ICampaign[]>> {
+    const request = this.createRequest(`${encodeURI(dataUrl)}`);
 
-  getCampaigns(dataUrl: string): Observable<IIonApiResponse<ICampaign[]>> {
+    return this.widgetContext.executeIonApiAsync<ICampaign[]>(request);
+  }
+  getCampaigns(): Observable<IIonApiResponse<ICampaign[]>> {
     const request = this.createRequest(`${encodeURI(this.dataCampaignReqUrl)}&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC`);
     return this.widgetContext.executeIonApiAsync<ICampaign[]>(request);
   }
