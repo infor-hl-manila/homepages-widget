@@ -27,7 +27,7 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime"],
         DataService.prototype.getMongooseConfig = function () {
             var _this = this;
             // let configGroup: string = null;
-            var tenantId = "CRMCEQA30_AX1"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
+            var tenantId = this.widgetContext.getTenantId(); //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
             // const tenantID = this.widgetContext.getTenantId();
             if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
                 var split = tenantId.split("_");
