@@ -67,7 +67,7 @@ import {
           </div>
           <div class="cmpgn-sortby-container">
             <span>Sort By</span>
-            <button soho-button="icon" icon="sort-down" (click)="toggleSort($event.target.value)"> Sort Down </button>
+            <button soho-button="icon" icon="sort-down" (click)="toggleSort(sortBy)"> Sort Down </button>
           </div>
           <div class="cmpgn-dropdownmenu-container">
           <button soho-menu-button class="btn-menu cmpgn-btn-style"></button>
@@ -387,9 +387,12 @@ import {
     .cmpgn-dropdownmenu-container {
       border-left: 1px solid #5c5c5c;
       position: relative;
-      top: 3px;
+      top: 0;
       padding-left: 5px;
       margin-left: 5px;
+    }
+    .cmpgn-btn-style {
+      padding-right: 0;
     }
     .cmpgn-icon-filter {
       position: relative;
@@ -953,9 +956,9 @@ export class CampaignsListComponent implements OnInit {
   selectedFilter: string;
   dataUrl: string;
   sortByDesc: boolean = true;
-  op: string = "Start Date";
+  op: string;
   opts: string[] = ["Start Date", "End Date"];
-  sortBy: string = "Latest to Oldest";
+  sortBy: string;
   sortByOpts: string[] = ["Latest to Oldest", "Oldest to Latest"];
   private isAscendingSort: boolean = false;
   private totalResults: number;
@@ -976,7 +979,8 @@ export class CampaignsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.onSelectSort("startDateLatest");
+    this.op = "Start Date";
+    this.sortBy = "Latest to Oldest";
     this.removeDropdownIcon();
     this.setBusy(true);
     this.setContent();
@@ -988,7 +992,7 @@ export class CampaignsListComponent implements OnInit {
     const dropdownEl: any = el[0].getElementsByClassName("custom-cmpgn-icon");
 
     for (const i of dropdownEl) {
-      i.innerHTML = `<svg _ngcontent-lda-c9="" soho-icon="" class="icon" aria-hidden="true" focusable="false" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-filter"></use></svg>`;
+      i.innerHTML = `<svg soho-icon="" class="icon" aria-hidden="true" focusable="false" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-filter"></use></svg>`;
     }
   }
 
@@ -1014,36 +1018,6 @@ export class CampaignsListComponent implements OnInit {
     this.widgetContext.launch( {url: url});
   }
 
-  onSelectSort(sort: string): void {
-
-    console.log('sort :::: ' + sort);
-    if (this.selectedSort === sort) {
-      return;
-    }
-    this.selectedSort = sort;
-
-    this.container.sort((a: any, b: any) => {
-      const dateA: Date = new Date(this.dateTimePipe.transform(a.StartDate));
-      const dateB: Date = new Date(this.dateTimePipe.transform(b.StartDate));
-      const endDateA: Date = new Date(this.dateTimePipe.transform(a.EndDate));
-      const endDateB: Date = new Date(this.dateTimePipe.transform(b.EndDate));
-      const date1 = dateA.getTime();
-      const date2 = dateB.getTime();
-      const endDate1 = endDateA.getTime();
-      const endDate2 = endDateB.getTime();
-
-      if (sort === "startDateLatest") {
-        return date2 - date1;
-      } else if (sort === "startDateOldest") {
-        return date1 - date2;
-      } else if (sort === "endDateLatest") {
-        return endDate2 - endDate1;
-      } else if (sort === "endDateOldest") {
-        return endDate1 - endDate2;
-      }
-    });
-  }
-
   toggle(ob: any) {
     console.log(ob);
     this.sort(ob, this.sortBy);
@@ -1056,11 +1030,11 @@ export class CampaignsListComponent implements OnInit {
       let dateB: Date;
 
       switch (ob) {
-        case 'Start Date': {
+        case "Start Date": {
           dateA = new Date(this.dateTimePipe.transform(c1.StartDate));
           dateB = new Date(this.dateTimePipe.transform(c2.StartDate));
         }
-        case 'End Date': {
+        case "End Date": {
           dateA = new Date(this.dateTimePipe.transform(c1.EndDate));
           dateB = new Date(this.dateTimePipe.transform(c2.EndDate));
         }
@@ -1068,10 +1042,10 @@ export class CampaignsListComponent implements OnInit {
 
       switch (sortBy) {
         case "Oldest to Latest": {
-          return dateA.getTime() - dateB.getTime();
+          return +dateA.getTime() - +dateB.getTime();
         }
         case "Latest to Oldest": {
-          return dateB.getTime() - dateA.getTime();
+          return +dateB.getTime() - +dateA.getTime();
         }
       }
 
@@ -1086,6 +1060,7 @@ export class CampaignsListComponent implements OnInit {
   setContent(): void {
     this.onSelectFilter("My Campaigns");
   }
+  
 
   sortAsc(): void {
     this.isAscendingSort = false;
