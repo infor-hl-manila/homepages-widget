@@ -44,7 +44,7 @@ export class DataService {
 
   getMongooseConfig(): void {
     // let configGroup: string = null;
-    const tenantId = this.widgetContext.getTenantId(); //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
+    const tenantId = "CRMCEQA30_AX1"; //will change to dynamic once we deploy to ADE this.widgetContext.getTenantId();
     // const tenantID = this.widgetContext.getTenantId();
     if (typeof tenantId === "string" && tenantId.length > 0 && tenantId.indexOf("_") >= 0) {
       const split = tenantId.split("_");
