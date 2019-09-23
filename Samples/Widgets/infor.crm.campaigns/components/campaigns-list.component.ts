@@ -67,13 +67,13 @@ import {
           </div>
           <div class="cmpgn-sortby-container">
             <span>Sort By</span>
-            <button soho-button="icon" icon="sort-down" (click)="toggleSort(sortBy)"> Sort Down </button>
+            <button soho-button="icon" icon="sort-down" (click)="toggleSort(sortBy, true)"> Sort Down </button>
           </div>
           <div class="cmpgn-dropdownmenu-container">
           <button soho-menu-button class="btn-menu cmpgn-btn-style"></button>
           <ul class="popupmenu is-selectable">
             <li class="heading">Organize By</li>
-            <li *ngFor="let op of opts" [ngClass]="{'is-checked': op==='Start Date'}" ><a (click)="toggle(op)">{{op}}</a></li>
+            <li *ngFor="let op of opts" [ngClass]="{'is-checked': op === 'Start Date'}" ><a (click)="toggle(op)">{{op}}</a></li>
             <li class="separator"></li>
             <li class="heading">Sort By</li>
             <li *ngFor="let sortBy of sortByOpts" [ngClass]="{'is-checked': sortBy==='Latest to Oldest'}" ><a (click)="toggleSort(sortBy)">{{sortBy}}</a></li>
@@ -271,6 +271,7 @@ import {
     }
     .list-content {
       overflow: auto;
+      z-index: 1;
     }
     .list-content h1.cmpgn-name {
       font-weight: 600;
@@ -955,13 +956,11 @@ export class CampaignsListComponent implements OnInit {
   selectedDateSort: string;
   selectedFilter: string;
   dataUrl: string;
-  sortByDesc: boolean = true;
   op: string;
   opts: string[] = ["Start Date", "End Date"];
   sortBy: string;
   sortByOpts: string[] = ["Latest to Oldest", "Oldest to Latest"];
-  private isAscendingSort: boolean = false;
-  private totalResults: number;
+  totalResults: number;
   private dataSet: any;
   private dataSetChildStage: any;
   private dataSetChildStep: any;
@@ -985,6 +984,7 @@ export class CampaignsListComponent implements OnInit {
     this.setBusy(true);
     this.setContent();
     this.widgetInstance.actions[0].execute = () => this.webbAppLink();
+    console.log("this -->", this);
   }
 
   removeDropdownIcon(): void {
@@ -1023,108 +1023,48 @@ export class CampaignsListComponent implements OnInit {
     this.sort(ob, this.sortBy);
   }
 
-  sort(ob: any, sortBy: any) {
-    console.log({ob: ob, sortBy: sortBy});
+  sort(ob: any, sortBy: any, reverse?: boolean) {
     this.container.sort((c1: any, c2: any) => {
       let dateA: Date;
       let dateB: Date;
 
       switch (ob) {
         case "Start Date": {
+          this.op = "Start Date";
           dateA = new Date(this.dateTimePipe.transform(c1.StartDate));
           dateB = new Date(this.dateTimePipe.transform(c2.StartDate));
+          break;
         }
         case "End Date": {
+          this.op = "End Date";
           dateA = new Date(this.dateTimePipe.transform(c1.EndDate));
           dateB = new Date(this.dateTimePipe.transform(c2.EndDate));
+          break;
         }
       }
 
       switch (sortBy) {
         case "Oldest to Latest": {
-          return +dateA.getTime() - +dateB.getTime();
+          this.sortBy = "Oldest to Latest";
+          return !reverse ? dateA.getTime() - dateB.getTime() : 1;
         }
         case "Latest to Oldest": {
-          return +dateB.getTime() - +dateA.getTime();
+          this.sortBy = "Latest to Oldest";
+          return !reverse ? dateB.getTime() - dateA.getTime() : 1;
         }
       }
-
+      return 0;
     });
+    console.log({ob: ob, sortBy: sortBy});
   }
 
-  toggleSort(sortBy: any): void {
+  toggleSort(sortBy: any, reverse?: boolean): void {
     console.log(sortBy);
-    this.sort(this.op, sortBy);
+    this.sort(this.op, sortBy, reverse);
   }
 
   setContent(): void {
     this.onSelectFilter("My Campaigns");
-  }
-  
-
-  sortAsc(): void {
-    this.isAscendingSort = false;
-    this.container.sort((c1: any, c2: any) => {
-      const dateA: Date = new Date(this.dateTimePipe.transform(c1.StartDate));
-      const dateB: Date = new Date(this.dateTimePipe.transform(c2.StartDate));
-      const endDateA: Date = new Date(this.dateTimePipe.transform(c1.EndDate));
-      const endDateB: Date = new Date(this.dateTimePipe.transform(c2.EndDate));
-      const date1 = dateA.getTime();
-      const date2 = dateB.getTime();
-      const endDate1 = endDateA.getTime();
-      const endDate2 = endDateB.getTime();
-
-      if (+date1 < +date2) {
-        this.selectedSort = "startDateLatest";
-        return 1;
-      }
-      if (+date1 > +date2) {
-        this.selectedSort = "startDateLatest";
-        return -1;
-      }
-
-      if (+endDate1 < +endDate2) {
-        this.selectedSort = "endDateLatest";
-        return 1;
-      }
-      if (+endDate1 > +endDate2) {
-        this.selectedSort = "endDateLatest";
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  sortDesc(): void {
-    this.isAscendingSort = true;
-    this.container.sort((c1: any, c2: any) => {
-      const dateA: Date = new Date(this.dateTimePipe.transform(c1.StartDate));
-      const dateB: Date = new Date(this.dateTimePipe.transform(c2.StartDate));
-      const endDateA: Date = new Date(this.dateTimePipe.transform(c1.EndDate));
-      const endDateB: Date = new Date(this.dateTimePipe.transform(c2.EndDate));
-      const date1 = dateA.getTime();
-      const date2 = dateB.getTime();
-      const endDate1 = endDateA.getTime();
-      const endDate2 = endDateB.getTime();
-
-      if (+date1 > +date2) {
-        this.selectedSort = "startDateOldest";
-        return 1;
-      }
-      if (+date1 < +date2) {
-        this.selectedSort = "startDateOldest";
-        return -1;
-      }
-      if (+endDate1 > +endDate2) {
-        this.selectedSort = "endDateOldest";
-        return 1;
-      }
-      if (+endDate1 < +endDate2) {
-        this.selectedSort = "endDateOldest";
-        return -1;
-      }
-      return 0;
-    });
   }
 
   onSelectFilter(filter: string): void {
@@ -1134,9 +1074,9 @@ export class CampaignsListComponent implements OnInit {
     if (filter === "My Campaigns") {
       dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&filter=DerIsManagedByCurrentUser = N'1'&orderby=StartDate DESC";
     } else if (filter === "All Campaigns") {
-      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code";
+      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&orderby=StartDate DESC";
     } else if (filter === "Open Campaigns") {
-      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&filter=Status <> N'Inactive'";
+      dataUrl = "IDORequestService/MGRestService.svc/json/CRMCampaign/adv?props=ID,Name,Status,LaunchedOn,DerLaunchStatus,DerManagerName,StartDate,EndDate,DerTargetCount,DerStageCount,DerStepCount,Owner,Description,Objectives,CallToAction,LeadSource,Type,Code&filter=Status <> N'Inactive'&orderby=StartDate DESC";
     }
     this.setBusy(true);
     this.dataService.selectCampaigns(dataUrl);

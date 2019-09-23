@@ -198,12 +198,12 @@ import {
                       </ng-container>
                     </ng-template>
                     <ng-template #prioHigh>
-                      <ng-container *ngIf="step.StepPriority === 'High'">
+                      <ng-container *ngIf="step.StepPriority === 'High' else noPrioVal">
                         <p class="text-primary"><span class="round cmpgn-high badge cmpgn-badge">{{ step.StepPriority }}</span><strong>{{ step.StepDescription }}</strong></p>
                       </ng-container>
                     </ng-template>
                     <ng-template #noPrioVal>
-                      <p><strong>{{ step.StepDescription }}</strong></p>
+                      <p class="text-primary"><strong>{{ step.StepDescription }}</strong></p>
                     </ng-template>
                   </div>
                   <div class="three columns">
