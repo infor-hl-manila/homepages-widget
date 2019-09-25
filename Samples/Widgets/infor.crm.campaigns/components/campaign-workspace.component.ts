@@ -392,6 +392,7 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
   showCampaign: boolean = true;
   showStage: boolean = false;
   workspaceView: boolean = true;
+  selectedFilter: string;
   itemName: string = "Items"; // Object name of item list
   private dataSet: any;
   private dataSetChildStage: any;
@@ -408,10 +409,12 @@ export class CampaignWorkspaceComponent implements ICWorkspaceComponent, OnInit 
   ngOnInit(): void {
     this.busyIndicator.activated = true;
     this.loadCampaign();
+    console.log("This", this);
+    console.log("viewref", this.viewRef);
   }
 
   campaignWebAppClicked(): void {
-    const form = encodeURIComponent(`CRMCampaign(FILTER(ID='${this.campaignID}')SETVARVALUES(VarAppliedNamedFilter=My Campaigns,VarShowDetail=1,VarExtLink=1,InitialCommand=Refresh))`);
+    const form = encodeURIComponent(`CRMCampaign(FILTER(ID='${this.campaignID}')SETVARVALUES(VarAppliedNamedFilter=${this.selectedFilter},VarShowDetail=1,VarExtLink=1,InitialCommand=Refresh))`);
     const url = `?LogicalId={logicalId}&form=${form}`;
 
     this.widgetContext.launch({ url: url, resolve: true });

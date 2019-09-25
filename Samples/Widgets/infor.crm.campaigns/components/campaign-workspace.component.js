@@ -35,9 +35,11 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular", "lime", 
         CampaignWorkspaceComponent.prototype.ngOnInit = function () {
             this.busyIndicator.activated = true;
             this.loadCampaign();
+            console.log("This", this);
+            console.log("viewref", this.viewRef);
         };
         CampaignWorkspaceComponent.prototype.campaignWebAppClicked = function () {
-            var form = encodeURIComponent("CRMCampaign(FILTER(ID='" + this.campaignID + "')SETVARVALUES(VarAppliedNamedFilter=My Campaigns,VarShowDetail=1,VarExtLink=1,InitialCommand=Refresh))");
+            var form = encodeURIComponent("CRMCampaign(FILTER(ID='" + this.campaignID + "')SETVARVALUES(VarAppliedNamedFilter=" + this.selectedFilter + ",VarShowDetail=1,VarExtLink=1,InitialCommand=Refresh))");
             var url = "?LogicalId={logicalId}&form=" + form;
             this.widgetContext.launch({ url: url, resolve: true });
         };

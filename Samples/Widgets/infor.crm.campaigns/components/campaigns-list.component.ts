@@ -108,7 +108,7 @@ import {
           <soho-accordion [rerouteOnLinkClick]="false" class="accordion">
             <soho-accordion-header class="accordion-header cmpgn-accordion-header" style="height: 50%;">
 
-            <a (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle, true, false, '')" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
+            <a (click)="showDialogWorkspace(campaign.ID, campaign.workspaceTitle, true, false, '', '', selectedFilter)" ng-reflect-href="/my-nonworking-link" href="/my-nonworking-link">
 
               <div class="three columns col-mb-style-left col-cmpgns">
                 <h1 class="cmpgn-name">{{ campaign.Name }}</h1>
@@ -187,7 +187,7 @@ import {
             <div class="accordion-content cmpgn-accordion-content padding-right padding-bottom padding-top">
               <ng-container *ngFor="let stage of campaign.Stages">
                 <div class="row cmpgns stage">
-                  <a href="#" (click)="showDialogWorkspace(campaignID, campaign.workspaceTitle, false, true, stage.StageID, stage.StageCampaignID)">
+                  <a href="#" (click)="showDialogWorkspace(campaignID, campaign.workspaceTitle, false, true, stage.StageID, stage.StageCampaignID, selectedFilter)">
                     <div class="three columns col-left cmpgn-custom-style">
                       <h1>{{ stage.StageDescription }}</h1>
                     </div>
@@ -387,10 +387,17 @@ import {
     }
     .cmpgn-dropdownmenu-container {
       border-left: 1px solid #5c5c5c;
+      height: 20px;
+      overflow-y: hidden;
       position: relative;
-      top: 0;
+      top: 6px;
       padding-left: 5px;
       margin-left: 5px;
+    }
+    .cmpgn-sort-filter-container
+    .cmpgn-btn-style.btn-menu {
+      bottom: 7px;
+      position: relative;
     }
     .cmpgn-btn-style {
       padding-right: 0;
@@ -996,7 +1003,7 @@ export class CampaignsListComponent implements OnInit {
     }
   }
 
-  showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string, StageCampaignID: string): void {
+  showDialogWorkspace(ID: string, title: string, showCampaign: boolean, showStage: boolean, StageID: string, StageCampaignID: string, selectedFilter: string ): void {
     this.campaignWorkspaceService.open({
       component: CampaignWorkspaceComponent,
       viewRef: this.viewRef,
@@ -1007,13 +1014,14 @@ export class CampaignsListComponent implements OnInit {
         showCampaign: showCampaign,
         showStage: showStage,
         stageID: StageID,
-        campaignID2: StageCampaignID
+        campaignID2: StageCampaignID,
+        selectedFilter: selectedFilter
       }
     });
   }
 
   webbAppLink(): void {
-    const form = encodeURIComponent(`CRMCampaign(SETVARVALUES(VarAppliedNamedFilter=My Campaigns,InitialCommand=Refresh))`);
+    const form = encodeURIComponent(`CRMCampaign(SETVARVALUES(VarAppliedNamedFilter=${this.selectedFilter},InitialCommand=Refresh))`);
     const url = `?LogicalId={logicalId}&form=${form}`;
     this.widgetContext.launch( {url: url});
   }
@@ -1046,11 +1054,11 @@ export class CampaignsListComponent implements OnInit {
       switch (sortBy) {
         case "Oldest to Latest": {
           this.sortBy = "Oldest to Latest";
-          return !reverse ? dateA.getTime() - dateB.getTime() : 1;
+          return !reverse ? +dateA.getTime() - +dateB.getTime() : 1;
         }
         case "Latest to Oldest": {
           this.sortBy = "Latest to Oldest";
-          return !reverse ? dateB.getTime() - dateA.getTime() : 1;
+          return !reverse ? +dateB.getTime() - +dateA.getTime() : 1;
         }
       }
       return 0;
