@@ -1,7 +1,7 @@
 /**
  * This is a sample widget which can be minified.
  *
- * Addtional information about template cache and minification can be found in the
+ * Addtional information about minification can be found in the
  * /Samples/ReadMe.md and /Documentation/DevelopersGuide.pdf files.
  *
  * When developing your own widget, which you want to minify, the following prerequisites are needed:
@@ -16,7 +16,7 @@
  * my.widget.id.folder.name/main.ts
  *
  * Please note that images are no longer supported to be in a folder. Code files can still be in subdirectories as they
- * will be bundled, but images must be in a directory. The Homepages framework will no longer support directories for
+ * will be bundled, but images must be in the root level. The Homepages framework will no longer support directories for
  * images.
  *
  * Specific content that is needed are marked REQUIRED in files
@@ -57,7 +57,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             this.buttonMessage = "Divide images";
             this.show = true;
         }
-        MinifySampleComponent.prototype.ngAfterViewInit = function () {
+        MinifySampleComponent.prototype.ngOnInit = function () {
             var _this = this;
             /*
              * REQUIRED for image resources
@@ -69,11 +69,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             this.topIcon = this.widgetContext.getUrl("/top.png");
             this.middleIcon = this.widgetContext.getUrl("/middle.png");
             this.bottomIcon = this.widgetContext.getUrl("/bottom.png");
-            $.extend(this.widgetInstance.actions[0], {
-                execute: function () {
-                    _this.createDialog();
-                }
-            });
+            this.widgetInstance.actions[0].execute = function () { return _this.createDialog(); };
         };
         MinifySampleComponent.prototype.toggleClass = function () {
             if (this.show) {
@@ -92,8 +88,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                 bottomIcon: this.bottomIcon
             };
             var dialog = this.sohoDialogService
-                .modal(dialog_1.MyDialogComponent, this.componentView)
-                .title("My dialog service")
+                .modal(dialog_1.MyDialogComponent, this.dialogViewRef)
+                .title("My dialog")
                 .afterClose(function (result) {
                 lime_1.Log.debug("Dialog result:", result);
             });
@@ -111,15 +107,13 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             __metadata("design:type", Object)
         ], MinifySampleComponent.prototype, "widgetInstance", void 0);
         __decorate([
-            core_1.ViewChild("myDialogContent", { read: core_1.ViewContainerRef, static: true }),
+            core_1.ViewChild("dialogViewRef", { read: core_1.ViewContainerRef, static: true }),
             __metadata("design:type", core_1.ViewContainerRef)
-        ], MinifySampleComponent.prototype, "componentView", void 0);
+        ], MinifySampleComponent.prototype, "dialogViewRef", void 0);
         MinifySampleComponent = __decorate([
             core_1.Component({
-                template: "\n\t<div #myDialogContent class=\"infor-sample-minify-widget\">\n\t\t<div class=\"lm-text-align-c\">\n\t\t\t<button soho-button=\"icon\" icon=\"minimize\" toggle=\"maximize\" (click)=\"toggleClass()\"></button>\n\t\t\t{{buttonMessage}}\n\t\t</div>\n\t\t<div>\n\t\t\t<img class=\"merge\" src=\"{{topIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t\t<img class=\"merge\" src=\"{{middleIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t\t<img class=\"merge\" src=\"{{bottomIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t</div>\n\t</div>\n\t",
-                styles: [
-                    "\n\t.infor-sample-minify-widget .merge{display:inline;margin-bottom:5px;}\n\t.infor-sample-minify-widget .merge.show{display:block;margin-bottom:0;}\n\t"
-                ]
+                template: "\n\t<div #dialogViewRef class=\"infor-sample-minify-widget\">\n\t\t<div class=\"lm-text-align-c\">\n\t\t\t<button soho-button=\"icon\" icon=\"minimize\" toggle=\"maximize\" (click)=\"toggleClass()\"></button>\n\t\t\t{{buttonMessage}}\n\t\t</div>\n\t\t<div>\n\t\t\t<img class=\"merge\" src=\"{{topIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t\t<img class=\"merge\" src=\"{{middleIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t\t<img class=\"merge\" src=\"{{bottomIcon}}\" [ngClass]=\"{'show': show}\" />\n\t\t</div>\n\t</div>\n\t",
+                styles: ["\n\t\t.infor-sample-minify-widget .merge{display:inline;margin-bottom:5px;}\n\t\t.infor-sample-minify-widget .merge.show{display:block;margin-bottom:0;}\n\t"]
             }),
             __metadata("design:paramtypes", [sohoxi_angular_1.SohoModalDialogService])
         ], MinifySampleComponent);

@@ -83,7 +83,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         ContextParametersComponent = __decorate([
             core_1.Component({
                 template: "\n\t<div #widgetView class=\"lm-text-align-c lm-padding-xl\">\n\t\t<p>Parameter one:</p>\n\t\t<p class=\"param-value\" [class.value-found]=\"paramValue1\">\n\t\t\t{{ paramValue1 || \"No value found for URL parameter 'param1'\" }}\n\t\t</p>\n\t\t<p>Parameter two:</p>\n\t\t<p class=\"param-value\" [class.value-found]=\"paramValue2\">\n\t\t\t{{ paramValue2 || \"No value found for URL parameter 'param2'\" }}\n\t\t</p>\n\t</div>\n\t",
-                styles: ["\n\t.param-value {\n\t\tcolor: #E84F4F;\n\t\tmargin-top: 0;\n\t}\n\n\t.param-value.value-found  {\n\t\tcolor: #80CE4D;\n\t}\n\t"]
+                styles: ["\n\t\t.param-value {\n\t\t\tcolor: #E84F4F;\n\t\t\tmargin-top: 0;\n\t\t}\n\n\t\t.param-value.value-found  {\n\t\t\tcolor: #80CE4D;\n\t\t}\n\t"]
             }),
             __param(0, core_1.Inject(lime_1.widgetContextInjectionToken)),
             __param(1, core_1.Inject(lime_1.widgetInstanceInjectionToken)),

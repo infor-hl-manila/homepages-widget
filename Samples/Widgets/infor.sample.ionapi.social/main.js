@@ -7,50 +7,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs/AsyncSubject"], function (require, exports, common_1, core_1, lime_1, AsyncSubject_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs", "rxjs/operators"], function (require, exports, common_1, core_1, lime_1, rxjs_1, operators_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var DataService = /** @class */ (function () {
         function DataService() {
             this.serviceUrl = "Mingle/SocialService.Svc";
         }
-        DataService.prototype.init = function (widgetContext) {
-            this.widgetContext = widgetContext;
-            this.preLoadUser();
-        };
-        DataService.prototype.loadUser = function () {
-            // Use the preloaded data if it exists the first time
-            var subject = this.userSubject;
-            if (subject) {
-                var observable = subject.asObservable();
-                this.userSubject = null;
-                return observable;
+        DataService.prototype.loadUser = function (widgetContext) {
+            var _this = this;
+            if (this.user) {
+                return rxjs_1.of(this.user);
             }
-            return this.loadUserInternal();
+            var request = this.createRequest("User/Detail");
+            return widgetContext.executeIonApiAsync(request).pipe(operators_1.map(function (response) { return response.data.UserDetailList[0]; }), operators_1.tap(function (user) { return _this.user = user; }));
         };
-        DataService.prototype.loadPhoto = function (userGuid) {
+        DataService.prototype.loadPhoto = function (userGuid, widgetContext) {
             var relativeUrl = "User/" + userGuid + "/ProfilePhoto?thumbnailType=3";
             var request = this.createRequest(relativeUrl, { Accept: "image/png, image/jpeg" });
             request.responseType = "blob";
-            return this.widgetContext.executeIonApiAsync(request);
-        };
-        DataService.prototype.preLoadUser = function () {
-            var subject = new AsyncSubject_1.AsyncSubject();
-            this.userSubject = subject;
-            this.loadUserInternal().subscribe(function (response) {
-                subject.next(response);
-                subject.complete();
-            }, function (error) {
-                subject.error(error);
-            });
-        };
-        DataService.prototype.loadUserInternal = function () {
-            var request = this.createRequest("User/Detail");
-            return this.widgetContext.executeIonApiAsync(request);
+            return widgetContext.executeIonApiAsync(request).pipe(operators_1.map(function (response) { return response.data; }));
         };
         DataService.prototype.createRequest = function (relativeUrl, headers) {
             if (!headers) {
-                // Create default headers
                 headers = { Accept: "application/json" };
             }
             // Create the relative URL to the ION API
@@ -60,60 +39,52 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs/
                 method: "GET",
                 url: url,
                 cache: false,
-                headers: headers
+                headers: headers || null
             };
             return request;
         };
+        DataService = __decorate([
+            core_1.Injectable({
+                providedIn: "root"
+            })
+        ], DataService);
         return DataService;
     }());
     exports.DataService = DataService;
-    // Create a single instance of the service
-    exports.dataService = new DataService();
     var IonApiSocialComponent = /** @class */ (function () {
-        function IonApiSocialComponent() {
+        function IonApiSocialComponent(dataService) {
+            this.dataService = dataService;
+            this.logPrefix = "[IonApiSocialSample] ";
         }
         IonApiSocialComponent.prototype.ngOnInit = function () {
+            var _this = this;
             this.setBusy(true);
-            this.loadUser();
+            this.user$ = this.dataService.loadUser(this.widgetContext).pipe(operators_1.catchError(function (error) {
+                _this.onRequestError(error, "Unable to load user info");
+                return rxjs_1.of();
+            }));
+            this.photoUrl$ = this.user$.pipe(operators_1.filter(function (user) { return !!user.UserGUID; }), operators_1.switchMap(function (user) { return _this.dataService.loadPhoto(user.UserGUID, _this.widgetContext); }), operators_1.switchMap(function (blob) { return _this.getPhoto(blob); }), operators_1.tap(function () { return _this.setBusy(false); }), operators_1.catchError(function (error) {
+                _this.onRequestError(error, "Unable to load profile photo");
+                return rxjs_1.of("");
+            }));
         };
         IonApiSocialComponent.prototype.setBusy = function (isBusy) {
-            // Show the indeterminate progress indicator when the widget is busy by changing the widget state.
             this.widgetContext.setState(isBusy ? lime_1.WidgetState.busy : lime_1.WidgetState.running);
         };
-        IonApiSocialComponent.prototype.loadUser = function () {
-            var _this = this;
-            exports.dataService.loadUser().subscribe(function (response) {
-                _this.updateUser(response.data);
-            }, function (error) {
-                _this.onRequestError(error);
-            });
-        };
-        IonApiSocialComponent.prototype.updateUser = function (response) {
-            var user = response.UserDetailList[0];
-            this.user = user;
-            this.fullName = user.FirstName + " " + user.LastName;
-            this.loadPhoto();
-        };
-        IonApiSocialComponent.prototype.loadPhoto = function () {
-            var _this = this;
-            exports.dataService.loadPhoto(this.user.UserGUID).subscribe(function (response) {
-                _this.updatePhoto(response.data);
-            }, function (error) {
-                _this.onRequestError(error);
-            });
-        };
-        IonApiSocialComponent.prototype.updatePhoto = function (response) {
-            var _this = this;
+        IonApiSocialComponent.prototype.getPhoto = function (response) {
+            var subject = new rxjs_1.AsyncSubject();
             var reader = new FileReader();
             reader.onload = function () {
-                _this.photoUrl = reader.result;
-                _this.setBusy(false);
+                subject.next(reader.result);
+                subject.complete();
             };
             reader.readAsDataURL(response);
+            return subject.asObservable();
         };
-        IonApiSocialComponent.prototype.onRequestError = function (error) {
+        IonApiSocialComponent.prototype.onRequestError = function (error, message) {
+            lime_1.Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
             this.widgetContext.showWidgetMessage({
-                message: "Failed to call ION API: " + JSON.stringify(error),
+                message: message,
                 type: lime_1.WidgetMessageType.Error
             });
             this.setBusy(false);
@@ -128,8 +99,9 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs/
         ], IonApiSocialComponent.prototype, "widgetInstance", void 0);
         IonApiSocialComponent = __decorate([
             core_1.Component({
-                template: "\n\t<div class=\"lm-padding-md\">\n\t\t<h3>Name</h3>\n\t\t<p>{{fullName}}</p>\n\n\t\t<h3>Email</h3>\n\t\t<p>{{user?.Email}}</p>\n\n\t\t<p><img src=\"{{photoUrl}}\" /></p>\n\t</div>\n\t"
-            })
+                template: "\n\t<div class=\"lm-padding-md\" *ngIf=\"user$ | async as user\">\n\t\t<h3>Name</h3>\n\t\t<p>{{user.FirstName + \" \" + user.LastName}}</p>\n\n\t\t<h3>Email</h3>\n\t\t<p>{{user.Email}}</p>\n\n\t\t<p *ngIf=\"photoUrl$ | async as photoUrl\">\n\t\t\t<img [src]=\"photoUrl\" />\n\t\t</p>\n\t</div>\n\t"
+            }),
+            __metadata("design:paramtypes", [DataService])
         ], IonApiSocialComponent);
         return IonApiSocialComponent;
     }());

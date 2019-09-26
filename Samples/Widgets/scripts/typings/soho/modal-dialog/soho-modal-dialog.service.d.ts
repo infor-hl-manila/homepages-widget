@@ -8,6 +8,4 @@ export declare class SohoModalDialogService {
     modal<T>(component: ComponentType<T>, parent: ViewContainerRef, options?: SohoModalOptions): SohoModalDialogRef<T>;
     message<T>(content: string | JQuery): SohoModalDialogRef<T>;
 }
-export interface ComponentType<T> {
-    new (...args: any[]): T;
-}
+export declare type ComponentType<T> = new (...args: any[]) => T;

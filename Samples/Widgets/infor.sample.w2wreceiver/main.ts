@@ -106,5 +106,4 @@ export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [W2WReceiverComponent],
 	entryComponents: [W2WReceiverComponent]
 })
-export class W2WReceiverModule {
-}
+export class W2WReceiverModule { }

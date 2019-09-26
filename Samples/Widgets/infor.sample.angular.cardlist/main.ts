@@ -141,5 +141,4 @@ export class CardListComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [CardListComponent],
 	entryComponents: [CardListComponent]
 })
-export class CardListModule {
-}
+export class CardListModule { }

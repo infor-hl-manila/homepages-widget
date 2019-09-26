@@ -13,7 +13,7 @@ class CardItem {
 @Component({
 	template: `
 	<div class="card-content">
-	<!-- Cardgroup Action with filter menu -->
+		<!-- Cardgroup Action with filter menu -->
 		<div class="card-group-action">
 				<soho-toolbar>
 					<soho-toolbar-title>
@@ -27,7 +27,7 @@ class CardItem {
 					</soho-toolbar-button-set>
 				</soho-toolbar>
 		</div>
-	<!-- Listview with items to filter -->
+		<!-- Listview with items to filter -->
 		<soho-listview id="listview"
 			(rendered)="onRendered($event)"
 			(sorted)="onSorted($event)">
@@ -50,7 +50,7 @@ class CardItem {
 			overflow: auto;
 			flex: 0 1 auto;
 		}
-		`]
+	`]
 })
 export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent {
 	@Input() widgetContext: IWidgetContext;
@@ -181,8 +181,7 @@ export class CardGroupActionComponent implements AfterViewInit, IWidgetComponent
 	declarations: [CardGroupActionComponent],
 	entryComponents: [CardGroupActionComponent]
 })
-export class CardGroupActionModule {
-}
+export class CardGroupActionModule { }
 
 // Widget factory function
 export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {

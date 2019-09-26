@@ -3,10 +3,9 @@ import { Component, Input, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoButtonModule } from "@infor/sohoxi-angular";
 import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
-import { IUserContext, userContextProviders, UserContextService } from "sample-shared-usercontext";
+import { IUserContext, UserContextService } from "sample-shared-usercontext";
 
 @Component({
-	providers: userContextProviders,
 	template: `
 	<div class="lm-padding-lg">
 		<p>User context will be loaded only once and shared among all widgets using the specified shared module</p>
@@ -34,24 +33,24 @@ import { IUserContext, userContextProviders, UserContextService } from "sample-s
 	</div>
 	`,
 	styles: [`
-	div > p {
-		text-align: center;
-		font-style: italic;
-		font-size: 12px;
-	}
+		div > p {
+			text-align: center;
+			font-style: italic;
+			font-size: 12px;
+		}
 
-	div > p + div {
-		text-align: center;
-	}
+		div > p + div {
+			text-align: center;
+		}
 
-	.field {
-		margin-bottom: 10px;
-	}
+		.field {
+			margin-bottom: 10px;
+		}
 
-	.compound-field > field {
-		margin-bottom: 0;
-	}`
-	]
+		.compound-field > field {
+			margin-bottom: 0;
+		}
+	`]
 })
 export class SharedModuleSampleTwoComponent implements IWidgetComponent {
 	@Input() widgetContext: IWidgetContext;
@@ -59,8 +58,7 @@ export class SharedModuleSampleTwoComponent implements IWidgetComponent {
 
 	userContext: IUserContext;
 
-	constructor(private readonly userContextService: UserContextService) {
-	}
+	constructor(private readonly userContextService: UserContextService) { }
 
 	getAndSetUserContext(): void {
 		this.setBusy(true);
@@ -83,5 +81,4 @@ export class SharedModuleSampleTwoComponent implements IWidgetComponent {
 	declarations: [SharedModuleSampleTwoComponent],
 	entryComponents: [SharedModuleSampleTwoComponent]
 })
-export class SharedModuleSampleTwoModule {
-}
+export class SharedModuleSampleTwoModule { }

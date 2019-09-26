@@ -106,9 +106,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         WidgetComponent = __decorate([
             core_1.Component({
                 template: "\n\t<div class=\"wrapper\">\n\t\t<div class=\"primary chart-container\">\n\t\t\t<div soho-chart #primaryChart></div>\n\t\t</div>\n\t\t<div class=\"secondary chart-container\">\n\t\t\t<div soho-chart #secondaryChart></div>\n\t\t</div>\n\t</div>\n\t",
-                styles: [
-                    "\n\t.wrapper{height:100%;width:100%;display:flex;}\n\n\t/* Hides the second chart on smaller screens, or when there are multiple widgets in the banner */\n\t:host-context(.to-single, .to-double, .double-width, .widget:not(.quad-width):not(.triple-width))\n.secondary.chart-container{display:none;}\n\n\t.primary.chart-container{flex:2;}\n\t.secondary.chart-container{flex:1;}\n\n\t.chart-pie{height:100%;}\n\t"
-                ]
+                styles: ["\n\t\t.wrapper{height:100%;width:100%;display:flex;}\n\n\t\t/* Hides the second chart on smaller screens, or when there are multiple widgets in the banner */\n\t\t:host-context(.to-single, .to-double, .double-width, .widget:not(.quad-width):not(.triple-width))\n\t\t.secondary.chart-container{display:none;}\n\n\t\t.primary.chart-container{flex:2;}\n\t\t.secondary.chart-container{flex:1;}\n\n\t\t.chart-pie{height:100%;}\n\t"]
             }),
             __metadata("design:paramtypes", [sohoxi_angular_1.SohoToastService])
         ], WidgetComponent);

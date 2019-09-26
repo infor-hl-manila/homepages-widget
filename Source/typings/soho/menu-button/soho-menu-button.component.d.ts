@@ -26,6 +26,8 @@ export declare class SohoMenuButtonComponent implements AfterViewInit, AfterView
     menu: string | JQuery<HTMLElement>;
     ajaxBeforeOpenFunction: AjaxBeforeOpenFunction;
     hideMenuArrow: boolean;
+    attachToBody: boolean;
+    removeOnDestroy: boolean;
     constructor(element: ElementRef, ref: ChangeDetectorRef, ngZone: NgZone);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;

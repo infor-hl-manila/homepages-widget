@@ -14,7 +14,7 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
         function HelloWorldComponent() {
             this.defaultColor = "1A1A1A";
         }
-        HelloWorldComponent.prototype.ngAfterViewInit = function () {
+        HelloWorldComponent.prototype.ngOnInit = function () {
             var _this = this;
             // Subscribe to the event that is triggered when settings are saved to be able to update the message text
             this.widgetInstance.settingsSaved = function () {

@@ -17,6 +17,7 @@ export declare class SohoColumnComponent implements AfterViewInit, AfterViewChec
     emptyMessage: SohoEmptyMessageOptions;
     xAxis: object;
     yAxis: object;
+    tooltip: string | SohoColumnTooltipFunction;
     selected: EventEmitter<SohoColumnSelectEvent>;
     unselected: EventEmitter<SohoColumnSelectEvent>;
     rendered: EventEmitter<Object>;

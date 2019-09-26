@@ -274,6 +274,13 @@ html[dir="rtl"] .lm-text-align-dir-l {
 }
 
 /* Directional dependent margins */
+html:not([dir="rtl"]) .lm-margin-sm-dir-r {
+	margin-right: 5px !important;
+}
+html[dir="rtl"] .lm-margin-sm-dir-r {
+	margin-left: 5px !important;
+}
+
 html:not([dir="rtl"]) .lm-margin-md-dir-l {
 	margin-left: 10px !important;
 }
@@ -572,6 +579,10 @@ li.is-focused .lm-autocomplete-secondary, li.is-selected .lm-autocomplete-second
 	color: #666 !important;
 }
 
+.lm-color-red {
+	color: rgb(255, 0, 0) !important;
+}
+
 .lm-text {
 	white-space: pre-wrap;
 }
@@ -597,9 +608,19 @@ li.is-focused .lm-autocomplete-secondary, li.is-selected .lm-autocomplete-second
 	padding-left: 35px;
 }
 
+html[dir="rtl"] .lm-autocomplete-searchfield {
+	padding-right: 35px;
+	padding-left: 10px;
+}
+
 .lm-autocomplete-searchfield.lm-clearable {
 	padding-right: 35px;
 }
+
+html[dir="rtl"] .lm-autocomplete-searchfield.lm-clearable {
+	padding-left: 35px;
+}
+
 /* General End */
 
 .lm-compact-list.listview li {

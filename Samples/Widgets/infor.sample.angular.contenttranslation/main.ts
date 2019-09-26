@@ -24,7 +24,6 @@ interface IEditItemParameter {
 	template: `
 	<div #editItemView style="max-width: 390px">
 		<div>
-
 			<div class="field">
 				<label class="required" for="sample-ct-edt-ttl">{{lang.title}}</label>
 				<input id="sample-ct-edt-ttl" name="sample-ct-edt-ttl" type="text"
@@ -246,5 +245,4 @@ export class ContentTranslationComponent {
 	declarations: [ContentTranslationComponent, EditItemComponent],
 	entryComponents: [ContentTranslationComponent, EditItemComponent]
 })
-export class ContentTranslationModule {
-}
+export class ContentTranslationModule { }

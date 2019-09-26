@@ -3,6 +3,7 @@ import { BaseControlValueAccessor } from '../utils/base-control-value-accessor';
 export declare class SohoInputComponent extends BaseControlValueAccessor<string> implements AfterViewInit, OnDestroy {
     private element;
     private ngZone;
+    fireInputEventKludge: boolean;
     change: EventEmitter<SohoInputEvent[]>;
     isDisabled: any;
     private jQueryElement;

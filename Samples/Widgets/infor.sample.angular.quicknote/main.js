@@ -15,7 +15,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             this.items = [];
             this.settingsKeyItems = "items";
         }
-        QuicknoteComponent.prototype.ngAfterViewInit = function () {
+        QuicknoteComponent.prototype.ngOnInit = function () {
             var _this = this;
             this.lang = this.widgetContext.getLanguage();
             var settings = this.widgetContext.getSettings();

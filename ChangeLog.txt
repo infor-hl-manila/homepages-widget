@@ -1,3 +1,15 @@
+Version 2.2.0 (12.0.39)
+- Updated to IDS Enterprise 4.20.1.
+- Updated to IDS Enterprise NG 5.5.2.
+
+Version 2.1.0 (12.0.38)
+- Added support for testing widget translations by changing the language used for the widget. See Developers guide for more information.
+- Added support for deprecating a widget. See Developers guide for more information.
+- Added a sample showing how to use Angular services in widgets.
+- Updated to IDS Enterprise 4.19.4.
+- Updated to IDS Enterprise NG 5.4.2.
+
+
 Version 2.0.0 (12.0.36)
 - Introduced semantic versioning for the technical Homepages framework version.
 - Added runtime support for the Widget manifest property "frameworkVersion", see Developers guide for more information.

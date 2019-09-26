@@ -19,26 +19,22 @@ class SettingKeys {
 		</div>
 	</div>
 	`,
-	styles: [
-		`
-	.wrapper{height:100%;width:100%;display:flex;}
+	styles: [`
+		.wrapper{height:100%;width:100%;display:flex;}
 
-	/* Hides the second chart on smaller screens, or when there are multiple widgets in the banner */
-	:host-context(.to-single, .to-double, .double-width, .widget:not(.quad-width):not(.triple-width))
-.secondary.chart-container{display:none;}
+		/* Hides the second chart on smaller screens, or when there are multiple widgets in the banner */
+		:host-context(.to-single, .to-double, .double-width, .widget:not(.quad-width):not(.triple-width))
+		.secondary.chart-container{display:none;}
 
-	.primary.chart-container{flex:2;}
-	.secondary.chart-container{flex:1;}
+		.primary.chart-container{flex:2;}
+		.secondary.chart-container{flex:1;}
 
-	.chart-pie{height:100%;}
-	`
-	]
+		.chart-pie{height:100%;}
+	`]
 })
 export class WidgetComponent implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	@ViewChild("primaryChart", { static: true }) primaryChart: SohoChartComponent;
 	@ViewChild("secondaryChart", { static: true }) secondaryChart: SohoChartComponent;
@@ -129,5 +125,4 @@ export class WidgetComponent implements IWidgetComponent, OnInit {
 		WidgetComponent
 	]
 })
-export class WidgetModule {
-}
+export class WidgetModule { }

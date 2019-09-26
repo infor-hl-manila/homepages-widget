@@ -11,7 +11,8 @@
 	"localization": {
 		"en-US": {
 			"widgetTitle": "ION API Social Sample",
-			"widgetDescription": "Displays the name, email and profile photo for the current user."
+			"widgetDescription": "Displays the name, email and profile photo for the current user.",
+			"loadError": "Unable to load."
 		}
 	}
 }

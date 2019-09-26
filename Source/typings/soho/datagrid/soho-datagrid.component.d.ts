@@ -45,6 +45,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     disableClientSort: boolean;
     disableClientFilter: boolean;
     editable: boolean;
+    isRowDisabled: SohoIsRowDisabledFunction;
     isList: boolean;
     menuId: any;
     rowHeight: SohoDataGridRowHeight;
@@ -130,6 +131,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     dirtyRows(): Array<any>;
     dirtyCells(): Array<any>;
     clearDirty(): void;
+    commitCellEdit(): void;
     clearDirtyRow(row: number): void;
     clearDirtyCell(row: number, cell: number): void;
     clearAllCellError(row: number, cell: number): void;
@@ -137,6 +139,8 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     clearRowError(row: number): void;
     clearAllErrors(): void;
     rowStatus(idx: number, status: string, tooltip: string): void;
+    getModifiedRows(): SohoDataGridModifiedRows;
+    setDirtyIndicator(row: number, cell: number, toggle: boolean): void;
     removeSelected(): void;
     toggleFilterRow(): void;
     applyFilter(conditions?: Array<SohoDataGridFilterCondition>): void;
@@ -167,6 +171,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     restoreUserSettings(settings: any): void;
     private onDataRequest;
     private onExpandRow;
+    onBeforeSelect: SohoDataGridBeforeSelectFunction;
     private onExitEditMode;
     private onBeforeEnterEditMode;
     private onEnterEditMode;

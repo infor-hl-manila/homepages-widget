@@ -25,42 +25,39 @@ import { IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, Widge
 			</div>
 		</div>
 	</div>`,
-	styles: [
-		`
-	/* This host-context selector applies when the widget is set to have single width, or when it is forced to
-	single width due to small screen resolution */
+	styles: [`
+		/* This host-context selector applies when the widget is set to have single width, or when it is forced to
+		single width due to small screen resolution */
 
-	/* Listview is hidden when an item is selected, only the chart will be displayed */
+		/* Listview is hidden when an item is selected, only the chart will be displayed */
 
-:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
-.item-selected .widget-listview{display:none;}
+		:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
+		.item-selected .widget-listview{display:none;}
 
-/* Chart occupies full width when visible in single width mode */
+		/* Chart occupies full width when visible in single width mode */
 
-:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
-.widget-chartview{width:100%;}
+		:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))
+		.widget-chartview{width:100%;}
 
-/* This host-context selector applies when the widget is set to have double, triple or quad width,
-	and not forced to single width due to small screen resolution */
+		/* This host-context selector applies when the widget is set to have double, triple or quad width,
+			and not forced to single width due to small screen resolution */
 
-/* Listview shrinks to 50% and shown side by side with chart */
+		/* Listview shrinks to 50% and shown side by side with chart */
 
-:host-context(.double-width, .triple-width, .quad-width, .widget:not(.to-single))
-.item-selected .widget-listview{width:50%;}
+		:host-context(.double-width, .triple-width, .quad-width, .widget:not(.to-single))
+		.item-selected .widget-listview{width:50%;}
 
-/* Base rules for the listview and chart views */
-.widget-listview{width:100%;float:left;height:100%;}
+		/* Base rules for the listview and chart views */
+		.widget-listview{width:100%;float:left;height:100%;}
 
-.widget-chartview{width:50%;height:calc(100% - 36px);float:left;}
+		.widget-chartview{width:50%;height:calc(100% - 36px);float:left;}
 
-.item-selected .widget-listview{border-right:1px solid #d8d8d8;}`
-	]
+		.item-selected .widget-listview{border-right:1px solid #d8d8d8;}
+	`]
 })
 export class ResponsiveWidgetComponent implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	chartData: SohoDataSet;
 	items: string[];
@@ -108,8 +105,7 @@ export class ResponsiveWidgetComponent implements IWidgetComponent, OnInit {
 	declarations: [ResponsiveWidgetComponent],
 	entryComponents: [ResponsiveWidgetComponent]
 })
-export class ResponsiveWidgetModule {
-}
+export class ResponsiveWidgetModule { }
 
 export const getActions = (): IWidgetAction[] => {
 	return [{ isPrimary: true, standardIconName: "#icon-info", text: "Information" }];

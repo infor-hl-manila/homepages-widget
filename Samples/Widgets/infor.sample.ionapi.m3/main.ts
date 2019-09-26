@@ -1,8 +1,10 @@
 import { CommonModule } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, Input, NgModule, OnInit } from "@angular/core";
-import { SohoListViewModule, SohoMessageService } from "@infor/sohoxi-angular";
-import { IIonApiRequestOptions, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
+import { Component, Inject, Injectable, NgModule } from "@angular/core";
+import { SohoListViewModule } from "@infor/sohoxi-angular";
+import { IIonApiRequestOptions, IWidgetContext, Log, widgetContextInjectionToken, WidgetMessageType, WidgetState } from "lime";
+import { Observable, of } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
 
 // Prerequisites
 // =============
@@ -65,40 +67,24 @@ interface IListItem {
 	description: string;
 }
 
-@Component({
-	template: `
-	<soho-listview>
-		<li soho-listview-item *ngFor="let item of customerItems">
-			<p soho-listview-header>{{item.title}}</p>
-			<p soho-listview-subheader>{{item.description}}</p>
-		</li>
-	</soho-listview>
-	`,
-})
-export class IonApiM3Component implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+@Injectable()
+export class M3Service {
+	private logPrefix = "[IonApiM3Sample] ";
 
-	customerItems: IListItem[];
+	constructor(@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext) { }
 
-	private logPrefix = "[IonApiM3Component] ";
-
-	constructor(private messageService: SohoMessageService) { }
-
-	ngOnInit() {
+	getCustomerData(): Observable<IListItem[]> {
 		this.setBusy(true);
 		const request = this.createRequest();
-		this.widgetContext.executeIonApiAsync<IMIResponse>(request).subscribe(
-			(response) => this.parseCustomers(response.data),
-			(error: HttpErrorResponse) => this.showErrorMessage(error)
-		);
-	}
 
-	private setBusy(isBusy: boolean): void {
-		// Show the indeterminate progress indicator when the widget is busy by changing the widget state.
-		this.widgetContext.setState(isBusy ? WidgetState.busy : WidgetState.running);
+		return this.widgetContext.executeIonApiAsync<IMIResponse>(request).pipe(
+			map(response => this.getParsedRecords(response.data.MIRecord)),
+			tap(() => this.setBusy(false)),
+			catchError((error: HttpErrorResponse) => {
+				this.showErrorMessage(error);
+				return of([]);
+			})
+		);
 	}
 
 	private createRequest(): IIonApiRequestOptions {
@@ -112,32 +98,14 @@ export class IonApiM3Component implements IWidgetComponent, OnInit {
 		};
 	}
 
-	private parseCustomers(miResponse: IMIResponse): void {
-		Log.debug(`${this.logPrefix} Got MI Response with ${miResponse.MIRecord.length} records`);
-		const records = miResponse.MIRecord;
-		this.customerItems = this.getItems(records, "CUNO", "CUNM");
-		this.setBusy(false);
+	private setBusy(isBusy: boolean): void {
+		this.widgetContext.setState(isBusy ? WidgetState.busy : WidgetState.running);
 	}
 
-	private showErrorMessage(error: HttpErrorResponse): void {
-		Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
-		this.setBusy(false);
-		this.messageService.error({
-			title: "Error " + error.status,
-			message: "Failed to call ION API",
-			buttons: [
-				{
-					text: "Close",
-					isDefault: true,
-				}
-			],
-		}).open();
-	}
-
-	private getItems(records: IMIRecord[], titleField: string, descriptionField: string): IListItem[] {
+	private getParsedRecords(records: IMIRecord[]) {
 		return records.map((record): IListItem => ({
-			title: this.getValue(record.NameValue, titleField),
-			description: this.getValue(record.NameValue, descriptionField),
+			title: this.getValue(record.NameValue, "CUNO"),
+			description: this.getValue(record.NameValue, "CUNM"),
 		}));
 	}
 
@@ -149,6 +117,34 @@ export class IonApiM3Component implements IWidgetComponent, OnInit {
 			return null;
 		}
 	}
+
+	private showErrorMessage(error: HttpErrorResponse): void {
+		Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
+		this.widgetContext.showWidgetMessage({
+			type: WidgetMessageType.Error,
+			message: "Unable to load customer data"
+		});
+		this.setBusy(false);
+	}
+}
+
+@Component({
+	providers: [M3Service],
+	template: `
+	<soho-listview>
+		<li soho-listview-item *ngFor="let item of customerItems$ | async">
+			<p soho-listview-header>{{item.title}}</p>
+			<p soho-listview-subheader>{{item.description}}</p>
+		</li>
+	</soho-listview>
+	`,
+})
+export class IonApiM3Component {
+	customerItems$: Observable<IListItem[]>;
+
+	constructor(private m3Service: M3Service) {
+		this.customerItems$ = this.m3Service.getCustomerData();
+	}
 }
 
 @NgModule({
@@ -159,5 +155,4 @@ export class IonApiM3Component implements IWidgetComponent, OnInit {
 	declarations: [IonApiM3Component],
 	entryComponents: [IonApiM3Component],
 })
-export class IonApiM3Module {
-}
+export class IonApiM3Module { }

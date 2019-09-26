@@ -40,10 +40,8 @@ class SettingKeys {
 	`,
 })
 export class WidgetComponent implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	textStyle: ITextStyle = {};
 
@@ -93,7 +91,7 @@ export class WidgetComponent implements IWidgetComponent, OnInit {
 		<input [readOnly]="!isTitleEditEnabled || isTitleLocked" [(ngModel)]="title" />
 		<button
 			soho-button="icon"
-			[icon]="isTitleLocked ? 'locked' : 'unlocked'"
+			[icon]="lockIcon"
 			[disabled]="!isTitleUnlockable"
 			(click)="onLockClicked()">
 		</button>
@@ -101,10 +99,8 @@ export class WidgetComponent implements IWidgetComponent, OnInit {
 	`,
 })
 export class TitleSettingComponent implements OnInit {
-	@Input()
-	widgetSettingsContext: IWidgetSettingsContext2;
-	@Input()
-	label: string;
+	@Input() widgetSettingsContext: IWidgetSettingsContext2;
+	@Input() label: string;
 
 	title: string;
 	isTitleEditEnabled: boolean;
@@ -121,6 +117,10 @@ export class TitleSettingComponent implements OnInit {
 		this.isTitleLocked = widgetContext.isTitleLocked();
 		this.title = widgetContext.getResolvedTitle(this.isTitleLocked);
 		this.isTitleUnlockable = widgetContext.isTitleUnlockable();
+	}
+
+	get lockIcon(): string {
+		return this.isTitleLocked ? "locked" : "unlocked";
 	}
 
 	/**
@@ -164,10 +164,8 @@ export class TitleSettingComponent implements OnInit {
 	`,
 })
 export class SettingsComponent implements IWidgetSettingsComponent, OnInit {
-	@Input()
-	widgetSettingsContext: IWidgetSettingsContext2;
-	@Input()
-	widgetSettingsInstance: IWidgetSettingsInstance2;
+	@Input() widgetSettingsContext: IWidgetSettingsContext2;
+	@Input() widgetSettingsInstance: IWidgetSettingsInstance2;
 
 	@ViewChild(TitleSettingComponent, { static: true }) titleSettingComponent: TitleSettingComponent;
 	@ViewChild(SohoBusyIndicatorDirective, { static: true }) busyIndicator: SohoBusyIndicatorDirective;
@@ -212,8 +210,7 @@ export class SettingsComponent implements IWidgetSettingsComponent, OnInit {
 			this.textStyleOptions = ["Normal", "Italic", "Bold"];
 			this.textStyle = settings.get<string>(SettingKeys.textStyle);
 			this.busyIndicator.activated = false;
-		},
-			3000);
+		}, 3000);
 	}
 
 	private setupSettingsClosingHandler(): void {
@@ -251,5 +248,4 @@ export class SettingsComponent implements IWidgetSettingsComponent, OnInit {
 		SettingsComponent
 	],
 })
-export class WidgetModule {
-}
+export class WidgetModule { }

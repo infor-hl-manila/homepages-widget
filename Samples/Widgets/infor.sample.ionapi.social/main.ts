@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { HttpErrorResponse } from "@angular/common/http";
-import { Component, Input, NgModule, OnInit } from "@angular/core";
-import { IIonApiRequestOptions, IIonApiResponse, IWidgetComponent, IWidgetContext, IWidgetInstance, WidgetMessageType, WidgetState } from "lime";
-import { AsyncSubject } from "rxjs/AsyncSubject";
-import { Observable } from "rxjs/Observable";
+import { Component, Injectable, Input, NgModule, OnInit } from "@angular/core";
+import { IIonApiRequestOptions, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetMessageType, WidgetState } from "lime";
+import { AsyncSubject, Observable, of } from "rxjs";
+import { catchError, filter, map, switchMap, tap } from "rxjs/operators";
 
 // Prerequisites
 // =============
@@ -46,11 +46,11 @@ import { Observable } from "rxjs/Observable";
 // the configuration.json file.
 
 interface ISocialUser {
-	FirstName: string;
-	LastName: string;
-	Email: string;
-	Title: string;
-	UserGUID: string;
+	FirstName?: string;
+	LastName?: string;
+	Email?: string;
+	Title?: string;
+	UserGUID?: string;
 }
 
 interface IUserDetailResponse {
@@ -59,56 +59,37 @@ interface IUserDetailResponse {
 	ErrorList: {}[];
 }
 
+@Injectable({
+	providedIn: "root"
+})
 export class DataService {
-	private userSubject: AsyncSubject<IIonApiResponse<IUserDetailResponse>>;
 	private serviceUrl = "Mingle/SocialService.Svc";
-	private widgetContext: IWidgetContext;
+	private user: ISocialUser;
 
-	init(widgetContext: IWidgetContext): void {
-		this.widgetContext = widgetContext;
-
-		this.preLoadUser();
-	}
-
-	loadUser(): Observable<IIonApiResponse<IUserDetailResponse>> {
-		// Use the preloaded data if it exists the first time
-		const subject = this.userSubject;
-		if (subject) {
-			const observable = subject.asObservable();
-			this.userSubject = null;
-			return observable;
+	loadUser(widgetContext: IWidgetContext): Observable<ISocialUser> {
+		if (this.user) {
+			return of(this.user);
 		}
 
-		return this.loadUserInternal();
+		const request = this.createRequest("User/Detail");
+		return widgetContext.executeIonApiAsync<IUserDetailResponse>(request).pipe(
+			map(response => response.data.UserDetailList[0]),
+			tap(user => this.user = user)
+		);
 	}
 
-	loadPhoto(userGuid: string): Observable<IIonApiResponse<Blob>> {
+	loadPhoto(userGuid: string, widgetContext: IWidgetContext): Observable<Blob> {
 		const relativeUrl = "User/" + userGuid + "/ProfilePhoto?thumbnailType=3";
 		const request = this.createRequest(relativeUrl, { Accept: "image/png, image/jpeg" });
 		request.responseType = "blob";
-		return this.widgetContext.executeIonApiAsync<Blob>(request);
-	}
 
-	preLoadUser(): void {
-		const subject = new AsyncSubject<IIonApiResponse<IUserDetailResponse>>();
-		this.userSubject = subject;
-
-		this.loadUserInternal().subscribe(response => {
-			subject.next(response);
-			subject.complete();
-		}, (error) => {
-			subject.error(error);
-		});
-	}
-
-	private loadUserInternal(): Observable<IIonApiResponse<IUserDetailResponse>> {
-		const request = this.createRequest("User/Detail");
-		return this.widgetContext.executeIonApiAsync<IUserDetailResponse>(request);
+		return widgetContext.executeIonApiAsync<Blob>(request).pipe(
+			map(response => response.data)
+		);
 	}
 
 	private createRequest(relativeUrl: string, headers?: object): IIonApiRequestOptions {
 		if (!headers) {
-			// Create default headers
 			headers = { Accept: "application/json" };
 		}
 
@@ -120,26 +101,25 @@ export class DataService {
 			method: "GET",
 			url: url,
 			cache: false,
-			headers: headers
+			headers: headers || null
 		};
 
 		return request;
 	}
 }
 
-// Create a single instance of the service
-export const dataService = new DataService();
-
 @Component({
 	template: `
-	<div class="lm-padding-md">
+	<div class="lm-padding-md" *ngIf="user$ | async as user">
 		<h3>Name</h3>
-		<p>{{fullName}}</p>
+		<p>{{user.FirstName + " " + user.LastName}}</p>
 
 		<h3>Email</h3>
-		<p>{{user?.Email}}</p>
+		<p>{{user.Email}}</p>
 
-		<p><img src="{{photoUrl}}" /></p>
+		<p *ngIf="photoUrl$ | async as photoUrl">
+			<img [src]="photoUrl" />
+		</p>
 	</div>
 	`
 })
@@ -147,55 +127,55 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	@Input() widgetContext: IWidgetContext;
 	@Input() widgetInstance: IWidgetInstance;
 
-	fullName: string;
-	photoUrl: string;
-	user: ISocialUser;
+	user$: Observable<ISocialUser>;
+	photoUrl$: Observable<string>;
+	private logPrefix = "[IonApiSocialSample] ";
+
+	constructor(private readonly dataService: DataService) { }
 
 	ngOnInit(): void {
 		this.setBusy(true);
-		this.loadUser();
+
+		this.user$ = this.dataService.loadUser(this.widgetContext).pipe(
+			catchError((error: HttpErrorResponse) => {
+				this.onRequestError(error, "Unable to load user info");
+				return of();
+			})
+		);
+
+		this.photoUrl$ = this.user$.pipe(
+			filter(user => !!user.UserGUID),
+			switchMap(user => this.dataService.loadPhoto(user.UserGUID, this.widgetContext)),
+			switchMap((blob) => this.getPhoto(blob)),
+			tap(() => this.setBusy(false)),
+			catchError((error: HttpErrorResponse) => {
+				this.onRequestError(error, "Unable to load profile photo");
+				return of("");
+			})
+		);
 	}
 
 	private setBusy(isBusy: boolean): void {
-		// Show the indeterminate progress indicator when the widget is busy by changing the widget state.
 		this.widgetContext.setState(isBusy ? WidgetState.busy : WidgetState.running);
 	}
 
-	private loadUser(): void {
-		dataService.loadUser().subscribe(response => {
-			this.updateUser(response.data);
-		}, (error: HttpErrorResponse) => {
-			this.onRequestError(error);
-		});
-	}
-
-	private updateUser(response: IUserDetailResponse): void {
-		const user = response.UserDetailList[0];
-		this.user = user;
-		this.fullName = user.FirstName + " " + user.LastName;
-		this.loadPhoto();
-	}
-
-	private loadPhoto(): void {
-		dataService.loadPhoto(this.user.UserGUID).subscribe(response => {
-			this.updatePhoto(response.data);
-		}, (error: HttpErrorResponse) => {
-			this.onRequestError(error);
-		});
-	}
-
-	private updatePhoto(response: Blob): void {
+	private getPhoto(response: Blob): Observable<string> {
+		const subject = new AsyncSubject<string>();
 		const reader = new FileReader();
+
 		reader.onload = () => {
-			this.photoUrl = reader.result as string;
-			this.setBusy(false);
+			subject.next(reader.result as string);
+			subject.complete();
 		};
 		reader.readAsDataURL(response);
+
+		return subject.asObservable();
 	}
 
-	private onRequestError(error: HttpErrorResponse): void {
+	private onRequestError(error: HttpErrorResponse, message: string): void {
+		Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
 		this.widgetContext.showWidgetMessage({
-			message: "Failed to call ION API: " + JSON.stringify(error),
+			message: message,
 			type: WidgetMessageType.Error
 		});
 		this.setBusy(false);
@@ -207,5 +187,4 @@ export class IonApiSocialComponent implements IWidgetComponent, OnInit {
 	declarations: [IonApiSocialComponent],
 	entryComponents: [IonApiSocialComponent]
 })
-export class IonApiSocialModule {
-}
+export class IonApiSocialModule { }

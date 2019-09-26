@@ -147,8 +147,7 @@ export class SearchDialogComponent {
 	entryComponents: [FindWidgetsComponent, SearchDialogComponent],
 	imports: [CommonModule, FormsModule, SohoListViewModule, SohoInputValidateModule]
 })
-export class FindWidgetsModule {
-}
+export class FindWidgetsModule { }
 
 export const getActions = (context: IWidgetContext): IWidgetAction[] => {
 	const language = context.getLanguage();

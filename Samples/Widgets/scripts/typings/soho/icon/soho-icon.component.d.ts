@@ -12,10 +12,13 @@ export declare class SohoIconComponent {
     focusable: boolean;
     role: string;
     isEmptyState: boolean;
+    extraIconClass: string;
     alert: boolean;
     icon: string;
     private _alert;
     private _icon;
+    private _extraIconClass;
     constructor(elementRef: ElementRef, renderer: Renderer2);
     private setAlertIcon;
+    private setExtraIconsClass;
 }

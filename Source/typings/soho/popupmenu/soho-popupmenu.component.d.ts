@@ -34,6 +34,7 @@ export declare class SohoPopupMenuComponent implements AfterViewInit, OnDestroy 
     eventObj: any;
     placementOpts: SohoPopupmenuPlacementOpts;
     offset: SohoPopupmenuOffset;
+    removeOnDestroy: boolean;
     selected: EventEmitter<SohoPopupMenuEvent>;
     popupmenuafterplace: EventEmitter<SohoPopupMenuEvent>;
     beforeopen: EventEmitter<SohoPopupMenuEvent>;

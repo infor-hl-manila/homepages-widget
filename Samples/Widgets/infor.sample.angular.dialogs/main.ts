@@ -53,22 +53,22 @@ export class CustomDialogComponent {
 	<div #dialogWidgetView class="container">
 		<div class="twelve columns lm-margin-md-t">
 			<div class="row">
-			    <div class="field lm-margin-md-b">
-			        <label for="{{instanceId}}-message-btn">Open message dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-message-btn" (click)="showMessage()">Message</button>
-			    </div>
-			    <div class="field lm-margin-md-b">
-                    <label for="{{instanceId}}-confirm-btn">Open confirm dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-confirm-btn" (click)="showConfirm()">Confirm</button>
-			    </div>
-			    <div class="field lm-margin-md-b">
-			        <label for="{{instanceId}}-custom-btn">Open custom dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showCustom()">Custom</button>
-			    </div>
-                <div class="field lm-margin-md-b">
-                    <label for="{{instanceId}}-toast-btn">Show toast message</label>
-                    <button soho-button="primary" id="{{instanceId}}-toast-btn" (click)="showToast()">Toast</button>
-                </div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-message-btn">Open message dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-message-btn" (click)="showMessage()">Message</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-confirm-btn">Open confirm dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-confirm-btn" (click)="showConfirm()">Confirm</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-custom-btn">Open custom dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showCustom()">Custom</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-toast-btn">Show toast message</label>
+					<button soho-button="primary" id="{{instanceId}}-toast-btn" (click)="showToast()">Toast</button>
+				</div>
 			</div>
 		</div>
 	</div>`
@@ -148,5 +148,4 @@ export class DialogsComponent {
 	declarations: [DialogsComponent, CustomDialogComponent],
 	entryComponents: [DialogsComponent, CustomDialogComponent]
 })
-export class DialogsModule {
-}
+export class DialogsModule { }

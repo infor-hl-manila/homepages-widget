@@ -15,10 +15,10 @@ Soho.Locale.addCulture('sv-SE', {
       separator: '/', // Infered
       timeSeparator: ':',
       short: 'yyyy-MM-dd', // use four digit year
-      medium: 'yyyy-MM-dd',
+      medium: 'd MMM yyyy',
       long: 'd MMMM yyyy',
       full: 'EEEE d MMMM yyyy',
-      month: 'den d MMMM',
+      month: 'd MMMM',
       year: 'MMMM yyyy',
       timestamp: 'HH:mm:ss',
       datetime: 'yyyy-MM-dd HH:mm',
@@ -312,7 +312,7 @@ Soho.Locale.addCulture('sv-SE', {
     Selected: { id: 'Selected', value: 'Markerat', comment: 'text describing a selected object' },
     SelectAll: { id: 'SelectAll', value: 'Markera alla', comment: 'describes the action of selecting all items available in a list' },
     Send: { id: 'Send', value: 'Skicka', comment: 'Send tooltip' },
-    SetTime: { id: 'SetTime', value: 'Klockslag', comment: 'button text that inserts time when clicked' },
+    SetTime: { id: 'SetTime', value: 'Sätt tid', comment: 'button text that inserts time when clicked' },
     Settings: { id: 'Settings', value: 'Inställningar', comment: 'Settings tooltip' },
     Short: { id: 'Short', value: 'Kort', comment: 'Describes a Shorted Row Height in a grid/list' },
     ShowFilterRow: { id: 'ShowFilterRow', value: 'Visa filterrad', comment: 'Toggle a row with filer info above a list' },

@@ -91,6 +91,13 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             this.title = widgetContext.getResolvedTitle(this.isTitleLocked);
             this.isTitleUnlockable = widgetContext.isTitleUnlockable();
         };
+        Object.defineProperty(TitleSettingComponent.prototype, "lockIcon", {
+            get: function () {
+                return this.isTitleLocked ? "locked" : "unlocked";
+            },
+            enumerable: true,
+            configurable: true
+        });
         /**
          * Persist changes to the title and lock by saving to widget context.
          */
@@ -119,7 +126,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         TitleSettingComponent = __decorate([
             core_1.Component({
                 selector: "infor-sample-setting-title-field",
-                template: "\n\t<div class=\"field\">\n\t\t<label *ngIf=\"label\">{{label}}</label>\n\t\t<input [readOnly]=\"!isTitleEditEnabled || isTitleLocked\" [(ngModel)]=\"title\" />\n\t\t<button\n\t\t\tsoho-button=\"icon\"\n\t\t\t[icon]=\"isTitleLocked ? 'locked' : 'unlocked'\"\n\t\t\t[disabled]=\"!isTitleUnlockable\"\n\t\t\t(click)=\"onLockClicked()\">\n\t\t</button>\n\t</div>\n\t",
+                template: "\n\t<div class=\"field\">\n\t\t<label *ngIf=\"label\">{{label}}</label>\n\t\t<input [readOnly]=\"!isTitleEditEnabled || isTitleLocked\" [(ngModel)]=\"title\" />\n\t\t<button\n\t\t\tsoho-button=\"icon\"\n\t\t\t[icon]=\"lockIcon\"\n\t\t\t[disabled]=\"!isTitleUnlockable\"\n\t\t\t(click)=\"onLockClicked()\">\n\t\t</button>\n\t</div>\n\t",
             })
         ], TitleSettingComponent);
         return TitleSettingComponent;

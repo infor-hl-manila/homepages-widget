@@ -17,6 +17,7 @@ export declare class SohoStandalonePagerComponent implements AfterViewInit, Afte
     firstPageTooltip: string;
     nextPageTooltip: string;
     lastPageTooltip: string;
+    attachPageSizeMenuToBody: boolean;
     firstPage: EventEmitter<Object>;
     lastPage: EventEmitter<Object>;
     previousPage: EventEmitter<Object>;

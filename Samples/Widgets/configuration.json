@@ -1,5 +1,5 @@
 ﻿{
-	"ionApiUrl": "http://localhost:8083/ACME_TST",
+	"ionApiUrl": "http://localhost:8083/tenantname",
 	"ionApiToken": "bh6fKuLUu0MnE7Mzir5jNwoQTTmZ",
 	"ionApiCustomerContext": "CustomerApi",
 	"applications": {

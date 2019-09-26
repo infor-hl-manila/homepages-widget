@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { SohoButtonModule, SohoListViewModule } from "@infor/sohoxi-angular";
 import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
@@ -20,18 +20,16 @@ import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, 
 		</li>
 	</soho-listview>`
 })
-export class QuicknoteComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+export class QuicknoteComponent implements OnInit, IWidgetComponent {
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 	text: string;
 	items: string[] = [];
 	lang: ILanguage;
 
 	private settingsKeyItems = "items";
 
-	ngAfterViewInit() {
+	ngOnInit() {
 		this.lang = this.widgetContext.getLanguage();
 		const settings = this.widgetContext.getSettings();
 
@@ -77,8 +75,7 @@ export class QuicknoteComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [QuicknoteComponent],
 	entryComponents: [QuicknoteComponent]
 })
-export class QuicknoteModule {
-}
+export class QuicknoteModule { }
 
 export const getActions = (): IWidgetAction[] => {
 	return [{ isPrimary: true, standardIconName: "#icon-delete" }];

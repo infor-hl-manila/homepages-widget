@@ -52,7 +52,7 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
         EmptyStateComponent = __decorate([
             core_1.Component({
                 template: "\n\t<div>\n\t\t<h1>\n\t\t\t{{message}}\n\t\t</h1>\n\t</div>",
-                styles: ["\n\th1 {\n\t\tpadding: 40px 40px;\n\t\ttext-align: center;\n\t}"]
+                styles: ["\n\t\th1 {\n\t\t\tpadding: 40px 40px;\n\t\t\ttext-align: center;\n\t\t}\n\t"]
             })
             /**
              * Empty State configuration (icon, titleId, descriptionId, buttonId) is set in the widget manifest.

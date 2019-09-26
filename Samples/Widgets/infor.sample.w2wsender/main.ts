@@ -155,5 +155,4 @@ export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
 	declarations: [W2WSenderComponent],
 	entryComponents: [W2WSenderComponent]
 })
-export class W2WSenderModule {
-}
+export class W2WSenderModule { }

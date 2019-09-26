@@ -14,7 +14,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "sampl
         function SharedModuleSampleOneComponent(userContextService) {
             this.userContextService = userContextService;
         }
-        SharedModuleSampleOneComponent.prototype.ngAfterViewInit = function () {
+        SharedModuleSampleOneComponent.prototype.ngOnInit = function () {
             this.getAndSetUserContext();
         };
         SharedModuleSampleOneComponent.prototype.getAndSetUserContext = function () {
@@ -41,11 +41,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "sampl
         ], SharedModuleSampleOneComponent.prototype, "widgetInstance", void 0);
         SharedModuleSampleOneComponent = __decorate([
             core_1.Component({
-                providers: sample_shared_usercontext_1.userContextProviders,
                 template: "\n\t<div class=\"lm-padding-lg\">\n\t\t<p class=\"lm-text-align-c lm-italic-text lm-info-text\">\n\t\t\tUser context will be loaded only once and shared among all widgets using the specified shared module\n\t\t</p>\n\t\t<div *ngIf=\"userContext\" class=\"lm-margin-xl-t\">\n\t\t\t<p>\n\t\t\t\t<label>Name</label>\n\t\t\t\t<span>{{userContext.name}}</span>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>User ID</label>\n\t\t\t\t<span>{{userContext.userId}}</span>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>Department</label>\n\t\t\t\t<span>{{userContext.department}}</span>\n\t\t\t</p>\n\t\t\t<p>\n\t\t\t\t<label>Area</label>\n\t\t\t\t<span>{{userContext.area}}</span>\n\t\t\t</p>\n\t\t</div>\n\t</div>\n\t",
-                styles: [
-                    "\n\tp > label{margin-bottom:5px;font-weight:bold;}"
-                ]
+                styles: ["p > label { margin-bottom: 5px; font-weight: bold; }"]
             }),
             __metadata("design:paramtypes", [sample_shared_usercontext_1.UserContextService])
         ], SharedModuleSampleOneComponent);
