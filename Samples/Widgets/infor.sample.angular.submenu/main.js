@@ -44,7 +44,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime"], funct
         ], SubmenuComponent.prototype, "widgetInstance", void 0);
         SubmenuComponent = __decorate([
             core_1.Component({
+<<<<<<< HEAD
                 template: "\n\t<div class=\"container\">\n\t\t<div class=\"twelve columns lm-margin-md-t\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<p>{{language?.widgetText}}</p>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
+=======
+                template: "\n\t<div class=\"container\">\n\t\t<div class=\"twelve columns lm-margin-md-t\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<p>{{language.widgetText}}</p>\n\t\t\t</div>\n\t\t</div>\n\t</div>"
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             }),
             __metadata("design:paramtypes", [lime_1.DialogService])
         ], SubmenuComponent);

@@ -1,6 +1,11 @@
 ﻿{
+<<<<<<< HEAD
 	"ionApiUrl": "http://localhost:8083/CRMCEQA10_DEM",
 	"ionApiToken": "1CrpmD0cWRD7HGb0mrrX2EOclbjO",
+=======
+	"ionApiUrl": "http://localhost:8083/tenantname",
+	"ionApiToken": "bh6fKuLUu0MnE7Mzir5jNwoQTTmZ",
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
 	"ionApiCustomerContext": "CustomerApi",
 	"applications": {
 		"lid://infor.bi": [

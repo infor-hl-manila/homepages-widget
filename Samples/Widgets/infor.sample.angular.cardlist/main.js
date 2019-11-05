@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+<<<<<<< HEAD
 define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, sohoxi_angular_1, lime_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -111,6 +112,43 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         };
         CardListComponent.prototype.logInfo = function (message, ex) {
             lime_1.Log.info(this.logPrefix + message, ex);
+=======
+define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi-angular", "lime", "./core", "./pipes"], function (require, exports, common_1, core_1, sohoxi_angular_1, lime_1, core_2, pipes_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var CardListComponent = /** @class */ (function () {
+        function CardListComponent(changeDetectionRef) {
+            this.changeDetectionRef = changeDetectionRef;
+            this.items = [];
+        }
+        CardListComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            var instance = this.widgetInstance;
+            instance.settingsSaved = function () { return _this.updateSortOrder(); };
+            instance.getMetadata = function () { return _this.getMetadata(); };
+            this.items = core_2.mockData;
+            this.updateSortOrder();
+        };
+        CardListComponent.prototype.updateSortOrder = function () {
+            this.sortOrder = this.widgetContext.getSettings().get("order", "asc");
+            this.changeDetectionRef.markForCheck();
+        };
+        CardListComponent.prototype.getMetadata = function () {
+            // Dynamically create metadata for the standard metadata controlled settings UI.
+            // For dynamic settings / values that need to be resolved asynchronously,
+            // implement IWidgetInstance getMetadataAsync() instead.
+            // For known/hardcoded values, place the metadata in the manifest instead.
+            return [{
+                    labelId: "order",
+                    type: lime_1.WidgetSettingsType.selectorType,
+                    name: "order",
+                    defaultValue: this.items.length > 3 ? "asc" : "desc",
+                    values: [
+                        { textId: "ascending", value: "asc" },
+                        { textId: "descending", value: "desc" }
+                    ]
+                }];
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
         };
         __decorate([
             core_1.Input(),
@@ -122,8 +160,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         ], CardListComponent.prototype, "widgetInstance", void 0);
         CardListComponent = __decorate([
             core_1.Component({
+<<<<<<< HEAD
                 template: "\n\t<div>\n\t\t<soho-listview\n\t\t\t(rendered)=\"onRendered($event)\"\n\t\t\t(selected)=\"onSelected($event)\"\n\t\t\t(sorted)=\"onSorted($event)\">\n\t\t\t<li soho-listview-item *ngFor=\"let item of sortedItems\">\n\t\t\t\t<p soho-listview-header>{{item.title}}</p>\n\t\t\t\t<p soho-listview-subheader>{{item.description}}</p>\n\t\t\t</li>\n\t\t</soho-listview>\n\t</div>"
             })
+=======
+                template: "\n\t\t<soho-listview>\n\t\t\t<li soho-listview-item\n\t\t\t\t *ngFor=\"let item of items | sortBy: sortOrder\">\n\t\t\t\t<p soho-listview-header>{{item.title}}</p>\n\t\t\t\t<p soho-listview-subheader>{{item.description}}</p>\n\t\t\t</li>\n\t\t</soho-listview>\n\t",
+                changeDetection: core_1.ChangeDetectionStrategy.OnPush
+            }),
+            __metadata("design:paramtypes", [core_1.ChangeDetectorRef])
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
         ], CardListComponent);
         return CardListComponent;
     }());
@@ -134,7 +179,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         CardListModule = __decorate([
             core_1.NgModule({
                 imports: [common_1.CommonModule, sohoxi_angular_1.SohoListViewModule],
+<<<<<<< HEAD
                 declarations: [CardListComponent],
+=======
+                declarations: [CardListComponent, pipes_1.SortByPipe],
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
                 entryComponents: [CardListComponent]
             })
         ], CardListModule);

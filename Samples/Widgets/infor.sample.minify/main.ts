@@ -1,7 +1,7 @@
 /**
  * This is a sample widget which can be minified.
  *
- * Addtional information about template cache and minification can be found in the
+ * Addtional information about minification can be found in the
  * /Samples/ReadMe.md and /Documentation/DevelopersGuide.pdf files.
  *
  * When developing your own widget, which you want to minify, the following prerequisites are needed:
@@ -16,7 +16,7 @@
  * my.widget.id.folder.name/main.ts
  *
  * Please note that images are no longer supported to be in a folder. Code files can still be in subdirectories as they
- * will be bundled, but images must be in a directory. The Homepages framework will no longer support directories for
+ * will be bundled, but images must be in the root level. The Homepages framework will no longer support directories for
  * images.
  *
  * Specific content that is needed are marked REQUIRED in files
@@ -41,14 +41,14 @@
  */
 
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, Input, NgModule, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { SohoButtonModule, SohoModalDialogModule, SohoModalDialogService } from "@infor/sohoxi-angular";
 import { IDialogResult, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance, Log } from "lime";
 import { IMyDialogParameters, MyDialogComponent } from "./dialog/dialog";
 
 @Component({
 	template: `
-	<div #myDialogContent class="infor-sample-minify-widget">
+	<div #dialogViewRef class="infor-sample-minify-widget">
 		<div class="lm-text-align-c">
 			<button soho-button="icon" icon="minimize" toggle="maximize" (click)="toggleClass()"></button>
 			{{buttonMessage}}
@@ -60,19 +60,15 @@ import { IMyDialogParameters, MyDialogComponent } from "./dialog/dialog";
 		</div>
 	</div>
 	`,
-	styles: [
-		`
-	.infor-sample-minify-widget .merge{display:inline;margin-bottom:5px;}
-	.infor-sample-minify-widget .merge.show{display:block;margin-bottom:0;}
-	`
-	]
+	styles: [`
+		.infor-sample-minify-widget .merge{display:inline;margin-bottom:5px;}
+		.infor-sample-minify-widget .merge.show{display:block;margin-bottom:0;}
+	`]
 
 })
-export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+export class MinifySampleComponent implements OnInit, IWidgetComponent {
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	topIcon: string;
 	middleIcon: string;
@@ -80,14 +76,14 @@ export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 	buttonMessage: string;
 	show: boolean;
 
-	@ViewChild("myDialogContent", { read: ViewContainerRef, static: true }) private componentView: ViewContainerRef;
+	@ViewChild("dialogViewRef", { read: ViewContainerRef, static: true }) private dialogViewRef: ViewContainerRef;
 
 	constructor(private sohoDialogService: SohoModalDialogService) {
 		this.buttonMessage = "Divide images";
 		this.show = true;
 	}
 
-	ngAfterViewInit(): void {
+	ngOnInit(): void {
 		/*
 		 * REQUIRED for image resources
 		 *
@@ -99,12 +95,7 @@ export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 		this.middleIcon = this.widgetContext.getUrl("/middle.png");
 		this.bottomIcon = this.widgetContext.getUrl("/bottom.png");
 
-		$.extend(this.widgetInstance.actions[0],
-			{
-				execute: () => {
-					this.createDialog();
-				}
-			});
+		this.widgetInstance.actions[0].execute = () => this.createDialog();
 	}
 
 	toggleClass(): void {
@@ -125,8 +116,8 @@ export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 		};
 
 		const dialog = this.sohoDialogService
-			.modal(MyDialogComponent, this.componentView)
-			.title("My dialog service")
+			.modal(MyDialogComponent, this.dialogViewRef)
+			.title("My dialog")
 			.afterClose((result: IDialogResult) => {
 				Log.debug("Dialog result:", result);
 			});
@@ -143,8 +134,7 @@ export class MinifySampleComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [MinifySampleComponent, MyDialogComponent],
 	entryComponents: [MinifySampleComponent, MyDialogComponent]
 })
-export class MinifySampleModule {
-}
+export class MinifySampleModule { }
 
 export const getActions = (): IWidgetAction[] => {
 	return [{

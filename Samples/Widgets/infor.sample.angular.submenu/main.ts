@@ -11,16 +11,14 @@ interface IMyLanguage extends ILanguage {
 	<div class="container">
 		<div class="twelve columns lm-margin-md-t">
 			<div class="row">
-				<p>{{language?.widgetText}}</p>
+				<p>{{language.widgetText}}</p>
 			</div>
 		</div>
 	</div>`
 })
 export class SubmenuComponent implements OnInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 	language: IMyLanguage;
 
 	constructor(private dialogService: DialogService) { }
@@ -54,8 +52,7 @@ export class SubmenuComponent implements OnInit, IWidgetComponent {
 	declarations: [SubmenuComponent],
 	entryComponents: [SubmenuComponent]
 })
-export class SubmenuModule {
-}
+export class SubmenuModule { }
 
 export const getActions = (context: IWidgetContext): IWidgetAction[] => {
 	const language = context.getLanguage();

@@ -17,6 +17,8 @@
 			"firstName": "First Name",
 			"lastName": "Last Name",
 			"email": "Email",
+			"editUser": "Edit User",
+			"userDetails": "User Details",
 			"launchToastTitle": "User Workspace Launch",
 			"launchToastMessage": "This is where you would launch the application",
 			"submitToastTitle": "User Edited",

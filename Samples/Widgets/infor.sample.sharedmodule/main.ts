@@ -1,10 +1,9 @@
 ﻿import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
-import { IUserContext, userContextProviders, UserContextService } from "sample-shared-usercontext";
+import { IUserContext, UserContextService } from "sample-shared-usercontext";
 
 @Component({
-	providers: userContextProviders,
 	template: `
 	<div class="lm-padding-lg">
 		<p class="lm-text-align-c lm-italic-text lm-info-text">
@@ -30,23 +29,17 @@ import { IUserContext, userContextProviders, UserContextService } from "sample-s
 		</div>
 	</div>
 	`,
-	styles: [
-		`
-	p > label{margin-bottom:5px;font-weight:bold;}`
-	]
+	styles: [`p > label { margin-bottom: 5px; font-weight: bold; }`]
 })
-export class SharedModuleSampleOneComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+export class SharedModuleSampleOneComponent implements OnInit, IWidgetComponent {
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 
 	userContext: IUserContext;
 
-	constructor(private readonly userContextService: UserContextService) {
-	}
+	constructor(private readonly userContextService: UserContextService) { }
 
-	ngAfterViewInit(): void {
+	ngOnInit(): void {
 		this.getAndSetUserContext();
 	}
 
@@ -54,13 +47,11 @@ export class SharedModuleSampleOneComponent implements AfterViewInit, IWidgetCom
 		this.setBusy(true);
 		this.userContextService.getUserContext(this.widgetContext).subscribe((result: IUserContext) => {
 			this.userContext = result;
-		},
-			(onError) => {
-				Log.error(`Failed to get User Context ${onError}`);
-			},
-			() => {
-				this.setBusy(false);
-			});
+		}, (onError) => {
+			Log.error(`Failed to get User Context ${onError}`);
+		}, () => {
+			this.setBusy(false);
+		});
 	}
 
 	private setBusy(isBusy: boolean): void {
@@ -73,5 +64,4 @@ export class SharedModuleSampleOneComponent implements AfterViewInit, IWidgetCom
 	declarations: [SharedModuleSampleOneComponent],
 	entryComponents: [SharedModuleSampleOneComponent]
 })
-export class SharedModuleSampleOneModule {
-}
+export class SharedModuleSampleOneModule { }

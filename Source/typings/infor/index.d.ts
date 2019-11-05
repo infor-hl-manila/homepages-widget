@@ -7,6 +7,7 @@ declare namespace infor {
 		var ResourcesKeys: any;
 		var language: string;
 		var locale: string;
+		var log: any;
 		var getWidgetCacheArg: (id: string) => string;
 	}
 

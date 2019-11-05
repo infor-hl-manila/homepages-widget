@@ -1,7 +1,11 @@
 /**
  * NOTE:
  * A custom settings UI shall only be implemented if settings are dynamic, for instance based on data
+<<<<<<< HEAD
  * retrieved from a server. Or if the settings structure is complicated, and not possible to handle using
+=======
+ * retrieved from a server and. Or if the settings structure is complicated, and not possible to handle using
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
  * supported metadata setting types (string, boolean, number, selector). For other cases, use metadata settings
  * handled by the default settings UI.
  */
@@ -14,6 +18,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+<<<<<<< HEAD
 define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -24,6 +29,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         SettingKeys.textStyle = "textStyle";
         return SettingKeys;
     }());
+=======
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "./core", "./settings", "./title-setting"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, core_2, settings_1, title_setting_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
     var WidgetComponent = /** @class */ (function () {
         function WidgetComponent() {
             this.textStyle = {};
@@ -39,14 +49,23 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             this.widgetInstance.widgetSettingsFactory = function () {
                 return {
                     angularConfig: {
+<<<<<<< HEAD
                         componentType: SettingsComponent,
+=======
+                        componentType: settings_1.SettingsComponent,
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
                     },
                 };
             };
         };
         WidgetComponent.prototype.updateFromSettings = function (settings) {
+<<<<<<< HEAD
             var color = settings.get("textColor");
             var textStyle = settings.get("textStyle").toLowerCase();
+=======
+            var color = settings.get(core_2.SettingKey.Color);
+            var textStyle = settings.get(core_2.SettingKey.Style).toLowerCase();
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             this.textStyle.color = color;
             if (textStyle === "bold") {
                 this.textStyle.fontWeight = textStyle;
@@ -65,12 +84,17 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         ], WidgetComponent.prototype, "widgetInstance", void 0);
         WidgetComponent = __decorate([
             core_1.Component({
+<<<<<<< HEAD
                 template: "\n\t<div class=\"lm-text-align-c lm-padding-xl\">\n\t\t<span class=\"label lm-margin-xl-b\">\n\t\t\tThis widget shows how to implement a Custom Settings UI using Angular.\n\t\t\tThe Settings UI can be used to change the style and color of the text shown below.\n\t\t</span>\n\t\t<h1\n\t\t\t[style.color]=\"textStyle.color\"\n\t\t\t[style.fontStyle]=\"textStyle.fontStyle\"\n\t\t\t[style.fontWeight]=\"textStyle.fontWeight\">\n\t\t\tColored Text\n\t\t</h1>\n\t</div>\n\t",
+=======
+                template: "\n\t<div class=\"lm-text-align-c lm-padding-xl\">\n\t\t<span class=\"label lm-margin-xl-b\">\n\t\t\tThis widget shows how to implement a Custom Settings UI using Angular.\n\t\t\tThe Settings UI can be used to change the style and color of the text shown below.\n\t\t</span>\n\t\t<h1 [style.color]=\"textStyle.color\"\n\t\t\t [style.fontStyle]=\"textStyle.fontStyle\"\n\t\t\t [style.fontWeight]=\"textStyle.fontWeight\">\n\t\t\tColored Text\n\t\t</h1>\n\t</div>\n\t",
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             })
         ], WidgetComponent);
         return WidgetComponent;
     }());
     exports.WidgetComponent = WidgetComponent;
+<<<<<<< HEAD
     /**
      * This component can be used to display a Title setting field with a padlock.
      * It works with the given (required) widgetSettingContext to determine whether title should
@@ -193,6 +217,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         return SettingsComponent;
     }());
     exports.SettingsComponent = SettingsComponent;
+=======
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
     var WidgetModule = /** @class */ (function () {
         function WidgetModule() {
         }
@@ -208,12 +234,21 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
                 ],
                 declarations: [
                     WidgetComponent,
+<<<<<<< HEAD
                     SettingsComponent,
                     TitleSettingComponent
                 ],
                 entryComponents: [
                     WidgetComponent,
                     SettingsComponent
+=======
+                    settings_1.SettingsComponent,
+                    title_setting_1.TitleSettingComponent
+                ],
+                entryComponents: [
+                    WidgetComponent,
+                    settings_1.SettingsComponent
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
                 ],
             })
         ], WidgetModule);

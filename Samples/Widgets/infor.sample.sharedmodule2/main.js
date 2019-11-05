@@ -38,10 +38,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         ], SharedModuleSampleTwoComponent.prototype, "widgetInstance", void 0);
         SharedModuleSampleTwoComponent = __decorate([
             core_1.Component({
+<<<<<<< HEAD
                 providers: sample_shared_usercontext_1.userContextProviders,
                 template: "\n\t<div class=\"lm-padding-lg\">\n\t\t<p>User context will be loaded only once and shared among all widgets using the specified shared module</p>\n\t\t<div class=\"lm-margin-md-t\">\n\t\t\t<button soho-button=\"primary\" (click)=\"getAndSetUserContext()\">Get user info</button>\n\t\t</div>\n\t\t<div class=\"field\">\n\t\t\t<label>Name</label>\n\t\t\t<input [value]=\"userContext?.name\" readonly/>\n\t\t</div>\n\t\t<div class=\"field\">\n\t\t\t<label>User ID</label>\n\t\t\t<input [value]=\"userContext?.userId\" readonly class=\"input-sm\"/>\n\t\t</div>\n\t\t<div class=\"compound-field\">\n\t\t\t<div class=\"field\">\n\t\t\t\t<label>Department</label>\n\t\t\t\t<input [value]=\"userContext?.department\" readonly class=\"input-sm\"/>\n\t\t\t</div>\n\t\t\t<div class=\"field\">\n\t\t\t\t<label>Area</label>\n\t\t\t\t<input [value]=\"userContext?.area\" readonly class=\"input-xs\"/>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t",
                 styles: ["\n\tdiv > p {\n\t\ttext-align: center;\n\t\tfont-style: italic;\n\t\tfont-size: 12px;\n\t}\n\n\tdiv > p + div {\n\t\ttext-align: center;\n\t}\n\n\t.field {\n\t\tmargin-bottom: 10px;\n\t}\n\n\t.compound-field > field {\n\t\tmargin-bottom: 0;\n\t}"
                 ]
+=======
+                template: "\n\t<div class=\"lm-padding-lg\">\n\t\t<p>User context will be loaded only once and shared among all widgets using the specified shared module</p>\n\t\t<div class=\"lm-margin-md-t\">\n\t\t\t<button soho-button=\"primary\" (click)=\"getAndSetUserContext()\">Get user info</button>\n\t\t</div>\n\t\t<div class=\"field\">\n\t\t\t<label>Name</label>\n\t\t\t<input [value]=\"userContext?.name\" readonly/>\n\t\t</div>\n\t\t<div class=\"field\">\n\t\t\t<label>User ID</label>\n\t\t\t<input [value]=\"userContext?.userId\" readonly class=\"input-sm\"/>\n\t\t</div>\n\t\t<div class=\"compound-field\">\n\t\t\t<div class=\"field\">\n\t\t\t\t<label>Department</label>\n\t\t\t\t<input [value]=\"userContext?.department\" readonly class=\"input-sm\"/>\n\t\t\t</div>\n\t\t\t<div class=\"field\">\n\t\t\t\t<label>Area</label>\n\t\t\t\t<input [value]=\"userContext?.area\" readonly class=\"input-xs\"/>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t",
+                styles: ["\n\t\tdiv > p {\n\t\t\ttext-align: center;\n\t\t\tfont-style: italic;\n\t\t\tfont-size: 12px;\n\t\t}\n\n\t\tdiv > p + div {\n\t\t\ttext-align: center;\n\t\t}\n\n\t\t.field {\n\t\t\tmargin-bottom: 10px;\n\t\t}\n\n\t\t.compound-field > field {\n\t\t\tmargin-bottom: 0;\n\t\t}\n\t"]
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             }),
             __metadata("design:paramtypes", [sample_shared_usercontext_1.UserContextService])
         ], SharedModuleSampleTwoComponent);

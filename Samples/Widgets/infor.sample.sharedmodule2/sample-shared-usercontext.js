@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 define(["require", "exports", "rxjs/AsyncSubject"], function (require, exports, AsyncSubject_1) {
+=======
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+define(["require", "exports", "@angular/core", "rxjs"], function (require, exports, core_1, rxjs_1) {
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var UserContextService = /** @class */ (function () {
@@ -7,7 +17,11 @@ define(["require", "exports", "rxjs/AsyncSubject"], function (require, exports, 
         }
         UserContextService.prototype.getUserContext = function (widgetContext) {
             this.noOfContextRequests++;
+<<<<<<< HEAD
             var subject = new AsyncSubject_1.AsyncSubject();
+=======
+            var subject = new rxjs_1.AsyncSubject();
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             if (this.userContext) {
                 subject.next(this.userContext);
                 subject.complete();
@@ -76,6 +90,7 @@ define(["require", "exports", "rxjs/AsyncSubject"], function (require, exports, 
             var message = onInit ? loadedOnceMessage : notReloadedMessage;
             $("body").toast({ title: title, message: message, position: "bottom right" });
         };
+<<<<<<< HEAD
         return UserContextService;
     }());
     exports.UserContextService = UserContextService;
@@ -92,5 +107,15 @@ define(["require", "exports", "rxjs/AsyncSubject"], function (require, exports, 
             useFactory: getUseFactoryFunction
         }
     ];
+=======
+        UserContextService = __decorate([
+            core_1.Injectable({
+                providedIn: "root"
+            })
+        ], UserContextService);
+        return UserContextService;
+    }());
+    exports.UserContextService = UserContextService;
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
 });
 //# sourceMappingURL=sample-shared-usercontext.js.map

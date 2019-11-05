@@ -4,6 +4,7 @@
 	"name": "Minify Sample",
 	"version": "1.0",
 	"category": "application",
+	"applicationLogicalId": "lid://infor.homepages",
 	"moduleName": "widget",
 	"framework": "angular",
 	"aotVersion": "",

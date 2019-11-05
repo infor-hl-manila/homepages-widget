@@ -1,6 +1,6 @@
+import { Injectable } from "@angular/core";
 import { IWidgetContext } from "lime";
-import { AsyncSubject } from "rxjs/AsyncSubject";
-import { Observable } from "rxjs/Observable";
+import { AsyncSubject, Observable } from "rxjs";
 
 export interface IUserContext {
 	name: string;
@@ -8,6 +8,10 @@ export interface IUserContext {
 	department?: string;
 	area?: string;
 }
+
+@Injectable({
+	providedIn: "root"
+})
 
 export class UserContextService {
 	private userContext: IUserContext;
@@ -98,18 +102,3 @@ export class UserContextService {
 		$("body").toast({ title: title, message: message, position: "bottom right" });
 	}
 }
-
-// Create a single instance of the service
-const userContextService = new UserContextService();
-
-export function getUseFactoryFunction(): UserContextService {
-	return userContextService;
-}
-
-// Export a provider array that components can use to inject the service instance
-export const userContextProviders = [
-	{
-		provide: UserContextService,
-		useFactory: getUseFactoryFunction
-	}
-];

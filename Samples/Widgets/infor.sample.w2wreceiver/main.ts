@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { ILanguage, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, StringUtil } from "lime";
 import { Subscription } from "rxjs";
 
@@ -39,7 +39,7 @@ interface IMyLanguage extends ILanguage {
 	</div>
 	`
 })
-export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
+export class W2WReceiverComponent implements OnInit, IWidgetComponent {
 	@Input() widgetContext: IWidgetContext;
 	@Input() widgetInstance: IWidgetInstance;
 
@@ -51,7 +51,7 @@ export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 	private logPrefix: string;
 	private messageSubscription?: Subscription;
 
-	ngAfterViewInit(): void {
+	ngOnInit(): void {
 		const widgetContext = this.widgetContext;
 		this.language = widgetContext.getLanguage();
 		this.pageId = widgetContext.getPageId();
@@ -106,5 +106,4 @@ export class W2WReceiverComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [W2WReceiverComponent],
 	entryComponents: [W2WReceiverComponent]
 })
-export class W2WReceiverModule {
-}
+export class W2WReceiverModule { }

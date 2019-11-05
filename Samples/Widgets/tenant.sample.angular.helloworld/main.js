@@ -14,7 +14,11 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
         function HelloWorldComponent() {
             this.defaultColor = "1A1A1A";
         }
+<<<<<<< HEAD
         HelloWorldComponent.prototype.ngAfterViewInit = function () {
+=======
+        HelloWorldComponent.prototype.ngOnInit = function () {
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             var _this = this;
             // Subscribe to the event that is triggered when settings are saved to be able to update the message text
             this.widgetInstance.settingsSaved = function () {
@@ -57,7 +61,12 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
         ], HelloWorldComponent.prototype, "widgetInstance", void 0);
         HelloWorldComponent = __decorate([
             core_1.Component({
+<<<<<<< HEAD
                 template: "\n\t<div>\n\t\t<h1 [ngStyle]=\"{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}\">\n\t\t\t{{message}}\n\t\t</h1>\n\t</div>"
+=======
+                template: "\n\t<div>\n\t\t<h1 [ngStyle]=\"{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}\">\n\t\t\t{{message}}\n\t\t</h1>\n\t</div>",
+                styles: ["\n\t\t:host-context(.lm-theme-dark) div {\n\t\t\tbackground-color: rgba(255,255,255,0.7);\n\t\t}\n\t"]
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             })
         ], HelloWorldComponent);
         return HelloWorldComponent;

@@ -15,16 +15,16 @@ Soho.Locale.addCulture('es-ES', {
     dateFormat: {
       separator: '/', // Infered
       timeSeparator: ':',
-      short: 'dd/MM/yyyy', // use four digit year
-      medium: 'dd/MM/yyyy',
-      long: 'd de MMMM de y',
-      full: 'EEEE, d de MMMM de y',
-      month: 'd MMMM',
+      short: 'd/M/yyyy', // use four digit year
+      medium: 'd MMM yyyy',
+      long: 'd de MMMM de yyyy',
+      full: 'EEEE, d de MMMM de yyyy',
+      month: 'd de MMMM',
       year: 'MMMM de yyyy',
-      timestamp: 'HH:mm:ss',
-      datetime: 'd/M/yyyy HH:mm',
-      timezone: 'd/M/yyyy HH:mm zz',
-      timezoneLong: 'd/M/yyyy HH:mm zzzz'
+      timestamp: 'H:mm:ss',
+      datetime: 'd/M/yyyy H:mm',
+      timezone: 'd/M/yyyy H:mm zz',
+      timezoneLong: 'd/M/yyyy H:mm zzzz'
     }, // Infered short + short gregorian/dateTimeFormats
     // ca-gregorian/main/dates/calendars/gregorian/days/format/short or abbreviated
     days: {
@@ -38,7 +38,7 @@ Soho.Locale.addCulture('es-ES', {
       abbreviated: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sept', 'Oct', 'Nov', 'Dic']
     },
     // ca-gregorian/main/dates/calendars/gregorian/timeFormats/short
-    timeFormat: 'HH:mm',
+    timeFormat: 'H:mm',
     // ca-gregorian/main/dates/calendars/gregorian/dayPeriods/abbreviated
     dayPeriods: ['a.m.', 'p.m.']
   }],
@@ -122,12 +122,12 @@ Soho.Locale.addCulture('es-ES', {
     Contains: { id: 'Contains', value: 'Contiene', comment: 'Contains in icons for filtering' },
     CssClass: { id: 'CssClass', value: 'Clase CSS', comment: 'Label for entering a Css Class name' },
     Cut: { id: 'Cut', value: 'Cortar', comment: 'Cut tooltip' },
-    DarkTheme: { id: 'DarkTheme', value: 'Oscuro', comment: 'The Name of a Application Theme' },
     Date: { id: 'Date', value: 'Fecha', comment: 'Describes filtering by a date data type' },
     Day: { id: 'Day', value: 'Día', comment: 'Shows view with day events' },
     Days: { id: 'Days', value: 'Días ', comment: 'Show how many days until an event' },
     DaysOverdue: { id: 'DaysOverdue', value: 'Días de retraso: {0}', comment: 'For a task /date UI' },
     DaysRemaining: { id: 'DaysRemaining', value: 'Días restantes: {0}', comment: 'For a task /date UI' },
+    Default: { id: 'Default', value: 'Defecto', comment: 'Refers to a default object of a generic type' },
     Delete: { id: 'Delete', value: 'Eliminar', comment: 'Delete Toolbar Action Tooltip' },
     DeleteEvent: { id: 'DeleteEvent', value: 'Eliminar evento', comment: 'Delete an Event (from a calendar)' },
     DeviceName: { id: 'Device', value: 'Dispositivo', comment: 'Name of the Device' },
@@ -182,11 +182,13 @@ Soho.Locale.addCulture('es-ES', {
     GreaterOrEquals: { id: 'GreaterOrEquals', value: 'Mayor que o igual a', comment: 'Greater Than Or Equals in icons for filtering' },
     GreaterThan: { id: 'GreaterThan', value: 'Mayor que', comment: 'Greater Than in icons for filtering' },
     Grid: { id: 'Grid', value: 'Cuadrícula', comment: 'Grid tooltip' },
+    Group: { id: 'Group', value: 'Grupo', comment: 'Group of data in a datagrid with grouped rows' },
+    Groups: { id: 'Groups', value: 'Grupos', comment: 'Plural for group' },
+    GroupsPerPage: { id: 'GroupsPerPage', value: '{0} Grupos por página', comment: 'Dropdown allows the user to select how many visible Groups the {} placeholder shows value.' },
     Hour: { id: 'Hour', value: 'Hora', comment: 'the hour portion of a time' },
     Hours: { id: 'Hours', value: 'Horas', comment: 'the hour portion of a time (plural)' },
     HeadingThree: { id: 'HeadingThree', value: 'Encabezado tres', comment: 'Heading Three tooltip' },
     HeadingFour: { id: 'HeadingFour', value: 'Encabezado cuatro', comment: 'Heading Four tooltip' },
-    HighContrastTheme: { id: 'HighContrastTheme', value: 'Alto Contraste', comment: 'The Name of a Application Theme' },
     Highest: { id: 'Highest', value: 'Mayor', comment: 'Highest Four tooltip' },
     Home: { id: 'Home', value: 'Inicio', comment: 'Home tooltip' },
     HtmlView: { id: 'HtmlView', value: 'Vista HTML', comment: 'Html View tooltip' },
@@ -218,7 +220,6 @@ Soho.Locale.addCulture('es-ES', {
     Legend: { id: 'Legend', value: 'Leyenda', comment: 'As in a chart legend' },
     LessOrEquals: { id: 'LessOrEquals', value: 'Menor que o igual a', comment: 'Less Than Or Equals in icons for filtering' },
     LessThan: { id: 'LessThan', value: 'Menor que', comment: 'Less Than in icons for filtering' },
-    LightTheme: { id: 'LightTheme', value: 'Luz', comment: 'The Name of a Application Theme' },
     Link: { id: 'Link', value: 'Vínculo', comment: 'Link - as in hyperlink - icon tooltop' },
     Load: { id: 'Load', value: 'Cargar', comment: 'Load icon tooltip' },
     Loading: { id: 'Loading', value: 'Cargando', comment: 'Text below spinning indicator to indicate loading' },
@@ -329,6 +330,9 @@ Soho.Locale.addCulture('es-ES', {
     ShowFilterRow: { id: 'ShowFilterRow', value: 'Mostrar fila de filtro', comment: 'Toggle a row with filer info above a list' },
     ShowLess: { id: 'ShowLess', value: 'Mostrar menos', comment: 'Show less form content' },
     ShowMore: { id: 'ShowMore', value: 'Mostrar más', comment: 'Show more form content' },
+    SohoDarkTheme: { id: 'SohoDarkTheme', value: 'Soho Oscuro', comment: 'The name of an application Theme' },
+    SohoLightTheme: { id: 'SohoLightTheme', value: 'Soho Luz', comment: 'The name of an application Theme' },
+    SohoHighContrastTheme: { id: 'SohoHighContrastTheme', value: 'Soho Alto Contraste', comment: 'The name of an application Theme' },
     SickTime: { id: 'SickTime', value: 'Tiempo de enfermedad', comment: 'Time off sick from work' },
     Slate: { id: 'Slate', value: 'Pizarra', comment: 'Color in our color pallette' },
     SlideOf: { id: 'SlideOf', value: 'Diapositiva {0} de {1}', comment: 'Slide Text Showing current and total number of slides' },
@@ -378,7 +382,9 @@ Soho.Locale.addCulture('es-ES', {
     Up: { id: 'Up', value: 'Arriba', comment: 'Up tooltip' },
     UpComingEvents: { id: 'UpComingEvent', value: 'Próximos eventos', comment: 'List of upcoming calendar events' },
     UpComingTimeOff: { id: 'UpComingTimeOff', value: 'Próximo tiempo libre', comment: 'As in time off work' },
-    UpliftTheme: { id: 'UpliftTheme', value: 'Elevación', comment: 'The Name of a Application Theme' },
+    UpliftDarkTheme: { id: 'UpliftDarkTheme', value: 'Uplift Oscuro', comment: 'The name of an application Theme' },
+    UpliftHighContrastTheme: { id: 'UpliftHighContrastTheme', value: 'Uplift Alto Contraste', comment: 'The name of an application Theme' },
+    UpliftLightTheme: { id: 'UpliftLightTheme', value: 'Uplift Luz', comment: 'The name of an application Theme' },
     Upload: { id: 'Upload', value: 'Cargar', comment: 'Upload tooltip' },
     UnavailableDate: { id: 'UnavailableDate', value: 'Fecha no disponible', comment: 'Unavailable Date Text' },
     Underline: { id: 'Underline', value: 'Subrayar', comment: 'Make text Underlined' },

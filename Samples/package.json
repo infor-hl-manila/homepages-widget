@@ -18,6 +18,7 @@
 		"@types/jquery": "3.3.22",
 		"@types/systemjs": "0.20.2",
 		"core-js": "^2.5.4",
+		"marked": "^0.7.0",
 		"rxjs": "^6.4.0",
 		"rxjs-compat": "^6.4.0",
 		"systemjs": "0.20.19",

@@ -8,7 +8,7 @@ export declare class SohoInputValidateDirective implements AfterViewInit {
     dataValidate: string;
     error: EventEmitter<SohoInputValidateEvent>;
     alert: EventEmitter<SohoInputValidateEvent>;
-    confirm: EventEmitter<SohoInputValidateEvent>;
+    success: EventEmitter<SohoInputValidateEvent>;
     icon: EventEmitter<SohoInputValidateEvent>;
     info: EventEmitter<SohoInputValidateEvent>;
     valid: EventEmitter<SohoInputValidateEvent>;

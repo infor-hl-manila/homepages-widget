@@ -13,7 +13,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime"], funct
     var W2WReceiverComponent = /** @class */ (function () {
         function W2WReceiverComponent() {
         }
+<<<<<<< HEAD
         W2WReceiverComponent.prototype.ngAfterViewInit = function () {
+=======
+        W2WReceiverComponent.prototype.ngOnInit = function () {
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             var _this = this;
             var widgetContext = this.widgetContext;
             this.language = widgetContext.getLanguage();

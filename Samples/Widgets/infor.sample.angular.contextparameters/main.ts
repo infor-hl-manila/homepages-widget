@@ -57,14 +57,14 @@ export class InformationDialogComponent implements OnInit {
 	</div>
 	`,
 	styles: [`
-	.param-value {
-		color: #E84F4F;
-		margin-top: 0;
-	}
+		.param-value {
+			color: #E84F4F;
+			margin-top: 0;
+		}
 
-	.param-value.value-found  {
-		color: #80CE4D;
-	}
+		.param-value.value-found  {
+			color: #80CE4D;
+		}
 	`]
 })
 export class ContextParametersComponent implements OnInit {
@@ -128,5 +128,4 @@ export class ContextParametersComponent implements OnInit {
 	declarations: [ContextParametersComponent, InformationDialogComponent],
 	entryComponents: [ContextParametersComponent, InformationDialogComponent]
 })
-export class ContextParametersModule {
-}
+export class ContextParametersModule { }

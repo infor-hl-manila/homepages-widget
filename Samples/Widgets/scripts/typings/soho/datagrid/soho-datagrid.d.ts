@@ -62,6 +62,11 @@ interface SohoDataGridOptions {
    */
   stretchColumn?: string;
 
+  /**
+   * If true, column will recalculate its width and stretch if required on column change.
+   */
+  stretchColumnOnChange?: boolean;
+
   /** Initial dataset. */
   dataset?: Object[];
 
@@ -79,6 +84,9 @@ interface SohoDataGridOptions {
 
   /** Is the grid editable? */
   editable?: boolean;
+
+  /** Allows you to provide a function so you can set some rows to disabled based on the data and/or the row index. */
+  isRowDisabled?: SohoIsRowDisabledFunction;
 
   /** Makes a readonly "list". */
   isList?: boolean;
@@ -106,6 +114,9 @@ interface SohoDataGridOptions {
 
   /** What height to make the rows? */
   rowHeight?: SohoDataGridRowHeight;
+
+  /** Sets the height of the row to something other then the three built in rowHeights. */
+  fixedRowHeight?: number;
 
   /** Sets the select-ability for the datagrid. */
   selectable?: SohoDataGridSelectable;
@@ -236,6 +247,11 @@ interface SohoDataGridOptions {
   onEditCell?: SohoDataGridEditCellFunction;
 
   /**
+  * Vetoable Key Down Callback
+  */
+  onKeyDown?: SohoDataGridKeyDownFunction;
+
+  /**
   * A callback function that fires when expanding rows.
   * To be used when expandableRow is true.
   * The function gets eventData about the row and grid and a response
@@ -258,6 +274,12 @@ interface SohoDataGridOptions {
   selectChildren?: boolean;
 
   /**
+   * Callback before selecting a row that can be vetoed.
+   * If false is returned (async) then the nodes will not be selected.
+   */
+  onBeforeSelect?: SohoDataGridBeforeSelectFunction;
+
+  /**
    *  Makes it possible to save selections when changing pages on server side paging.
    *  You may want to also use showSelectAllCheckBox: false
    */
@@ -273,6 +295,27 @@ interface SohoDataGridOptions {
    * or if one or more child node got match then add parent node and only matching children nodes
    */
   allowChildExpandOnMatch?: boolean;
+}
+
+type SohoDataGridModifiedRows = { [index: number]: SohoDataGridModifiedRow };
+
+/**
+ * returned by getModifiedRows
+ */
+interface SohoDataGridModifiedRow {
+  data: any;
+  row: number;
+  type: 'dirty' | 'in-progress' | 'error';
+  cells: SohoDataGridDirtyCell[];
+}
+
+interface SohoDataGridDirtyCell {
+  value: any;
+  coercedVal: any;
+  escapedCoercedVal: any;
+  cellNodeText: string;
+  cell: number;
+  column: SohoDataGridColumn;
 }
 
 /**
@@ -310,6 +353,20 @@ interface SohoDataGridPostRenderCellArgs {
   api: SohoDataGridStatic;
 }
 
+/**
+ * The arguments object passed to the onKeyDown callback.
+ */
+interface SohoDataGridKeyDownArgs {
+  /** Info about the active cell. */
+  activeCell: any;
+
+  /** The row index. */
+  row: number;
+
+  /** The cell index. */
+  cell: number;
+}
+
 interface SohoDataGridEditCellFunctionArgs extends SohoDataGridPostRenderCellArgs {
   container: any;
   e: any;
@@ -339,10 +396,18 @@ type SohoDataGridExpandRowResponseFunction = (
   markup: string
 ) => void;
 
-interface SohoDataGridExpandRowFunction  {
+interface SohoDataGridExpandRowFunction {
   eventData: SohoDataGridExpandRowEventData;
   response: SohoDataGridExpandRowResponseFunction;
 }
+
+interface SohoDataGridBeforeSelectFunction {
+  eventData: SohoDataGridBeforeSelectEventData;
+}
+
+type SohoDataGridBeforeSelectEventData = (
+  node: JQuery, idx: number
+) => void;
 
 /**
  * Type definition of the post render cell callback.
@@ -355,6 +420,12 @@ type SohoDataGridEditCellFunction = (
   editor: any
 ) => void;
 
+type SohoDataGridKeyDownFunction = (
+  e: JQuery.Event,
+  args: SohoDataGridKeyDownArgs,
+  response: Function
+) => void;
+
 type SohoDataGridSourceFunction = (
   request: SohoDataGridSourceRequest,
   response: SohoDataGridResponseFunction
@@ -364,6 +435,11 @@ type SohoDataGridResponseFunction = (
   results: Object[],
   request: SohoDataGridSourceRequest
 ) => void;
+
+type SohoIsRowDisabledFunction = (
+  actualIndex: number,
+  rowData: any
+) => boolean;
 
 type SohoDataGridResultsTextFunction = (
   source: any,
@@ -574,6 +650,7 @@ type SohoDataGridColumnContentVisibleFunction = (
   columnDef: SohoDataGridColumn,
   item: any
 ) => boolean;
+
 /**
  * This is an interface mapping for the grid column defined
  * within the Soho jQuery Control.
@@ -587,7 +664,6 @@ interface SohoDataGridColumn {
 
   /** Field in the row to display. */
   field?: string;
-
 
   /** Is this column visible? */
   hidden?: boolean;
@@ -732,6 +808,9 @@ interface SohoDataGridColumn {
   /** Tooltip for the content of a column cell. */
   contentTooltip?: boolean;
 
+  /** Maximumn width of the column (in pixels). */
+  maxWidth?: number;
+
   /** Minimum width of the column (in pixels). */
   minWidth?: number;
 
@@ -757,7 +836,16 @@ interface SohoDataGridColumn {
   hideable?: boolean;
 
   /** call back to handle custom tooltips for the column header */
-  tooltip?: (cell: number, value: any) => string;
+  tooltip?: (row: number, cell: number, value: any, col: SohoDataGridColumn, rowData: Object, api: SohoDataGridStatic) => string;
+
+  /** Placeholder text to display in the field **/
+  placeholder?: string | Function;
+
+  /** call back to handle custom tooltips for the column header */
+  beforeCommitCellEdit?: (cell: number, row: number, rowData: Object, editor: SohoDataGridCellEditor, api: SohoDataGridStatic) => boolean;
+
+  /* Array of objects with a value and label to be used as options in the filter row dropdown. */
+  filterRowEditorOptions?: SohoGridCellOption[];
 }
 
 interface SohoDataGridColumnNumberFormat {
@@ -987,6 +1075,11 @@ interface SohoDataGridStatic {
   clearAllErrors(): void;
 
   /**
+   * Commit the cell that's currently in edit mode.
+   */
+  commitCellEdit(): void;
+
+  /**
    * Sets the status of a given row in the grid.
    *
    * @param idx - the row number (idx) of the row
@@ -994,6 +1087,21 @@ interface SohoDataGridStatic {
    * @param tooltip - string value for tooltip message e.g. 'Error'
    */
   rowStatus(idx: number, status: string, tooltip: string): void;
+
+  /**
+   * Return an array containing all of the currently modified rows, the type of modification
+   * and the cells that are dirty and the data.
+   * @returns An array showing the dirty row info.
+   */
+  getModifiedRows(): SohoDataGridModifiedRows;
+
+  /**
+   * Set a cell to dirty and add the dirty icon visually.
+   * @param row The row index
+   * @param cell The cell index
+   * @param toggle True to set it and false to remove it
+   */
+  setDirtyIndicator(row: number, cell: number, toggle: boolean): void;
 
   /**
    * Returns the row dom jQuery node.
@@ -1162,6 +1270,9 @@ interface SohoDataGridGroupable {
 
   // Type of aggregation.
   aggregator: SohoDataGridAggregator;
+
+  // Formatter for group row
+  groupRowFormatter?: SohoDataGridColumnFormatterFunction;
 }
 
 type SohoDataGridAggregator = 'sum' | 'max' | 'list' | string;
@@ -1235,31 +1346,37 @@ interface SohoDataGridColumnGroup {
   colspan: number;
   id: string;
   name: string;
-  align?: 'left' | 'right' | 'align';
+  align?: 'left' | 'right' | 'center';
 }
 
- interface SohoDataGridEditModeEvent {
-    /** Row index contaning editor. */
+interface SohoDataGridEditModeEvent {
+  /** Row index contaning editor. */
   row: number;
 
   /** Column number. */
-  cell: number,
+  cell: number;
 
   /** Row data */
-  item: any,
+  item: any;
 
   /** HTMLElement of the owning cell */
-  target: HTMLElement,
+  target: HTMLElement;
 
   /** The cell value. */
-  value: any,
+  value: any;
 
   /** The original cell value. */
-  oldValue: any,
+  oldValue: any;
 
   /** The column definition. */
-  column: SohoDataGridColumn,
+  column: SohoDataGridColumn;
 
   /** The cell editor object. */
-  editor: SohoDataGridCellEditor
+  editor: SohoDataGridCellEditor;
+}
+
+interface SohoDataGridKeyDownEvent {
+  e: JQuery.Event;
+  args: SohoDataGridKeyDownArgs;
+  response: Function;
 }

@@ -1,5 +1,5 @@
 ﻿import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 
 @Component({
@@ -8,20 +8,23 @@ import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 		<h1 [ngStyle]="{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}">
 			{{message}}
 		</h1>
-	</div>`
+	</div>`,
+	styles: [`
+		:host-context(.lm-theme-dark) div {
+			background-color: rgba(255,255,255,0.7);
+		}
+	`]
 })
-export class HelloWorldComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+export class HelloWorldComponent implements OnInit, IWidgetComponent {
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
 	message: string;
 	color: string;
 	fontSize: string;
 
 	private defaultColor = "1A1A1A";
 
-	ngAfterViewInit() {
+	ngOnInit() {
 		// Subscribe to the event that is triggered when settings are saved to be able to update the message text
 		this.widgetInstance.settingsSaved = () => {
 			this.updateContent();
@@ -64,5 +67,4 @@ export class HelloWorldComponent implements AfterViewInit, IWidgetComponent {
 	declarations: [HelloWorldComponent],
 	entryComponents: [HelloWorldComponent]
 })
-export class HelloWorldModule {
-}
+export class HelloWorldModule { }

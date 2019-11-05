@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -163,6 +164,16 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             angularConfig: {
                 moduleType: CardGroupActionModule,
                 componentType: CardGroupActionComponent
+=======
+define(["require", "exports", "./main"], function (require, exports, main_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.widgetFactory = function () {
+        return {
+            angularConfig: {
+                moduleType: main_1.CardGroupActionModule,
+                componentType: main_1.CardGroupActionComponent
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
             }
         };
     };
