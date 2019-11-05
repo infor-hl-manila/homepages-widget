@@ -6,6 +6,7 @@
 	"name": "Widget #1 using shared module",
 	"version": "1.0",
 	"category": "application",
+	"applicationLogicalId": "lid://infor.homepages",
 	"sharedModules": [
 		{
 			"name": "sample-shared-usercontext"

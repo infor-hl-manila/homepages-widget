@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime", "./search-dialog"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1, search_dialog_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var FindWidgetsComponent = /** @class */ (function () {
@@ -45,7 +45,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         FindWidgetsComponent.prototype.openSearchDialog = function () {
             var _this = this;
             lime_1.Log.debug(this.logPrefix + " Opening search dialog");
-            var dialog = this.dialogService.modal(SearchDialogComponent, this.placeholder);
+            var dialog = this.dialogService.modal(search_dialog_1.SearchDialogComponent, this.placeholder);
             // Set a localized title
             dialog.title(this.language.get("searchWidgetTitle"));
             // Handle the results when the dialog is closed with OK/Cancel
@@ -123,28 +123,13 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         return FindWidgetsComponent;
     }());
     exports.FindWidgetsComponent = FindWidgetsComponent;
-    var SearchDialogComponent = /** @class */ (function () {
-        function SearchDialogComponent() {
-        }
-        __decorate([
-            core_1.Input(),
-            __metadata("design:type", String)
-        ], SearchDialogComponent.prototype, "searchLabel", void 0);
-        SearchDialogComponent = __decorate([
-            core_1.Component({
-                template: "\n\t<div class=\"field\">\n\t\t<label for=\"queryInput\" class=\"required\">{{searchLabel}}</label>\n\t\t<input\n\t\t\tid=\"queryInput\"\n\t\t\t[(ngModel)]=\"query\"\n\t\t\tdata-validate=\"required\"\n\t\t\tplaceholder=\"Example: infor.sample.angular.helloworld\"/>\n\t</div>\n\t",
-            })
-        ], SearchDialogComponent);
-        return SearchDialogComponent;
-    }());
-    exports.SearchDialogComponent = SearchDialogComponent;
     var FindWidgetsModule = /** @class */ (function () {
         function FindWidgetsModule() {
         }
         FindWidgetsModule = __decorate([
             core_1.NgModule({
-                declarations: [FindWidgetsComponent, SearchDialogComponent],
-                entryComponents: [FindWidgetsComponent, SearchDialogComponent],
+                declarations: [FindWidgetsComponent, search_dialog_1.SearchDialogComponent],
+                entryComponents: [FindWidgetsComponent, search_dialog_1.SearchDialogComponent],
                 imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoInputValidateModule]
             })
         ], FindWidgetsModule);

@@ -7,6 +7,4 @@ export declare class SohoContextualActionPanelService {
     constructor(componentFactoryResolver: ComponentFactoryResolver, injector: Injector);
     contextualactionpanel<T>(component: PanelComponentType<T>, parent: ViewContainerRef, options?: any): SohoContextualActionPanelRef<T>;
 }
-export interface PanelComponentType<T> {
-    new (...args: any[]): T;
-}
+export declare type PanelComponentType<T> = new (...args: any[]) => T;

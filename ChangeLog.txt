@@ -1,3 +1,9 @@
+Version 2.3.0 (12.0.40)
+- Added getSize to IWidgetContext to be able to get the current size of the widget (column & row span) in runtime. See sample "infor.sample.angular.widgetsize".
+- Homepages will soon support different UI themes (Light, Dark, High contrast), and widgets should be tested & verified in all three of them. See Developers guide for more information. 
+- Updated to IDS Enterprise 4.21.3.
+- Updated to IDS Enterprise NG 6.0.0.
+
 Version 2.2.0 (12.0.39)
 - Updated to IDS Enterprise 4.20.1.
 - Updated to IDS Enterprise NG 5.5.2.

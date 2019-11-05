@@ -46,7 +46,7 @@ export declare class SohoCalendarComponent implements AfterViewChecked, AfterVie
     showEventModal(event: SohoCalendarEvent[], done: Function): void;
     modalVisible(): boolean;
     clearEvents(): void;
-    updated(): void;
+    updated(settings?: SohoCalendarOptions): void;
     markForRefresh(): void;
     ngOnDestroy(): void;
 }

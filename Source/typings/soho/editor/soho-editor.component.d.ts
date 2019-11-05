@@ -1,5 +1,4 @@
 /// <reference path="soho-editor.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
 import { BaseControlValueAccessor } from '../utils/base-control-value-accessor';
 export declare class SohoEditorComponent extends BaseControlValueAccessor<any> implements AfterViewInit, AfterViewChecked, OnDestroy {
@@ -27,7 +26,7 @@ export declare class SohoEditorComponent extends BaseControlValueAccessor<any> i
     updated: EventEmitter<SohoEditorEvent>;
     private jQueryElement;
     private editor;
-    constructor(element: ElementRef, ngZone: NgZone, ref: ChangeDetectorRef);
+    constructor(element: ElementRef<HTMLElement>, ngZone: NgZone, ref: ChangeDetectorRef);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     onChange(event: SohoEditorEvent): void;

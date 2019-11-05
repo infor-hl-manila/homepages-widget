@@ -10,24 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime", "./dialog"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1, dialog_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var CustomDialogComponent = /** @class */ (function () {
-        function CustomDialogComponent() {
-            this.dialogResult = "Sample dialog result";
-        }
-        CustomDialogComponent.prototype.onOk = function () {
-            this.dialog.close({ value: this.dialogResult });
-        };
-        CustomDialogComponent = __decorate([
-            core_1.Component({
-                template: "\n\t<div>\n\t\t<form role=\"form\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"one-half column\">\n\t\t\t\t\t<div class=\"field\">\n\t\t\t\t\t\t<label for=\"infor-sample-dialogs-input-parameter\">Dialog parameter</label>\n\t\t\t\t\t\t<input id=\"infor-sample-dialogs-input-parameter\"\n\t\t\t\t\t\t\t[(ngModel)]=\"dialogParameter\"\n\t\t\t\t\t\t\tmaxlength=\"64\"\n\t\t\t\t\t\t\tname=\"dialogparam\" />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"one-half column\">\n\t\t\t\t\t<div class=\"field\">\n\t\t\t\t\t\t<label for=\"infor-sample-dialogs-input-result\">Dialog result</label>\n\t\t\t\t\t\t<input id=\"infor-sample-dialogs-input-result\"\n\t\t\t\t\t\t\t[(ngModel)]=\"dialogResult\"\n\t\t\t\t\t\t\tmaxlength=\"64\"\n\t\t\t\t\t\t\tname=\"dialogresult\" />\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class=\"modal-buttonset\">\n\t\t\t\t<button class=\"btn-modal\" (click)=\"dialog?.close()\">Cancel</button>\n\t\t\t\t<button class=\"btn-modal-primary\" (click)=\"onOk()\">OK</button>\n\t\t\t</div>\n\t\t</form>\n\t</div>"
-            })
-        ], CustomDialogComponent);
-        return CustomDialogComponent;
-    }());
-    exports.CustomDialogComponent = CustomDialogComponent;
     var DialogsComponent = /** @class */ (function () {
         function DialogsComponent(widgetContext, widgetInstance, dialogService, sohoModalDialogService) {
             this.widgetContext = widgetContext;
@@ -75,7 +60,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             var _this = this;
             // To show a custom dialog we now use the SohoModalDialogService instead of DialogService
             var dialog = this.sohoModalDialogService
-                .modal(CustomDialogComponent, this.dialogWidgetView)
+                .modal(dialog_1.CustomDialogComponent, this.dialogWidgetView)
                 .title("A custom dialog title")
                 .afterClose(function (result) {
                 var message = result ? result.value : "Dialog cancelled";
@@ -111,8 +96,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         DialogsModule = __decorate([
             core_1.NgModule({
                 imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoButtonModule],
-                declarations: [DialogsComponent, CustomDialogComponent],
-                entryComponents: [DialogsComponent, CustomDialogComponent]
+                declarations: [DialogsComponent, dialog_1.CustomDialogComponent],
+                entryComponents: [DialogsComponent, dialog_1.CustomDialogComponent]
             })
         ], DialogsModule);
         return DialogsModule;

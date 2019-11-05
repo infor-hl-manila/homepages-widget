@@ -1,7 +1,7 @@
-import { IWidgetContext, IWidgetInstance } from "lime";
+import { IWidgetInstance } from "lime";
 import { getActions, QuicknoteComponent, QuicknoteModule } from "./main";
 
-export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
+export const widgetFactory = (): IWidgetInstance => {
 	return {
 		angularConfig: {
 			moduleType: QuicknoteModule,

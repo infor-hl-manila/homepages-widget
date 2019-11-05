@@ -2,6 +2,8 @@
 /* tslint:disable */
 import { ILanguage } from "lime";
 export interface IManifestLanguage extends ILanguage<IManifestLanguage> {
+	/** Edit User */
+	editUser: string;
 	/** Email */
 	email: string;
 	/** First Name */
@@ -18,9 +20,11 @@ export interface IManifestLanguage extends ILanguage<IManifestLanguage> {
 	submitToastTitle: string;
 	/** Title */
 	title: string;
+	/** User Details */
+	userDetails: string;
 	/** Workspace sample widget */
 	widgetDescription: string;
-	/** Workspace */
+	/** Workspace Sample */
 	widgetTitle: string;
 }
 export interface IManifestSettings {

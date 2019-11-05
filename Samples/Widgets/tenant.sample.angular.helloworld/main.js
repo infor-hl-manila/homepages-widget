@@ -57,7 +57,8 @@ define(["require", "exports", "@angular/common", "@angular/core"], function (req
         ], HelloWorldComponent.prototype, "widgetInstance", void 0);
         HelloWorldComponent = __decorate([
             core_1.Component({
-                template: "\n\t<div>\n\t\t<h1 [ngStyle]=\"{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}\">\n\t\t\t{{message}}\n\t\t</h1>\n\t</div>"
+                template: "\n\t<div>\n\t\t<h1 [ngStyle]=\"{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}\">\n\t\t\t{{message}}\n\t\t</h1>\n\t</div>",
+                styles: ["\n\t\t:host-context(.lm-theme-dark) div {\n\t\t\tbackground-color: rgba(255,255,255,0.7);\n\t\t}\n\t"]
             })
         ], HelloWorldComponent);
         return HelloWorldComponent;

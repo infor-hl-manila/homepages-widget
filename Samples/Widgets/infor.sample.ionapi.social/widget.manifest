@@ -6,6 +6,7 @@
 	"name": "ION API Social Sample",
 	"version": "1.0",
 	"category": "application",
+	"applicationLogicalId": "lid://infor.social",
 	"moduleName": "widget",
 	"enableIonApi": true,
 	"localization": {

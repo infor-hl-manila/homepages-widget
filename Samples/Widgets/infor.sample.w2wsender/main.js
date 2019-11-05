@@ -96,7 +96,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
     var W2WSenderComponent = /** @class */ (function () {
         function W2WSenderComponent() {
         }
-        W2WSenderComponent.prototype.ngAfterViewInit = function () {
+        W2WSenderComponent.prototype.ngOnInit = function () {
             var _this = this;
             var widgetContext = this.widgetContext;
             this.pageId = widgetContext.getPageId();

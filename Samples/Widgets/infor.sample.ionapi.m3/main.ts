@@ -1,10 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { HttpErrorResponse } from "@angular/common/http";
-import { Component, Inject, Injectable, NgModule } from "@angular/core";
+import { Component, NgModule } from "@angular/core";
 import { SohoListViewModule } from "@infor/sohoxi-angular";
-import { IIonApiRequestOptions, IWidgetContext, Log, widgetContextInjectionToken, WidgetMessageType, WidgetState } from "lime";
-import { Observable, of } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { IListItem } from "./interfaces";
+import { M3Service } from "./service";
 
 // Prerequisites
 // =============
@@ -45,88 +44,6 @@ import { catchError, map, tap } from "rxjs/operators";
 // Just remember to start the proxy and configure the configuration.json file.
 // The OAuth token will time out and when that happens you must acquire a new token and update the configuration.json
 // file.
-
-interface IMIResponse {
-	Program: string;
-	Transaction: string;
-	MIRecord: IMIRecord[];
-}
-
-interface IMIRecord {
-	RowIndex: number;
-	NameValue: INameValue[];
-}
-
-interface INameValue {
-	Name: string;
-	Value: string;
-}
-
-interface IListItem {
-	title: string;
-	description: string;
-}
-
-@Injectable()
-export class M3Service {
-	private logPrefix = "[IonApiM3Sample] ";
-
-	constructor(@Inject(widgetContextInjectionToken) private readonly widgetContext: IWidgetContext) { }
-
-	getCustomerData(): Observable<IListItem[]> {
-		this.setBusy(true);
-		const request = this.createRequest();
-
-		return this.widgetContext.executeIonApiAsync<IMIResponse>(request).pipe(
-			map(response => this.getParsedRecords(response.data.MIRecord)),
-			tap(() => this.setBusy(false)),
-			catchError((error: HttpErrorResponse) => {
-				this.showErrorMessage(error);
-				return of([]);
-			})
-		);
-	}
-
-	private createRequest(): IIonApiRequestOptions {
-		return {
-			method: "GET",
-			url: "/M3/m3api-rest/execute/CRS610MI/LstByName",
-			cache: false,
-			headers: {
-				Accept: "application/json"
-			}
-		};
-	}
-
-	private setBusy(isBusy: boolean): void {
-		this.widgetContext.setState(isBusy ? WidgetState.busy : WidgetState.running);
-	}
-
-	private getParsedRecords(records: IMIRecord[]) {
-		return records.map((record): IListItem => ({
-			title: this.getValue(record.NameValue, "CUNO"),
-			description: this.getValue(record.NameValue, "CUNM"),
-		}));
-	}
-
-	private getValue(nameValues: INameValue[], name: string): string {
-		const nameValueWithMatchingName = nameValues.find((nameValue) => nameValue.Name === name);
-		if (nameValueWithMatchingName) {
-			return nameValueWithMatchingName.Value.trim();
-		} else {
-			return null;
-		}
-	}
-
-	private showErrorMessage(error: HttpErrorResponse): void {
-		Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
-		this.widgetContext.showWidgetMessage({
-			type: WidgetMessageType.Error,
-			message: "Unable to load customer data"
-		});
-		this.setBusy(false);
-	}
-}
 
 @Component({
 	providers: [M3Service],

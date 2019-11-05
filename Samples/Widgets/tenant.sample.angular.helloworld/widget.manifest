@@ -7,6 +7,7 @@
 	"name": "Hello World Tenant",
 	"version": "1.0",
 	"category": "application",
+	"applicationLogicalId": "lid://infor.homepages",
 	"moduleName": "widget",
 	"settingsUI": "metadata",
 	"settings": [

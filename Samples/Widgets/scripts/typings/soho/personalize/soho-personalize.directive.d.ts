@@ -1,5 +1,4 @@
 /// <reference path="soho-personalize.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewInit, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 export declare class SohoPersonalizeDirective implements AfterViewInit, OnDestroy {
     private ngZone;

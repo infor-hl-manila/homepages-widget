@@ -49,6 +49,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     isList: boolean;
     menuId: any;
     rowHeight: SohoDataGridRowHeight;
+    fixedRowHeight: number;
     selectable: any;
     clickToSelect: boolean;
     toolbar: SohoToolbarOptions;
@@ -71,6 +72,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     data: any[];
     columns: SohoDataGridColumn[];
     stretchColumn: string;
+    stretchColumnOnChange: boolean;
     showPageSizeSelector: boolean;
     columnGroup: SohoDataGridColumnGroup[];
     emptyMessage: SohoEmptyMessageOptions | null | undefined;
@@ -81,6 +83,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     rowAdd: EventEmitter<SohoDataGridAddRowEvent>;
     filtered: EventEmitter<SohoDataGridFilteredEvent>;
     expandrow: EventEmitter<SohoDataGridToggleRowEvent>;
+    keydown: EventEmitter<SohoDataGridKeyDownEvent>;
     exiteditmode: EventEmitter<SohoDataGridEditModeEvent>;
     beforeentereditmode: EventEmitter<SohoDataGridEditModeEvent>;
     entereditmode: EventEmitter<SohoDataGridEditModeEvent>;
@@ -171,6 +174,7 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
     restoreUserSettings(settings: any): void;
     private onDataRequest;
     private onExpandRow;
+    private onKeyDown;
     onBeforeSelect: SohoDataGridBeforeSelectFunction;
     private onExitEditMode;
     private onBeforeEnterEditMode;
@@ -213,4 +217,9 @@ export declare class SohoDataGridComponent implements OnInit, AfterViewInit, OnD
 export interface SohoDataGridToggleRowEvent extends SohoDataGridRowExpandEvent {
     grid: SohoDataGridComponent;
     args?: any;
+}
+export interface SohoDataGridKeyDownEvent {
+    e: JQuery.Event;
+    args?: SohoDataGridKeyDownArgs;
+    response?: Function;
 }

@@ -7,50 +7,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs", "rxjs/operators"], function (require, exports, common_1, core_1, lime_1, rxjs_1, operators_1) {
+define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs", "rxjs/operators", "./service"], function (require, exports, common_1, core_1, lime_1, rxjs_1, operators_1, service_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var DataService = /** @class */ (function () {
-        function DataService() {
-            this.serviceUrl = "Mingle/SocialService.Svc";
-        }
-        DataService.prototype.loadUser = function (widgetContext) {
-            var _this = this;
-            if (this.user) {
-                return rxjs_1.of(this.user);
-            }
-            var request = this.createRequest("User/Detail");
-            return widgetContext.executeIonApiAsync(request).pipe(operators_1.map(function (response) { return response.data.UserDetailList[0]; }), operators_1.tap(function (user) { return _this.user = user; }));
-        };
-        DataService.prototype.loadPhoto = function (userGuid, widgetContext) {
-            var relativeUrl = "User/" + userGuid + "/ProfilePhoto?thumbnailType=3";
-            var request = this.createRequest(relativeUrl, { Accept: "image/png, image/jpeg" });
-            request.responseType = "blob";
-            return widgetContext.executeIonApiAsync(request).pipe(operators_1.map(function (response) { return response.data; }));
-        };
-        DataService.prototype.createRequest = function (relativeUrl, headers) {
-            if (!headers) {
-                headers = { Accept: "application/json" };
-            }
-            // Create the relative URL to the ION API
-            var url = this.serviceUrl + "/" + relativeUrl;
-            // Create HTTP GET request object
-            var request = {
-                method: "GET",
-                url: url,
-                cache: false,
-                headers: headers || null
-            };
-            return request;
-        };
-        DataService = __decorate([
-            core_1.Injectable({
-                providedIn: "root"
-            })
-        ], DataService);
-        return DataService;
-    }());
-    exports.DataService = DataService;
+    // Prerequisites
+    // =============
+    // The following steps are required before testing this sample widget.
+    // - Aquire the server and port number for the ION API server to test with.
+    // - Configure and start a localhost proxy with the ION API server and port number.
+    // - Example: node proxy.js 8083 "yourservername" 443
+    // - Example: \Samples\StartIonApiProxy.cmd
+    //
+    // - Set the ionApiUrl property in the configuration.json file to the URL of the localhost proxy.
+    // - The configuration.json file is located in the root of the Widgets sample project by default.
+    // - The URL should include the tenant to test with.
+    // - Example: "ionApiUrl": "http://localhost:8083/tenantid"
+    //
+    // - Acquire an OAuth token string.
+    // - Log on to Ming.le.
+    // - Example: https://yourservername/tenantid/
+    // - Open a new tab in the same browser and navigate to the Grid SAML Session Provider OAuth resource
+    // - The Grid must be version 2.0 or later with a SAML Session Provider configured for the same IFS as Ming.le.
+    // - Example: https://yourservernameandport/grid/rest/security/sessions/oauth
+    // - Copy the the OAuth token string from the browser window.
+    //
+    // - If there are issues you can verify if your user has access to the grid by navigating to the Grid user page.
+    // - Note that you must be logged on to Ming.le before doing this.
+    // - Example: https://yourservernameandport/grid/user
+    //
+    // - Set the ionApiToken property in the configuration.json file to the OAuth token string.
+    // - Example: "ionApiToken": "V9k5niTDR1kq6RuYlEq3N3HxGq8u"
+    //
+    // - Set the devConfiguration attribute on the lm-page-container to the name of the configuration.json file
+    // - Example:
+    //   <lm-page-container devWidget="infor.sample.ionapi.m3" devConfiguration="configuration.json"></lm-page-container>
+    //
+    //
+    // Developing and debugging
+    // ========================
+    // A widget using the ION API can be developed and debugged like any other widget.
+    // Just remember to start the proxy and configure the configuration.json file.
+    // The OAuth token will time out and when that happens you must acquire a new token and update
+    // the configuration.json file.
     var IonApiSocialComponent = /** @class */ (function () {
         function IonApiSocialComponent(dataService) {
             this.dataService = dataService;
@@ -101,7 +99,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "lime", "rxjs"
             core_1.Component({
                 template: "\n\t<div class=\"lm-padding-md\" *ngIf=\"user$ | async as user\">\n\t\t<h3>Name</h3>\n\t\t<p>{{user.FirstName + \" \" + user.LastName}}</p>\n\n\t\t<h3>Email</h3>\n\t\t<p>{{user.Email}}</p>\n\n\t\t<p *ngIf=\"photoUrl$ | async as photoUrl\">\n\t\t\t<img [src]=\"photoUrl\" />\n\t\t</p>\n\t</div>\n\t"
             }),
-            __metadata("design:paramtypes", [DataService])
+            __metadata("design:paramtypes", [service_1.DataService])
         ], IonApiSocialComponent);
         return IonApiSocialComponent;
     }());

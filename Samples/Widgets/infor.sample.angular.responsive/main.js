@@ -15,6 +15,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         }
         ResponsiveWidgetComponent.prototype.ngOnInit = function () {
             var _this = this;
+            this.size$ = this.widgetContext.getSize();
             this.items = ["Customer A", "Customer 2", "Customer 12345", "Lead customer", "Customer prospect"];
             this.widgetInstance.actions[0].execute = function () { return _this.showInfo(); };
         };
@@ -51,8 +52,8 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         ], ResponsiveWidgetComponent.prototype, "widgetInstance", void 0);
         ResponsiveWidgetComponent = __decorate([
             core_1.Component({
-                template: "\n\t<div class=\"lm-height-full\" [class.item-selected]=\"selectedCustomer\">\n\t\t<button class=\"lm-margin-md-l\"\n\t\t\tsoho-button=\"icon\" icon=\"left-arrow\"\n\t\t\t(click)=\"selectedCustomer = null\"\n\t\t\t*ngIf=\"selectedCustomer\">\n\t\t\t\tGo back\n\t\t</button>\n\t\t<soho-listview class=\"widget-listview lm-scroll-no-x\">\n\t\t\t<li soho-listview-item *ngFor=\"let item of items\" (click)=\"updateChart(item)\">\n\t\t\t\t<p soho-listview-header>{{item}}</p>\n\t\t\t</li>\n\t\t</soho-listview>\n\t\t<div class=\"widget-chartview chart-container\" *ngIf=\"selectedCustomer\">\n\t\t\t<div soho-chart\n\t\t\t\t[dataSet]=\"chartData\"\n\t\t\t\tformatterString=\"$,\"\n\t\t\t\ttype=\"column\">\n\t\t\t</div>\n\t\t</div>\n\t</div>",
-                styles: ["\n\t\t/* This host-context selector applies when the widget is set to have single width, or when it is forced to\n\t\tsingle width due to small screen resolution */\n\n\t\t/* Listview is hidden when an item is selected, only the chart will be displayed */\n\n\t\t:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))\n\t\t.item-selected .widget-listview{display:none;}\n\n\t\t/* Chart occupies full width when visible in single width mode */\n\n\t\t:host-context(.to-single, .widget:not(.quad-width):not(.triple-width):not(.double-width))\n\t\t.widget-chartview{width:100%;}\n\n\t\t/* This host-context selector applies when the widget is set to have double, triple or quad width,\n\t\t\tand not forced to single width due to small screen resolution */\n\n\t\t/* Listview shrinks to 50% and shown side by side with chart */\n\n\t\t:host-context(.double-width, .triple-width, .quad-width, .widget:not(.to-single))\n\t\t.item-selected .widget-listview{width:50%;}\n\n\t\t/* Base rules for the listview and chart views */\n\t\t.widget-listview{width:100%;float:left;height:100%;}\n\n\t\t.widget-chartview{width:50%;height:calc(100% - 36px);float:left;}\n\n\t\t.item-selected .widget-listview{border-right:1px solid #d8d8d8;}\n\t"]
+                template: "\n\t<div class=\"lm-height-full\"\n\t\t  [class.item-selected]=\"selectedCustomer\"\n\t\t  [class.single-width]=\"(size$ | async)?.cols === 1\">\n\t\t<button class=\"lm-margin-md-l\"\n\t\t\t\t  soho-button=\"icon\"\n\t\t\t\t  icon=\"left-arrow\"\n\t\t\t\t  (click)=\"selectedCustomer = null\"\n\t\t\t\t  *ngIf=\"selectedCustomer\">\n\t\t\tGo back\n\t\t</button>\n\t\t<soho-listview class=\"lm-scroll-no-x\" [class.lm-brd]=\"selectedCustomer\">\n\t\t\t<li soho-listview-item\n\t\t\t\t *ngFor=\"let item of items\"\n\t\t\t\t (click)=\"updateChart(item)\">\n\t\t\t\t<p soho-listview-header>{{item}}</p>\n\t\t\t</li>\n\t\t</soho-listview>\n\t\t<div class=\"chart-wrapper\"\n\t\t\t  *ngIf=\"selectedCustomer\">\n\t\t\t<div soho-column\n\t\t\t\t  [dataset]=\"chartData\"\n\t\t\t\t  formatterString=\"$,\"\n\t\t\t\t  type=\"column\">\n\t\t\t</div>\n\t\t</div>\n\t</div>",
+                styles: ["\n\t\tsoho-listview {\n\t\t\twidth: 100%;\n\t\t\theight: 100%;\n\t\t\tfloat: left;\n\t\t}\n\n\t\t.item-selected soho-listview {\n\t\t\twidth: 50%;\n\t\t\tborder-right: 1px solid;\n\t\t}\n\n\t\t.item-selected.single-width soho-listview {\n\t\t\tdisplay: none;\n\t\t}\n\n\t\t.chart-wrapper {\n\t\t\twidth: 50%;\n\t\t\theight: calc(100% - 36px);\n\t\t\tfloat: left;\n\t\t}\n\n\t\t.single-width .chart-wrapper {\n\t\t\twidth: 100%;\n\t\t}\n\t"]
             })
         ], ResponsiveWidgetComponent);
         return ResponsiveWidgetComponent;
@@ -67,7 +68,7 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                     common_1.CommonModule,
                     sohoxi_angular_1.SohoButtonModule,
                     sohoxi_angular_1.SohoListViewModule,
-                    sohoxi_angular_1.SohoChartModule
+                    sohoxi_angular_1.SohoColumnModule
                 ],
                 declarations: [ResponsiveWidgetComponent],
                 entryComponents: [ResponsiveWidgetComponent]

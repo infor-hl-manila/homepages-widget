@@ -8,7 +8,12 @@ import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 		<h1 [ngStyle]="{'margin-top': '20px', 'text-align': 'center', 'color': color, 'font-size': fontSize}">
 			{{message}}
 		</h1>
-	</div>`
+	</div>`,
+	styles: [`
+		:host-context(.lm-theme-dark) div {
+			background-color: rgba(255,255,255,0.7);
+		}
+	`]
 })
 export class HelloWorldComponent implements OnInit, IWidgetComponent {
 	@Input() widgetContext: IWidgetContext;

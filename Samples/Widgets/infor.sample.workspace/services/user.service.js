@@ -30,16 +30,30 @@ define(["require", "exports", "@angular/core", "rxjs", "rxjs/operators"], functi
             configurable: true
         });
         UserService.prototype.update = function (user) {
-            var users = this.usersSubject.value;
-            var index = users.findIndex(function (_a) {
-                var id = _a.id;
-                return id === user.id;
+            var _this = this;
+            return new rxjs_1.Observable(function (observer) {
+                var users = _this.usersSubject.value;
+                var index = users.findIndex(function (_a) {
+                    var id = _a.id;
+                    return id === user.id;
+                });
+                if (index === -1) {
+                    observer.error(Error("Could not find user with id '" + user.id + "'"));
+                    return;
+                }
+                if (!user.firstName) {
+                    observer.error(Error("User must have a first name"));
+                    return;
+                }
+                if (!user.lastName) {
+                    observer.error(Error("User must have a last name"));
+                    return;
+                }
+                users[index] = __assign({}, users[index], user);
+                _this.usersSubject.next(users);
+                observer.next();
+                observer.complete();
             });
-            if (index === -1) {
-                throw new Error("Could not find user with id '" + user.id + "'");
-            }
-            users[index] = __assign({}, users[index], user);
-            this.usersSubject.next(users);
         };
         UserService = __decorate([
             core_1.Injectable({

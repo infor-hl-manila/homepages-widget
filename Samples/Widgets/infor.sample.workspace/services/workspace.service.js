@@ -11,15 +11,17 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var WorkspaceService = /** @class */ (function () {
-        function WorkspaceService(capService) {
+        function WorkspaceService(capService, messageService) {
             this.capService = capService;
+            this.messageService = messageService;
         }
         WorkspaceService.prototype.open = function (options) {
+            var _this = this;
             var cap = this.capService.contextualactionpanel(options.component, options.viewRef);
             cap.options({
                 centerTitle: true,
             });
-            cap.buttons([
+            var buttons = [
                 {
                     click: function () { return cap.close(); },
                     text: "Cancel",
@@ -34,15 +36,17 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                         cap.close();
                     },
                 },
-                {
+            ];
+            if (!options.props.readOnly) {
+                buttons.push({
                     text: "Submit",
                     align: "right",
                     click: function () {
-                        cap.componentPanel.submitClicked();
-                        cap.close();
+                        cap.componentPanel.submitClicked().subscribe(function () { return cap.close(); }, function (error) { return _this.showError(error); });
                     },
-                },
-            ]);
+                });
+            }
+            cap.buttons(buttons);
             cap.apply(function (component) {
                 if (options.props) {
                     for (var propertyKey in options.props) {
@@ -56,11 +60,21 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
             cap.trigger("immediate");
             cap.open();
         };
+        WorkspaceService.prototype.showError = function (error) {
+            var messageRef = this.messageService.error({
+                title: "Error when submitting changes",
+                message: error.message,
+                buttons: [
+                    { text: "Close", click: function () { return messageRef.close(); } }
+                ],
+            });
+            messageRef.open();
+        };
         WorkspaceService = __decorate([
             core_1.Injectable({
                 providedIn: "root",
             }),
-            __metadata("design:paramtypes", [sohoxi_angular_1.SohoContextualActionPanelService])
+            __metadata("design:paramtypes", [sohoxi_angular_1.SohoContextualActionPanelService, sohoxi_angular_1.SohoMessageService])
         ], WorkspaceService);
         return WorkspaceService;
     }());

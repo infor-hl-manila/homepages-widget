@@ -11,7 +11,7 @@ interface IMyLanguage extends ILanguage {
 	<div class="container">
 		<div class="twelve columns lm-margin-md-t">
 			<div class="row">
-				<p>{{language?.widgetText}}</p>
+				<p>{{language.widgetText}}</p>
 			</div>
 		</div>
 	</div>`
