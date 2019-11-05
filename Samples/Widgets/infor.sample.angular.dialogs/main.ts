@@ -1,74 +1,31 @@
 import { CommonModule } from "@angular/common";
 import { Component, Inject, NgModule, ViewChild, ViewContainerRef } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SohoButtonModule, SohoModalDialogRef, SohoModalDialogService } from "@infor/sohoxi-angular";
+import { SohoButtonModule, SohoModalDialogService } from "@infor/sohoxi-angular";
 import { DialogButtonType, DialogService, IDialogResult, IWidgetContext, IWidgetInstance, StandardDialogButtons, widgetContextInjectionToken, widgetInstanceInjectionToken } from "lime";
-
-@Component({
-	template: `
-	<div>
-		<form role="form">
-			<div class="row">
-				<div class="one-half column">
-					<div class="field">
-						<label for="infor-sample-dialogs-input-parameter">Dialog parameter</label>
-						<input id="infor-sample-dialogs-input-parameter"
-							[(ngModel)]="dialogParameter"
-							maxlength="64"
-							name="dialogparam" />
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="one-half column">
-					<div class="field">
-						<label for="infor-sample-dialogs-input-result">Dialog result</label>
-						<input id="infor-sample-dialogs-input-result"
-							[(ngModel)]="dialogResult"
-							maxlength="64"
-							name="dialogresult" />
-					</div>
-				</div>
-			</div>
-			<div class="modal-buttonset">
-				<button class="btn-modal" (click)="dialog?.close()">Cancel</button>
-				<button class="btn-modal-primary" (click)="onOk()">OK</button>
-			</div>
-		</form>
-	</div>`
-})
-export class CustomDialogComponent {
-	dialog: SohoModalDialogRef<CustomDialogComponent>;
-	dialogParameter: string;
-
-	dialogResult = "Sample dialog result";
-
-	onOk(): void {
-		this.dialog.close({ value: this.dialogResult });
-	}
-}
+import { CustomDialogComponent } from "./dialog";
 
 @Component({
 	template: `
 	<div #dialogWidgetView class="container">
 		<div class="twelve columns lm-margin-md-t">
 			<div class="row">
-			    <div class="field lm-margin-md-b">
-			        <label for="{{instanceId}}-message-btn">Open message dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-message-btn" (click)="showMessage()">Message</button>
-			    </div>
-			    <div class="field lm-margin-md-b">
-                    <label for="{{instanceId}}-confirm-btn">Open confirm dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-confirm-btn" (click)="showConfirm()">Confirm</button>
-			    </div>
-			    <div class="field lm-margin-md-b">
-			        <label for="{{instanceId}}-custom-btn">Open custom dialog</label>
-			        <button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showCustom()">Custom</button>
-			    </div>
-                <div class="field lm-margin-md-b">
-                    <label for="{{instanceId}}-toast-btn">Show toast message</label>
-                    <button soho-button="primary" id="{{instanceId}}-toast-btn" (click)="showToast()">Toast</button>
-                </div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-message-btn">Open message dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-message-btn" (click)="showMessage()">Message</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-confirm-btn">Open confirm dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-confirm-btn" (click)="showConfirm()">Confirm</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-custom-btn">Open custom dialog</label>
+					<button soho-button="primary" id="{{instanceId}}-custom-btn" (click)="showCustom()">Custom</button>
+				</div>
+				<div class="field lm-margin-md-b">
+					<label for="{{instanceId}}-toast-btn">Show toast message</label>
+					<button soho-button="primary" id="{{instanceId}}-toast-btn" (click)="showToast()">Toast</button>
+				</div>
 			</div>
 		</div>
 	</div>`
@@ -148,5 +105,4 @@ export class DialogsComponent {
 	declarations: [DialogsComponent, CustomDialogComponent],
 	entryComponents: [DialogsComponent, CustomDialogComponent]
 })
-export class DialogsModule {
-}
+export class DialogsModule { }

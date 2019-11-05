@@ -1,5 +1,4 @@
 /// <reference path="soho-busyindicator.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewChecked, AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 export declare class SohoBusyIndicatorDirective implements AfterViewInit, AfterViewChecked, OnDestroy {
     private elementRef;

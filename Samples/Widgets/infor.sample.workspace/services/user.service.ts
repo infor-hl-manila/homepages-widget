@@ -12,14 +12,27 @@ export class UserService {
 		return this.usersSubject.pipe(map(deepCopy));
 	}
 
-	update(user: PartialWithId<IUser>) {
-		const users = this.usersSubject.value;
-		const index = users.findIndex(({ id }) => id === user.id);
-		if (index === -1) {
-			throw new Error(`Could not find user with id '${user.id}'`);
-		}
-		users[index] = { ...users[index], ...user };
-		this.usersSubject.next(users);
+	update(user: PartialWithId<IUser>): Observable<unknown> {
+		return new Observable(observer => {
+			const users = this.usersSubject.value;
+			const index = users.findIndex(({ id }) => id === user.id);
+			if (index === -1) {
+				observer.error(Error(`Could not find user with id '${user.id}'`));
+				return;
+			}
+			if (!user.firstName) {
+				observer.error(Error("User must have a first name"));
+				return;
+			}
+			if (!user.lastName) {
+				observer.error(Error("User must have a last name"));
+				return;
+			}
+			users[index] = { ...users[index], ...user };
+			this.usersSubject.next(users);
+			observer.next();
+			observer.complete();
+		});
 	}
 }
 

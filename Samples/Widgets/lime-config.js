@@ -19,8 +19,9 @@
 		"@infor/sohoxi-angular/": "scripts/soho/",
 		"lime": "scripts/lime/core/lime.js",
 		"lime/core": "scripts/lime/core/index",
-		"lime.common": "scripts/lime/common/common.module-aot",
+		"lime.lazy": "scripts/lime/lazy/lazy.module-aot",
 		"main": "scripts/lime/core/main-aot.js",
+		"marked": "node_modules/marked/marked.min.js",
 		"rxjs/operators/": "node_modules/rxjs/operators/",
 		"rxjs/operators": "node_modules/rxjs/operators/index.js",
 		"rxjs/": "node_modules/rxjs/",
@@ -40,75 +41,6 @@
 			defaultExtension: "js"
 		},
 		"node_modules": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.banner": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.cardlist": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.contenttranslation": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.contextparameters": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.contextviewer": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.dialogs": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.findwidgets": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.helloworld": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.lifecycle": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.quicknote": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.responsive": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.settings.ui.metadata": {
-			defaultExtension: "js"
-		},
-		"infor.sample.angular.submenu": {
-			defaultExtension: "js"
-		},
-		"infor.sample.ionapi.m3": {
-			defaultExtension: "js"
-		},
-		"infor.sample.ionapi.social": {
-			defaultExtension: "js"
-		},
-		"infor.sample.minify": {
-			defaultExtension: "js"
-		},
-		"infor.sample.mobile": {
-			defaultExtension: "js"
-		},
-		"infor.sample.sharedmodule": {
-			defaultExtension: "js"
-		},
-		"infor.sample.sharedmodule2": {
-			defaultExtension: "js"
-		},
-		"infor.sample.w2wsender": {
-			defaultExtension: "js"
-		},
-		"infor.sample.w2wreceiver": {
-			defaultExtension: "js"
-		},
-		"infor.sample.ids.test": {
-			defaultExtension: "js"
-		},
-		"infor.sample.workspace": {
 			defaultExtension: "js"
 		}
 	}

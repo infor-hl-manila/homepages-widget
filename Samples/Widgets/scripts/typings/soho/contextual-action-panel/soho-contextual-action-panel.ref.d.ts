@@ -17,6 +17,7 @@ export declare class SohoContextualActionPanelRef<T> {
     buttons(buttons: SohoContextualActionPanelButton[]): SohoContextualActionPanelRef<T>;
     id(id: string): SohoContextualActionPanelRef<T>;
     initializeContent(initializeContent: boolean): SohoContextualActionPanelRef<T>;
+    centerTitle(centerTitle: boolean): SohoContextualActionPanelRef<T>;
     trigger(trigger: SohoContextualActionPanelTriggerType): SohoContextualActionPanelRef<T>;
     content(content: JQuery | string): SohoContextualActionPanelRef<T>;
     apply(fn: (component: T) => void): SohoContextualActionPanelRef<T>;

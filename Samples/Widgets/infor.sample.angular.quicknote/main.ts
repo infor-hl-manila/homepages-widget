@@ -1,84 +1,112 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { SohoButtonModule, SohoListViewModule } from "@infor/sohoxi-angular";
-import { ArrayUtil, ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
+import { SohoButtonModule, SohoInputModule, SohoListViewModule, SohoToolbarFlexModule } from "@infor/sohoxi-angular";
+import { ILanguage, IWidgetAction, IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
+
+export interface IWidgetLanguge extends ILanguage {
+	add: string;
+	clear: string;
+}
 
 @Component({
 	template: `
-	<div class="row lm-padding-sm-b lm-padding-sm-t">
-		<div class="eight columns">
-			<input type="text" [(ngModel)]="text">
-		</div>
-		<div class="four columns">
-			<button soho-button="tertiary" [disabled]="!text" (click)="addNote(text)">{{lang?.add}}</button>
-		</div>
+	<div class="card-group-action" *ngIf="notesEnabled">
+		<soho-toolbar-flex>
+			<soho-toolbar-flex-section [isButtonSet]="true">
+				<input class="input-sm" type="text" [(ngModel)]="note">
+				<button soho-button="tertiary" [disabled]="!note" (click)="addNote(note)">{{lang.add}}</button>
+			</soho-toolbar-flex-section>
+		</soho-toolbar-flex>
 	</div>
 	<soho-listview>
-		<li soho-listview-item *ngFor="let item of items">
-			<p soho-listview-header>{{item}}</p>
+		<li soho-listview-item *ngFor="let note of notes">
+			<p soho-listview-header>{{note}}</p>
 		</li>
-	</soho-listview>`
-})
-export class QuicknoteComponent implements AfterViewInit, IWidgetComponent {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
-	text: string;
-	items: string[] = [];
-	lang: ILanguage;
-
-	private settingsKeyItems = "items";
-
-	ngAfterViewInit() {
-		this.lang = this.widgetContext.getLanguage();
-		const settings = this.widgetContext.getSettings();
-
-		// Set custom title
-		this.widgetContext.setTitle("QuickNote");
-		const savedItems = settings.get<string[]>(this.settingsKeyItems);
-		if (savedItems) {
-			this.items = savedItems;
-		} else {
-			settings.set(this.settingsKeyItems, this.items);
+	</soho-listview>`,
+	styles: [`
+		:host {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
 		}
 
-		// Add custom widget action to widget instance
-		// Perhaps there is a better way but extend doesn't exist in Angular 2 and icon must be set earlier
+		soho-listview {
+			flex: 1 1 auto;
+			overflow-y: auto;
+		}
+
+		soho-toolbar-flex-section {
+			display: flex;
+		}
+
+		input {
+			flex: 1 0 auto;
+		}
+	`]
+})
+export class QuicknoteComponent implements OnInit, IWidgetComponent {
+	@Input() widgetContext: IWidgetContext;
+	@Input() widgetInstance: IWidgetInstance;
+	note: string;
+	notes: string[];
+	notesEnabled: boolean;
+	lang: IWidgetLanguge;
+
+	ngOnInit() {
+		this.lang = this.widgetContext.getLanguage<IWidgetLanguge>();
+		this.init();
+		this.updateAction();
+		this.setCustomTitle();
+	}
+
+	addNote(note: string) {
+		this.notes = [note, ...this.notes];
+		this.widgetInstance.actions[0].isEnabled = this.getIsActionEnabled();
+		if (this.notesEnabled) {
+			this.widgetContext.save();
+		}
+		this.note = "";
+	}
+
+	clear() {
+		this.notes = [];
+		this.widgetInstance.actions[0].isEnabled = false;
+		this.widgetContext.save();
+	}
+
+	private init() {
+		const settings = this.widgetContext.getSettings();
+		this.notes = settings.get("notes");
+		this.notesEnabled = settings.isSettingEnabled("notes");
+	}
+
+	private updateAction() {
 		const customAction = this.widgetInstance.actions[0];
-		customAction.execute = () => { this.clear(); };
-		customAction.isEnabled = this.items.length ? true : false;
+		customAction.execute = () => this.clear();
+		customAction.isEnabled = this.getIsActionEnabled();
 		customAction.text = this.lang.get("clear");
 	}
 
-	addNote(value: string): void {
-		if (value) {
-			if (ArrayUtil.contains(this.items, value)) {
-				ArrayUtil.remove(this.items, value);
-			}
-			this.items.unshift(value);
-			this.widgetInstance.actions[0].isEnabled = true;
-			this.widgetContext.save();
+	private setCustomTitle() {
+		const context = this.widgetContext;
+		if (context.isTitleEditEnabled()) {
+			context.setTitle("QuickNote");
 		}
-		this.text = null;
 	}
 
-	// Clear is used from Widget header
-	clear(): void {
-		this.items.length = 0;
-		this.widgetInstance.actions[0].isEnabled = false;
-		this.widgetContext.save();
+	private getIsActionEnabled(): boolean {
+		return this.notesEnabled && !!this.notes.length;
 	}
 }
 
 @NgModule({
-	imports: [CommonModule, FormsModule, SohoListViewModule, SohoButtonModule],
+	imports: [CommonModule, FormsModule, SohoListViewModule, SohoButtonModule, SohoToolbarFlexModule, SohoInputModule],
 	declarations: [QuicknoteComponent],
 	entryComponents: [QuicknoteComponent]
 })
-export class QuicknoteModule {
-}
+export class QuicknoteModule { }
 
 export const getActions = (): IWidgetAction[] => {
 	return [{ isPrimary: true, standardIconName: "#icon-delete" }];

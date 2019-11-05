@@ -25,6 +25,7 @@ export declare class SohoButtonComponent implements AfterViewInit, OnDestroy, On
     toggleOffIcon: string;
     replaceText: boolean;
     hideMenuArrow: boolean;
+    extraIconClass: string;
     isToggle: boolean;
     isTogglePressed: boolean;
     icon: string;

@@ -5,6 +5,7 @@
 	"version": "1.0",
 	"category": "application",
 	"framework": "angular",
+	"applicationLogicalId": "lid://infor.homepages",
 	"aotVersion": "",
 	"settingsUI": "metadata",
 	"settings": [

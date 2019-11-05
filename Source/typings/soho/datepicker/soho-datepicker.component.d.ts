@@ -26,7 +26,8 @@ export declare class SohoDatePickerComponent extends BaseControlValueAccessor<an
     showLegend: boolean;
     showMonthYearPicker: boolean;
     hideDays: boolean;
-    advanceMonths: number;
+    yearsAhead: number;
+    yearsBack: number;
     legend: Array<SohoDatePickerLegend>;
     calendarName: SohoDatePickerCalendarName;
     useUTC: boolean;

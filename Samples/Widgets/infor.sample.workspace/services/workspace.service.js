@@ -11,15 +11,38 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var WorkspaceService = /** @class */ (function () {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         function WorkspaceService(capService) {
             this.capService = capService;
         }
         WorkspaceService.prototype.open = function (options) {
+<<<<<<< HEAD
+=======
+=======
+        function WorkspaceService(capService, messageService) {
+            this.capService = capService;
+            this.messageService = messageService;
+        }
+        WorkspaceService.prototype.open = function (options) {
+            var _this = this;
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             var cap = this.capService.contextualactionpanel(options.component, options.viewRef);
             cap.options({
                 centerTitle: true,
             });
+<<<<<<< HEAD
             cap.buttons([
+=======
+<<<<<<< HEAD
+            cap.buttons([
+=======
+            var buttons = [
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
                 {
                     click: function () { return cap.close(); },
                     text: "Cancel",
@@ -34,6 +57,10 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                         cap.close();
                     },
                 },
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
                 {
                     text: "Submit",
                     align: "right",
@@ -43,6 +70,22 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
                     },
                 },
             ]);
+<<<<<<< HEAD
+=======
+=======
+            ];
+            if (!options.props.readOnly) {
+                buttons.push({
+                    text: "Submit",
+                    align: "right",
+                    click: function () {
+                        cap.componentPanel.submitClicked().subscribe(function () { return cap.close(); }, function (error) { return _this.showError(error); });
+                    },
+                });
+            }
+            cap.buttons(buttons);
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             cap.apply(function (component) {
                 if (options.props) {
                     for (var propertyKey in options.props) {
@@ -56,11 +99,35 @@ define(["require", "exports", "@angular/core", "@infor/sohoxi-angular"], functio
             cap.trigger("immediate");
             cap.open();
         };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+        WorkspaceService.prototype.showError = function (error) {
+            var messageRef = this.messageService.error({
+                title: "Error when submitting changes",
+                message: error.message,
+                buttons: [
+                    { text: "Close", click: function () { return messageRef.close(); } }
+                ],
+            });
+            messageRef.open();
+        };
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         WorkspaceService = __decorate([
             core_1.Injectable({
                 providedIn: "root",
             }),
+<<<<<<< HEAD
             __metadata("design:paramtypes", [sohoxi_angular_1.SohoContextualActionPanelService])
+=======
+<<<<<<< HEAD
+            __metadata("design:paramtypes", [sohoxi_angular_1.SohoContextualActionPanelService])
+=======
+            __metadata("design:paramtypes", [sohoxi_angular_1.SohoContextualActionPanelService, sohoxi_angular_1.SohoMessageService])
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         ], WorkspaceService);
         return WorkspaceService;
     }());

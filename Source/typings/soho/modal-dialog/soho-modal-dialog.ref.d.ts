@@ -1,6 +1,7 @@
 /// <reference path="soho-modal-dialog.d.ts" />
-import { ComponentRef } from '@angular/core';
+import { ComponentRef, NgZone } from '@angular/core';
 export declare class SohoModalDialogRef<T> {
+    private ngZone;
     private componentRef?;
     private eventGuard;
     private jQueryElement;
@@ -25,7 +26,7 @@ export declare class SohoModalDialogRef<T> {
     autoFocus(autoFocus: boolean): SohoModalDialogRef<T>;
     apply(fn: (component: T) => void): SohoModalDialogRef<T>;
     dialogResult: any;
-    constructor();
+    constructor(ngZone: NgZone);
     open(): SohoModalDialogRef<T>;
     close(dialogResult?: any): SohoModalDialogRef<T>;
     beforeOpen(eventFn: () => boolean): SohoModalDialogRef<T>;

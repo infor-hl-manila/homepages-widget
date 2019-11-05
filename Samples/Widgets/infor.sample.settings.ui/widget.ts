@@ -1,6 +1,6 @@
-import lm = require("lime");
+import { ILanguage, IWidgetContext, IWidgetInstance, IWidgetSettingsCloseArg, IWidgetSettingsContext, IWidgetSettingsInstance } from "lime";
 
-interface IMyLanguage extends lm.ILanguage {
+interface IMyLanguage extends ILanguage {
 	color?: string;
 }
 
@@ -10,14 +10,13 @@ interface IMyLanguage extends lm.ILanguage {
  * The widget shows a large SVG icon with a color that can be changed in settings.
  * The widget uses a custom settings UI with a color picker for changing the icon color.
  */
-class SettingsSample implements lm.IWidgetInstance {
+class SettingsSample implements IWidgetInstance {
 	private defaultColor = "#13a7fe";
-	private color: string;
 	private svg: JQuery;
 	private picker: JQuery;
 	private language: IMyLanguage;
 
-	constructor(private widgetContext: lm.IWidgetContext) {
+	constructor(private widgetContext: IWidgetContext) {
 		// Get the language object from the widget context.
 		this.language = widgetContext.getLanguage();
 
@@ -31,13 +30,13 @@ class SettingsSample implements lm.IWidgetInstance {
 	/**
 	 * Custom settings UI factory function.
 	 */
-	widgetSettingsFactory(settingsContext: lm.IWidgetSettingsContext): lm.IWidgetSettingsInstance {
+	widgetSettingsFactory(settingsContext: IWidgetSettingsContext): IWidgetSettingsInstance {
 		const element = settingsContext.getElement();
 		this.picker = this.addSettings(element);
 		element.initialize(null);
 
-		const instance: lm.IWidgetSettingsInstance = {
-			closing: (arg: lm.IWidgetSettingsCloseArg): void => {
+		const instance: IWidgetSettingsInstance = {
+			closing: (arg: IWidgetSettingsCloseArg): void => {
 				if (arg.isSave) {
 					this.onSettingsSaved();
 				}
@@ -103,7 +102,7 @@ class SettingsSample implements lm.IWidgetInstance {
 }
 
 // Widget factory function
-export const widgetFactory = (context: lm.IWidgetContext): lm.IWidgetInstance => {
+export const widgetFactory = (context: IWidgetContext): IWidgetInstance => {
 	// Create and return the widget instance
 	return new SettingsSample(context);
 };

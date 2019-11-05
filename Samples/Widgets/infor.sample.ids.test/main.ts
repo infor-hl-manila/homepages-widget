@@ -231,5 +231,4 @@ export class IDSTestComponent implements IWidgetComponent {
 		AutocompleteComponent],
 	entryComponents: [IDSTestComponent, IDSModalComponent]
 })
-export class IDSTestModule {
-}
+export class IDSTestModule { }

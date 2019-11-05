@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { AfterViewInit, Component, Input, NgModule } from "@angular/core";
+import { Component, Input, NgModule, OnInit } from "@angular/core";
 import { SohoListViewModule } from "@infor/sohoxi-angular";
 import { IWidgetComponent, IWidgetContext, IWidgetInstance, Log, StringUtil } from "lime";
 
@@ -105,7 +105,7 @@ const persons: IPerson[] = [
 		</li>
 	</soho-listview>`
 })
-export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
+export class W2WSenderComponent implements IWidgetComponent, OnInit {
 	@Input() widgetContext: IWidgetContext;
 	@Input() widgetInstance: IWidgetInstance;
 
@@ -115,7 +115,7 @@ export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
 	private messageType: string;
 	private logPrefix: string;
 
-	ngAfterViewInit(): void {
+	ngOnInit(): void {
 		const widgetContext = this.widgetContext;
 		this.pageId = widgetContext.getPageId();
 		this.logPrefix = `[${widgetContext.getId()}] `;
@@ -155,5 +155,4 @@ export class W2WSenderComponent implements IWidgetComponent, AfterViewInit {
 	declarations: [W2WSenderComponent],
 	entryComponents: [W2WSenderComponent]
 })
-export class W2WSenderModule {
-}
+export class W2WSenderModule { }

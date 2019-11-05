@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { HttpErrorResponse } from "@angular/common/http";
-import { Component, Input, NgModule, OnInit } from "@angular/core";
-import { SohoListViewModule, SohoMessageService } from "@infor/sohoxi-angular";
-import { IIonApiRequestOptions, IWidgetComponent, IWidgetContext, IWidgetInstance, Log, WidgetState } from "lime";
+import { Component, NgModule } from "@angular/core";
+import { SohoListViewModule } from "@infor/sohoxi-angular";
+import { Observable } from "rxjs";
+import { IListItem } from "./interfaces";
+import { M3Service } from "./service";
 
 // Prerequisites
 // =============
@@ -44,110 +45,22 @@ import { IIonApiRequestOptions, IWidgetComponent, IWidgetContext, IWidgetInstanc
 // The OAuth token will time out and when that happens you must acquire a new token and update the configuration.json
 // file.
 
-interface IMIResponse {
-	Program: string;
-	Transaction: string;
-	MIRecord: IMIRecord[];
-}
-
-interface IMIRecord {
-	RowIndex: number;
-	NameValue: INameValue[];
-}
-
-interface INameValue {
-	Name: string;
-	Value: string;
-}
-
-interface IListItem {
-	title: string;
-	description: string;
-}
-
 @Component({
+	providers: [M3Service],
 	template: `
 	<soho-listview>
-		<li soho-listview-item *ngFor="let item of customerItems">
+		<li soho-listview-item *ngFor="let item of customerItems$ | async">
 			<p soho-listview-header>{{item.title}}</p>
 			<p soho-listview-subheader>{{item.description}}</p>
 		</li>
 	</soho-listview>
 	`,
 })
-export class IonApiM3Component implements IWidgetComponent, OnInit {
-	@Input()
-	widgetContext: IWidgetContext;
-	@Input()
-	widgetInstance: IWidgetInstance;
+export class IonApiM3Component {
+	customerItems$: Observable<IListItem[]>;
 
-	customerItems: IListItem[];
-
-	private logPrefix = "[IonApiM3Component] ";
-
-	constructor(private messageService: SohoMessageService) { }
-
-	ngOnInit() {
-		this.setBusy(true);
-		const request = this.createRequest();
-		this.widgetContext.executeIonApiAsync<IMIResponse>(request).subscribe(
-			(response) => this.parseCustomers(response.data),
-			(error: HttpErrorResponse) => this.showErrorMessage(error)
-		);
-	}
-
-	private setBusy(isBusy: boolean): void {
-		// Show the indeterminate progress indicator when the widget is busy by changing the widget state.
-		this.widgetContext.setState(isBusy ? WidgetState.busy : WidgetState.running);
-	}
-
-	private createRequest(): IIonApiRequestOptions {
-		return {
-			method: "GET",
-			url: "/M3/m3api-rest/execute/CRS610MI/LstByName",
-			cache: false,
-			headers: {
-				Accept: "application/json"
-			}
-		};
-	}
-
-	private parseCustomers(miResponse: IMIResponse): void {
-		Log.debug(`${this.logPrefix} Got MI Response with ${miResponse.MIRecord.length} records`);
-		const records = miResponse.MIRecord;
-		this.customerItems = this.getItems(records, "CUNO", "CUNM");
-		this.setBusy(false);
-	}
-
-	private showErrorMessage(error: HttpErrorResponse): void {
-		Log.error(this.logPrefix + "ION API Error: " + JSON.stringify(error));
-		this.setBusy(false);
-		this.messageService.error({
-			title: "Error " + error.status,
-			message: "Failed to call ION API",
-			buttons: [
-				{
-					text: "Close",
-					isDefault: true,
-				}
-			],
-		}).open();
-	}
-
-	private getItems(records: IMIRecord[], titleField: string, descriptionField: string): IListItem[] {
-		return records.map((record): IListItem => ({
-			title: this.getValue(record.NameValue, titleField),
-			description: this.getValue(record.NameValue, descriptionField),
-		}));
-	}
-
-	private getValue(nameValues: INameValue[], name: string): string {
-		const nameValueWithMatchingName = nameValues.find((nameValue) => nameValue.Name === name);
-		if (nameValueWithMatchingName) {
-			return nameValueWithMatchingName.Value.trim();
-		} else {
-			return null;
-		}
+	constructor(private m3Service: M3Service) {
+		this.customerItems$ = this.m3Service.getCustomerData();
 	}
 }
 
@@ -159,5 +72,4 @@ export class IonApiM3Component implements IWidgetComponent, OnInit {
 	declarations: [IonApiM3Component],
 	entryComponents: [IonApiM3Component],
 })
-export class IonApiM3Module {
-}
+export class IonApiM3Module { }

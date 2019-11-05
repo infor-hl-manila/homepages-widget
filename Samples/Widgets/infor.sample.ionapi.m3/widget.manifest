@@ -6,6 +6,7 @@
 	"name": "Infor ION API M3 Sample",
 	"version": "1.0",
 	"category": "application",
+	"applicationLogicalId": "lid://infor.m3",
 	"moduleName": "widget",
 	"localization": {
 		"en-US": {

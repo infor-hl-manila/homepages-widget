@@ -266,6 +266,7 @@ export interface IWidgetContext {
     getSubMode(): SubMode;
     send(name: string, data: unknown): void;
     receive(name: string): Observable<unknown>;
+    getSize(): Observable<IWidgetSize>;
 }
 export interface IWidgetContext2 extends IWidgetContext {
 }
@@ -447,6 +448,10 @@ export interface IOpenLinkOptions {
 }
 export interface IOpenLinkResult {
 }
+export interface IWidgetSize {
+    cols: number;
+    rows: number;
+}
 export class ArrayUtil {
     static contains(array: any[], value: any): boolean;
     static indexOf(array: any[], value: any): number;
@@ -622,6 +627,7 @@ export class DialogService {
     private language;
     private messageFunction;
     constructor(messageService: SohoMessageService);
+    private initLanguage;
     showMessage(options: IMessageDialogOptions): Observable<IDialogResult>;
     copyToClipboard(options: ICopyToClipboardOptions): void;
     showToast(options: IToastOptions): void;
@@ -636,6 +642,7 @@ export interface ITranslationItem {
     name: string;
     maxLength: number;
     isTextArea?: boolean;
+    isMarkdown?: boolean;
     defaultValue?: string;
     labelId?: string;
     valueId?: string;

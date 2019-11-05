@@ -30,6 +30,10 @@ define(["require", "exports", "@angular/core", "rxjs", "rxjs/operators"], functi
             configurable: true
         });
         UserService.prototype.update = function (user) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             var users = this.usersSubject.value;
             var index = users.findIndex(function (_a) {
                 var id = _a.id;
@@ -40,6 +44,35 @@ define(["require", "exports", "@angular/core", "rxjs", "rxjs/operators"], functi
             }
             users[index] = __assign({}, users[index], user);
             this.usersSubject.next(users);
+<<<<<<< HEAD
+=======
+=======
+            var _this = this;
+            return new rxjs_1.Observable(function (observer) {
+                var users = _this.usersSubject.value;
+                var index = users.findIndex(function (_a) {
+                    var id = _a.id;
+                    return id === user.id;
+                });
+                if (index === -1) {
+                    observer.error(Error("Could not find user with id '" + user.id + "'"));
+                    return;
+                }
+                if (!user.firstName) {
+                    observer.error(Error("User must have a first name"));
+                    return;
+                }
+                if (!user.lastName) {
+                    observer.error(Error("User must have a last name"));
+                    return;
+                }
+                users[index] = __assign({}, users[index], user);
+                _this.usersSubject.next(users);
+                observer.next();
+                observer.complete();
+            });
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         };
         UserService = __decorate([
             core_1.Injectable({

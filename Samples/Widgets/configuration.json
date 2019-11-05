@@ -1,6 +1,16 @@
 ﻿{
+<<<<<<< HEAD
 	"ionApiUrl": "http://localhost:8083/CRMCEQA30_AX1",
 	"ionApiToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IkluZm9yQWNjZXNzVG9rZW5TaWduaW5nQ2VydGlmaWNhdGUtMTU2NjgwNDQzOSJ9.eyJzY29wZSI6IiIsImp0aSI6IlJxaEpaUGpKNGxEZGdrTUY1a2lZMUtsR2xPVXJ0Vmc3RHB0biIsIklkZW50aXR5MiI6ImIwOTNiNmM0LWQzNDUtNDU4NS1hYTVhLTlkMjRiMGQ0MTZkMSIsIlRlbmFudCI6IkNSTUNFUUEzMF9BWDEiLCJFbmZvcmNlU2NvcGVzRm9yQ2xpZW50IjoiZmFsc2UiLCJleHAiOjE1Njk0MTQ0MjN9.Das_UWIGvSySOH8OXuJs2-UhbhBkBGrTfF81slA0L9TEOp0kdOFEeZc9harW6sldPfAhL9KQfThfylMPYE6b9P9puYM4_BQXdKQcvduMI_PkbM5nwT5HCb9g_TeqQeX5Io19vuh3StS6b7oet-B30X6zV2lXVdM0DujlKmHOfsD1YtT2BXfIymcRD4YKJr53oXSK1eyXwymBDqzHBIOLAG2_3b48MbzMguVpUVs9H_VT8gpts0UfMY4qXV_qAou7_U-M86Vqcvry_d1HqeRR6C2QL8INpDDc3A9zhIvtG0qvAnWZkUp-iwJO0QYyNn2lo9xWRoawj96WfbYBhZH4MA",
+=======
+<<<<<<< HEAD
+	"ionApiUrl": "http://localhost:8083/CRMCEQA10_DEM",
+	"ionApiToken": "1CrpmD0cWRD7HGb0mrrX2EOclbjO",
+=======
+	"ionApiUrl": "http://localhost:8083/tenantname",
+	"ionApiToken": "bh6fKuLUu0MnE7Mzir5jNwoQTTmZ",
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
 	"ionApiCustomerContext": "CustomerApi",
 	"applications": {
 		"lid://infor.bi": [

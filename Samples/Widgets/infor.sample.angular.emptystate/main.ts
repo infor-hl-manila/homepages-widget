@@ -10,10 +10,11 @@ import { IWidgetComponent, IWidgetContext, IWidgetInstance } from "lime";
 		</h1>
 	</div>`,
 	styles: [`
-	h1 {
-		padding: 40px 40px;
-		text-align: center;
-	}`]
+		h1 {
+			padding: 40px 40px;
+			text-align: center;
+		}
+	`]
 })
 
 /**
@@ -59,5 +60,4 @@ export class EmptyStateComponent implements IWidgetComponent {
 	declarations: [EmptyStateComponent],
 	entryComponents: [EmptyStateComponent]
 })
-export class EmptyStateModule {
-}
+export class EmptyStateModule { }

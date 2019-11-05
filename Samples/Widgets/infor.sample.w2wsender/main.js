@@ -96,7 +96,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
     var W2WSenderComponent = /** @class */ (function () {
         function W2WSenderComponent() {
         }
+<<<<<<< HEAD
         W2WSenderComponent.prototype.ngAfterViewInit = function () {
+=======
+<<<<<<< HEAD
+        W2WSenderComponent.prototype.ngAfterViewInit = function () {
+=======
+        W2WSenderComponent.prototype.ngOnInit = function () {
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             var _this = this;
             var widgetContext = this.widgetContext;
             this.pageId = widgetContext.getPageId();

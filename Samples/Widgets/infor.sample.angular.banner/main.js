@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,6 +13,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,6 +27,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
 define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, sohoxi_angular_1, lime_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -45,6 +58,17 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                 }
             ];
             this.logPrefix = "[infor.sample.angular.banner] ";
+<<<<<<< HEAD
+=======
+=======
+define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi-angular", "./chart.component"], function (require, exports, common_1, core_1, sohoxi_angular_1, chart_component_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var WidgetComponent = /** @class */ (function () {
+        function WidgetComponent(toastService) {
+            this.toastService = toastService;
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         }
         WidgetComponent.prototype.ngOnInit = function () {
             var _this = this;
@@ -54,8 +78,21 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                     _this.showBackgroundColorChangedToast(newColor);
                 };
             }
+<<<<<<< HEAD
             this.updateCharts();
             this.widgetInstance.settingsSaved = function () { return _this.updateCharts(); };
+=======
+<<<<<<< HEAD
+            this.updateCharts();
+            this.widgetInstance.settingsSaved = function () { return _this.updateCharts(); };
+=======
+            this.widgetInstance.settingsSaved = function () { return _this.setChartType(); };
+            this.setChartType();
+        };
+        WidgetComponent.prototype.setChartType = function () {
+            this.chartType = this.widgetContext.getSettings().get("chartType");
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         };
         WidgetComponent.prototype.showInitialBannerColorToast = function () {
             var bannerColor = this.widgetContext.getBannerBackgroundColor();
@@ -74,6 +111,10 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                 position: sohoxi_angular_1.SohoToastService.BOTTOM_RIGHT
             });
         };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         WidgetComponent.prototype.updateCharts = function () {
             lime_1.Log.debug(this.logPrefix + "updating charts");
             var commonOptions = {
@@ -87,6 +128,11 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
         WidgetComponent.prototype.getChartTypeFromSetting = function (setting) {
             return this.widgetContext.getSettings().get(setting, "bar");
         };
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         __decorate([
             core_1.Input(),
             __metadata("design:type", Object)
@@ -95,6 +141,10 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             core_1.Input(),
             __metadata("design:type", Object)
         ], WidgetComponent.prototype, "widgetInstance", void 0);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
         __decorate([
             core_1.ViewChild("primaryChart", { static: true }),
             __metadata("design:type", sohoxi_angular_1.SohoChartComponent)
@@ -109,6 +159,14 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
                 styles: [
                     "\n\t.wrapper{height:100%;width:100%;display:flex;}\n\n\t/* Hides the second chart on smaller screens, or when there are multiple widgets in the banner */\n\t:host-context(.to-single, .to-double, .double-width, .widget:not(.quad-width):not(.triple-width))\n.secondary.chart-container{display:none;}\n\n\t.primary.chart-container{flex:2;}\n\t.secondary.chart-container{flex:1;}\n\n\t.chart-pie{height:100%;}\n\t"
                 ]
+<<<<<<< HEAD
+=======
+=======
+        WidgetComponent = __decorate([
+            core_1.Component({
+                template: "<chart [chartType]=\"chartType\"></chart>"
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             }),
             __metadata("design:paramtypes", [sohoxi_angular_1.SohoToastService])
         ], WidgetComponent);
@@ -122,9 +180,25 @@ define(["require", "exports", "@angular/common", "@angular/core", "@infor/sohoxi
             core_1.NgModule({
                 imports: [
                     common_1.CommonModule,
+<<<<<<< HEAD
                     sohoxi_angular_1.SohoChartModule
                 ],
                 declarations: [
+=======
+<<<<<<< HEAD
+                    sohoxi_angular_1.SohoChartModule
+                ],
+                declarations: [
+=======
+                    sohoxi_angular_1.SohoLineModule,
+                    sohoxi_angular_1.SohoBarModule,
+                    sohoxi_angular_1.SohoColumnModule,
+                    sohoxi_angular_1.SohoPieModule
+                ],
+                declarations: [
+                    chart_component_1.ChartComponent,
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
                     WidgetComponent
                 ],
                 entryComponents: [

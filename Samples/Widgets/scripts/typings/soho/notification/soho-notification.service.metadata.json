@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"SohoNotificationService":{"__symbolic":"class","decorators":[{"__symbolic":"call","expression":{"__symbolic":"reference","module":"@angular/core","name":"Injectable","line":4,"character":1}}],"members":{"show":[{"__symbolic":"method"}]},"statics":{"ERROR":"error","ALERT":"alert","INFO":"info","SUCCESS":"success"}}}}]

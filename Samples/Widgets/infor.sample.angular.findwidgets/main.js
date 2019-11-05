@@ -7,7 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+<<<<<<< HEAD
 define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1) {
+=======
+<<<<<<< HEAD
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1) {
+=======
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime", "./search-dialog"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1, search_dialog_1) {
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var FindWidgetsComponent = /** @class */ (function () {
@@ -45,7 +53,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         FindWidgetsComponent.prototype.openSearchDialog = function () {
             var _this = this;
             lime_1.Log.debug(this.logPrefix + " Opening search dialog");
+<<<<<<< HEAD
             var dialog = this.dialogService.modal(SearchDialogComponent, this.placeholder);
+=======
+<<<<<<< HEAD
+            var dialog = this.dialogService.modal(SearchDialogComponent, this.placeholder);
+=======
+            var dialog = this.dialogService.modal(search_dialog_1.SearchDialogComponent, this.placeholder);
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             // Set a localized title
             dialog.title(this.language.get("searchWidgetTitle"));
             // Handle the results when the dialog is closed with OK/Cancel
@@ -123,6 +139,10 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         return FindWidgetsComponent;
     }());
     exports.FindWidgetsComponent = FindWidgetsComponent;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
     var SearchDialogComponent = /** @class */ (function () {
         function SearchDialogComponent() {
         }
@@ -138,13 +158,28 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         return SearchDialogComponent;
     }());
     exports.SearchDialogComponent = SearchDialogComponent;
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
     var FindWidgetsModule = /** @class */ (function () {
         function FindWidgetsModule() {
         }
         FindWidgetsModule = __decorate([
             core_1.NgModule({
+<<<<<<< HEAD
                 declarations: [FindWidgetsComponent, SearchDialogComponent],
                 entryComponents: [FindWidgetsComponent, SearchDialogComponent],
+=======
+<<<<<<< HEAD
+                declarations: [FindWidgetsComponent, SearchDialogComponent],
+                entryComponents: [FindWidgetsComponent, SearchDialogComponent],
+=======
+                declarations: [FindWidgetsComponent, search_dialog_1.SearchDialogComponent],
+                entryComponents: [FindWidgetsComponent, search_dialog_1.SearchDialogComponent],
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
                 imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoInputValidateModule]
             })
         ], FindWidgetsModule);

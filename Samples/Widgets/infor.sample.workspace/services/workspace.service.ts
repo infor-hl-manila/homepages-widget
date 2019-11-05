@@ -1,18 +1,19 @@
 import { Injectable, ViewContainerRef } from "@angular/core";
-import { PanelComponentType, SohoContextualActionPanelService } from "@infor/sohoxi-angular";
+import { PanelComponentType, SohoContextualActionPanelService, SohoMessageService } from "@infor/sohoxi-angular";
+import { Observable } from "rxjs";
 
 @Injectable({
 	providedIn: "root",
 })
 export class WorkspaceService {
-	constructor(private capService: SohoContextualActionPanelService) { }
+	constructor(private capService: SohoContextualActionPanelService, private messageService: SohoMessageService) { }
 
 	open<T extends IWorkspaceComponent>(options: IWorkspaceOptions<T>) {
 		const cap = this.capService.contextualactionpanel(options.component, options.viewRef);
 		cap.options({
 			centerTitle: true,
 		});
-		cap.buttons([
+		const buttons: SohoContextualActionPanelButton[] = [
 			{
 				click: () => cap.close(),
 				text: "Cancel",
@@ -27,15 +28,20 @@ export class WorkspaceService {
 					cap.close();
 				},
 			} as SohoContextualActionPanelButton,
-			{
+		];
+		if (!options.props.readOnly) {
+			buttons.push({
 				text: "Submit",
 				align: "right",
 				click: () => {
-					cap.componentPanel.submitClicked();
-					cap.close();
+					cap.componentPanel.submitClicked().subscribe(
+						() => cap.close(),
+						(error: Error) => this.showError(error),
+					);
 				},
-			} as SohoContextualActionPanelButton,
-		]);
+			} as SohoContextualActionPanelButton);
+		}
+		cap.buttons(buttons);
 		cap.apply(component => {
 			if (options.props) {
 				for (const propertyKey in options.props) {
@@ -49,11 +55,23 @@ export class WorkspaceService {
 		cap.trigger("immediate");
 		cap.open();
 	}
+
+	private showError(error: Error) {
+		const messageRef = this.messageService.error({
+			title: "Error when submitting changes",
+			message: error.message,
+			buttons: [
+				{ text: "Close", click: () => messageRef.close() }
+			],
+		});
+		messageRef.open();
+	}
 }
 
 export interface IWorkspaceComponent {
-	submitClicked: () => void;
+	submitClicked: () => Observable<unknown>;
 	launchClicked: () => void;
+	readOnly: boolean;
 }
 
 export interface IWorkspaceOptions<T> {

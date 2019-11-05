@@ -1,7 +1,6 @@
 import { IWidgetContext, IWidgetInstance } from "lime";
 
 class HelloWorld implements IWidgetInstance {
-
 	private messageElement: JQuery;
 
 	constructor(private widgetContext: IWidgetContext) {

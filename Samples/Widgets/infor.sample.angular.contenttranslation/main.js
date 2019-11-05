@@ -10,6 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
 define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -83,6 +87,14 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         return EditItemComponent;
     }());
     exports.EditItemComponent = EditItemComponent;
+<<<<<<< HEAD
+=======
+=======
+define(["require", "exports", "@angular/common", "@angular/core", "@angular/forms", "@infor/sohoxi-angular", "lime", "./item-dialog"], function (require, exports, common_1, core_1, forms_1, sohoxi_angular_1, lime_1, item_dialog_1) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
     var ContentTranslationComponent = /** @class */ (function () {
         function ContentTranslationComponent(widgetContext, widgetInstance, sohoModalDialogService, translationService) {
             var _this = this;
@@ -148,7 +160,15 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
             }
             var lang = this.lang;
             var dialog = this.sohoModalDialogService
+<<<<<<< HEAD
                 .modal(EditItemComponent, this.view)
+=======
+<<<<<<< HEAD
+                .modal(EditItemComponent, this.view)
+=======
+                .modal(item_dialog_1.EditItemComponent, this.view)
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
                 .title(lang.get("editItem"))
                 .afterClose(function (editItem) {
                 if (editItem) {
@@ -190,8 +210,18 @@ define(["require", "exports", "@angular/common", "@angular/core", "@angular/form
         ContentTranslationModule = __decorate([
             core_1.NgModule({
                 imports: [common_1.CommonModule, forms_1.FormsModule, sohoxi_angular_1.SohoListViewModule, sohoxi_angular_1.SohoButtonModule, sohoxi_angular_1.SohoInputValidateModule],
+<<<<<<< HEAD
                 declarations: [ContentTranslationComponent, EditItemComponent],
                 entryComponents: [ContentTranslationComponent, EditItemComponent]
+=======
+<<<<<<< HEAD
+                declarations: [ContentTranslationComponent, EditItemComponent],
+                entryComponents: [ContentTranslationComponent, EditItemComponent]
+=======
+                declarations: [ContentTranslationComponent, item_dialog_1.EditItemComponent],
+                entryComponents: [ContentTranslationComponent, item_dialog_1.EditItemComponent]
+>>>>>>> 09c5998845de83115754b6247ab941a162cb3ceb
+>>>>>>> 95c7962520966e5a756a86fe606a8514f2f44f35
             })
         ], ContentTranslationModule);
         return ContentTranslationModule;

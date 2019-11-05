@@ -1,8 +1,9 @@
 /// <reference path="soho-homepage.d.ts" />
-import { AfterViewInit, ElementRef, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
 export declare class SohoHomePageComponent implements AfterViewInit, OnDestroy {
     private elementRef;
     private ngZone;
+    resize: EventEmitter<SohoHomePageEvent>;
     homePageOptions: SohoHomePageOptions;
     columns: number;
     gutterSize: number;
@@ -13,9 +14,11 @@ export declare class SohoHomePageComponent implements AfterViewInit, OnDestroy {
     easing: EasingType;
     isHomepage: boolean;
     private jQueryElement;
-    private homePage;
+    private homepage;
     private _homePageOptions;
     constructor(elementRef: ElementRef, ngZone: NgZone);
+    refresh(animate?: boolean): void;
     ngAfterViewInit(): void;
+    onResize(columns: number, metadata: object): void;
     ngOnDestroy(): void;
 }

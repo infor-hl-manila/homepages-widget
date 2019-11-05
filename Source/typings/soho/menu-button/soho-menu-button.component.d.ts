@@ -1,5 +1,4 @@
 /// <reference path="soho-menu-button.d.ts" />
-/// <reference types="jquery" />
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy, NgZone, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 export declare class SohoMenuButtonComponent implements AfterViewInit, AfterViewChecked, OnDestroy {
     private element;
@@ -26,6 +25,8 @@ export declare class SohoMenuButtonComponent implements AfterViewInit, AfterView
     menu: string | JQuery<HTMLElement>;
     ajaxBeforeOpenFunction: AjaxBeforeOpenFunction;
     hideMenuArrow: boolean;
+    attachToBody: boolean;
+    removeOnDestroy: boolean;
     constructor(element: ElementRef, ref: ChangeDetectorRef, ngZone: NgZone);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
