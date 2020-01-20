@@ -1,0 +1,23 @@
+{
+	"widgetId": "infor.crm.tickets",
+	"type": "inline",
+	"framework": "angular",
+	"aotVersion": "",
+	"name": "CRM CE Tickets",
+	"version": "1.0",
+	"category": "application",
+	"moduleName": "widget",
+	"defaultSize": "2,2",
+	"maxSize": "3,2",
+	"applicationLogicalId": "lid://infor.crmce",
+	"applicationVersion": "18.1",
+	"enableTitleEdit": false,
+	"isNativeInline": true,
+	"targets": ["default", "mobile"],
+	"localization": {
+		"en-US": {
+			"widgetTitle": "CRM CE Tickets",
+			"widgetDescription": "See a summary of your current CRM tickets. Act on ones that need attention. Plan your next steps. "
+		}
+	}
+}
