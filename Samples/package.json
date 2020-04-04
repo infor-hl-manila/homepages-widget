@@ -41,7 +41,7 @@
 		"gulp-requirejs-optimize": "~0.3.2",
 		"gulp-size": "~2.1.0",
 		"jsonfromresx": "^1.0.1",
-		"minimist": "1.2.0",
+		"minimist": "1.2.3",
 		"mv": "~2.1.1",
 		"ncp": "2.0.0",
 		"opn": "~4.0.2",
