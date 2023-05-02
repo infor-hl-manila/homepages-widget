@@ -33,7 +33,7 @@
 		"connect": "~3.7.0",
 		"del": "~2.2.0",
 		"fs-extra": "^4.0.2",
-		"gulp": "~3.9.1",
+		"gulp": "~4.0.2",
 		"gulp-amdclean": "~1.1.1",
 		"gulp-angular-templatecache": "~1.8.0",
 		"gulp-concat": "~2.6.0",
